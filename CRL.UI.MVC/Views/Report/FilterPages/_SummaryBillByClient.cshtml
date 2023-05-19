@@ -1,0 +1,131 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Authentication
+<div class="row-fluid">
+    <div class="span6">
+       
+        <div class="control-group">
+            <div class="control-label">Filter by transaction date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => (( SummaryBillByClientViewModel)model).UseStartEndDateOption, "true") Filter transaction date by specifying start and end date <br />
+            @Html.RadioButtonFor(model => (( SummaryBillByClientViewModel)model).UseStartEndDateOption, "false") Filter transaction date by specifying month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => (( SummaryBillByClientViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => (( SummaryBillByClientViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => (( SummaryBillByClientViewModel)model).SelectedMonthList, (( SummaryBillByClientViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => (( SummaryBillByClientViewModel)model).SelectedYear)
+                    @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).SelectedYear)
+                </div>
+            </div>
+        </div>
+   
+@*         <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => (( SummaryBillByClientViewModel)model).SettlementType )
+        </div>
+        <div class="controls">
+
+            @Html.DropDownListFor(model => (( SummaryBillByClientViewModel)model).SettlementType , new SelectList((( SummaryBillByClientViewModel)Model).SettlementList   , "Value", "Text", (( SummaryBillByClientViewModel)Model).SettlementType))
+            @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).SettlementType)
+        </div></div>
+         <div class="control-group">
+                <div class="control-label">Batch No</div>
+                <div class="controls">
+                    @Html.EditorFor(model => (( SummaryBillByClientViewModel)model).BatchId )
+                    @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).BatchId )
+                </div>
+            </div>
+   @if(((SecurityUser)(Context.User .Identity )).IsOwnerUser==false)
+   {         
+   <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => (( SummaryBillByClientViewModel)model).LimitTo)
+        </div>
+        <div class="controls">
+
+            @Html.DropDownListFor(model => (( SummaryBillByClientViewModel)model).LimitTo , new SelectList((( SummaryBillByClientViewModel)Model).LimitToList    , "Value", "Text", (( SummaryBillByClientViewModel)Model).LimitTo))
+            @Html.ValidationMessageFor(model => (( SummaryBillByClientViewModel)model).LimitTo)
+        </div></div>
+   }*@
+        
+
+    </div>
+
+</div>
+
+@Html.HiddenFor(model => (( SummaryBillByClientViewModel)model).InBatchMode )
+
+ 
+<script>
+    if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+        $('#pnlMonthYear').hide();
+        $('#pnlStartEndDate').show();
+    }
+    else {
+        $('#pnlMonthYear').show();
+        $('#pnlStartEndDate').hide();
+    }
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+   
+
+
+</script> 

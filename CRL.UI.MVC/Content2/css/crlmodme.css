@@ -1,0 +1,86 @@
+body {
+	/*margin-top: 125px;  adjust this if the height of the menu bar changes */
+	margin-right:100px;
+	margin-left:100px;
+}
+
+/* .nav {
+	margin-top: 28px; /* this is a faux center fix for the nav options - adjust this if you wish to change the logo height or the font of the menu items 
+	margin-bottom:20px;
+} */
+
+footer {
+	padding: 30px 0;	
+}
+
+.navbar-header{
+	width:250px;
+	
+}
+
+
+/* set the background-color to red */
+.navbar-inner{
+	background-color:#6ac4fc;
+    /* remove the gradient */
+    background-image: none;
+    /* set font color to white */
+    color: #fff;
+	/* set height of navbar*/
+	height:60px;
+	/*box-radius*/
+	-webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+}
+.nav-collapse{
+	margin:auto;
+	overflow:none;
+}
+
+
+.tst{
+	text-align:center;
+	
+}
+
+
+/* menu items */
+
+    /* set the background of the menu items to pink and default color to white */
+
+        .navbar .nav >li >a {
+          background-color:white ;   
+          margin-top:-40px;
+		  margin-bottom:10px;
+		  
+
+        }
+
+
+    /* set hover and focus to lightblue */
+    .navbar .nav > li > a:focus,
+    .navbar .nav > li > a:hover {
+      background-color: #fff;
+      color: red;
+    }
+        /* set active item to darkgreen */
+        .navbar .nav > .active > a,
+        .navbar .nav > .active > a:hover,
+        .navbar .nav > .active > a:focus {
+
+          background-color: #e74c3c;
+          box-shadow:none;
+		  color:white;
+		  
+		  
+		  }
+
+    /* set font color and background of the project name (brand) */
+	
+.highlightSection{
+	text-align:center;
+
+}
+    
+

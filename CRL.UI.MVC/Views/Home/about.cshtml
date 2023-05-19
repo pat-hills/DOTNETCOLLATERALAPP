@@ -1,0 +1,70 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+    
+}
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    ViewBag.Active = "Help";
+}
+<style>
+    .aboutContent p {
+        margin-bottom: 13px;
+    }
+</style>
+<div class="w-container container aboutContent" style="text-align: justify">
+    <div class="page-header">
+        <h2>ABOUT THE REGISTRY</h2>
+    </div>
+    <div>
+        <h3>National Collateral Registry Of Nigeria</h3>
+        <p>
+            The National Collateral Registry of Nigeria is an initiative of the Central Bank of Nigeria (with support from IFC) to improve access to finance particularly for Micro, Small and Medium Enterprises (MSMEs). 
+            The Collateral Registry, which operationalizes Part III of the Central Bank of Nigeria’s Regulations on Registration of Security Interests in Movable Property by Banks and other Financial Institutions 
+            (Regulations No, 1, 2015) is a web-based system that allows lenders to determine any prior security interests, as well as to register their security interests over movable assets provided as collateral.
+            The Collateral Registry facilitates the use of movable / personal assets as collateral that remain in possession or control of the borrowers and thereby improves access to secured finance because: 
+           <ul>
+               <li>Movable assets/personal property often account for most of the capital stock of private firms and comprise an especially large share MSMEs; </li>
+               <li>Movable assets are the main type of collateral that MSMEs, especially those in developing countries, can encumber to obtain financing; and</li>
+               <li>Given the opportunities in agri-business among others, the Collateral Registry regime allows Nigerian farmers and entrepreneurs to unlock significant sources of capital with assets that would 
+                 otherwise not be looked at by lenders as potential collateral.</li>
+           </ul>
+            The Central Bank of Nigeria remains committed to the sustainable economic growth of Nigeria and shall continue to support the development of necessary financial sector infrastructure.
+            <br />
+            <br />
+            The Collateral Registry system is a centralized web-based software designed and developed based on international standards that contains information relating to security interests in movable property 
+            included in financing statements submitted by registered users. 
+            <br />
+            <br />
+            The collateral registry software automatically assigns a sequential registration number, date and time of 
+            registration to each financing statement accepted for registration  The priority among competing security interests is established according to the time of registration. 
+            <br />
+            <br />
+            The web-based nature of the system offers remote access from the comfort of your location even beyond normal business hours without visiting the registry office.  It reduces and frees officials of the registry 
+            operations from paper burdens, manual reviews, searches and storage costs.
+            <br />
+            <br />
+            A Collateral Registry is established for the purposes of receiving, storing and making available to the 
+            public information submitted by users in the form of financing statements relating to security interests.  The software saves data submitted by registered users to a database and makes it available to the 
+            searchers who use the appropriate search parameter.
+        </p>
+        <br />
+        <h3>How to Access the Registry</h3>
+        <p>Any person can access the Collateral Registry System by entering the URL address <a href="http://www.ncr.gov.ng">www.ncr.gov.ng</a> in a web browser but only registered users are able to enter and save data to the database. Unlike a Registered Client, a Public Client needs no registration in the system in order to perform search in the registry. A Registered Client has to be a Legal Financial institution regulated by the CBN.  </p>
+        <br />
+        <h4>Postpaid Client Account Access</h4>
+        <p>Postpaid Client Account users are financial institutions regulated by the CBN who hold a clearing account with the central bank.  Such financial institutions should open a client account with the Collateral Registry by clicking the <b>Create New Account</b> Tab on the <a href="@Url.Action("Index", "Home")">Home Page</a> to register and request to be setup on a Postpaid Account. This allows the institution through its authorized users to login to the application, register notices of financing statement and request for search certificates without making any advanced payments. The transaction fees are automatically deducted from the financial institutions credit account with the Central Bank of Nigeria (CBN) and a statement is generated for the client at the end of each month, detailing all completed chargeable transactions. </p>
+        <br />
+        <h4>How to Search as Public User</h4>
+        <p>Before you search the registry for registrations, you must first know how many searches you will make. Then pay the fees through Interswitch WebPay and use the payment security code issued to you to search for Registrations and then click the Search Tab on the Home page to go to the Search page and perform search.  </p>
+        <br />
+        <h4>How to make Payment</h4>
+        <p>
+            Fees are charged during initial financing statement registrations, amendments, renewals and search. Registered clients holding Postpaid accounts with the Central Bank shall pay for transactions through settlement payment. 
+            To pay for a transaction in the collateral registry as Public client, first determine the total amount of fees for the service you want from the Fees option under the Help menu. Then pay that amount through either Interswitch WebPay.  On the Home page click the Search Menu tab to redirect you to the main Search page where you will find the Payment menu. 
+            For WebPay click on the Make an Online Payment and follow the steps to continue. If the payment transaction is successful, the client will be issued with a payment security code which will be used to search for Registrations.
+        </p>
+    </div>
+
+    <hr />
+</div>

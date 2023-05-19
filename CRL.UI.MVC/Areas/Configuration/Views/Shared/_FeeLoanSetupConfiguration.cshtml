@@ -1,0 +1,54 @@
+﻿@model CRL.Service.Views.Configuration.FeeLoanSetupView
+@using HtmlHelpers.BeginCollectionItem
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Service.Common
+@using MvcCheckBoxList.Model
+@using CRL.Infrastructure.Enums 
+
+@{
+//    String paymentMethodPrefix;
+//    if(String.IsNullOrEmpty (ViewData.TemplateInfo.HtmlFieldPrefix))
+//    {
+//        paymentMethodPrefix = Model.prefixedModel ;
+//    }
+//else
+//    {
+//        paymentMethodPrefix = ViewData.TemplateInfo.HtmlFieldPrefix;
+//    }
+  
+}
+
+<tr class="FeeloanSetupRow">
+    @using (Html.BeginCollectionItem("_ConfigurationFeeViewModel.ConfigurationFeeView.FeeLoanSetupsView"))
+    {            
+        @*<td>
+           
+                @Html.TextBoxFor(model =>model.Id)
+                @Html.ValidationMessageFor(model =>model.Id )
+            
+        </td>*@
+        <td>
+           
+                  @Html.TextBoxFor(model =>model.Fee)
+                @Html.ValidationMessageFor(model =>model.Fee )
+           
+        </td>           
+        
+           <td>
+           
+             @Html.TextBoxFor(model =>model.LoanAmountLimit)
+                @Html.ValidationMessageFor(model =>model.LoanAmountLimit )
+           
+        </td>       
+             <td><a href="#" class="deleteFeeLoanRow">Delete</a></td>          
+         @Html.HiddenFor(model=>model.IsLSDorUSD)
+         @Html.HiddenFor(model=>model.PerTransactionConfigurationFeeId)
+         @Html.HiddenFor(model=>model.Id)
+    }
+</tr>
+<script>
+    $("a.deleteFeeLoanRow").on("click", function () {
+        $(this).parents("tr.FeeloanSetupRow:first").remove();
+        return false;
+    });
+</script>

@@ -1,0 +1,58 @@
+﻿@using CRL.Infrastructure.Configuration
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._TransactionDetailsPartialViewModel
+<div id="transactionResult" style="text-align: center;">
+    @if (!Model.IsPageLoad)
+    {
+
+        if (string.IsNullOrEmpty(Model.Message) && Model.TransactionResponseView.ResponseCode == InterSwitchConfig.SuccessfulTransaction)
+        {
+        <div class="alert alert-info">
+
+            <p>Payment Successfully Approved</p>
+            @if (Model.HasEmail)
+            {
+                <p>An email containing your payment details has been sent to yours email address </p>
+            }
+            <p>Your PIN Code is @Model.SecurityCode</p>
+            <p>Transaction Reference Code: @Model.TransactionRefNo</p>
+            <p>Date of Transaction: @Model.TransactionResponseView.TransactionDate </p>
+
+            <p><a href="@Url.Action("Download", "InterSwitch", new { Id = Model.PaymentId })" style="color: red;">Download Payment Receipt</a></p>
+            <br />
+            <p>To search click search under the search menu and provide your <b>PIN Code</b> </p>
+            <p>in the payment verification dialog after clicking on the search button. </p>
+
+        </div>
+        }
+        if (string.IsNullOrEmpty(Model.Message) && Model.TransactionResponseView.ResponseCode != InterSwitchConfig.SuccessfulTransaction)
+        {
+        <div class="alert alert-error">
+            <p>
+                Your transaction was not successful. 
+                @{
+                if (!String.IsNullOrWhiteSpace(Model.TransactionResponseView.ResponseDescription))
+                {
+                    <p>Reason: @Model.TransactionResponseView.ResponseDescription</p>               
+                }
+                else
+                {
+                    <p>Reason: N/A</p>
+                }
+                }
+            <p>Transaction Reference: @Model.TransactionRefNo</p>
+            <p>Click payment on the top menu to try again.</p>
+        </div>
+        }
+        if (!string.IsNullOrEmpty(Model.Message))
+        {
+        <div class="alert alert-error">
+            <p>@Model.Message</p>
+            <p>Unprocessed Transaction</p>
+            <p>Click payment on the top menu to try again.</p>
+            <p>Transaction Reference: @Model.TransactionRefNo</p>
+        </div>
+        }
+    }
+</div>
+
+

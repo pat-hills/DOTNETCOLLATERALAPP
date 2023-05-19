@@ -1,0 +1,142 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.ViewPageModel.IndexOfFeeConfigurationViewModel
+@using CRL.UI.MVC.Common.Enums;
+@{
+    
+    ViewBag.Title = "Fee Configurations";
+    ViewBag.Icon = "icon-cog";
+    ViewBag.HeaderSummary = "List of all Fee Configurations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Administration";
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "searchgrid",
+        Url = Url.Action("SubmitSearchFeeConfigurations")
+
+    };
+}
+
+
+<script src="~/Scripts/bootbox.min.js"></script>
+
+<p>
+    @Html.ActionLink("Add New Fee Configuration", "FeeConfigurationDetails", new { Area = "Configuration",FormMode=CRL.Infrastructure.Enums.EditMode.Create }, new { @class = "btn btn-small btn-primary" })
+</p>
+
+<div class="row-fluid">
+    <div class="span12">
+<div class="box box-color box-bordered">
+    <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>List
+                </h3>
+      </div>
+    <div class="box-content">
+        <div class="form-horizontal">
+            @using (Ajax.BeginForm(ajaxOpts))
+            {
+                        <fieldset>
+                            <legend>Filter Legal Entities</legend>
+             <div class="control-group">
+                        <label class="control-label">Date Search Method</label>
+                        <div class="controls">
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model._FeeConfigurationsJqgrid.UseStartEndDateOption,"true")
+                                Use start and end date
+                            </label>
+                            <label class="radio">
+                                  @Html.RadioButtonFor(model => model._FeeConfigurationsJqgrid.UseStartEndDateOption,"false")
+                                Use month and year
+                            </label>
+                        </div>
+                    </div>
+                            <div id="pnlStartEndDate">   
+                                <div class="control-group">
+                                    <label class="control-label">Start Date</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._FeeConfigurationsJqgrid.StartDate, new { Id = "StartDate" })
+                                        @Html.ValidationMessageFor(model => model._FeeConfigurationsJqgrid.StartDate)
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="control-label">End Date</div>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._FeeConfigurationsJqgrid.EndDate, new { Id = "EndDate" })
+                                        @Html.ValidationMessageFor(model => model._FeeConfigurationsJqgrid.EndDate)
+                                    </div>
+                                </div>
+                            </div>
+                     <div id="pnlMonthYear">
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Month</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model._FeeConfigurationsJqgrid.SelectedMonthList, Model._FeeConfigurationsJqgrid.MonthsList)
+                                @Html.ValidationMessageFor(model => model._FeeConfigurationsJqgrid.SelectedMonthList)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Year</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._FeeConfigurationsJqgrid.SelectedYear)
+                                @Html.ValidationMessageFor(model => model._FeeConfigurationsJqgrid.SelectedYear)
+                            </div>
+                        </div>
+                    </div>
+                            <div class="controls">
+                        <button type="submit" class="btn btn-primary">Submit Search</button>
+                    </div>
+                        </fieldset>
+                        <div class="clear"></div>
+
+        
+        }
+        </div>
+        @Html.Action("SubmitSearchFeeConfigurations")
+    </div>
+</div>
+        </div>
+    </div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    }
+
+
+<script>
+
+
+    $("#pnlMonthYear").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+        $("#StartDate").datepicker({ dateFormat: dateFormatMode });
+        $("#EndDate").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='_FeeConfigurationsJqgrid.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlStartEndDate').hide();
+                $('#pnlMonthYear').show();
+
+            }
+        });
+    });
+
+</script>

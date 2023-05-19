@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Messaging.Reporting.Request.ViewFSStatRequest">
+    <Position X="0.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAgAAAAAAAAAAAAAQAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Messaging\Reporting\Request\Requests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Reporting.Request.RequestByDate">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Messaging\Reporting\Request\Requests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Reporting.Response.GetReportByIdResponse">
+    <Position X="3" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Messaging\Reporting\Response\GetReportByIdResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Reporting.Response.ViewReportsResponse">
+    <Position X="0.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Messaging\Reporting\Response\GetReportByIdResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Reporting.Response.PrepareAuditReportResponse">
+    <Position X="5.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Reporting\Response\PrepareResponses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Reporting.Response.PrepareCreditActivitiesReportResponse">
+    <Position X="3" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Reporting\Response\PrepareResponses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Reporting.Response.PrepareCustomQueryReportResponse">
+    <Position X="3" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAIAAAAAAAAAQCAAAAgAAABIABAIAAAAAA=</HashCode>
+      <FileName>Messaging\Reporting\Response\PrepareResponses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.GetDataForViewPaymentRequest">
+    <Position X="5.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\GetDataForPaymentRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.GetReceiptRequest">
+    <Position X="3" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\GetReceiptRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.MakePaymentRequest">
+    <Position X="5.5" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\PurchaseCreditRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.GenerateBatchedPostpaidTransactionsRequest">
+    <Position X="8.25" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAACAAEAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\PurchaseCreditRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ReconcileBatchedPostpaidTransactionsRequest" Collapsed="true">
+    <Position X="13.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\PurchaseCreditRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.GetDataForReconcileRequest">
+    <Position X="5.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\PurchaseCreditRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ViewSummaryPostpaidTransactionsRequest" Collapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAEAAAAAAAEAAAIAAAAAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\ViewCreditActivitiesRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ViewSummaryClientExpenditureRequest">
+    <Position X="5.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\ViewCreditActivitiesRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ViewCreditActivitiesRequest" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAEAAAAAAAAIAYAQAAAAAEgQQAAEAIAAEA=</HashCode>
+      <FileName>Messaging\Payment\Request\ViewCreditActivitiesRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ViewAccountBatchesRequest">
+    <Position X="8.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\ViewCreditActivitiesRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ViewReconcilationsRequest" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\ViewCreditActivitiesRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Request.ViewPaymentsRequest" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAgAAAEIAAAAAAAEBAACgBAAAQAgSAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Request\ViewPaymentsRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.GetDataForViewPaymentResponse" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\GetDataForPaymentResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.GetDataForSelectClientResponse" Collapsed="true">
+    <Position X="11.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Messaging\Payment\Response\GetDataForSelectClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.GetReceiptResponse" Collapsed="true">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIQAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAIAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\GetReceiptResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.MakePaymentResponse" Collapsed="true">
+    <Position X="10.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\PurchaseCreditCodeResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.GenerateBatchedPostpaidTransactionsResponse" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\PurchaseCreditCodeResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.GetDataForReconcileResponse" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\PurchaseCreditCodeResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.ViewCreditActivitiesResponse" Collapsed="true">
+    <Position X="8.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\ViewCreditActivitiesResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.ViewPaymentsResponse" Collapsed="true">
+    <Position X="10.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\ViewPaymentsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.ViewSummaryClientExpendituresResponse" Collapsed="true">
+    <Position X="8.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\ViewPaymentsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.ViewSummaryPostpaidTransactionsResponse" Collapsed="true">
+    <Position X="10.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAKAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\ViewPaymentsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.ViewAccountBatchesResponse" Collapsed="true">
+    <Position X="8.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\ViewPaymentsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Payment.Response.ViewReconcilationsResponse" Collapsed="true">
+    <Position X="12" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Payment\Response\ViewPaymentsResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CRL.Service.Messaging.Reporting.Request.GroupByNoOfFSStat">
+    <Position X="0.5" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAIAAAAAAAgAAAAgABAgAAAAJAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Reporting\Request\Requests.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

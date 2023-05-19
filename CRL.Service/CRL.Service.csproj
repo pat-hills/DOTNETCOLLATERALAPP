@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37556BFC-CC4A-4922-AA36-8FC4DB3DF20F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRL.Service</RootNamespace>
+    <AssemblyName>CRL.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper">
+      <HintPath>..\packages\Bootstrapper.2.0.3.9\lib\Net40\Bootstrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper.AutoMapper">
+      <HintPath>..\packages\Bootstrapper.AutoMapper.2.0.3.11\lib\Net40\Bootstrapper.AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\dlls\LinqKit\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapperBootStrapper.cs" />
+    <Compile Include="BusinessServices\AuditMessageGenerator.cs" />
+    <Compile Include="BusinessServices\AuditVerb.cs" />
+    <Compile Include="BusinessServices\FSBatch.cs" />
+    <Compile Include="BusinessServices\FSBatchModel.cs" />
+    <Compile Include="BusinessServices\FinancialStatmentActivityFactory.cs" />
+    <Compile Include="BusinessServices\LookUpServiceHelper.cs" />
+    <Compile Include="BusinessServices\ValidateSecurityOwnershipRule.cs" />
+    <Compile Include="Common\ServiceBase.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Factories\HandleWorkItemRequestFactory.cs" />
+    <Compile Include="Implementations\AuthenticatonService.cs" />
+    <Compile Include="Implementations\ConfigurationService.cs" />
+    <Compile Include="Implementations\EmailService.cs" />
+    <Compile Include="Implementations\ClientService.cs" />
+    <Compile Include="Implementations\FinancingStatementService.cs" />
+    <Compile Include="Implementations\FSBatchService.cs" />
+    <Compile Include="Implementations\MessageService.cs" />
+    <Compile Include="Implementations\SearchService.cs" />
+    <Compile Include="Implementations\WidgetService.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="Interfaces\IFinancingStatementService.cs" />
+    <Compile Include="Interfaces\IFSBatchService.cs" />
+    <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Implementations\PaymentService.cs" />
+    <Compile Include="Implementations\ReportSerivce.cs" />
+    <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Interfaces\IClientService.cs" />
+    <Compile Include="Interfaces\IConfigurationService.cs" />
+    <Compile Include="Interfaces\IInstitutionUnitService.cs" />
+    <Compile Include="Implementations\InstitutionUnitService.cs" />
+    <Compile Include="Implementations\MembershipRegistrationService.cs" />
+    <Compile Include="Implementations\InstitutionService.cs" />
+    <Compile Include="Implementations\WorkflowService.cs" />
+    <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\IInstitutionService.cs" />
+    <Compile Include="Interfaces\IMembershipRegistrationService.cs" />
+    <Compile Include="Interfaces\IMembershipService.cs" />
+    <Compile Include="Interfaces\IPaymentService.cs" />
+    <Compile Include="Interfaces\ISearchService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Interfaces\IWidgetService.cs" />
+    <Compile Include="Interfaces\IWorkflowService.cs" />
+    <Compile Include="IOC\RepositoryFactory.cs" />
+    <Compile Include="IOC\ServiceFactory.cs" />
+    <Compile Include="Mappings\Configuration\ConfigurationMapper.cs" />
+    <Compile Include="Mappings\Configuration\FeeConfigurationMapper.cs" />
+    <Compile Include="Mappings\FinancialStatement\FinancialStatementMapper.cs" />
+    <Compile Include="Mappings\FinancialStatement\FinancialStatementViewSummaryMapper.cs" />
+    <Compile Include="Mappings\Amendment\FSActivitySummaryViewMapper.cs" />
+    <Compile Include="Mappings\FinancialStatement\IndividualParticipantSummaryViewMapper.cs" />
+    <Compile Include="Mappings\FinancialStatement\InstitutionParticipantSummaryViewMapper.cs" />
+    <Compile Include="Mappings\FinancialStatement\ParticipantSummaryViewMapper.cs" />
+    <Compile Include="Mappings\Membership\InstitutionMapper.cs" />
+    <Compile Include="Mappings\Membership\InstitutionUnitMapper.cs" />
+    <Compile Include="Mappings\Membership\MembershipRegistrationMapper.cs" />
+    <Compile Include="Mappings\Membership\PeopleMapper.cs" />
+    <Compile Include="Mappings\Membership\RoleMapper.cs" />
+    <Compile Include="Mappings\Payment\InterSwitchMapper.cs" />
+    <Compile Include="Mappings\Payment\PaymentMapper.cs" />
+    <Compile Include="Mappings\Search\SearchRequestGridViewMapper.cs" />
+    <Compile Include="Mappings\Search\SearchResultViewMapper.cs" />
+    <Compile Include="Messaging\Authentication\Request\LoginRequest.cs" />
+    <Compile Include="Messaging\Authentication\Response\LoginResponse.cs" />
+    <Compile Include="Messaging\Common\Request\CommonRequestClasses.cs" />
+    <Compile Include="Messaging\Common\Response\CommonResponseClasses.cs" />
+    <Compile Include="Messaging\Configuration\Request\CreateEditGMRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\CreateNewBVCDataRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\CreateSubmitGlobalMessageRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\DeleteGMRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\GetBvcDataRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\GetDataForConfigurationRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\GetDataForConfigurationTransactionFeesRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\SaveConfigurationRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\SaveFeesConfigurationRequest.cs" />
+    <Compile Include="Messaging\Configuration\Request\ViewGlobalMessagesRequest.cs" />
+    <Compile Include="Messaging\Configuration\Response\CreateEditGMResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\CreateSubmitGlobalMessageResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\DeleteGMResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\GetBvcDataResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\GetDataForConfigurationResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\GetDataForConfigurationTransactionFeesResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\SaveConfigurationResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\SaveFeesConfigurationResponse.cs" />
+    <Compile Include="Messaging\Configuration\Response\ViewGlobalMessagesResponse.cs" />
+    <Compile Include="Messaging\EmailAdministration\Request\ViewEmailRequest.cs" />
+    <Compile Include="Messaging\EmailAdministration\Response\ViewEmailResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\BatchesRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\CreateFSAttachmentRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\CreateSnapshotRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetDataForFSByEditModeRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetDataForLoadAttachmentRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetDataForLoadAttachmentResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetDataForLoadSnapshotRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetDataForParticipantRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetFSIndexRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\ViewFSRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\BatchResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\CreateEditFSResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\CreateFSAttachmentResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\CreateSnapshotResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetDataForCollateralResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetDataForFSViewResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetDataForFSByEditModeResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetDataForLoadSnapshotResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetDataForParticipantResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetFSCreateResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetInstitutionDetailsForParticipantResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\ViewFSResponse.cs" />
+    <Compile Include="Messaging\Institution\Request\GetDataForCreateEditViewClientInstitutionRequest.cs" />
+    <Compile Include="Messaging\Institution\Response\GetDataForCreateEditViewClientInstitutionResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\FSLookUpEnum.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\CreateFSRequest.cs" />
+    <Compile Include="Messaging\Amendments\Request\FinancialActivityRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\FindFinancialStatementsSummaryRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\FindFSActivitySummaryRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\GetFinancialStatementSummaryByIdRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\LookUpForFSRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Request\ResubmitFSRequest.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\CreateFSResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\FindFinancialStatementsSummaryResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\FindFSActivitySummaryResponse.cs" />
+    <Compile Include="Messaging\Amendments\Response\FSActivityResponseBase.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetDischargeActivitySummaryViewById.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetFinancialStatementResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetFinancialStatementSummaryByIdResponse.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetRenewalActivitySummaryViewById.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\GetUpdateActivitySummaryViewById.cs" />
+    <Compile Include="Messaging\FinancialStatements\Response\UpdateFSResponse.cs" />
+    <Compile Include="Messaging\Institution\Request\CreateEditClientInstitutionRequest.cs" />
+    <Compile Include="Messaging\Memberships\Request\ConfirmMembershipRequest.cs" />
+    <Compile Include="Messaging\Memberships\Request\GetBVCRequest.cs" />
+    <Compile Include="Messaging\Memberships\Request\GetClientSummaryViewRequest.cs" />
+    <Compile Include="Messaging\Memberships\Request\GetDataForEmailAttachmentRequest.cs" />
+    <Compile Include="Messaging\Memberships\Request\ViewClientEmailRequest.cs" />
+    <Compile Include="Messaging\Memberships\Response\GetBVCResponse.cs" />
+    <Compile Include="Messaging\Memberships\Response\GetDataForEmailAttachmentResponse.cs" />
+    <Compile Include="Messaging\Memberships\Response\GetDataforLGAResponse.cs" />
+    <Compile Include="Messaging\Memberships\Response\GetDataForSubmitPostpaidResponse.cs" />
+    <Compile Include="Messaging\Memberships\Request\SetupPostpaidAccountRequest.cs" />
+    <Compile Include="Messaging\Memberships\Response\GetClientSummaryViewResponse.cs" />
+    <Compile Include="Messaging\Memberships\Request\GetDataForMembershipRegistrationByEditModeRequest.cs" />
+    <Compile Include="Messaging\Memberships\Request\SubmitMembershipRegistrationRequest.cs" />
+    <Compile Include="Messaging\Institution\Response\CreateEditClientInstitutionResponse.cs" />
+    <Compile Include="Messaging\Memberships\Request\ViewMembershipRegistrationsRequest.cs" />
+    <Compile Include="Messaging\Memberships\Response\GetDataForMembershipRegistrationByEditModeResponse.cs" />
+    <Compile Include="Messaging\Memberships\Response\SubmitMembershipRegistrationResponse.cs" />
+    <Compile Include="Messaging\Memberships\Response\ViewClientEmailResponse.cs" />
+    <Compile Include="Messaging\Memberships\Response\ViewMembershipRegistrationResponse.cs" />
+    <Compile Include="Messaging\Message.cs" />
+    <Compile Include="Messaging\Payments\Request\CreateDirectPayDetailsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetAllDirectPayTransactionsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetAllInterSwitchTransactionsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetDataForPaymentRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetDirectPayTransactionDetailsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetInterSwitchDetailsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetInterSwitchViewPaymentDetailsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetPaymentVoucherRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\GetReceiptRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\InterSwitchApiQueryRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\MakeDirectPayPaymentRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\SubmitInterSwitchDetailsRequest.cs" />
+    <Compile Include="Messaging\Payments\Request\ViewPaymentsRequest.cs" />
+    <Compile Include="Messaging\Payments\Response\CreateDirectPayDetailsResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetAllDirectPayTransactionsResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetAllInterSwitchTransactionsResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetDataForPaymentResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetDataForSelectClient.cs" />
+    <Compile Include="Messaging\Payments\Request\PurchaseCreditRequest.cs" />
+    <Compile Include="Messaging\Payments\Response\GetDirectPayTransactionDetailsResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetInterSwitchDetailsResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetInterSwitchViewPaymentDetailsResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetPaymentVoucherResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\GetReceiptResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\InterSwitchApiQueryResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\MakeDirectPayPaymentResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\PurchaseCreditCodeResponse.cs" />
+    <Compile Include="Messaging\Payments\Response\SubmitInterSwitchDetailsResponse.cs" />
+    <Compile Include="Messaging\Reporting\Request\Requests.cs" />
+    <Compile Include="Messaging\Reporting\Response\GetReportByIdResponse.cs" />
+    <Compile Include="Messaging\Reporting\Response\PrepareResponses.cs" />
+    <Compile Include="Messaging\User\Request\CreateEditUserRequest.cs" />
+    <Compile Include="Messaging\User\Request\GetDataForCreateEditViewUserRequest.cs" />
+    <Compile Include="Messaging\User\Request\ResetPasswordRequest.cs" />
+    <Compile Include="Messaging\User\Request\SetUserPaypointStatusRequest.cs" />
+    <Compile Include="Messaging\User\Request\SubmitPayPointUsersRequest.cs" />
+    <Compile Include="Messaging\User\Response\CreateEditViewUserResponse.cs" />
+    <Compile Include="Messaging\User\Response\ForcedPasswordChnageResponse.cs" />
+    <Compile Include="Messaging\User\Response\GetDataForCreateEditViewUserResponse.cs" />
+    <Compile Include="Messaging\Workflow\Request\GetDataForTaskHandleRequest.cs" />
+    <Compile Include="Messaging\Workflow\Request\GetNumberOfTaskRequest.cs" />
+    <Compile Include="Messaging\Workflow\Request\HandleWorkItemRequest.cs" />
+    <Compile Include="Messaging\Workflow\Response\GetDataForTaskHandleResponse.cs" />
+    <Compile Include="Messaging\Workflow\Response\ViewMyMessagesResponse.cs" />
+    <Compile Include="MicrosoftReportGenerator\AmendmentVerificationReportGenerator.cs" />
+    <Compile Include="MicrosoftReportGenerator\SearchReportGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryGenerator\AuditQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\BVCQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\ClientEmailQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\ClientQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\DraftGenerators.cs" />
+    <Compile Include="QueryGenerator\EmailAdministrationQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\FSBatchQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\FSQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\FSActivityQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\MembershipRegistrationFindQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\MessageQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\PaymentQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\RolesFindQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\SearchesListQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\SearchFinancialStatementQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\InstitutionFindQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\InstitutionUnitFindQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\StatisticalQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\TaskQueryGenerator.cs" />
+    <Compile Include="QueryGenerator\UserFindQueryGenerator.cs" />
+    <Compile Include="ReportGenerator\AmendmentVerificationReportGenerator.cs" />
+    <Compile Include="ReportGenerator\FSVerificationReportGenerator.cs" />
+    <Compile Include="ReportGenerator\SearchReportGenerator.cs" />
+    <Compile Include="Views\Administration\EmailView.cs" />
+    <Compile Include="Views\Configuration\BankVerificationCodeView.cs" />
+    <Compile Include="Views\Configuration\ConfigurationFeesSetupView.cs" />
+    <Compile Include="Views\Configuration\ConfigurationFeeView.cs" />
+    <Compile Include="Views\Configuration\ConfigurationTransactionFeesView.cs" />
+    <Compile Include="Views\Configuration\ConfigurationWorkflowView.cs" />
+    <Compile Include="Views\Configuration\FeeLoanSetupView.cs" />
+    <Compile Include="Views\Configuration\PeriodicConfigurationFeeView.cs" />
+    <Compile Include="Views\Configuration\PerTransactionConfigurationFeeView.cs" />
+    <Compile Include="Views\FinancialStatement\CollateralSubTypeView.cs" />
+    <Compile Include="Views\FinancialStatement\FSActivityDetailSummaryView.cs" />
+    <Compile Include="Views\FinancialStatement\FSBatchView.cs" />
+    <Compile Include="Views\FinancialStatement\FSSummaryView.cs" />
+    <Compile Include="Views\FinancialStatement\IndividualParticipantSummaryView.cs" />
+    <Compile Include="Views\FinancialStatement\InstitutionParticipantSummaryView.cs" />
+    <Compile Include="Views\FinancialStatement\InstitutionSPParticipantView.cs" />
+    <Compile Include="Views\FinancialStatement\ParticipantSummaryView.cs" />
+    <Compile Include="Views\Payments\DirectPayRequestView.cs" />
+    <Compile Include="Views\Payments\DirectPayResponseView.cs" />
+    <Compile Include="Views\Payments\InterSwitchDetailsView.cs" />
+    <Compile Include="Views\Payments\InterSwitchTransactionView.cs" />
+    <Compile Include="Views\Payments\InterSwitchUserView.cs" />
+    <Compile Include="Views\MembershipRegistration\MembershipRegistrationsGridView.cs" />
+    <Compile Include="Views\MembershipRegistration\InstitutionMembershipRegistrationView.cs" />
+    <Compile Include="Views\Memberships\ClientEmailView.cs" />
+    <Compile Include="Views\MessageView.cs" />
+    <Compile Include="Views\Payments\TransactionResponseView.cs" />
+    <Compile Include="Views\Report\ReportView.cs" />
+    <Compile Include="Views\Navigation\MenuView.cs" />
+    <Compile Include="Views\Workflow\AssignNewTaskView.cs" />
+    <Compile Include="Views\Workflow\MessagesView.cs" />
+    <Compile Include="Views\Workflow\TaskGridView.cs" />
+    <Compile Include="Views\Workflow\TaskView.cs" />
+    <Compile Include="Views\Workflow\TokenAssignmentRules.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRL.Infrastructure\CRL.Infrastructure.csproj">
+      <Project>{d6d0eba3-e928-4d03-806c-6b7e0e28e706}</Project>
+      <Name>CRL.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRL.Model\CRL.Model.csproj">
+      <Project>{ec045b2c-ac6c-4def-87d6-65501bcf83c2}</Project>
+      <Name>CRL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRL.Repository.EF.All\CRL.Repository.EF.All.csproj">
+      <Project>{553b2b5a-b05b-4392-ab0d-e62d714eab3d}</Project>
+      <Name>CRL.Repository.EF.All</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MicrosoftReportGenerators\CRL.ReportGenerators.csproj">
+      <Project>{ffc999e8-b207-4a39-93ab-898e8db6da1f}</Project>
+      <Name>CRL.ReportGenerators</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReportingView\Search\" />
+    <Folder Include="Views\Search\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagrams\Infrastructure.cd" />
+    <None Include="ClassDiagrams\MappedClasses2.cd" />
+    <None Include="ClassDiagrams\MapperClasses.cd" />
+    <None Include="ClassDiagrams\Messaging.cd" />
+    <None Include="ClassDiagrams\Messaging2.cd" />
+    <None Include="ClassDiagrams\Messaging3.cd" />
+    <None Include="ClassDiagrams\Messaging4.cd" />
+    <None Include="ClassDiagrams\Service2.cd" />
+    <None Include="ClassDiagrams\ServiceInterface2.cd" />
+    <None Include="ClassDiagrams\ServiceInterfaces1.cd" />
+    <None Include="ClassDiagrams\Services.cd" />
+    <None Include="packages.config" />
+    <None Include="Views\MembershipRegistration\ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

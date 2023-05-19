@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = " Preview And Generate Batch";   //**Should be payments for owners
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Create batch for postpaid transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payments";
+
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+    
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.GenerateBatchViewModel
+@using CRL.UI.MVC.Common.Enums
+@using CRL.Infrastructure.Enums
+@using CRL.Model.FS.Enums
+@using CRL.Infrastructure.Authentication
+@using System.Web.UI.WebControls
+
+
+@using (Html.BeginForm("GenerateBatchForReconciliation", "Payment", FormMethod.Post, new { Id = "FSForm" }))
+{
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.SelectAllOustandingTransactions)
+
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.UseStartEndDateOption)
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.StartDate)
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.EndDate)
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched)
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.SelectedMonthList)
+    @Html.HiddenFor(model => model._ListOfTransactionsJqGrid.SelectedYear)
+}
+<div class="row-fluid">
+    <div class="span12">
+            
+        <div class="container-fluid">
+            <div class="alert alert-info"> <b>Notice: Please review the outstanding transactions to be batched before generation.</b>   </div>
+            <br />
+            <div class="container-fluid pull-right" onclick="goBack()"><a href="@Url.Action("GenerateBatch","Payment",new{Area="Payment"})", class="btn btn-primary">Back to Generate Batch Page</a> </div>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a id="SumPostPaidByBankLink" href="#bybankGrid" data-toggle="tab">Total Outstanding Bill</a></li>
+                <li><a id="SumPostPaidLink" href="#SumGrid" data-toggle="tab">Outstanding Bill By Postpaid Client</a></li>
+                <li><a id="DetailsPostPaidLink" href="#DetailGrid" data-toggle="tab">Outstanding Transactions Bill</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="bybankGrid">
+                    @*@Html.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank")*@
+                </div>
+                <div class="tab-pane" id="SumGrid">
+                    @*@Html.Action("GetSummaryViewOfPostpaidTransactions")*@
+                </div>
+                <div class="tab-pane" id="DetailGrid">
+                    @*@Html.Action("GetDetailViewOfPostPaidTransactions")*@
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <br />
+            <button type="button" class="btn btn-primary pull-left" id="btnGenerateBatch">Generate Batch</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/bootbox.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        var LoadedByBank = "NotLoaded";
+        var LoadedSummary = "NotLoaded";
+        var LoadedDetails = "NotLoaded";
+
+
+      @*  $("#SumPostPaidByBankLink").click({ Url: "@Url.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank","Payment",Model._ListOfTransactionsJqGrid)", divToLoad: "#bybankGrid" }, handleTabsLoading);*@
+        $("#SumPostPaidLink").click({ Url: "@Url.Action("GetSummaryViewOfPostpaidTransactions", "Payment", Model._ListOfTransactionsJqGrid)", divToLoad: "#SumGrid" }, handleTabsLoading);
+        $("#DetailsPostPaidLink").click({ Url: "@Url.Action("GetDetailViewOfPostPaidTransactions", "Payment", Model._ListOfTransactionsJqGrid)", divToLoad: "#DetailGrid" }, handleTabsLoading);
+
+        var form = $("#FSForm");
+
+        $('#SumPostPaidByBankLink').tab('show');
+        LoadedByBank = "NotLoaded";
+        LoadedSummary = "NotLoaded";
+        LoadedDetails = "NotLoaded";
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank", "Payment")',
+            data: $(form).serialize(),
+            success: function (data) {
+                $("#bybankGrid").html(data);
+            }
+        });
+
+        $("#btnGenerateBatch").click(function (e) {
+            bootbox.confirm("Are you sure you want to batch these postpaid transactions.  Click yes to continue or no to cancel", "No", "Yes", function (result) {
+                if (result == true) {
+                    $('#FSForm').submit();
+                }
+                else { }
+
+            });
+            e.preventDefault();
+
+
+
+        });
+
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+        function handleTabsLoading(event) {
+            var activeTab = $(this).parent().hasClass("active");
+
+            if ($(this).is("#SumPostPaidByBankLink")) {
+                if ((activeTab == false) && (LoadedByBank == "NotLoaded")) {
+                    $.ajax({
+                        type: 'POST',
+                        data: $(form).serialize(),
+                        url: event.data.Url,
+                        success: function (data) {
+                            $(event.data.divToLoad).html(data);
+                        }
+                    });
+                }
+                LoadedByBank = "Loaded";
+            }
+            else if ($(this).is("#SumPostPaidLink")) {
+                if ((activeTab == false) && (LoadedSummary == "NotLoaded")) {
+                    $.ajax({
+                        url: event.data.Url,
+                        type: 'POST',
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            $(event.data.divToLoad).html(data);
+                        }
+                    });
+                }
+                LoadedSummary = "Loaded";
+            }
+
+            else if ($(this).is("#DetailsPostPaidLink")) {
+                if ((activeTab == false) && (LoadedDetails == "NotLoaded")) {
+                    $.ajax({
+                        type: 'POST',
+                        url: event.data.Url,
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            $(event.data.divToLoad).html(data);
+                        }
+                    });
+                }
+                LoadedDetails = "Loaded";
+            }
+        }
+
+    });
+
+    
+</script>

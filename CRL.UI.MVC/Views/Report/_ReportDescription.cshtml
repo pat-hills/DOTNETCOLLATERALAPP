@@ -1,0 +1,46 @@
+﻿ @model CRL.UI.MVC.Models.Report.ViewModel.ReportDescriptionViewModel
+
+
+
+       <h3 style="font-weight: bold">@Model.Category</h3>
+
+            <table class=" table table-bordered">
+                <thead>
+                    <tr><th>Report</th>
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+           <tbody>                    
+               @if(Model.Category != "All Reports"){
+                        foreach (var item2 in Model.ReportView .Where(c => c.ModuleName == Model.Category).OrderBy(r => r.Name ))
+                        { 
+                              <tr>
+                            <td>
+                             
+                                @Html.ActionLink(item2.Name , "LoadReport", "Report", new { Id = item2.Id }, new { })
+                            </td>
+                                  <td>@item2.Description</td>
+                            </tr>
+                        }
+               }
+               else
+               
+               {
+               
+               foreach (var item2 in Model.ReportView.OrderBy(r => r.Name ))
+                        { 
+                              <tr>
+                            <td>
+                             
+                                @Html.ActionLink(item2.Name , "LoadReport", "Report", new { Id = item2.Id }, new { })
+                            </td>
+                                  <td>@item2.Description</td>
+                            </tr>
+                        }
+               
+               }
+               </tbody>
+
+            </table>

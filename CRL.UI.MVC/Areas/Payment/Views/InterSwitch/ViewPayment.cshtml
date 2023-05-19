@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Payments";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Transaction Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payments";
+
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.InterSwitchPaymentSummaryViewModel
+@using CRL.UI.MVC.HTMLHelpers
+
+
+
+<div class="clear"></div>
+<div class="row-fluid">
+    <div class="span12">
+
+        <div class="span6 offset3" style="text-align: center;">
+            <h3>Payment Transaction Details</h3>
+            <hr />
+            @Html.Action("GetTransactionResult", Model._TransactionDetailsPartialViewModel)
+            <br />
+            <br />
+            <img src="~/Content/Images/Interswitch/paylogo.png" />
+        </div>
+    </div>
+</div>

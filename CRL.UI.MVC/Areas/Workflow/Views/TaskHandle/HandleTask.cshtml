@@ -1,0 +1,239 @@
+﻿@model CRL.UI.MVC.Areas.Workflow.Models.ViewPageModels.TaskHandleViewModel
+@using CRL.Service.Views.FinancialStatement;
+@{
+    ViewBag.Title = "Handle Task";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.HeaderSummary = "Handle Tasks Assignment";
+    ViewBag.MenuName = "My Pending Tasks";
+    ViewBag.Icon = "icon-tasks";
+
+}
+<p>Please review the details below before performing any action on this task</p>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "fsform", id="handleForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.FinancialStatementActivity)
+    {
+        Html.RenderPartial("~/Areas/FinancialStatement/Views/Shared/_SummaryViewAmendment.cshtml", Model._SummaryViewAmendmentViewModel);
+        if (!(Model._SummaryViewAmendmentViewModel is CRL.UI.MVC.Areas.FinancialStatement.Models.ViewPageModels._SummaryViewUpdateViewModel))
+        {
+            Html.RenderPartial("~/Areas/FinancialStatement/Views/Shared/_DetailViewFS.cshtml", @Model.FSViewModel);
+        }
+        else
+        {
+            Html.RenderPartial("~/Areas/FinancialStatement/Views/Shared/_NewAndPreviousFSView.cshtml", @Model.NewAndPreviousFS);
+        }
+
+
+    }
+
+    if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.FinancialStatement)
+    {
+        {
+            Html.RenderPartial("~/Areas/FinancialStatement/Views/Shared/_DetailViewFS.cshtml", @Model.FSViewModel);
+        }
+
+    }
+
+    if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.PaypointUserAssigment)
+    {
+
+        {
+            Html.RenderPartial("~/Areas/Membership/Views/Shared/User/_UserList.cshtml", @Model._UsersListViewModel);
+        }
+    }
+
+
+    if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.Membership
+        ||
+                        Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.MembershipRegistration)
+    {
+        String Label = null;
+        if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.Membership) { Label = "Client Application for Postpaid Account"; }
+        else { Label = "Submitted Client Account"; }
+    <div class="row-fluid">
+        <div class="box box-color box-bordered">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>@Label
+                    </h3>
+                </div>
+                <div class="box-content">
+                    @if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.Membership)
+                    {
+
+                        Model._SetupPostpaidMembershipViewModel.ChangeFormMode(CRL.Infrastructure.Enums.EditMode.View);
+                        Html.RenderPartial("~/Areas/Membership/Views/Shared/Client/_SubmitPostpaidRequest.cshtml", Model._SetupPostpaidMembershipViewModel,
+                                     new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SetupPostpaidMembershipViewModel" } });
+
+                        Model._InstitutionViewModel.ChangeFormMode(CRL.Infrastructure.Enums.EditMode.SummaryView);
+                        Html.RenderPartial("~/Areas/Membership/Views/Shared/Institution/_Institution.cshtml", Model._InstitutionViewModel,
+                   new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_InstitutionViewModel" } });
+
+                        <hr />
+                    }
+
+                    else if (Model._TaskHandleViewModel.TaskHandleView.CaseType == CRL.Model.WorkflowEngine.Enums.WorkflowRequestType.MembershipRegistration)
+                    {
+                        if (Model._InstitutionViewModel != null)
+                        {
+                            Model._InstitutionViewModel.ChangeFormMode(CRL.Infrastructure.Enums.EditMode.SummaryView);
+                            Html.RenderPartial("~/Areas/Membership/Views/Shared/Institution/_Institution.cshtml", Model._InstitutionViewModel,
+                       new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_InstitutionViewModel" } });
+
+                            if (Model._UserViewModel != null)
+                            {
+
+                            }
+
+
+                        }
+
+                        else if (Model._UserViewModel != null)
+                        {
+                            Model._UserViewModel.ChangeFormMode(CRL.Infrastructure.Enums.EditMode.View);
+                            Html.RenderPartial("~/Areas/Membership/Views/Shared/User/_User.cshtml", Model._UserViewModel,
+                           new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_UserViewModel" } });
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+                    if (Model._InstitutionViewModel != null && Model._UserViewModel != null)
+                    {
+    <div class="row-fluid">
+        <div class="box box-color box-bordered">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>Admin Account Details
+                    </h3>
+                </div>
+                <div class="box-content nopadding">
+                    @{ Model._UserViewModel.ChangeFormMode(CRL.Infrastructure.Enums.EditMode.View); }
+                    <div class="form-horizontal form-bordered">
+                        @{ Html.RenderPartial("~/Areas/Membership/Views/Shared/User/_User.cshtml", Model._UserViewModel,
+           new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_UserViewModel" } });}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    }
+    }
+    Html.RenderPartial("~/Areas/Workflow/Views/Shared/_HandleTask.cshtml", Model._TaskHandleViewModel,
+     new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_TaskHandleViewModel" } });
+       
+    @Html.HiddenFor(model => model._TaskHandleViewModel.TaskHandleView.CaseType)
+    @Html.HiddenFor(model => model.CaseId)
+    @Html.HiddenFor(model => model.UniqueGuidForm) 
+    <div style="clear: both"></div>
+   
+}
+<div style="clear: both"></div>
+<br />
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-primary">Back to List</a>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/bootbox.min.js"></script>
+<script>
+
+    var validateComment = false;
+
+    $(document).ready(function () {
+        $("#clabel").hide();
+
+    var myArray = [];
+    @foreach (var i in Model.Actions)
+    {
+        @:myArray.push("@i");
+    }
+
+        $("input[name='_TaskHandleViewModel.TaskHandleView.SelectedTask']:radio").change(function () {
+            var val = $("input[name='_TaskHandleViewModel.TaskHandleView.SelectedTask']:checked", "#handleForm").val();
+            if(in_array(myArray,val))
+            {
+                validateComment = true;
+                $("#clabel").show();
+            }else
+            {
+                validateComment = false;
+                $("#clabel").hide();
+            }
+
+            
+        });
+     
+        function in_array(array, id) {
+            for (var i = 0; i < array.length; i++) {
+                if ((array[i] === id))
+                    return true;
+            }
+            return false;
+        }
+
+       
+
+        $(document).on('invalid-form.validate', 'form', function () {
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+        });
+
+        $(document).on('submit', 'form', function () {
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+        });
+        //$('form').submit(function () {
+        //    alert("Hello");
+        //        $('input[type="submit"]', this).attr('disabled', 'disabled');
+        //    });
+
+        $("#btnHandle").click(function () {
+            if (!isOneChecked()) {
+                bootbox.alert("Please select an action to be able to continue with task handling!");
+            } else {
+                if (validateComment === true && $(".commentbox textarea").val().length <= 0)
+                {
+                    bootbox.alert("Please enter a comment for this action!");
+                    }
+                else {
+
+                    var msg = 'Are you sure you want to submit the action selected?';
+                    bootbox.confirm(msg, function (result) {
+                        if (result == true) {
+                            document.fsform.submit();
+                        } else {
+
+                        }
+                    });
+                    
+                }
+
+               
+            }
+        });
+
+    });
+
+    function isOneChecked() {
+        var ctrls = document.getElementsByTagName('input');
+        for (var i = 0; i < ctrls.length; i++) {
+            if (ctrls[i].type == 'radio' && ctrls[i].checked) {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>

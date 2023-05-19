@@ -1,0 +1,31 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+    
+    }
+
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+}
+<div class="w-container container">
+			<div class="page-header"><h3>FEES</h3></div>
+			<p> The fees set out below are payable for the following matters.</p>
+			<div class="col-sm-8" style="margin-top:2em">
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered">
+						<tr><th colspan="3" class="text-center" style="font-size:20px">FEES</th></tr>
+						<tr>
+						    <td>Initial Registeration</td>
+						    <td>Renewal/Amendment</td>
+						    <td>Searches And Search Certificates</td>
+						</tr>
+						<tr>
+						    <td>&#8358; 1,000.00</td>
+						    <td>&#8358; 500.00</td>
+						    <td>&#8358; 500.00</td>
+						</tr>
+						
+					</table>
+				</div>
+			</div>
+		</div>

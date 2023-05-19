@@ -1,0 +1,73 @@
+﻿@model  CRL.UI.MVC.Areas.Workflow.Models.ViewPageModels.Shared._TaskJqGridViewModel    
+  @using CRL.Infrastructure.Enums 
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("jqueryGrid");
+        c = c.SetCaption("My Tasks");
+        c = c.AddColumn(new Column("Id").SetCustomFormatter("buttonize").SetSearch(false).SetLabel("Actions").SetWidth (50));       
+         c = c.AddColumn(new Column("CreatedOn").SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'd-M-Y'").SetSearchType(MvcJqGrid.Enums.Searchtype.Datepicker).SetLabel("Registration Date").SetWidth (50));
+                 c = c.AddColumn(new Column("CaseTitle").SetLabel("Subject"));
+                 c = c.AddColumn(new Column("CaseType").SetLabel("Request Type").SetSearchType(MvcJqGrid.Enums.Searchtype.Select)
+                .SetSearchTerms((IDictionary<string, string>)Model.TaskType).SetSortable(false));;
+            c = c.AddColumn(new Column("Placename").SetLabel("Current Status").SetWidth(80));       
+        c = c.AddColumn(new Column("SubmittedBy").SetLabel("From").SetWidth (80));
+        c = c.SetUrl(Url.Action("GetJsonTaskGridForJQGRID", "TaskHandle", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(15)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true).SetSearchToolbar(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);       
+              
+    }
+    @(c) 
+  
+</div>
+<script>
+   
+    
+    function buttonize(cellvalue, options, rowobject)
+    {
+        var Buttons="";
+        var Button2 = '<a class="btn btn-flat green" title="Handle Task"  style="margin:3px 3px 3px 0; " onclick="edit(' + rowobject['Id'] + ',2)">Handle</a>';
+            //'<input type="button" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Handle" onclick="edit(' + rowobject['Id'] + ',2)">';
+        Buttons = Buttons + Button2;
+      
+        return Buttons;
+    }
+
+    function edit(id, cmd) {
+     
+
+        if (cmd == 2) {
+            var url = '@Html.Raw(Url.Action("HandleTask", "TaskHandle", new {CaseId= "-1"}))'
+              url = url.replace("-1", id);
+               window.location.assign(url);
+        }
+
+     
+      
+}
+
+ 
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+
+
+       
+ 
+    </script>

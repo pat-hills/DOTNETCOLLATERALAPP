@@ -1,0 +1,62 @@
+﻿@using CRL.UI.MVC.HTMLHelpers
+@using CRL.UI.MVC.Common
+@using CRL.Infrastructure.Messaging
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/necessary")
+     @RenderSection("HeadScripts", required: false)
+   @* <link rel="stylesheet" href="http//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">*@
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery('ul.menu').superfish(); 
+        });
+    </script>
+   
+</head>
+<body>
+    <div id="ToolBarHeader">
+        <section id="login">
+            @Html.Partial("_LoginPartial")
+        </section>
+    </div>
+    <div class="wrap" style="padding-top: 31px;">
+        <div id="MainToolBar" class="clear">
+            <div id="MainToolBarMenu">
+                <a href='@Url.Action("AccountView", "Membership", new { Area = "Membership" })'>
+                    <img src='@Url.Content("~/Content/Images/MainToolbar/account_off.png")' class="rollover"  /></a>
+                <a href='@Url.Action("Profile", "Membership", new { Area = "Membership" })'>
+                    <img src='@Url.Content("~/Content/Images/MainToolbar/profile_off.png")' class="rollover" /></a>
+                <a href='@Url.Action("Configuration", "Membership", new { Area = "Membership" })'>
+                    <img src='@Url.Content("~/Content/Images/MainToolbar/settings_off.png")' class="rollover"  /></a>
+                <a href='@Url.Action("Help", "Membership", new { Area = "Membership" })'>
+                    <img src='@Url.Content("~/Content/Images/MainToolbar/help_off.png")' class="rollover" /></a>
+            </div>
+            <div id="ApplicationTitle">
+                <div style="float:left"><img src='@Url.Content("~/Content/Images/MainToolbar/cblLogo2.jpg")' Id="Logo" class ="rollover"  style= "padding:5px" alt="Collateral Registry System" /></div>
+                <div style="padding-top:35px;font-size :25px;font-family:'Times New Roman' ">Collateral Registry System</div>
+            </div>
+        </div>
+        @Html.MenuLinks(ViewBag.MenuName != null ? (string)ViewBag.MenuName : (string)ViewBag.Title)
+        <div class="main_content clear">
+            <h2>@ViewBag.Title</h2>
+            @if (ViewBag.TitleMessage != null)
+            {
+                @Html.Message((MessageInfo)ViewBag.TitleMessage)
+            }
+            <div class="clear"></div>
+            @RenderBody()
+
+        </div>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

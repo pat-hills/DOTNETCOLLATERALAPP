@@ -1,0 +1,79 @@
+/**
+ * National Collateral Registry of Nigeria v1.0.0
+ * http://www.bsystemslimited.com
+ *
+ * Author: MfJunkie
+ *
+ * Copyright 2014.
+ * http://www.bsystemslimited.com
+ */
+
+
+
+  /*Color and Hover effects
+
+  =========================================== */
+
+
+
+::-moz-selection { background: #008751; }
+    ::selection { background: #008751; }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    #nav li a.active,
+    .promo-box,
+    .search-button,
+    .author,
+    .color,
+    .button:hover,
+    .skill-line {
+        border-color: #008751;
+    }
+
+    #nav li a:hover,
+    #nav li:hover,
+    #nav li:hover a.active,
+    .ddsubmenustyle li a:hover,
+    .services-box:hover,
+    .services-button,
+    #filter li a:hover,
+    #filter li.active a,
+    .item:hover,
+    .accordion dt a.activedt span,
+    .table-name h3.promo,
+    .search-button,
+    .tags a,
+    .pagination li a.current,
+    .pagination li a:hover,
+    .button:hover,
+    .color,
+    #toTopHover,
+    #sequence .sequence-next:hover,
+    #sequence .sequence-prev:hover,
+    .sequence-pagination li.current,
+    .flexslider:hover .flex-next:hover,
+    .flexslider:hover .flex-prev:hover,
+    .skill-line,
+    .jcarousel-skin-work .jcarousel-next-horizontal:hover,
+    .jcarousel-skin-work .jcarousel-prev-horizontal:hover,
+    .jcarousel-skin-testimonials .jcarousel-next-horizontal:hover,
+    .jcarousel-skin-testimonials .jcarousel-prev-horizontal:hover {
+        background-color: #008751;
+        border-color:white;
+        color:white;
+    }
+
+    .tabs a.active,
+    .accordion dt a.activedt,
+    .check-list li a,
+    .check-list li:before,
+    .arrow-list li a,
+    .comment-author	.reply a:hover,
+    .meta a,
+    footer a,
+    .contact-page-info a {
+        color: #008751;
+    }

@@ -1,0 +1,1143 @@
+﻿@model  CRL.UI.MVC.Models.Dashboard.ViewModel.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Icon = "icon-laptop";
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+@using CRL.Infrastructure.Authentication
+@using CRL.Infrastructure.Enums
+@using CRL.Service.Messaging.Workflow.Request
+@using CRL.Model.FS.Enums
+
+<script src="~/Scripts/jquery-1.11.0.min.js"></script>
+<!--[if lte IE 8]><script type="text/javascript" language="javascript" src="/Scripts/flot/excanvas.min.js"></script><![endif]-->
+<script src="~/Scripts/flot/excanvas.min.js"></script>
+<script src="~/Scripts/flot/jquery.flot.min.js"></script>
+<script src="~/Scripts/flot/jquery.flot.axislabels.js"></script>
+<script src="~/Scripts/flot/jquery.flot.orderBars.js"></script>
+<script src="~/Scripts/flot/jquery.flot.pie.js"></script>
+<script src="~/Scripts/flot/jquery.flot.time.js"></script>
+<script src="~/Scripts/flot/jquery.flot.symbol.js"></script>
+@*<script src="~/Scripts/flot/jquery.flot.resize.min.js"></script>*@
+<style type="text/css">
+    .box.box-color .box-title h6 {
+        color: #fff;
+    }
+
+    .box .box-title {
+        margin-top: 7px;
+    }
+
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+        line-height: 20px;
+    }
+
+    #placeholder {
+        width: 90%;
+        height: 250px;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .dropdown-menu > li > a:hover {
+        background-image: none;
+        background-color: #368ee0;
+    }
+
+    .dropdown-menu {
+        border-radius: 0;
+    }
+
+    #placeholder1 {
+        width: 90%;
+        height: 250px;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    #placeholder2 {
+        width: 90%;
+        height: 250px;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    #placeholder3 {
+        width: 90%;
+        height: 250px;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .btn {
+        margin-top: 15px;
+        margin-left: 15px;
+        border-radius: 0;
+        background-image: none;
+        background-color: white;
+        border: 1px solid black;
+    }
+
+    .btn-group {
+        border-radius: 0;
+    }
+
+    .totals {
+        margin-top: 15px;
+    }
+</style>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="box box-color box-bordered lightgrey">
+                        <div class="box-title">
+                            <h6><i class="icon-tasks"></i>&nbsp;Latest Global Messages</h6>
+                        </div>
+                        <div class="box-content nopadding">
+                            <table class="table table-bordered  table-hover">
+                                @if (Model.MessagesView.Where(m => m.ClientMessageTypeId == 1).Count() > 0)
+                                {
+                                    var counter = 0;
+                                    foreach (var item in Model.MessagesView.Where(m => m.ClientMessageTypeId == 1))
+                                    {
+
+                                        counter++;
+                                        var color = ((counter % 2 == 0) && (counter != 1)) ? "info" : "warning";
+                                    <tr  class='@color'>
+                                        <td style="width: 25%">@Html.DisplayFor(modelitem => item.CreatedOn)</td>
+                                        <td>@Html.ActionLink(item.Title, "GlobalMessageDetails", "Configuration", new { Area = "Administration", Id = item.Id, mode = 1 }, null)</td>
+                                        <td style="color: cornflowerblue;"><i class="icon-comment"></i></td>
+                                    </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr colspan="3" class="error">
+                                        <td style="text-align: center; font: 16px">You have no messages</td>
+
+                                    </tr>
+                                }
+                            </table>
+                            @if (Model.MessagesView.Where(m => m.ClientMessageTypeId == 1).Count() > 0)
+                            {
+                                <div style="padding-left: 10px">
+                                    <div class="span4" style="min-height: 22px;">
+                                        <a href="@Url.Action("GlobalMessageIndex", "Configuration", new { Area = "Administration" })">
+                                            <h5><i class="icon-list"></i>More...</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="box box-color box-bordered lightgrey">
+                        <div class="box-title">
+                            <h6><i class="icon-tasks"></i>&nbsp;Latest Pending Tasks</h6>
+                        </div>
+                        <div class="box-content nopadding">
+                            <table class="table table-bordered  table-hover">
+                                @if (Model.TaskGridView.Count() > 0)
+                                {
+                                    var counter = 0;
+                                    foreach (var item in Model.TaskGridView)
+                                    {
+
+                                        counter++;
+                                        var color = ((counter % 2 == 0) && (counter != 1)) ? "info" : "warning";
+                                    <tr  class='@color'>
+                                        <td>@Html.DisplayFor(modelitem => item.CreatedOn)</td>
+                                        <td>@Html.ActionLink(item.CaseTitle, "HandleTask", "TaskHandle", new { Area = "Workflow", CaseId = item.Id }, null)</td>
+                                        <td>@Html.DisplayFor(modelitem => item.Placename)</td>
+                                    </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr colspan="3" class="error">
+                                        <td style="text-align: center; font: 16px">You have no pending tasks</td>
+
+                                    </tr>
+                                }
+                            </table>
+                            @if (Model.TaskGridView.Count() > 0)
+                            {
+                                <div style="padding-left: 10px">
+                                    <a href="@Url.Action("Index", "TaskHandle", new { Area = "Workflow" })">
+                                        <h5><i class="icon-list"></i>More...</h5>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="box box-color box-bordered lightgrey">
+                        <div class="box-title">
+                            <h6><i class="icon-tasks"></i>&nbsp;Latest Email Messages</h6>
+                        </div>
+                        <div class="box-content nopadding">
+                            <table class="table table-bordered  table-hover">
+                                @if (Model.MessagesView.Where(m => m.ClientMessageTypeId == 2).Count() > 0)
+                                {
+                                    var counter = 0;
+                                    foreach (var item in Model.MessagesView.Where(m => m.ClientMessageTypeId == 2))
+                                    {
+
+                                        counter++;
+                                        var color = ((counter % 2 == 0) && (counter != 1)) ? "info" : "warning";
+                                    <tr  class='@color'>
+                                        <td style="width: 25%">@Html.DisplayFor(modelitem => item.CreatedOn)</td>
+                                        <td>@Html.ActionLink(item.Title, "ViewEmailDetails", "Client", new { Area = "Membership", Id = item.Id }, null)</td>
+                                        <td style="color: cornflowerblue;"><i class="icon-envelope"></i></td>
+                                    </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr colspan="3" class="error">
+                                        <td style="text-align: center; font: 16px">You have no messages</td>
+
+                                    </tr>
+                                }
+                            </table>
+                            @if (Model.MessagesView.Where(m => m.ClientMessageTypeId == 2).Count() > 0)
+                            {
+                                <div style="padding-left: 10px">
+                                    <div class="span4" style="min-height: 22px;">
+                                        <a href="@Url.Action("EmailIndex", "Client", new { Area = "Membership" })">
+                                            <h5><i class="icon-list"></i>More...</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="table box box-color box-bordered lightgrey">
+                        <div class="box-title">
+                            <h6><i class="icon-file"></i>&nbsp;Financing Statements About To Expire In Less Than 10 Days </h6>
+                        </div>
+                        <div class="box-content nopadding">
+
+                            <table class="table table-bordered table-hover">
+
+                                @if (Model.FSGridViewModel.Count() > 0)
+                                {
+                                    <tr>
+                                        <th>Registration No</th>
+                                        <th>Transaction type</th>
+                                        <th>Expiry Date</th>
+                                        <th>Collateral Type</th>
+                                    </tr>
+                                    var counter = 0;
+                                    foreach (var item in Model.FSGridViewModel)
+                                    {
+                                        counter++;
+                                        var color = ((counter % 2 == 0) && (counter != 1)) ? "info" : "";
+                                    <tr class='@color'>
+                                        <td>@Html.ActionLink(item.RegistrationNo, "View", "FinancialStatement", new { Id = item.Id, Area = "FinancialStatement" }, null)</td>
+                                        <td>@Html.DisplayFor(modelitem => item.FinancialStatementTransactionTypeName)</td>
+                                        <td>@Html.DisplayFor(modelitem => item.ExpiryDate)</td>
+                                        <td>@Html.DisplayFor(modelitem => item.CollateralTypeName)</td>
+                                    </tr>
+                             
+                                    }
+
+                                }
+
+                                else
+                                {
+                                    <tr colspan="4" class="error">
+                                        <td style="text-align: center; font: 16px">You have no financing statement about to expire in 10 days.</td>
+                                    </tr>
+                                }
+                            </table>
+                            @if (Model.FSGridViewModel.Count() > 0)
+                            {
+                                <div style="padding-left: 10px">
+                                    <a href="@Url.Action("Index", "FinancialStatement", new { Area = "FinancialStatement" })">
+                                        <h5><i class="icon-list"></i>More...</h5>
+                                    </a>
+                                </div>
+                            }
+@*<div style="">@Html.ActionLink(" All financing statementFinancing Statement", "Index", "FinancialStatement", new { Area = "FinancialStatement" }, new { @class = "pull-right" })</div>*@
+
+                        </div>
+
+                    </div>
+                </div>
+                @if (SecurityUser.IsAudit())
+                {
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="box box-color box-bordered green">
+                                <div class="box-title">
+                                    <h6><i class="icon-bullhorn"></i>&nbsp;Recent Activities</h6>
+                                </div>
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
+                                    <div class="box-content nopadding scrollable" data-height="400" data-visible="true" style="overflow: hidden; width: auto; height: auto;">
+                                        <table class="table table-nohead table-hover" id="randomFeed">
+                                            <tbody>
+                                                @if (Model.AuditViewModel.Count() > 0)
+                                                {
+                                                    var counter = 0;
+                                                    foreach (var item in Model.AuditViewModel)
+                                                    {
+                                                        counter++;
+                                                        var color = ((counter % 2 == 0) && (counter != 1)) ? "info" : "warning";
+                                                    <tr style="display: table-row;" class='@color'>
+                                                        <td>
+                                                            @{
+                                                        var icon = "<i class='icon-comment'></i>";
+                                                        if (item.AuditTypeId == (AuditCategory.Membership)) { icon = "<i class='icon-user'></i>"; }
+                                                        if (item.AuditTypeId == AuditCategory.Amendment) { icon = "<i class='icon-edit'></i>"; }
+                                                        if (item.AuditTypeId == AuditCategory.FinancingStatement) { icon = "<i class='icon-file'></i>"; }
+                                                        if (item.AuditTypeId == AuditCategory.Search) { icon = "<i class='icon-search'></i>"; }
+                                                        if (item.AuditTypeId == AuditCategory.Workflow) { icon = "<i class='icon-arrow-down'></i>"; }
+                                                        if (item.AuditTypeId == AuditCategory.Configuration) { icon = "<i class='icon-cog'></i>"; }
+                                                        //if (item.AuditTypeId == AuditCategory.Security) { icon = "<i class=' icon-lock'></i>"; }
+                                                        //if (item.AuditTypeId == AuditCategory.Payment) { icon = "<i class=' icon-money'></i>"; }
+                                                            }
+                                                            <span class="label label-info">@Html.Raw(icon)</span>
+                                                            @Html.DisplayFor(modelitem => item.NameOfUser) @Html.DisplayFor(modelitem => item.AuditAction)
+
+                                                        </td>
+                                                    </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                             
+                                                    <tr style="display: table-row;">
+                                                        <td>
+                                                            <span class="label label-warning"><i class="icon-comment"></i></span>
+                                                            <a href="#">No Data</a>No Data <a href="#">No data</a>
+
+                                                        </td>
+                                                    </tr>
+                             
+                                                }
+                                            </tbody>
+                                        </table>
+                                        @if (Model.AuditViewModel.Count() > 0)
+                                        {
+                                            <div style="padding-left: 10px">
+                                                <a href="@Url.Action("IndexOfAudits", "Client", new { Area = "Membership" })">
+                                                    <h5><i class="icon-list"></i>More...</h5>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div style="clear: both"></div>
+
+                                </div>
+                                <div class="slimScrollBar ui-draggable" style="background-color: rgb(102, 102, 102); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 187.91162790697675px; background-position: initial initial; background-repeat: initial initial;"></div>
+                                <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+        <div class="span6">
+            @*@if (SecurityUser.IsOwnerRegistry())
+            {
+                *@<div class="row-fluid">
+                    <div class="span12">
+                        <div class="box box-color box-bordered lightgrey">
+                            <div class="box-title">
+                                <h6><i class="icon-tasks"></i>&nbsp;Total Number of Financing Statements</h6>
+                            </div>
+                            <div class="box-content nopadding">
+                                <table class="table table-bordered  table-hover">
+
+                                    <tr colspan="3" class="error">
+                                        <td style="text-align: center; font-weight: bolder; font-size: x-large">@Model.TotalNoOfFS</td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            @*}*@
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="table box box-color box-bordered lightgrey" id="chart1">
+                        <div class="box-title">
+                            <h6><i class="icon-bar-chart"></i>&nbsp;Number of Searches Per Month </h6>
+                        </div>
+                        <div class="box-content nopadding">
+                            <div class="row-fluid">
+                                <div class="span12" id="content2">
+                                    <div class="span1"></div>
+                                    <div class="span4">
+                                        <div class="btn-group" id="drop1">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="border-radius: 0;">Graph Type
+                                            <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li id="line1"><a class="active">Line</a></li>
+                                                <li id="bar1"><a class="active">Bar</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="span3 offset3">
+                                        <div class="totals">
+                                            <h4 style="text-align: right;"><span id="total1"></span>&nbsp;<i style="color: green;" class="icon-circle-arrow-up"></i></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div id="placeholder">
+                                    <div id='loadingmessage' style="text-align: center; position: relative; top: 50%">
+                                        <img src="~/Content/graph/loading.gif" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row-fluid">
+                                <div class="span12" id="content1">
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #000; height: 45px">
+                                            <p style="text-align: center;">Average Searches</p>
+                                            <h5 style="text-align: center;" id="avg1"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #000; height: 45px">
+                                            <p style="text-align: center;">Maximum Search</p>
+                                            <h5 style="text-align: center;" id="max1"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #ffffff; height: 45px">
+                                            <p style="text-align: center;">Minimum Search</p>
+                                            <h5 style="text-align: center;" id="min1"></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="table box box-color box-bordered lightgrey" id="chart2">
+                        <div class="box-title">
+                            <h6><i class="icon-bar-chart"></i>&nbsp;Number of Financing Statements Per Month </h6>
+                        </div>
+                        <div class="box-content nopadding">
+                            <div class="row-fluid">
+                                <div class="span12" id="content4">
+                                    <div class="span1"></div>
+                                    <div class="span4">
+                                        <div class="btn-group" id="drop2">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="border-radius: 0;">Graph Type
+                                            <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li id="line2"><a class="active">Line</a></li>
+                                                <li id="bar2"><a class="active">Bar</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="span3 offset3">
+                                        <div class="totals">
+                                            <h4 style="text-align: right;"><span id="total2"></span>&nbsp;<i style="color: orange;" class="icon-circle-arrow-right"></i></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div id="placeholder1">
+                                    <div id='loadingmessage1' style="text-align: center; position: relative; top: 50%">
+                                        <img src="~/Content/graph/loading.gif" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row-fluid">
+                                <div class="span12" id="content3">
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #000; height: 45px">
+                                            <p style="text-align: center;">Average Statements</p>
+                                            <h5 style="text-align: center;" id="avg2"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #000; height: 45px">
+                                            <p style="text-align: center;">Maximum Monthly Statement</p>
+                                            <h5 style="text-align: center;" id="max2"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #ffffff; height: 45px">
+                                            <p style="text-align: center;">Minimum Monthly Statement</p>
+                                            <h5 style="text-align: center;" id="min2"></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="table box box-color box-bordered lightgrey" id="chart3">
+                        <div class="box-title">
+                            <h6><i class="icon-bar-chart"></i>&nbsp;Number of Amendments Per Month </h6>
+                        </div>
+                        <div class="box-content nopadding">
+                            <div class="row-fluid">
+                                <div class="span12" id="content5">
+                                    <div class="span1"></div>
+                                    <div class="span4">
+                                        <div class="btn-group" id="drop3">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="border-radius: 0;">Graph Type
+                                            <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li id="line3"><a class="active">Line</a></li>
+                                                <li id="bar3"><a class="active">Bar</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="span3 offset3">
+                                        <div class="totals">
+                                            <h4 style="text-align: right;"><span id="total3"></span>&nbsp;<i style="color: orange;" class="icon-circle-arrow-right"></i></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span12">
+
+                                    <div id="placeholder2">
+                                        <div id='loadingmessage2' style="text-align: center; position: relative; top: 50%">
+                                            <img src="~/Content/graph/loading.gif" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row-fluid">
+                                <div class="span12" id="content6">
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #000; height: 45px">
+                                            <p style="text-align: center;">Average Statements</p>
+                                            <h5 style="text-align: center;" id="avg3"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #000; height: 45px">
+                                            <p style="text-align: center;">Maximum Monthly Statement</p>
+                                            <h5 style="text-align: center;" id="max3"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="span4">
+                                        <div style="border-right: 1px solid #ffffff; height: 45px">
+                                            <p style="text-align: center;">Minimum Monthly Statement</p>
+                                            <h5 style="text-align: center;" id="min3"></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var Originalurl = document.url;
+    $('#content1').hide();
+    $('#content2').hide();
+    $('#loadingmessage').show();
+    $(window).bind('beforeunload', function () {
+        $(document).unbind('ajaxError');
+    });
+    $.ajax({
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: { year: '2015' },
+        url: '@Url.Content("~/Home/GetSearchData/")',
+        error: function (x, t, m) {
+
+            // $(document).unbind('ajaxError');
+            if (x.status != '0') {
+
+                alert('An error occured');
+            }
+
+
+        },
+        success: function (data) {
+            //var obj = JSON.parse(data);
+            data1 = data.data;
+            var xaxis = [[1, data.xlabel[0]],
+                         [2, data.xlabel[1]],
+                         [3, data.xlabel[2]],
+                         [4, data.xlabel[3]],
+                         [5, data.xlabel[4]],
+                         [6, data.xlabel[5]],
+                         [7, data.xlabel[6]],
+                         [8, data.xlabel[7]],
+                         [9, data.xlabel[8]],
+                         [10, data.xlabel[9]],
+                         [11, data.xlabel[10]],
+                         [12, data.xlabel[11]]];
+            document.getElementById("total1").innerHTML = data.total;
+            document.getElementById("min1").innerHTML = data.min;
+            document.getElementById("max1").innerHTML = data.max;
+            document.getElementById("avg1").innerHTML = data.avg;
+            $('#loadingmessage').hide();
+            $('#content1').show();
+            $('#content2').show();
+            var chk = false;
+            var dataset1 = [{
+                data: data1,
+                label: "Searches",
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 1,
+                    fillColor: "#0EBFE9"
+                },
+                color: ""
+            }
+            ];
+            var options1 =
+                {
+                    yaxis: { axisLabel: "", tickDecimals: 0 },
+                    //yaxis: { axisLabel: "" },
+                    xaxis: {
+                        tickLength: 1,
+                        axisLabel: "Months",
+                        //ticks: xaxis
+                        ticks: xaxis
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true
+                    },
+                    valueLabels: {
+                        show: true
+                    }
+                };
+
+            //---------------------
+            var dataset = [{ label: "Searches", data: data1, points: { symbol: "circle" } }];
+            var options = {
+                legend: {
+                    show: true,
+                    margin: 10,
+                    backgroundOpacity: 0.9
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: true,
+                        fillColor: { colors: [{ opacity: 0.7 }, { opacity: 0.1 }] }
+                    }
+                },
+                points: {
+                    show: true,
+                    radius: 3
+                },
+                colors: ["#0EBFE9", "#0022FF"],
+                lines: {
+                    show: true
+                },
+                grid: { hoverable: true, clickable: true },
+                yaxis: { axisLabel: "", min: 0, tickFormatter: formatter, tickDecimals: 0 },
+                xaxis: { axisLabel: "Months", ticks: xaxis }
+
+            };
+            function formatter(val, axis) {
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            //-----------------------
+
+
+            $(document).ready(function () {
+
+                //$("#drop1").hide();
+
+                //$("#chart1").hover(function () {
+                //    $("#drop1").show();
+                //}, function () {
+                //    $("#drop1").hide();
+                //});
+
+                $.plot($("#placeholder"), dataset, options);
+                var previousPoint = null;
+                $("#placeholder").bind("plothover", function (event, pos, item) {
+                    if (item) {
+                        if (previousPoint != item.dataIndex) {
+                            previousPoint = item.dataIndex;
+                            $("#tooltip").remove();
+                            var x = item.datapoint[0],
+                                y = item.datapoint[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            showTooltip(item.pageX, item.pageY, item.series.label + ": " + y);
+                        }
+                    }
+                    else {
+                        $("#tooltip").remove();
+                        previousPoint = null;
+                    }
+                });
+                function showTooltip(x, y, contents) {
+                    $('<div id="tooltip">' + contents + '</div>').css({
+                        position: 'absolute',
+                        display: 'none',
+                        top: y + 5,
+                        left: x + 5,
+                        border: '1px solid #fdd',
+                        padding: '2px',
+                        'background-color': '#fee',
+                        opacity: 0.80
+                    }).appendTo("body").fadeIn(200);
+                }
+            });
+
+
+
+            $('#line1').click(function () {
+
+                $.plot($("#placeholder"), dataset, options);
+
+            });
+
+            $('#bar1').click(function () {
+
+                $.plot($("#placeholder"), dataset1, options1);
+
+            });
+
+
+            //window.onresize = function(event) {
+            //    if (chk == true) {
+            //        $.plot($("#placeholder"), dataset, options);
+            //    } else {
+            //        $.plot($("#placeholder"), dataset1, options1);
+            //    }
+            //};
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    var data1; //= [[1, 3], [2, 5], [3, 7], [4, 8], [5, 10], [6, 11], [7, 9], [8, 5], [9, 13], [10, 9], [11, 3], [12, 3]];
+    $('#content3').hide();
+    $('#content4').hide();
+    $('#loadingmessage1').show();
+    $.ajax({
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: { year: '2015' },
+        url: '@Url.Content("~/Home/GetFinancingData/")',
+        error: function () {
+            if (x.status != '0') {
+                alert("An error occurred.");
+            }
+        },
+        success: function (data) {
+            data1 = data.data;
+            var xaxis = [[1, data.xlabel[0]],
+                         [2, data.xlabel[1]],
+                         [3, data.xlabel[2]],
+                         [4, data.xlabel[3]],
+                         [5, data.xlabel[4]],
+                         [6, data.xlabel[5]],
+                         [7, data.xlabel[6]],
+                         [8, data.xlabel[7]],
+                         [9, data.xlabel[8]],
+                         [10, data.xlabel[9]],
+                         [11, data.xlabel[10]],
+                         [12, data.xlabel[11]]];
+            document.getElementById("total2").innerHTML = data.total;
+            document.getElementById("min2").innerHTML = data.min;
+            document.getElementById("max2").innerHTML = data.max;
+            document.getElementById("avg2").innerHTML = data.avg;
+
+            $('#loadingmessage1').hide();
+            $('#content3').show();
+            $('#content4').show();
+
+            var chk = false;
+            var dataset1 = [{
+                data: data1,
+                label: "Financing Statements",
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 1,
+                    fillColor: "#F08080"
+                },
+                color: ""
+            }
+            ];
+            var options1 =
+                {
+                    yaxis: { axisLabel: "", tickDecimals: 0 },
+                    xaxis: {
+                        tickLength: 1,
+                        axisLabel: "Months",
+                        ticks: xaxis
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true
+                    },
+                    valueLabels: {
+                        show: true
+                    }
+                };
+
+            //---------------------
+            var dataset = [{ label: "Financing Statements", data: data1, points: { symbol: "triangle" } }];
+            var options = {
+                legend: {
+                    show: true,
+                    margin: 10,
+                    backgroundOpacity: 0.9
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: true,
+                        fillColor: { colors: [{ opacity: 0.7 }, { opacity: 0.1 }] }
+                    }
+                },
+                points: {
+                    show: true,
+                    radius: 3
+                },
+                colors: ["#F08080", "#0022FF"],
+                lines: {
+                    show: true
+                },
+                grid: { hoverable: true, clickable: true },
+                yaxis: { axisLabel: "", min: 0, tickFormatter: formatter, tickDecimals: 0 },
+                xaxis: { axisLabel: "Months", ticks: xaxis }
+
+            };
+            function formatter(val, axis) {
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            //-----------------------
+
+
+            $(document).ready(function () {
+
+
+
+                /*$("#drop2").hide();
+
+                $("#chart2").hover(function () {
+                    $("#drop2").show();
+                }, function () {
+                    $("#drop2").hide();
+                });*/
+
+                $.plot($("#placeholder1"), dataset, options);
+                var previousPoint = null;
+                $("#placeholder1").bind("plothover", function (event, pos, item) {
+                    if (item) {
+                        if (previousPoint != item.dataIndex) {
+                            previousPoint = item.dataIndex;
+                            $("#tooltip").remove();
+                            var x = item.datapoint[0],
+                                y = item.datapoint[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            showTooltip(item.pageX, item.pageY, item.series.label + ": " + y);
+                        }
+                    }
+                    else {
+                        $("#tooltip").remove();
+                        previousPoint = null;
+                    }
+                });
+                function showTooltip(x, y, contents) {
+                    $('<div id="tooltip">' + contents + '</div>').css({
+                        position: 'absolute',
+                        display: 'none',
+                        top: y + 5,
+                        left: x + 5,
+                        border: '1px solid #fdd',
+                        padding: '2px',
+                        'background-color': '#fee',
+                        opacity: 0.80
+                    }).appendTo("body").fadeIn(200);
+                }
+            });
+
+
+
+            $('#line2').click(function () {
+
+                $.plot($("#placeholder1"), dataset, options);
+
+            });
+
+            $('#bar2').click(function () {
+
+                $.plot($("#placeholder1"), dataset1, options1);
+
+            });
+
+            //window.onresize = function (event) {
+            //    if (chk == true) {
+            //        $.plot($("#placeholder1"), dataset, options);
+            //    } else {
+            //        $.plot($("#placeholder1"), dataset1, options1);
+            //    }
+            //};
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    var data1; //= [[1, 3], [2, 5], [3, 7], [4, 8], [5, 10], [6, 11], [7, 9], [8, 5], [9, 13], [10, 9], [11, 3], [12, 3]];
+    $('#content5').hide();
+    $('#content6').hide();
+    $('#loadingmessage2').show();
+
+    $.ajax({
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: { year: '2015' },
+        url: '@Url.Content("~/Home/GetAmmendData/")',
+        error: function () {
+            if (x.status != '0') {
+                if (x.status != '0') {
+                    alert("An error occurred.");
+                }
+            }
+        },
+        success: function (data) {
+            data1 = data.data;
+            var xaxis = [[1, data.xlabel[0]],
+                         [2, data.xlabel[1]],
+                         [3, data.xlabel[2]],
+                         [4, data.xlabel[3]],
+                         [5, data.xlabel[4]],
+                         [6, data.xlabel[5]],
+                         [7, data.xlabel[6]],
+                         [8, data.xlabel[7]],
+                         [9, data.xlabel[8]],
+                         [10, data.xlabel[9]],
+                         [11, data.xlabel[10]],
+                         [12, data.xlabel[11]]];
+            document.getElementById("total3").innerHTML = data.total;
+            document.getElementById("min3").innerHTML = data.min;
+            document.getElementById("max3").innerHTML = data.max;
+            document.getElementById("avg3").innerHTML = data.avg;
+
+            $('#loadingmessage2').hide();
+            $('#content5').show();
+            $('#content6').show();
+            var chk = false;
+            var dataset1 = [{
+                data: data1,
+                label: "Ammendments",
+                bars: {
+                    show: true,
+                    fill: true,
+                    lineWidth: 1,
+                    order: 1,
+                    fillColor: "#0EBFE9"
+                },
+                color: ""
+            }
+            ];
+            var options1 =
+                {
+                    yaxis: { axisLabel: "", tickDecimals: 0 },
+                    xaxis: {
+                        tickLength: 1,
+                        axisLabel: "Months",
+                        ticks: xaxis
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true
+                    },
+                    valueLabels: {
+                        show: true
+                    }
+                };
+
+            //---------------------
+            var dataset = [{ label: "Ammendments", data: data1, points: { symbol: "circle" } }];
+            var options = {
+                legend: {
+                    show: true,
+                    margin: 10,
+                    backgroundOpacity: 0.9
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: true,
+                        fillColor: { colors: [{ opacity: 0.7 }, { opacity: 0.1 }] }
+                    }
+                },
+                points: {
+                    show: true,
+                    radius: 3
+                },
+                colors: ["#0EBFE9", "#0022FF"],
+                lines: {
+                    show: true
+                },
+                grid: { hoverable: true, clickable: true },
+                yaxis: { axisLabel: "", min: 0, tickFormatter: formatter, tickDecimals: 0 },
+                xaxis: { axisLabel: "Months", ticks: xaxis }
+
+            };
+            function formatter(val, axis) {
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            //-----------------------
+
+
+            $(document).ready(function () {
+
+                //$("#drop3").hide();
+
+                //$("#chart3").hover(function () {
+                //    $("#drop3").show();
+                //}, function () {
+                //    $("#drop3").hide();
+                //});
+
+                $.plot($("#placeholder2"), dataset1, options1);
+                var previousPoint = null;
+                $("#placeholder2").bind("plothover", function (event, pos, item) {
+                    if (item) {
+                        if (previousPoint != item.dataIndex) {
+                            previousPoint = item.dataIndex;
+                            $("#tooltip").remove();
+                            var x = item.datapoint[0],
+                                y = item.datapoint[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            showTooltip(item.pageX, item.pageY, item.series.label + ": " + y);
+                        }
+                    }
+                    else {
+                        $("#tooltip").remove();
+                        previousPoint = null;
+                    }
+                });
+                function showTooltip(x, y, contents) {
+                    $('<div id="tooltip">' + contents + '</div>').css({
+                        position: 'absolute',
+                        display: 'none',
+                        top: y + 5,
+                        left: x + 5,
+                        border: '1px solid #fdd',
+                        padding: '2px',
+                        'background-color': '#fee',
+                        opacity: 0.80
+                    }).appendTo("body").fadeIn(200);
+                }
+            });
+
+
+
+            $('#line3').click(function () {
+
+                $.plot($("#placeholder2"), dataset, options);
+
+            });
+
+            $('#bar3').click(function () {
+
+                $.plot($("#placeholder2"), dataset1, options1);
+
+            });
+
+            //window.onresize = function (event) {
+            //    if (chk == true) {
+            //        $.plot($("#placeholder2"), dataset, options);
+            //    } else {
+            //        $.plot($("#placeholder2"), dataset1, options1);
+            //    }
+            //};
+        }
+    });
+</script>
+
+
+
+
+
+
+@*@Html.ActionLink("FinancialStatements", "Index", "FinancialStatement", new { Area = "FinancialStatement" }, new  { }) |
+
+@Html.ActionLink("New Registration", "CreateEdit", "FinancialStatement", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("FinancialStatements Activites", "Index", "FinancialStatementActivity", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("Renewal", "CreateRenewal", "FinancialStatementActivity", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("Discharge", "CreateDischarge", "FinancialStatementActivity", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("Summary", "SummaryView", "FinancialStatement", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("Discharge Summary", "DischargeSummaryView", "FinancialStatementActivity", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("Update Summary", "UpdateSummaryView", "FinancialStatementActivity", new { Area = "FinancialStatement" }, new  { }) |
+@Html.ActionLink("CreateEnterprise", "Details", "Institution", new { Area = "Membership" }, new  { }) |
+@Html.ActionLink("Index", "Index", "Institution", new { Area = "Membership" }, new  { }) |
+@Html.ActionLink("Login", "Login", "Account")*@
+@*@Html.ActionLink("Institution", "Index", "Institution", new { Area = "Membership" }, new  { }) |
+@Html.ActionLink("FinancialStatements", "Index", "FinancialStatement", new { Area = "FinancialStatement", InRequestMode=true }, new  { }) 
+Hello World*@
+
+
+@*@Html.ActionLink("Handle Task", "HandleTask", "TaskHandle", new { Area = "Workflow", CaseId = "1039", RequestType = RequestType.Amendment }, new { })*@

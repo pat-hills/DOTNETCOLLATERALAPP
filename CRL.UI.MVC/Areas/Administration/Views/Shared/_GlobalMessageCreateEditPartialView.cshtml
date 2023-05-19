@@ -1,0 +1,64 @@
+﻿@model CRL.UI.MVC.Areas.Administration.Models.ViewPageModels._GlobalMessageDetailsViewModel
+@using MvcCheckBoxList.Model
+@{var htmlListInfo = new HtmlListInfo(HtmlTag.vertical_columns ,3, null, TextLayout.Default , TemplateIsUsed.No);}
+
+
+@Html.HiddenFor(model=>model.Id)
+<div class="control-group">
+    <div class="controls">
+     @Html.TextBoxFor(model => model.Title, new { @placeholder = "Message Title",style="width:99%;", @required = "required"})
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="controls">
+        @Html.TextAreaFor(model=>model.Body,new{@class="editor",@required = "required"})
+    </div>
+</div>
+
+
+<div class="control-group">
+    <div class="controls">
+        <div style="margin: 0 auto 10px;" class="well">
+             @Html.HiddenFor(model=>model.IsLimitedToInstitutionOrIndividual)
+            @Html.HiddenFor(model=>model.IsLimitedToAdmin)
+             @Html.HiddenFor(model=>model.IsLimitedToClientOrOwners)
+            
+            <label class="checkbox inline">
+               
+                <span style="position: relative; bottom: 3px;"><b>Click Add Roles Button To Select Roles To Receive Message</b></span>
+            </label>
+            
+            <div class="pull-right">
+                <a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal"> <i class="icon-plus"></i> Add Roles</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------------------------- Start Modal -------------------------------------->
+
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="myModalLabel">Select Message Roles</h4>
+      </div>
+      <div class="modal-body" style="padding-left:4em; ">
+           @Html.CheckBoxListFor(model => model.MessageRoles,
+                                  model => model.MessageRolesList,
+                                  LookUpView => LookUpView.LkValue,
+                                  LookUpView => LookUpView.LkName,
+                                  model => model.SelectedMessageRolesList, htmlListInfo
+                                  )
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Done</button>
+      </div>
+    </div>
+
+<!----------------------------------- End Modal -------------------------------------->
+
+
+
+     
+    

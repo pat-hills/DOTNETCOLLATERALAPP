@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CRL.WebService.InterswitchPayment.InterSwitchDirectPayService" CodeBehind="InterSwitchDirectPayService.svc.cs" %>

@@ -1,0 +1,162 @@
+﻿@model  CRL.UI.MVC.Areas.Configuration.Models.Shared._FeeConfigurationsJqgrid
+    @using CRL.Infrastructure.Enums 
+<div id="searchgrid">
+    @using MvcJqGrid
+
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";   
+        Grid c = Html.Grid("ListOfFeeConfigurations");
+        c = c.SetCaption("List Of Fee Configurations");
+    
+            c = c.AddColumn(new Column("Id").SetCustomFormatter("buttonize").SetSearch(false).SetWidth(20).SetLabel("Actions"));
+        
+        c = c.AddColumn(new Column("Name").SetLabel("Name"))
+            .AddColumn(new Column("IsActive").SetLabel("IsActive").SetHidden(true));
+        c = c.SetUrl(Url.Action("ViewFeeConfigurationJsonData", "Configuration", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(15)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true)
+        .SetGridView(true)
+        .SetPager("pager")
+         .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);         
+              
+    }
+    @(c) 
+  
+</div>
+<script>
+ function buttonize(cellvalue, options, rowobject)
+ {
+     var buttons;
+      
+     var Button1 = '<input type="button" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Edit" onclick="edit(' + cellvalue + ',1)">';
+     buttons = Button1;
+  
+
+        
+     if (rowobject['IsActive'] == true) {
+         var Button3 = '<input type="button" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Disable" onclick="edit(' + cellvalue + ',2)">';
+         buttons += Button3;
+     }
+        
+
+     else {
+         var Button3 = '<input type="button" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Enable" onclick="edit(' + cellvalue + ',2)">';
+         buttons += Button3;
+     }
+
+     var Button4= '<input type="button" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Delete" onclick="edit(' + cellvalue + ',3)">';
+     buttons += Button4;
+
+     return buttons;
+     
+    }
+    function edit(id, cmd) {
+        if (cmd == 1) {
+            var url = '@Url.Action("FeeConfigurationDetails", "Configuration",new{Id="-1"})'
+              url = url.replace("-1", id);
+               window.location.assign(url);
+        }
+
+        if (cmd == 2) {
+            var url = '@Url.Action("ToggleEnableDisableFeeConfiguration", "Configuration",new{Id="-1"})'
+            url = url.replace("-1", id);
+
+            bootbox.confirm("Are you sure you want to perform this action", function (result) {
+                if (result == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: id,
+                        datatype: "json",
+                        cache: false,
+                        error: function (data) { bootbox.alert("Error Processing Request") },
+                        success: function (data) { bootbox.alert(data); $("#ListOfFeeConfigurations").jqGrid('setGridParam', { url: '@Url.Action("ViewFeeConfigurationJsonData", "Configuration", Model)' }).trigger('reloadGrid'); },
+                    });
+                }
+                else {
+
+                }
+            });
+        }
+
+        if (cmd == 3) {
+            var url = '@Url.Action("DeleteFeeConfiguration", "Configuration",new{Id="-1"})'
+            url = url.replace("-1", id);
+
+            bootbox.confirm("Are you sure you want to delete this client", function (result) {
+                if (result == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: id,
+                        datatype: "json",
+                        cache: false,
+                        error: function (data) { bootbox.alert("Error Processing Request") },
+                        success: function (data) { bootbox.alert(data); $("#ListOfUsers").jqGrid('setGridParam', { url: '@Url.Action("ViewFeeConfigurationJsonData", "Configuration", Model)' }).trigger('reloadGrid'); },
+                    });
+                }
+                else {
+
+                }
+            });
+        }
+          
+
+        if (cmd == 4) {
+            var url = '@Url.Action("Activate", "User",new{Id="-1"})'
+            url = url.replace("-1", id);
+
+            bootbox.confirm("Are you sure you want to activate this client", function (result) {
+                if (result == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: id,
+                        datatype: "json",
+                        cache: false,
+                        error: function (data) { bootbox.alert("Error Processing Request") },
+                        success: function (data) { bootbox.alert(data); $("#ListOfUsers").jqGrid('setGridParam', { url: '@Url.Action("ViewUserJsonData", "User", Model)' }).trigger('reloadGrid'); },
+                    });
+                }
+                else {
+
+                }
+            });
+        }
+        if (cmd == 5) {
+            var url = '@Url.Action("Index", "User",new{InstitutionId="-1"})'
+             url = url.replace("-1", id);
+              window.location.assign(url);
+        }
+        if (cmd == 6) {
+            var url = '@Url.Action("Index", "InstitutionUnit",new{Id="-1"})'
+             url = url.replace("-1", id);
+              window.location.assign(url);
+        }
+        if (cmd == 7) {
+            var url = '@Url.Action("View", "User",new{Id="-1"})'
+             url = url.replace("-1", id);
+              window.location.assign(url);
+         }
+      
+    }
+
+    function NameLabelLink(cellvalue, options, rowobject) {
+        return '<a href="#" onclick="edit(' + rowobject['Id'] + ',7)">' + rowobject['ClientCode'] + '</a>';
+    }
+
+
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+
+        </script>

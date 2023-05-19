@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Configuration</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.RadioButton("WorkflowMode", 0)
+    @Html.RadioButton("WorkflowMode", 1)
+
+      <input type="submit" value="Save" />
+    
+}

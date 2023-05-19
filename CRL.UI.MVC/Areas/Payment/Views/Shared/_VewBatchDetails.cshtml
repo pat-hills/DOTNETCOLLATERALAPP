@@ -1,0 +1,57 @@
+﻿@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._ViewBatchDetailsPartailViewModel
+
+<div class="control-group">
+    <label for="textfield" class="control-label"><b>Batch No</b></label>
+    <div class="controls">
+        @Html.DisplayFor(model => model.BatchNo)
+    </div>
+</div>
+<div class="control-group">
+    <label for="textfield" class="control-label"><b>Total Settlement</b></label>
+    <div class="controls">
+        @Html.DisplayFor(model => model.TotalSetltement)
+    </div>
+</div>
+<div class="control-group">
+    <label for="textfield" class="control-label"><b>Total Expenses</b></label>
+    <div class="controls">
+        @Html.DisplayFor(model => model.TotalBatchExpenses)
+    </div>
+</div>
+<div class="control-group">
+    <label for="textfield" class="control-label"><b>Outstanding Amount</b></label>
+    <div class="controls">
+        @Html.DisplayFor(model => model.TotalOustandinBatchAmount)
+    </div>
+</div>
+@Html.HiddenFor(model => model.BatchComment)
+
+<div class="control-group">
+    <label for="textfield" class="control-label"><b>Period Start Date</b></label>
+    <div class="controls">
+        @if (Model.PeriodStartDate != null)
+        {
+            @Model.PeriodStartDate.Value.ToString("MMM-dd-yyy")
+        }
+        else
+        {
+            @:N/A
+                                }
+    </div>
+</div>
+
+
+<div class="control-group">
+    <label for="textfield" class="control-label"><b>Period End Date</b></label>
+    <div class="controls">
+        @if (Model.PeriodEndDate != null)
+        {
+            @Model.PeriodEndDate.Value.ToString("MMM-dd-yyy")
+        }
+        else
+        {
+            @:N/A
+                                }
+    </div>
+</div>
+<hr/>

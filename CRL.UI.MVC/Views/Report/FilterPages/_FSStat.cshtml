@@ -1,0 +1,200 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Authentication
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">Filter by registration date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((FSStatViewModel)model).UseStartEndDateOption, "true") Filter registration date by start and end date<br />
+                @Html.RadioButtonFor(model => ((FSStatViewModel)model).UseStartEndDateOption, "false") Filter registration date by month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((FSStatViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => ((FSStatViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((FSStatViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => ((FSStatViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((FSStatViewModel)model).SelectedMonthList, ((FSStatViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => ((FSStatViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((FSStatViewModel)model).SelectedYear, ((FSStatViewModel)Model).YearList)
+                    @Html.ValidationMessageFor(model => ((FSStatViewModel)model).SelectedYear)
+                </div>
+            </div>
+        </div>
+        @*<div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((FSStatViewModel)model).County)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((FSStatViewModel)model).County, new SelectList(((FSStatViewModel)Model).Countys, "Value", "Text", null),"", new { Id = "state" })
+                @Html.ValidationMessageFor(model => ((FSStatViewModel)model).County)
+            </div>
+        </div>*@
+        @*<div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((FSStatViewModel)model).Lga)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((FSStatViewModel)model).Lga, new SelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text"), null, new { @Class = "lga" })
+                @Html.ValidationMessageFor(model => ((FSStatViewModel)model).Lga)
+            </div>
+        </div>*@
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((FSStatViewModel)model).GroupedBy)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((FSStatViewModel)model).GroupedBy, new SelectList(((FSStatViewModel)Model).GroupByList, "Value", "Text", ((FSStatViewModel)Model).GroupedBy))
+                @Html.ValidationMessageFor(model => ((FSStatViewModel)model).GroupedBy)
+            </div>
+        </div>
+
+    </div>
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((FSStatViewModel)model).ReportTypeId)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((FSStatViewModel)model).ReportTypeId, new SelectList(((FSStatViewModel)Model).ReportTypes, "Value", "Text", ((FSStatViewModel)Model).ReportTypeId))
+                @Html.ValidationMessageFor(model => ((FSStatViewModel)model).ReportTypeId)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                @Html.EditorFor(model => ((FSStatViewModel)model).LimitToWomenOwned) Limit to female debtor(s)
+            @Html.ValidationMessageFor(model => ((FSStatViewModel)model).LimitToWomenOwned)
+            </div>
+        </div>
+        @if (((CRL.Infrastructure.Authentication.SecurityUser)Context.User).IsOwnerUser)
+        {
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((FSStatViewModel)model).ClientId)
+                </div>
+                <div class="controls">
+
+                    @Html.DropDownListFor(model => ((FSStatViewModel)model).ClientId, new SelectList(((FSStatViewModel)Model).Clients, "Value", "Text", ((FSStatViewModel)Model).ClientId), "")
+                    @Html.ValidationMessageFor(model => ((FSStatViewModel)model).ClientId)
+                </div>
+            </div>
+        }
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((FSStatViewModel)model).FSState)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((FSStatViewModel)model).FSState, new SelectList(((FSStatViewModel)Model).FSStateList, "Value", "Text", ((FSStatViewModel)Model).FSState))
+                @Html.ValidationMessageFor(model => ((FSStatViewModel)model).FSState)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((FSStatViewModel)model).FSStateType)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((FSStatViewModel)model).FSStateType, new SelectList(((FSStatViewModel)Model).FSStateTypeList, "Value", "Text", ((FSStatViewModel)Model).FSStateType))
+                @Html.ValidationMessageFor(model => ((FSStatViewModel)model).FSStateType)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+        if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+            $('#pnlMonthYear').hide();
+            $('#pnlStartEndDate').show();
+        }
+        else {
+            $('#pnlMonthYear').show();
+            $('#pnlStartEndDate').hide();
+        }
+
+
+
+        @*var data = @Html.Raw(Json.Encode(((FSStatViewModel)Model).Lgas));
+        $("#state").change(function () {
+            var atid = $(this).val();          
+            
+            $('.lga option').remove();
+            $(".lga").append('<option value=""></option');
+            for (i = 0; i < data.length; i++) {
+              
+                if (data[i].StateId == atid) {
+
+                    $(".lga").append('<option value="' +
+                        data[i].Id + '">' + data[i].Name + '</option');
+                }
+
+            }
+            
+                 
+        });*@
+
+
+
+    });
+
+
+
+</script>

@@ -1,0 +1,195 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">Filter by payment date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((PaymentsViewModel)model).UseStartEndDateOption, "true") Filter payment date by start and end date<br />
+            @Html.RadioButtonFor(model => ((PaymentsViewModel)model).UseStartEndDateOption, "false") Filter payment date by month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((PaymentsViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((PaymentsViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((PaymentsViewModel)model).SelectedMonthList, ((PaymentsViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((PaymentsViewModel)model).SelectedYear)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).SelectedYear)
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((PaymentsViewModel)model).PaymentNo)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((PaymentsViewModel)model).PaymentNo)
+                @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).PaymentNo)
+            </div>
+        </div>
+           <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((PaymentsViewModel)model).PaymentSourceId)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((PaymentsViewModel)model).PaymentSourceId, new SelectList(((PaymentsViewModel)Model).PaymentSourceList, "Value", "Text", ((PaymentsViewModel)Model).PaymentSourceId), "")
+                @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).PaymentSourceId)
+            </div>
+        </div>
+       
+     @*   <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((PaymentsViewModel)model).TransactionNo)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((PaymentsViewModel)model).TransactionNo)
+                @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).TransactionNo)
+            </div>
+        </div>*@
+
+    </div>
+
+    <div class="span6">
+   @*   <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((PaymentsViewModel)model).PaymentTypeId)
+            </div>
+            <div class="controls">
+
+                @Html.DropDownListFor(model => ((PaymentsViewModel)model).PaymentTypeId, new SelectList(((PaymentsViewModel)Model).PaymentTypeList, "Value", "Text", ((PaymentsViewModel)Model).PaymentTypeId), "")
+                @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).PaymentTypeId)
+            </div>
+        </div>*@
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((PaymentsViewModel)model).Payee)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((PaymentsViewModel)model).Payee)
+                @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).Payee)
+            </div>
+        </div>
+        @if (((PaymentsViewModel)Model).ShowType == 1)
+        {
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((PaymentsViewModel)model).ClientName)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => ((PaymentsViewModel)model).ClientName)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).ClientName)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((PaymentsViewModel)model).IsPublicUser)
+                </div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((PaymentsViewModel)model).IsPublicUser, new SelectList(((PaymentsViewModel)Model).PublicUserList , "Value", "Text", ((PaymentsViewModel)Model).IsPublicUser), "")
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).IsPublicUser)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((PaymentsViewModel)model).PublicUserEmail)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => ((PaymentsViewModel)model).PublicUserEmail)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).PublicUserEmail)
+                </div>
+            </div>
+               <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((PaymentsViewModel)model).PublicUserSecurityCode )
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => ((PaymentsViewModel)model).PublicUserSecurityCode)
+                    @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).PublicUserSecurityCode)
+                </div>
+            </div>
+        }
+      @*  <div class="control-label">
+            @Html.LabelForRequired(model => ((PaymentsViewModel)model).PaypointUserName)
+        </div>
+        <div class="controls">
+            @Html.EditorFor(model => ((PaymentsViewModel)model).PaypointUserName)
+            @Html.ValidationMessageFor(model => ((PaymentsViewModel)model).PaypointUserName)
+        </div>*@
+
+    </div>
+</div>
+
+
+@Html.HiddenFor(model => ((PaymentsViewModel)model).ShowType)
+
+<script>
+    if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+        $('#pnlMonthYear').hide();
+        $('#pnlStartEndDate').show();
+    }
+    else {
+        $('#pnlMonthYear').show();
+        $('#pnlStartEndDate').hide();
+    }
+    //$("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+
+
+
+</script>

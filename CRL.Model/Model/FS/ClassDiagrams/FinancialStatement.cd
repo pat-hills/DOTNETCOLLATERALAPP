@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Model.FS.FinancialStatement" Collapsed="true">
+    <Position X="7.25" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACMAAABAIAAoAAABoiAhAEEQQQkM4AoIGgAAKEAAAI=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.Collateral" Collapsed="true">
+    <Position X="11.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAgAABABAgZAAAAoKAAAAAAAAAIAAAAAEgAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Collateral.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.Participant" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABABAAAACAAACAAAQCAAIQIAAKAAFgAIAACCA=</HashCode>
+      <FileName>Model\FinancialStatement\Participant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.FinancialStatementActivity" Collapsed="true">
+    <Position X="8.5" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAGBAAIAEAAAAAgAAAAGQCIAIQggAAEgAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatementActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.IndividualParticipant" Collapsed="true">
+    <Position X="10" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABCAAAAECBAAAACAAAABAAIAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\IndividualParticipant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.InstitutionParticipant" Collapsed="true">
+    <Position X="0.5" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAACAAgAAAAAAAgEAgBQAABAAIAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\FinancialStatement\InstitutionParticipant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CRL.Model.Common.IIndividual" Collapsed="true">
+    <Position X="5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAiCAAAECAAAAQAAACBAAQAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Common\IIndividual.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IDetailIndividual" Collapsed="true">
+    <Position X="3.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IIndividual.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IInsititution" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAgAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IInsititution.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IDetailInstitution" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAEAAAAAAAAAEAAAEECAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IInsititution.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

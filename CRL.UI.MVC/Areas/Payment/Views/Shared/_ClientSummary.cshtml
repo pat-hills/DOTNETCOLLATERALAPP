@@ -1,0 +1,63 @@
+﻿@model CRL.Model.ModelViews.Memberships.ClientSummaryView 
+<br />
+<div class="form-horizontal">
+<fieldset>
+    <legend>Client Summary View</legend>
+
+    <div class="control-group">
+        <div class="control-label">
+            @Html.DisplayNameFor(model => model.ClientCode)
+        </div>
+        <div class="controls">
+            @Html.DisplayFor(model => model.ClientCode)
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="control-label">
+            @Html.DisplayNameFor(model => model.ClientName)
+        </div>
+        <div class="controls">
+            @Html.DisplayFor(model => model.ClientName)
+        </div>
+    </div>
+
+    @*<div class="control-group">
+        <div class="control-label">
+            @Html.DisplayNameFor(model => model.ClientEmail)
+        </div>
+        <div class="controls">
+            @Html.DisplayFor(model => model.ClientEmail)
+        </div>
+    </div>*@
+
+    <div class="control-group">
+        <div class="control-label">
+            @Html.DisplayNameFor(model => model.ClientPhone)
+        </div>
+        <div class="controls">
+            @Html.DisplayFor(model => model.ClientPhone)
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="control-label">
+            @Html.DisplayNameFor(model => model.ClientType )
+        </div>
+        <div class="controls">
+            @Html.DisplayFor(model => model.ClientType)
+        </div>
+    </div>
+
+    @*<div class="control-group">
+        <div class="control-label">
+            @Html.DisplayNameFor(model => model.ClientIsPostPaidOrPrepaid)
+        </div>
+        <div class="controls">
+            @Html.DisplayFor(model => model.ClientIsPostPaidOrPrepaid)
+        </div>
+    </div>*@
+    @Html.HiddenFor(model=>model.ClientIsPostPaidOrPrepaid)
+</fieldset>
+
+</div>

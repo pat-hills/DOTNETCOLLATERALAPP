@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Mappings.FinancialStatement.ChangeDescriptionMapper">
+    <Position X="5" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\ChangeDescriptionMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Amendment.ClientReportViewMapper">
+    <Position X="0.5" Y="6.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\ClientReportViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Amendment.FSActivitySummaryReportViewBuilder">
+    <Position X="5" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\FSActivitySummaryReportViewBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Amendment.SubordinatingPartyReportViewMapper">
+    <Position X="0.5" Y="2" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\SubordinatingPartyReportViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.SubordinatingPartyMapping">
+    <Position X="0.5" Y="4.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAACAAACAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\SubordinatingPartyMapping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.InstitutionSubordinatingPartyMapper">
+    <Position X="0.5" Y="3.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\InstitutionSubordinatingPartyMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.IndividualSubordinatingPartyMapper">
+    <Position X="0.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAI=</HashCode>
+      <FileName>Mappings\Amendment\IndividualSubordinatingPartyMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.FSActivitySummaryViewMapper">
+    <Position X="5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAAA=</HashCode>
+      <FileName>Mappings\Amendment\FSActivitySummaryViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Configuration.ConfigurationMapper">
+    <Position X="5" Y="4.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Configuration\ConfigurationMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Configuration.FeeConfigurationMapper">
+    <Position X="8.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAUAACAAAEAQAAAAABAA=</HashCode>
+      <FileName>Mappings\Configuration\FeeConfigurationMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.InstitutionMapper">
+    <Position X="8.5" Y="3.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAACAAABAAAEAIAAAAA=</HashCode>
+      <FileName>Mappings\Membership\InstitutionMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.InstitutionUnitMapper">
+    <Position X="8.5" Y="5.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAABAAQAAgAA=</HashCode>
+      <FileName>Mappings\Membership\InstitutionUnitMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.MembershipMapper">
+    <Position X="5" Y="6.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Membership\MembershipMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.MembershipRegistrationMapper">
+    <Position X="13" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AABAQAAAAAAIAAAAAAAAAAAAAAAAAAAACkAAAAAAAgA=</HashCode>
+      <FileName>Mappings\Membership\MembershipRegistrationMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.PersonMapper">
+    <Position X="13" Y="3" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Membership\PeopleMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.RoleMapper">
+    <Position X="13" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAEAAAAAAAAAAIAAAAAAAQ=</HashCode>
+      <FileName>Mappings\Membership\RoleMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Membership.UserMapper">
+    <Position X="13" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAQAAAAACAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Mappings\Membership\UserMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

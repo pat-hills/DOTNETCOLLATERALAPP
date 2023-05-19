@@ -1,0 +1,105 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._PaymentJqGridViewModel 
+  @using CRL.Infrastructure.Enums 
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("jqueryGrid");
+        c = c.SetCaption("List Of Payments");
+        c = c.AddColumn(new Column("Id").SetCustomFormatter("buttonize").SetSearch(false).SetFixedWidth(true).SetLabel("Actions"));      
+            c = c.AddColumn(new Column("PaymentNo").SetLabel("Receipt No").SetCustomFormatter("RegistrationLabelLink").SetWidth(120));
+         
+        c = c.AddColumn(new Column("PaymentDate").SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'd-M-Y'").SetSearchType(MvcJqGrid.Enums.Searchtype.Datepicker).SetLabel("Payment Date"));
+        c = c.AddColumn(new Column("PaymentSourceName").SetLabel("Payment Type").SetSearchType(MvcJqGrid.Enums.Searchtype.Select));
+        //c = c.AddColumn(new Column("PaymentTypeName").SetLabel("Payment Type").SetSearchType(MvcJqGrid.Enums.Searchtype.Select));
+       //.SetSearchTerms((IDictionary<string, string>)Model.FinancialStatementTransactionTypes).SetSortable(false));
+       // c = c.AddColumn(new Column("FinancialStatementLoanTypeName").SetLabel("Loan Type").SetSearchType(MvcJqGrid.Enums.Searchtype.Select)
+       //.SetSearchTerms((IDictionary<string, string>)Model.FinancialStatementLoanType).SetSortable(false));
+        c = c.AddColumn(new Column("Amount").SetAlign(MvcJqGrid.Enums.Align.Right).SetSearch(false).SetSortable(false).SetLabel("Amount")
+            .SetFormatter(MvcJqGrid.Enums.Formatters.Currency));
+        //if (((SecurityUser)this.Context.User).IsOwnerUser)
+        //{
+        //    c = c.AddColumn(new Column("Registrant").SetSearch(false).SetSortable(false).SetLabel("Registrant"));
+        //}
+        //c = c.AddColumn(new Column("Payee").SetLabel("Paid by"));
+        //if (((SecurityUser)HttpContext.Current.User).IsOwnerUser)
+        //{
+        c = c.AddColumn(new Column("Client").SetLabel("Paid To").SetSortable(false).SetSearch(false));
+
+        // }
+        
+        //c = c.AddColumn(new Column("Paypoint").SetLabel("Paypoint").SetSortable(false).SetSearch(false));
+        //c = c.AddColumn(new Column("PaypointUser").SetLabel("Received by").SetSortable(false).SetSearch(false));
+        //c = c.AddColumn(new Column("T24TransactionNo").SetLabel("Transaction No").SetSortable(false).SetSearch(false));
+        //c = c.AddColumn(new Column("IsReversible").SetHidden(true));      
+     
+        c = c.SetUrl(Url.Action("GetJsonPaymentGridForJQGRID", "Payment", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(15)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true).SetSearchToolbar(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);       
+              
+    }
+    @(c) 
+  
+</div>
+<script>
+   
+    
+    function buttonize(cellvalue, options, rowobject)
+    {
+      
+        var Button1 = '<a class="btn btn-flat orange" title="Download file attachment"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',1 )"><i class="icon-download-alt"></i></a>'
+        //if (rowobject['IsReversible'] == true) {
+        //    var Button2 = '<input type="button" class="reverse" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Reverse" onclick="edit(' + cellvalue + ',2)">';
+        //    Button1 += Button2;
+        //}
+        return Button1;
+     
+    }
+
+    function edit(id, cmd) {
+
+        if (cmd == 1) {
+            var url = '@Html.Raw(Url.Action("Download", "Payment", new { Id = "-1" }))'
+              url = url.replace("-1", id);
+              // window.location.assign(url);
+
+              window.open(url, '_blank'); // <- This is what makes it open in a new window.
+
+        }
+        if (cmd == 3) {
+            var url = '@Url.Action("View", "Payment",new{Id="-1"})';
+             url = url.replace("-1", id);
+              window.location.assign(url);
+         }
+      
+      
+}
+
+    function RegistrationLabelLink(cellvalue, options, rowobject)
+    {
+        return '<a href="#" class="link" onclick="edit(' + rowobject['Id'] + ',3)">' + rowobject['PaymentNo'] + '</a>';
+    }
+   
+
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+
+       
+ 
+    </script>

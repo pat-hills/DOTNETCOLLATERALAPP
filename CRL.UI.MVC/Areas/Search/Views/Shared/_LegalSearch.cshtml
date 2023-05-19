@@ -1,0 +1,853 @@
+﻿@model  CRL.UI.MVC.Areas.Search.Models.ViewPageModels._SearchResultJqGridViewModel
+@using CRL.Infrastructure.Configuration
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Model.Payments;
+@{
+    <style>
+        .imgframe {
+            display: block;
+            margin-bottom: -20px;
+            text-align: center;
+        }
+
+        #error {
+        }
+    </style>
+    @Styles.Render("~/Content/jqueryloadmask")
+    if (!Model.isNonLegalEffect)
+    {
+    <div class="row-fluid" style="margin-bottom: 20px">
+
+
+        <div class="span6">
+
+            <h4>Search Instructions</h4>
+            <ul class="unstyled">
+                <li>You can search by the unique identification number for an individual debtor, or the 
+                         business registration number for company, cooperative or registered business name debtor 
+                         or the collateral serial number. </li>
+                @if (Model.isPayable)
+                {
+                    <li><span class="label label-danger" style="color: yellow; background-color: red;"><b>Each search will be charged for a fee of N500.00 only.</b></span></li>
+                }
+            </ul>
+        </div>
+    </div>
+    }
+    <div id="spinner" class="well" style="display: none; position: inherit; padding: 2px; top: 50%; left: 50%; margin-bottom: 20px">
+        <span class="imgframe">
+            <img src="~/Content2/images/ajax-loader.gif" />
+        </span>
+        <br />
+        <span style="font-family: 'Century Gothic'; text-align: center; display: block">Searching NCR...</span>
+    </div>
+    
+    <div id="Cacspinner" class="well" style="display: none; position: inherit; padding: 2px; top: 90%; left: 50%;">
+        <span class="imgframe">
+            <img src="~/Content2/images/ajax-loader.gif" /></span><br />
+        <span style="font-family: 'Century Gothic'; text-align: center; display: block">Searching CAC..</span>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box">
+                <div class="box-title">
+                    <h3><i class="icon-search"></i>Search Criteria</h3>
+                </div>
+                <div class="box-content">
+                    <div class="form-horizontal">
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.SearchParam.SearchType, new { @class = "control-label" })
+                            <div class="controls controls-row">
+                                <label style="display: table; margin-bottom: 5px">@Html.RadioButtonFor(model => model.SearchParam.SearchType, "1", new { @class = "personIdentification lead", id = "rb1", @name = "searchtype" }) Individual Debtor</label>
+                                <label style="display: table; margin-bottom: 5px">@Html.RadioButtonFor(model => model.SearchParam.SearchType, "2", new { @class = "personIdentification", id = "rb2", @name = "searchtype" }) Company, Cooperative or Registered Business Name</label>
+                                <label style="display: table; margin-bottom: 5px">@Html.RadioButtonFor(model => model.SearchParam.SearchType, "3", new { @class = "personIdentification", id = "rb3", @name = "searchtype" }) Collateral Serial No.</label>
+                                @*<label style="display: table; margin-bottom: 5px">@Html.RadioButtonFor(model => model.SearchParam.SearchType, "4", new { @class = "personIdentification", id = "rb4" }) Corporate Affairs Commission</label>*@
+                            </div>
+                        </div>
+                        @if (Constants.Project == Project.Liberia)
+                        {
+                            <div id="lstLegal" class="control-group">
+                                @Html.LabelFor(model => model.SearchParam.BorrowerName, new { @class = "control-label" })
+
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => model.SearchParam.BorrowerName, new { @class = "span2" })
+                                    @Html.ValidationMessageFor(model => model.SearchParam.BorrowerName)
+
+                                </div>
+                            </div>
+                            <div id="lstIndividual" class="control-group">
+                                <label for="textfield" class="control-label">Name</label>
+                                <div class="controls">
+                                    <div class="controls-row">
+                                        @Html.TextBoxFor(model => model.SearchParam.BorrowerFirstName, new { placeholder = "First name", @class = "span2", id = "Firstname" })
+                                        @Html.TextBoxFor(model => model.SearchParam.BorrowerMiddleName, new { placeholder = "Middle name", @class = "span2", id = "Middlename" })
+                                        @Html.TextBoxFor(model => model.SearchParam.BorrowerLastName, new { placeholder = "Surname", @class = "span2", id = "Surname" })
+                                        @Html.ValidationMessageFor(model => model.SearchParam.BorrowerFirstName)
+                                        @Html.ValidationMessageFor(model => model.SearchParam.BorrowerLastName)
+
+                                    </div>
+                                    <span class="help-block" style="font-style: italic">@if (!Model.isNonLegalEffect)
+                                                                                        {
+                                        @:To search by debtor name, at least both first name and surname must be provided.
+                                                                                        }</span>
+                                </div>
+
+                            </div>
+                        }
+@* <span style="padding-bottom: 20px; margin-left: 10px; color: blue; display: block">(and / or)</span>*@
+                        <div class="control-group search-item">
+                            @Html.LabelFor(model => model.SearchParam.BorrowerIDNo, new { Id = "lbBorrowerID", @class = "control-label" })
+
+                            <div class="controls" id="searchDiv">
+                                @Html.DropDownListFor(model => model.SearchParam.BusinessPrefix, new SelectList(Model.BusinessPrefixes, "Value", "Text", Convert.ToInt32(Model.SearchParam.BusinessPrefix)), "", new { @style = "width:70px", @class = "prefix" })
+                                @if (TempData["SearchParameter"] != null)
+                                {
+                                    @Html.TextBoxFor(model => model.SearchParam.BorrowerIDNo, new { @Value = TempData["SearchParameter"], @class = "span2", Id = "BorrowerIDTxtbox" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(model => model.SearchParam.BorrowerIDNo, new { @class = "span2", Id = "BorrowerIDTxtbox" })
+                                }
+                                @Html.ValidationMessageFor(model => model.SearchParam.BorrowerIDNo)
+                            </div>
+                        </div>
+                        @* <span style="padding-bottom: 20px; margin-left: 10px; color: blue; display: block">(and / or)</span>*@
+                        @if (Model.isNonLegalEffect)
+                        {
+                            <div class="control-group">
+                                @Html.LabelFor(model => model.SearchParam.DebtorEmail, new { @class = "control-label" })
+                                <div class="controls controls-row">
+                                    @Html.TextBoxFor(model => model.SearchParam.DebtorEmail, new { @class = "span2" })
+                                    @Html.ValidationMessageFor(model => model.SearchParam.DebtorEmail)
+                                </div>
+                            </div> @*
+                        <span style="padding-bottom: 20px; margin-left: 10px; color: blue; display: block">(and / or)</span>*@
+                            <div class="control-group DOB">
+                                @Html.LabelFor(model => model.SearchParam.DebtorDateOfBirth, new { @class = "control-label" })
+                                <div class="controls controls-row">
+                                    @Html.TextBoxFor(model => model.StartDate, "{0:dd/MMM/yyyy}", new { placeholder = "dd/mm/yyyy", id = "StartDate" })
+                                    @Html.ValidationMessageFor(model => model.SearchParam.DebtorDateOfBirth)
+                                </div>
+                            </div>
+                            <span class="DOB" style="padding-bottom: 20px; margin-left: 10px; color: blue; display: block">(and / or)</span>
+                        }
+
+@*<div class="control-group">
+                        @Html.LabelFor(model => model.SearchParam.CollateralSerialNo, new { @class = "control-label" })
+                        <div class="controls controls-row">
+                            @Html.TextBoxFor(model => model.SearchParam.CollateralSerialNo, new { @class = "span2" })
+                            @Html.ValidationMessageFor(model => model.SearchParam.CollateralSerialNo)
+                        </div>
+                    </div>*@
+                        @if (Model.isNonLegalEffect)
+                        {
+                            <span style="padding-bottom: 20px; margin-left: 10px; color: blue; display: block">(and / or)</span>
+                            <div class="control-group">
+                                @Html.LabelFor(model => model.SearchParam.CollateralDescription, new { @class = "control-label" })
+                                <div class="controls controls-row">
+                                    @Html.TextBoxFor(model => model.SearchParam.CollateralDescription, new { @class = "span2" })
+                                    @Html.ValidationMessageFor(model => model.SearchParam.CollateralDescription)
+                                </div>
+                            </div>
+                        }
+
+                        <div class="control-group cacCtrls">
+                            <label id="lblCac" class="control-label" for="">Search Type</label>
+
+                            <div class="controls" id="cacdiv">
+                                <select name="parameter">
+                                    <option value=""></option>
+                                    <option value="RC_NUMBER">RC Number</option>
+                                    <option value="APPROVED_NAME">Company Name</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group cacCtrls">
+                            <label class="control-label" for="">CAC Number</label>
+
+                            <div class="controls">
+                                <input type="text" name="cacnumber" />
+                            </div>
+                        </div>
+                        <div class="control-group controls cacCtrls">
+                            <input id="btnCacPost" type="button" name="Search" class="btn btn-primary" value="Submit Search Request">
+                        </div>
+
+                        <div class="control-group controls search-item">
+                            @{
+                                if (!Request.IsAuthenticated && Model.isPayable)
+                                {
+                                <a href="#" class="btn btn-primary" id="subSearchRequest">Submit Search Request</a>
+
+                                <!-- Modal -->
+                                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 style="text-align: center;" id="myModalLabel">Payment Verification</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="errortext" style="color: red; text-align: center;">Please enter a valid PIN code!</p>
+                                        <div class="control-group">
+                                            @Html.TextBoxFor(model => model.PublicUserReceiptNo, new { @class = "span12", placeholder = "Please enter your PIN code here", Id = "SecurityCode", autocomplete = "off" })
+                                            @Html.ValidationMessageFor(model => model.PublicUserReceiptNo)
+                                        </div>
+                                    </div>
+
+                                    <div id="userdetails" style="padding: 15px">
+                                        <fieldset>
+                                            <legend></legend>
+                                            <div style="text-align: center"><b>Please provide the following details since you are using this code for the first time.</b></div>
+                                            <br />
+                                            <div class="control-group">
+                                                <div class="control-label">
+                                                    @Html.LabelFor(model => model.PublicUserName)
+                                                </div>
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.PublicUserName, new { autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(model => model.PublicUserName)
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+
+                                                <div class="control-label">
+                                                    @Html.LabelFor(model => model.Email)
+                                                </div>
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.Email, new { autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(model => model.Email)
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+
+                                                <div class="control-label">
+                                                    @Html.LabelForRequired(model => model.Phone)
+                                                </div>
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.Phone, new { autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(model => model.Phone)
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+
+                                                <div class="control-label">
+                                                    @Html.LabelForRequired(model => model.BVN)
+                                                </div>
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.BVN, new { autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(model => model.BVN)
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        <input type="button" id="getSearchResultsButton" class="btn btn-primary" value='Submit Search Results' />
+                                    </div>
+                                </div>
+
+                                }
+                                else
+                                {
+                                <div>
+                                    <input id="myform" type="submit" name="submitButton" class="btn btn-primary" value="Submit Search Request">
+                                </div>
+                                }
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="reportSpinner" class="well" style="display: none; position: inherit; padding: 2px; top: 50%; left: 50%; margin-bottom: 20px">
+                <span class="imgframe">
+                    <img src="~/Content2/images/ajax-loader.gif" />
+                </span>
+                <br />
+                <span style="font-family: 'Century Gothic'; text-align: center; display: block">Downloading Report...</span>
+            </div>
+        </div>
+
+    </div>
+    
+    
+    <div id="error">
+    </div>
+    <div id="displayResults">
+    </div>
+    
+    <div id="EmptyResults">
+    </div>
+    <div id="CACResults" style="margin-top: 20px">
+    </div>
+    
+    <div id="buttons">
+    </div>
+    <div id="generateSearchReport">
+    </div>
+    @Html.HiddenFor(m => m.isNonLegalEffect, new { @class = "isNonLegalEffect" })
+    @Html.HiddenFor(m => m.isPayable, new { @class = "isPayable" })
+
+
+}
+
+
+<script>
+
+    $(window).load(function () {
+        if ($('#rb1').is(":checked")) {
+            $("#BorrowerIDTxtbox").rules("add", {
+                required: true,
+                minlength: 11,
+                maxlength: 11,
+                messages: {
+                    required: "Please enter a BVN",
+                    minlength: $.validator.format("BVN must be 11 characters"),
+                    maxlength: $.validator.format("BVN must be 11 characters")
+                }
+            });
+        }
+        if ($('#rb2').is(":checked")) {
+            $("#BorrowerIDTxtbox").rules("add", {
+                required: true,
+                minlength: 11,
+                maxlength: 11,
+                messages: {
+                    required: "You must provide a search parameter",
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        $('[name="_SearchResultJqGridViewModel.SearchParam.SearchType"]').on('change', function () {
+            $('#displayResults').html("");
+            $('#CACResults').html("");
+            $('#buttons').html("");
+            $('#EmptyResults').html("");
+            $('#generateSearchReport').html("");
+            $('#EmptyResults').html("");
+        });
+    });
+
+    @if (ViewData.ModelState.IsValid)
+    {<text>
+    $(document).ready(function () {
+
+
+        var cacLoading;
+        var clas, prefixValue;
+        var url = '@Url.Action("AjaxSearch", "Search", new { Area = "Search" })';
+        $('#myform').click(function (e) {
+            e.preventDefault();
+            $('#displayResults').html("");
+            $('#CACResults').html("");
+            $('#buttons').html("");
+            $('#EmptyResults').html("");
+            $('#generateSearchReport').html("");
+            $('#EmptyResults').html("");
+            var boroweridno = $('[name="_SearchResultJqGridViewModel.SearchParam.BorrowerIDNo"]').val();
+            var searchidtype = $('[name="_SearchResultJqGridViewModel.SearchParam.SearchType"]:checked').val();
+            var selectedPrefix = $('[name="_SearchResultJqGridViewModel.SearchParam.BusinessPrefix"]').find(":selected").text();
+            var selectedPrefixValue = $('[name="_SearchResultJqGridViewModel.SearchParam.BusinessPrefix"]').find(":selected").val();
+            //alert(selectedPrefixValue);
+            if (selectedPrefix == "BN_") {
+                clas = 1;
+                prefix = "bn";
+            }
+            else if (selectedPrefix == "RC_") {
+                clas = 2;
+                prefix = "rc"
+            }
+            else if (selectedPrefix == "IT_") {
+                clas = 3;
+                prefix = "it";
+            }
+            else {
+                clas = 4;
+            }
+            var _this = $(this);
+            var _form = _this.closest("form");
+            var isValid = _form.valid();
+            if (isValid) {
+                $.ajax({
+                    beforeSend: function () {
+                        $("#spinner").show();
+                        if (searchidtype == 2) {
+                            $("#Cacspinner").show();
+                        }
+
+                        $("#myform").prop('disabled', true)
+                    },
+                    type: "POST",
+                    data: {
+                        "boroweridnumber": boroweridno,
+                        "searchidtype": searchidtype,
+                        "clas": clas,
+                        "prefixValue": selectedPrefixValue
+                    },
+                    url: url,
+                    cache: false,
+                    complete: function () {
+                        $("#spinner").hide();
+                        $("#Cacspinner").hide();
+                        $("#myform").prop('disabled', false)
+                    },
+                    success: function (response) {
+                        var source = $('' + response + '');
+
+
+                        $('#displayResults').html(source.find('#showResults').html());
+                        $('#buttons').html(source.find('#reportButton').html());
+                        $('#EmptyResults').html(source.find('#EmptyResults').html());
+                        $('#CACResults').html(source.find('#CACResults').html());
+                        $('#generateSearchReport').html(source.find('#generateSearchReport').html());
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Error occurred whiles searching. Please try again later!. If problem persists, contact your System's administrator.");
+                    }
+                });
+                return false;
+            }
+            else {
+                //alert("Error");
+            }
+        });
+    });</text>
+    }
+
+    $(document).on("click", '#btnGenerateReport', function (event) {
+        var data = $('#searchForm').serialize();
+        var url = '@Url.Action("AjaxGenerateReport", "Search", new { Area = "Search" })';
+        $.ajax({
+            beforeSend: function () {
+                $("#reportSpinner").show();
+            },
+            type: "POST",
+            data: data,
+            url: url,
+            success: function (response) {
+                if (response != "success")
+                { alert(response); return false; }
+                downloadSearchReport();
+            },
+            complete: function () {
+                $("#reportSpinner").hide();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status == "401") {
+                    alert("Your session has ended.  You  are required to login again!  Please always remember to save draft to prevent losing data due to sessions timeouts");
+                    $("#UnsavedChanges").val("0");
+                    var url = '@Html.Raw(Url.Action("Login", "Account", new { Area = "" }))'
+                    window.location.href = url;
+                }
+                else {
+                    alert('status:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+                }
+            }
+        });
+        return false;
+    });
+
+    $(document).on("click", '#btnViewAndGenerateRpt', function (e) {
+
+        if ($("input:radio[name='_SearchResultJqGridViewModel.SelectedId']:checked").length == 0) {
+            bootbox.alert("Please select a Financing Statement to generate report on.");
+            e.preventDefault();
+            return false;
+        }
+        else {
+            return true;
+        }
+    });
+
+    $(document).ready(function () {
+        $('#caclink').on('click.open', function (e) {
+            e.preventDefault();
+            window.open("lblCac", "_blank");
+
+            var url = '@Url.Action("AuditCacLink", "Search", new { Area = "Search" })';
+            $.get(url, {}, function (data) {
+
+            })
+
+        });
+
+        $("#btnCacPost").click(function () {
+            var param = $('[name="parameter"]').val();
+            var cacNo = $('[name="cacnumber"]').val()
+
+            var localUrl = '@Url.Action("AuditCacLink", "Search", new { Area = "Search" })';
+            $.get(localUrl, {}, function (data) {
+            })
+
+            var url = "http://publicsearch.cac.gov.ng/NCR/search.php";
+            $.post(url, { parameter: param, search_value: cacNo, search: "Search" }, function (data) {
+
+                data = data.replace('css/style.css', 'http://publicsearch.cac.gov.ng/NCR/css/style.css')
+                            .replace('/resources/demos/style.css', 'http://publicsearch.cac.gov.ng/NCR/resources/demos/style.css')
+                            .replace('directors.php', 'http://publicsearch.cac.gov.ng/NCR/directors.php')
+                            .replace('images/CAC_New_Logo.png', 'http://publicsearch.cac.gov.ng/NCR/images/CAC_New_Logo.png');
+
+
+                var w = window.open('http://publicsearch.cac.gov.ng/NCR/search.php', '_blank');
+                w.document.open().write(data);
+                w.document.close();
+
+            });
+
+        });
+
+        //$('#searchForm').validate();
+
+        //$("[Id$=StartDate]").datepicker({
+        //    dateFormat: 'dd/mm/yy', changeMonth: true,
+        //    changeYear: true,
+        //    yearRange: "120:+0"
+        //});
+        //$("[Id$=EndDate]").datepicker({
+        //    dateFormat: 'dd/mm/yy', changeMonth: true,
+        //    changeYear: true,
+        //    yearRange: "-120:+0"
+
+        if ($('#rb1').is(":checked")) {
+            $("#BorrowerIDTxtbox").attr('maxlength', '11');
+
+            //$('#lstLegal').hide();
+            //$('.DOB').show();
+            //$('#lstIndividual').show();
+            $('#lbBorrowerID').text("Unique ID (BVN)");
+            $('.prefix').hide();
+            $('.cacCtrls').hide();
+
+        } else if ($('#rb2').is(":checked")) {
+            $('#lbBorrowerID').text("Business Registration No");
+            $('.prefix').show();
+            $('.cacCtrls').hide();
+            //$('#lstLegal').show()
+            //$('.DOB').hide();
+            //$('#lstIndividual').hide();  
+
+            //} else if ($('#rb4').is(":checked")) {
+            //    $('.cacCtrls').show();
+            //    $('.search-item').hide();
+
+        } else {
+            $('#lbBorrowerID').text("Collateral Serial No")
+            $('.prefix').hide();
+            $('.cacCtrls').hide();
+        }
+
+
+
+        $('.personIdentification').change(function () {
+            $("#BorrowerIDTxtbox").rules("remove");
+            $("#searchDiv span").html("");
+
+            $("#BorrowerIDTxtbox").attr('maxlength', '11');
+
+
+            if ($(this).val() == 4) {
+                $('.cacCtrls').show();
+                $('.search-item').hide();
+            } else {
+                $('.cacCtrls').hide();
+                $('.search-item').show();
+            }
+
+
+            if ($(this).val() == 1) {
+                $("#BorrowerIDTxtbox").rules("add", {
+                    required: true,
+                    minlength: 11,
+                    maxlength: 11,
+                    messages: {
+                        required: "Please enter a BVN",
+                        minlength: jQuery.validator.format("BVN must be 11 characters"),
+                        maxlength: jQuery.validator.format("BVN must be 11 characters")
+                    }
+                });
+                //$("#pnlDischargedCollaterals").prop('disabled', true);
+                //$('#lstLegal').hide();
+                //$('.DOB').show();
+                //$('#lstIndividual').show();
+                $('#lbBorrowerID').text("Unique ID (BVN)");
+                $('#BorrowerIDTxtbox').val("");
+                $('.prefix').hide();
+            } else if ($(this).val() == 2) {
+                $("#BorrowerIDTxtbox").attr('maxlength', '100');
+                $("#BorrowerIDTxtbox").attr('minlength', '0');
+
+                $("#BorrowerIDTxtbox").rules("remove");
+                $("#searchDiv span").html("");
+
+                $("#BorrowerIDTxtbox").rules("add", {
+                    required: true,
+                    messages: {
+                        required: "Please enter a Business Reg. No"
+                    }
+                });
+
+                $('#BorrowerIDTxtbox').val("");
+                $('#lbBorrowerID').text("Business Reg. No");
+                $('.prefix').show();
+                //$('.DOB').hide();
+                //$('#lstLegal').show()
+                //$('#lstIndividual').hide();
+
+
+            } else {
+                $("#BorrowerIDTxtbox").attr('maxlength', '100');
+                $("#BorrowerIDTxtbox").attr('minlength', '0');
+
+                $("#BorrowerIDTxtbox").rules("remove");
+                $("#searchDiv span").html("");
+
+                $("#BorrowerIDTxtbox").rules("add", {
+                    required: true,
+                    messages: {
+                        required: "Please enter a Collateral Serial No."
+                    }
+                });
+
+                $('#BorrowerIDTxtbox').val("");
+                $('#lbBorrowerID').text("Collateral Serial No.");
+                $('.prefix').hide();
+            }
+
+
+        })
+
+
+    });
+
+</script>
+@*
+<script type="text/javascript">
+
+    //$("input[name='_SearchResultJqGridViewModel.Phone']").inputmask("(999) 9 999 99999");
+
+    var isChecked = false;
+    var IsCorrectCode = false;
+    function securityCodeCheck() {
+        $('#errortext').hide();
+
+        var code = $("#SecurityCode").val();
+        if(code.length<=0)
+        {
+            $('#errortext').show();
+            $("#myModal").unmask();
+        }
+
+        if (code.length>0) {
+    
+            var url = '@Url.Action("CheckSecurityCode", "Search", new { Area = "Search" })';
+            $.get(url, { SecurityCode: code }, function (data) {
+                if (data.IsValid) {
+                    IsCorrectCode = true;
+                    $('#errortext').hide();
+                    if (data.HasInfo === false) {                        
+                        $('#userdetails').show();
+
+                        
+                        
+                } else {
+                    
+                    $('#userdetails').hide();
+                }
+            } 
+            else 
+        {
+                 IsCorrectCode = false;
+            $('#errortext').show();
+            $('#userdetails').hide();
+        }
+        isChecked = true;
+        $("#myModal").unmask();
+                
+    });
+    }
+    }
+
+
+
+    function getSearchResults() {
+        if (isChecked && IsCorrectCode) {
+            $('#searchForm').submit();
+        }
+    }
+
+    $(document).ready(function() {
+        $('#errortext').hide();
+        $('#userdetails').hide();
+    });
+
+    //$("#SecurityCode").change(function () {
+    //securityCodeCheck();
+    //});
+
+    //$("#SecurityCode").blur(function () {
+    //    if (isChecked)
+    //    {
+    //        securityCodeCheck();
+    //    }
+    //});
+
+    $('#getSearchResultsButton').click(function () {
+       
+        if (!isChecked) {
+            $("#myModal").mask("Validating  PIN Code...");
+            securityCodeCheck();
+        }
+        
+        getSearchResults();           
+        isChecked = false;
+    });
+
+</script>
+*@
+<script>
+
+    $('#subSearchRequest').click(function (e) {
+        e.preventDefault();
+        $('#displayResults').html("");
+        $('#error').html("");
+        $('#CACResults').html("");
+        $('#buttons').html("");
+        $('#EmptyResults').html("");
+        $('#generateSearchReport').html("");
+        $('#EmptyResults').html("");
+        $('#errortext').hide();
+        $("#SecurityCode").val("");
+        $('#searchForm').validate();
+
+        if ($('#searchForm').valid() === true) {
+            $("#myModal").modal("show");
+        }
+
+    });
+
+
+
+    $(document).ready(function () {
+        $('#errortext').hide();
+        $('#userdetails').hide();
+    });
+
+    $('#getSearchResultsButton').click(function () {
+        $('#displayResults').html("");
+        $('#error').html("");
+        $('#CACResults').html("");
+        $('#buttons').html("");
+        $('#EmptyResults').html("");
+        $('#generateSearchReport').html("");
+        $('#EmptyResults').html("");
+        var boroweridno = $('[name="_SearchResultJqGridViewModel.SearchParam.BorrowerIDNo"]').val();
+        var searchidtype = $('[name="_SearchResultJqGridViewModel.SearchParam.SearchType"]:checked').val();
+        var selectedPrefix = $('[name="_SearchResultJqGridViewModel.SearchParam.BusinessPrefix"]').find(":selected").text();
+        var selectedPrefixValue = $('[name="_SearchResultJqGridViewModel.SearchParam.BusinessPrefix"]').find(":selected").val();
+        var isPayable = $(".isPayable").val();
+        var isNonLegalEffect = $(".isNonLegalEffect").val();
+        //alert(isPayable);
+        if (selectedPrefix == "BN_") {
+            clas = 1;
+            prefix = "bn";
+        }
+        else if (selectedPrefix == "RC_") {
+            clas = 2;
+            prefix = "rc"
+        }
+        else if (selectedPrefix == "IT_") {
+            clas = 3;
+            prefix = "it";
+        }
+        else {
+            clas = 4;
+        }
+        $('#errortext').hide();
+        $("#myModal").mask("Validating  PIN Code...");
+
+        var code = $("#SecurityCode").val();
+        if (code.length <= 0) {
+            $('#errortext').show();
+            $("#myModal").unmask();
+        }
+
+
+
+        if (code.length > 0) {
+
+            var url = '@Url.Action("CheckSecurityCode", "Search", new { Area = "Search" })';
+            var url1 = '@Url.Action("AjaxSearch", "Search", new { Area = "Search" })';
+
+            $.ajax({
+                type: "POST",
+                data: { SecurityCode: code },
+                url: url,
+                dataType: "json",
+                success: function (response) {
+                    if (response.IsValid) {
+                        $('#errortext').hide();
+                        $("#myModal").unmask();
+                        $('#myModal').modal('hide');
+                        $.ajax({
+                            beforeSend: function () {
+                                $("#spinner").show();
+                                if (searchidtype == 2) {
+                                    $("#Cacspinner").show();
+                                }
+
+                                $("#myform").prop('disabled', true)
+                            },
+                            type: "POST",
+                            data: {
+                                "boroweridnumber": boroweridno,
+                                "searchidtype": searchidtype,
+                                "clas": clas,
+                                "prefixValue": selectedPrefixValue,
+                                "isPayable": isPayable,
+                                "isNonLegalEffect": isNonLegalEffect,
+                                "PublicUserReceiptNo": code,
+                            },
+                            url: url1,
+                            cache: false,
+                            complete: function () {
+                                $("#spinner").hide();
+                                $("#Cacspinner").hide();
+                                $("#myform").prop('disabled', false)
+                            },
+                            success: function (response) {
+                                var source = $('' + response + '');
+                                if (source.find('.error').html() != null) {
+                                    var s2 = source.find('.error').html();
+                                    bootbox.alert(s2);
+                                }
+                                else {
+                                    //$('#error').html(source.find('.error').html());
+                                    $('#displayResults').html(source.find('#showResults').html());
+                                    $('#buttons').html(source.find('#reportButton').html());
+                                    $('#EmptyResults').html(source.find('#EmptyResults').html());
+                                    $('#CACResults').html(source.find('#CACResults').html());
+                                    $('#generateSearchReport').html(source.find('#generateSearchReport').html());
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                bootbox.alert("Error occurred whiles searching. Please try again later!. If problem persists, contact your System's administrator.");
+                            }
+                        });
+                        return false;
+                    }
+                    else {
+                        $('#errortext').show();
+                    }
+                    $("#myModal").unmask();
+                },
+            });
+
+        }
+    });
+
+</script>
+<script src="~/Scripts/modal-loading.js"></script>

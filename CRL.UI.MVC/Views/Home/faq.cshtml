@@ -1,0 +1,727 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+    
+}
+
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+}
+<div class="container">
+    <br />
+    <blockquote>
+        <h3>COLLATERAL REGISTRY FAQ</h3>
+        <small>Under the CBN <cite title="Source Title">Collateral Registry Regulations</cite></small>
+    </blockquote>
+    <hr />
+    <div id="mainaccordion">
+        <h4>General Questions</h4>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="accordion" id="accordion1">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne" data-parent="#accordion1" href="#">What is a loan?</a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A loan is a sum of money given to the debtor that must be repaid later. A debtor may pay it back i) at once; ii) in scheduled installments that reduce the loaned amount, or 
+                                iii) periodically where the secured creditor allows the debtor to use the available line of credit (where this is the case, the debt owed by the debtor fluctuates).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwo" data-parent="#accordion1" href="#">Who is a debtor? And is there a difference between a debtor and a borrower?
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A debtor is commonly described as a person who owes money to another person. However, for the purpose of the CBN Collateral Registry Regulations, a person is a debtor only if the person’s debt is secured with some (personal) movable 
+                                property, which the person has rights in (e.g., a car). Such property constitutes the collateral. The definition of debtor under the Regulations, also includes a grantor of 
+                                any type of charge, chattel mortgage, pledge or lien in movable property. In the same vein, a person who has not created a security interest is not a debtor.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThree" data-parent="#accordion1" href="#">Who is a secured creditor?</a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A secured creditor, under the Collateral Registry Regulation, is a financial institution in whose favour a security interest has been created. This includes a chargee under any type of 
+                                charge, chattel mortgagee or holder of any type of consensual lien. The secured creditor acquires a security interest in some of the debtor’s assets (the collateral). 
+                                Only regulated financial institutions may act as secured creditors under the Collateral Registry Regulation.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFour" data-parent="#accordion1" href="#">What is movable property?</a>
+                        </div>
+                        <div id="collapseFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Movable property refers to tangible property that can be physically moved like equipment and livestock, or any intangible property like accounts receivable and bank accounts.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFive" data-parent="#accordion1" href="#">What is collateral?</a>
+                        </div>
+                        <div id="collapseFive" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Collateral is any movable property, whether tangible or intangible, that is subject to a security interest.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSix" data-parent="#accordion1" href="#">What is a security interest?</a>
+                        </div>
+                        <div id="collapseSix" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A security interest is a property right in collateral that is created by agreement to secure the payment or performance of an obligation. It does not matter whether the 
+                                parties have labelled as a security interest, and includes a charge, lien but also retention of title. A security interest is akin to a home mortgage (immovable property) 
+                                created in favour of a bank. However, a security interest does not include a personal right against a guarantor or other person liable for the performance of the secured obligation.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSeven" data-parent="#accordion1" href="#">When is a security interest perfected?</a>
+                        </div>
+                        <div id="collapseSeven" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A security interest is perfected when a financing statement in respect of that security interest has been registered in the Collateral Registry by the secured creditor.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentySix" data-parent="#accordion1" href="#">What is the difference between a secured loan and an unsecured loan?</a>
+                        </div>
+                        <div id="collapseTwentySix" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A secured loan is one in which the debtor grants a security interest in some of his/her movable property. This grant is completed when the debtor signs a security agreement with the secured creditor. The loan is called “secured” because if the 
+                                debtor defaults, the secured creditor has the right to obtain or repossess the collateral where the debtor consents in the security agreement to relinquish possession without a court order. In the event of a default in an unsecured loan, the 
+                                creditor will often have to obtain a court judgement and enforce it against some of the debtor’s property.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentySeven" data-parent="#accordion1" href="#">Why would a secured loan be preferable?</a>
+                        </div>
+                        <div id="collapseTwentySeven" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Secured loans are less risky than unsecured loans and usually have much lower interest rates. They provide the secured creditor an alternative way of satisfaction if 
+                                the debtor does not repay the loan. For many SMEs this may be the most cost-efficient financing option available to them.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseEight" data-parent="#accordion1" href="#">What is a secured transaction?</a>
+                        </div>
+                        <div id="collapseEight" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A secured transaction refers to an agreement between the debtor and the secured creditor which creates a security interest in some of the debtor’s property.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseNine" data-parent="#accordion1" href="#">What is a secured obligation?</a>
+                        </div>
+                        <div id="collapseNine" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                This refers to the amount that a debtor is required to repay to the secured creditor. In the case of the debtor’s failure to repay, the secured creditor may enforce the 
+                                debtor’s obligation by taking and selling the collateral.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTen" data-parent="#accordion1" href="#">Who can take a security interest in collateral?</a>
+                        </div>
+                        <div id="collapseTen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                For the purpose of the Regulations, only a bank or financial institutions licensed by the CBN under the Banks and Other Financial Institutions Act (BOFIA), can take a 
+                                security interest in collateral.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseEleven" data-parent="#accordion1" href="#">What is a security agreement?</a>
+                        </div>
+                        <div id="collapseEleven" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A security agreement is an agreement in any form, and whether denominated as a charge instrument, sale agreement with retention of title, etc., between the debtor 
+                                and secured creditor that creates a security interest.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwelve" data-parent="#accordion1" href="#">What information must be included in a security agreement?</a>
+                        </div>
+                        <div id="collapseTwelve" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A security agreement must identify the debtor and the secured creditor, describe the collateral adequately, and reflect the intention to create a security interest. It must
+                                also describe the secured obligation, including the maximum amount for which the security interest is enforceable and the tenor of the secured obligation.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFifteen" data-parent="#accordion2" href="#">Only businesses can get a secured loan?</a>
+                        </div>
+                        <div id="collapseFifteen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                No. While many businesses usually have most of the properties identified above, private individuals may obtain secured loans using consumer goods, inventory or 
+                                other movable property, such as cars. Debtors can be any type of business, whether formally registered or informal, or individuals, to apply for a loan under the Collateral Registry Regulation. 
+                                However charges created by companies remain to be governed by the Companies and Allied Matters Act.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirteen" data-parent="#accordion2" href="#">What kind of assets can be used as ‘movable property’ collateral under the Collateral Registry Regulation?</a>
+                        </div>
+                        <div id="collapseThirteen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Movable collateral under the Collateral Registry Regulation includes equipment, inventory, accounts receivable, household items, bank accounts, farm products, motor vehicles, boats, planes, consumer goods, trees that have been severed and oil, gas or minerals that 
+                                have been extracted etc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourteen" data-parent="#accordion2" href="#">Why doesn’t the Collateral Registry Regulation apply to real property?</a>
+                        </div>
+                        <div id="collapseFourteen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Real or immovable property is covered under the various conveyancing laws of Nigeria that call for the maintenance of a land registry. These laws include the 
+                                Conveyancing Act, The Property and Conveyancing Laws of most states in the South West (and some states in the South South) and the Registration of Title Law 
+                                that applies in some parts of Lagos State.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSixteen" data-parent="#accordion2" href="#">Does the Collateral Registry Regulation apply to a debtor that doesn’t have any assets?</a>
+                        </div>
+                        <div id="collapseSixteen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Yes. The Collateral Registry Regulation applies to not only business assets but also to consumer goods that are used primarily for personal, family, or household purposes. It also allows 
+                                individuals and businesses to acquire new movable property using a secured loan.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSeventeen" data-parent="#accordion2" href="#">Can I use somebody else’s property (e.g., family member, friend) as
+                            collateral for a loan?</a>
+                        </div>
+                        <div id="collapseSeventeen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                You may only give a security interest in property that you actually own. However, someone else may grant a security interest in their assets to secure your loan but it 
+                                must be with their consent. Such a person must execute a security agreement as if he/she is the one obtaining the loan. For the purposes of the Collateral Registry Regulation, that person will 
+                                be the debtor.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseEighteen" data-parent="#accordion2" href="#">Can individuals pool assets and apply for a loan together?</a>
+                        </div>
+                        <div id="collapseEighteen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Yes, individuals may apply for a loan as a group. They may use their assets that they own individually or jointly as collateral for the loan.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseNineteen" data-parent="#accordion2" href="#">Why would anyone want to use “movable property” as collateral instead of
+                            “immovable property”?</a>
+                        </div>
+                        <div id="collapseNineteen" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A secured loan is based on the premise that the secured creditor may exercise rights against whatever property has been granted as collateral if there is a default on the loan. On that note, using immovable property carries certain unwanted risks 
+                                for the debtor. It stands to reason that a debtor will be more comfortable with losing equipment or other movable property than with losing a house in case of a default.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwenty" data-parent="#accordion2" href="#">What is equipment?</a>
+                        </div>
+                        <div id="collapseTwenty" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Equipment refers to any goods that are not inventory or consumer goods. The Collateral Registry Regulation defines it to mean machinery or other capital goods used in the operation of the 
+                                debtor’s business. Equipment includes assets like farm equipment, large machinery, cash registers, taxi and computers used by a business.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyOne" data-parent="#accordion2" href="#">What is inventory?</a>
+                        </div>
+                        <div id="collapseTwentyOne" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Inventory refers to goods that the debtor maintains for sale or lease in the ordinary course of business, such as tables and chairs in a furniture store. Inventory also 
+                                   includes raw materials or work in progress.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyTwo" data-parent="#accordion2" href="#">What is an account receivable?</a>
+                        </div>
+                        <div id="collapseTwentyTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                An account receivable refers to the right of payment that a debtor may have for providing services or selling goods. For instance, if the debtor has a store that often 
+                                sells goods on credit to customers that retain an account with her/him, and that is billed at the end of the month. These outstanding payments are accounts receivable 
+                                and may be used as collateral. The debtor will not have to wait for 30 or so days to collect payments from his/her customers, but instead may get money immediately 
+                                from a secured creditor using those accounts receivable as collateral.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyThree" data-parent="#accordion2" href="#">What are farm products?
+                            </a>
+                        </div>
+                        <div id="collapseTwentyThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Farm products include crops (growing, grown, or to be grown), fish stocks, poultry and livestock (and their unborn offspring), seeds, fertilizers, manure, and other 
+                                supplies used or produced in a farming operation. This collateral type also includes products of crops and livestock in their unprocessed states.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyFour" data-parent="#accordion2" href="#">What are consumer goods?</a>
+                        </div>
+                        <div id="collapseTwentyFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                These are goods that are used or intended to be used primarily for personal, family or household purposes. Consumer goods include assets like household appliances, 
+                                furniture, a personal computer, laptop, etc.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyFive" data-parent="#accordion2" href="#">What kind of collateral is a vehicle?</a>
+                        </div>
+                        <div id="collapseTwentyFive" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Vehicles, as well as other assets, have differing classifications depending on their use. Family and personal vehicles are considered to be consumer goods. On the 
+                                other hand, delivery vehicles such as trucks, pick-ups, taxis, transport buses etc. are considered to be equipment. Finally, vehicles for sale in a car lot are deemed to be 
+                                inventory.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4>Registry Questions</h4>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="accordion" id="accordion3">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyEight" data-parent="#accordion3" href="#">What is the Collateral Registry?</a>
+                        </div>
+                        <div id="collapseTwentyEight" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry is an electronic public database that contains information on security interests in movable property.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseTwentyNine" data-parent="#accordion3" href="#">What is the purpose of the Collateral Registry?</a>
+                        </div>
+                        <div id="collapseTwentyNine" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry’s main purpose is to: (i) give publicity to security interests that may exist in identified collateral; and (ii) establish priority of secured creditors 
+                                according to the time of registration. The Registry provides a platform for searches, so that an interested party may find out if there are prior registrations against the 
+                                assets offered by the debtors as collateral for a loan.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirty" data-parent="#accordion3" href="#">Can the Collateral Registry extend loans?</a>
+                        </div>
+                        <div id="collapseThirty" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry Regulation describes the secured creditor as a Financial Institution in whose favour a security interest has been created. The Collateral Registry is not a financial 
+                                institution but rather an entity that provides public service.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyOne" data-parent="#accordion3" href="#">Why is the Collateral Registry important?</a>
+                        </div>
+                        <div id="collapseThirtyOne" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry is important because it is a publicly available database of registrations relating to security interests in movable property. As such, it allows 
+                                secured creditors to better assess the status of the loan applicant’s assets and its potential priority as against other secured creditors. For instance, before taking a 
+                                security interest in the equipment the debtor proposes as collateral, the secured creditor should search the Registry to make sure no other secured creditor already 
+                                has a security interest in that collateral. Regardless, a debtor may offer his/her property as collateral to multiple secured parties who will decide whether the 
+                                property has sufficient value to secure all of those loans.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyTwo" data-parent="#accordion3" href="#">What is a financing statement?</a>
+                        </div>
+                        <div id="collapseThirtyTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Financing statements are prescribed forms on which information is to be provided to effect, amend, cancel or continue a registration under the Collateral Registry Regulation. The Collateral 
+                                Registry provides standard forms for this purpose. The debtor has to sign the security agreement or sign some other authorization before the secured creditor can 
+                                register a financing statement. Note that the Collateral Registry system is online, and financing statements are transmitted by secured creditors or their agents 
+                                electronically.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyThree" data-parent="#accordion3" href="#">What is a registration?</a>
+                        </div>
+                        <div id="collapseThirtyThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A registration refers to the information contained in the initial financing statement and amendment financing statement that has been entered in the Collateral 
+                                Registry. It contains all the information in financing statements registered against a debtor that is made publicly available to searchers.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyFour" data-parent="#accordion3" href="#">What information is contained in a registration?</a>
+                        </div>
+                        <div id="collapseThirtyFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A registration in the Collateral Registry contains:
+                                <br />
+                                a) Identification of the debtor – whether the debtor is an individual, micro, small or large business;
+                                <br />
+                                b) Where the debtor is a company, co-operative or registered business name, its Corporate Affairs Commission registration number. In the case of individuals, 
+                                his/her unique identification number from approved biometric based identification, gender, name, address, telephone no. and date of birth;
+                                <br />
+                                c) The name and address of the secured creditor or its representative;
+                                <br />
+                                d) A description of the collateral;<br />
+                                e) The maximum amount for which the secured obligation may be enforced; and<br />
+                                f) The period of time for which the registration is to be effective.<br />
+                                If there is more than one debtor or secured creditor, the required information must be entered in the designated field separately for each debtor or secured creditor.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyFive" data-parent="#accordion3" href="#">Who completes the registration?</a>
+                        </div>
+                        <div id="collapseThirtyFive" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                This is done by the secured creditor or its agent, such as a law firm. To complete the registration, the secured creditor must provide the required information in the 
+                                financing statement and pay the appropriate fees.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtySix" data-parent="#accordion3" href="#">Who is responsible for errors in the information contained in the registration?</a>
+                        </div>
+                        <div id="collapseThirtySix" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry is not responsible for changes, omissions, or corruption of electronically transmitted information which occurred prior to receipt of the financing 
+                                statement. It is neither responsible for scrutinizing or verifying information contained in the financing statement. The information is simply entered into the Collateral 
+                                Registry as received in the financing statement. The secured creditor remains responsible for the accuracy and legality of the information. Where the Collateral 
+                                Registry wrongly transcripts information in the financing statement into the Collateral Registry system, or provides incorrect information arising from such error, and a 
+                                person suffers a loss or damage, the Collateral Registry will be responsible.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtySeven" data-parent="#accordion3" href="#">Who is in charge of the Collateral Registry?</a>
+                        </div>
+                        <div id="collapseThirtySeven" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry is maintained and managed by the Central Bank of Nigeria.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyEight" data-parent="#accordion3" href="#">How much does it cost to register?</a>
+                        </div>
+                        <div id="collapseThirtyEight" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Currently, it costs N1000 for the registrations of initial financing statements, and  N500 for a renewal or amendment. However, these fees may change from time to 
+                                time, so it is recommended that you check the Collateral Registry website for the up- to-date information.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseThirtyNine" data-parent="#accordion3" href="#">How can a person access the Collateral Registry?</a>
+                        </div>
+                        <div id="collapseThirtyNine" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry may be accessed only electronically through a user account.
+                                All that’s required is a computer and a stable internet connection. Searches are 
+                                available without the necessity to establish a user account. The Registry is open at 
+                                all times online, except if precluded by maintenance, technical and security 
+                                constraints.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="accordion" id="accordion4">                    
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourty" data-parent="#accordion4" href="#">Who can search in the Registry?</a>
+                        </div>
+                        <div id="collapseFourty" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Any person may search the Registry and obtain a printed search result of the 
+                                registrations, without any need to provide reasons for the search. Searches may be 
+                                carried out using the registered number of the company, co-operative, or registered 
+                                business name. For individual debtors, the unique identification number must be 
+                                provided in the search request. Searches may also be conducted against the serial 
+                                number of the collateral. The fee for searches and search certificates is N500. This 
+                                may, however, be subject to change from time to time. Always consult the Collateral 
+                                Registry website for the most current information on fees.
+                            </div>
+                        </div>
+                    </div>                                        
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtyOne" data-parent="#accordion4" href="#">Will the value of my collateral be registered and available in a search?</a>
+                        </div>
+                        <div id="collapseFourtyOne" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The Collateral Registry Regulation does not require the secured creditor to provide the value of the collateral 
+                                in the financing statement. This does not mean that a secured creditor is barred from 
+                                disclosing such information in the financing statement.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtyTwo" data-parent="#accordion4" href="#">What if the debtor did not give permission for the registration?</a>
+                        </div>
+                        <div id="collapseFourtyTwo" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                For the purpose of the Collateral Registry Regulation, where the debtor enters into a security agreement, the 
+                                debtor automatically authorises the registration of a financing statement. The 
+                                Registrar and employees of the Collateral Registry Regulation have no duty to verify whether authorisation for 
+                                the registration has been properly granted. However, where no security interest has 
+                                been created, the secured creditor has not power to register a financing statement 
+                                and must discharge any related registration.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtyThree" data-parent="#accordion4" href="#">Can the debtor obtain a copy of the registration?</a>
+                        </div>
+                        <div id="collapseFourtyThree" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                The debtor may obtain a copy of the registration either from the secured creditor or
+                                from the Collateral Registry by completing a search.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtyFour" data-parent="#accordion4" href="#">What if there is an error in the registration?</a>
+                        </div>
+                        <div id="collapseFourtyFour" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                An error will render the registration ineffective, if it is a material error. Material errors
+                                are mistakes in the unique identification number (or registration number) of the 
+                                debtor, or in the serial number of the collateral that prevent the registration from 
+                                being retrievable in a search. For instance, a bank took a security interest in all 
+                                assets of Mr. John Smith whose identification number is 12345 but its registration 
+                                identifies the number as 12346. Such errors render the registration ineffective with 
+                                respect only to the specific collateral identified by that number or with respect to the 
+                                specific debtor identified by erroneous unique identification number. An error in the 
+                                collateral description (other than the serial number) may render the registration 
+                                ineffective with respect to only that collateral if it seriously misleads the searcher. 
+                                Every other error does not render the registration ineffective.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtySix" data-parent="#accordion4" href="#">What happens if information about the debtor or the collateral changes after the original registration?</a>
+                        </div>
+                        <div id="collapseFourtySix" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Where a change occurs the debtor is advised to inform the secured creditor as soonas practicable. Often the security agreement will impose this obligation on the 
+                                debtor. The secured creditor may then register an amendment financing statement. It is in the best interest of the secured creditor to ensure that the information in the 
+                                Collateral Registry is up to date.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtySeven" data-parent="#accordion4" href="#">How long does a registration remain in the Collateral Registry?</a>
+                        </div>
+                        <div id="collapseFourtySeven" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A registration will remain in the Collateral Registry until the expiration of the term indicated in the financing statement, or until the registration is cancelled 
+                                (discharged). The period of registration does not, however, need to be the same as the duration of the loan, as there may be an expectation between the debtor and 
+                                secured creditor that the loan will be renewed. Six months after the expiration of a registration, it shall cease to be publicly searchable and will be moved to an archive, 
+                                from which it can be retrieved only by the Collateral Registry staff.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtyEight" data-parent="#accordion4" href="#">After the repayment of the loan, how does the debtor ensure that the collateral is no longer included in a registration?</a>
+                        </div>
+                        <div id="collapseFourtyEight" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Once all secured obligations have been satisfied, the debtor may send a demand notice to the secured creditor requesting cancellation of the registration. The 
+                                secured creditor, must within 15 working days of receiving the demand notice, register a cancellation statement. Where the secured creditor fails to do so, the 
+                                debtor may appeal to the Registrar of the Collateral Registry, showing reasons as to why the registration should be cancelled. The debtor must give notice of this action 
+                                to the secured creditor before a decision is taken by the Registrar. The secured creditor will have 7 days from the receipt of the notice within which to respond or 
+                                object to the cancellation request. Afterwards, the Registrar’s decision will be final, unless a court of competent jurisdiction determines otherwise. A cancellation is 
+                                effective only with respect to the secured creditor that authorised it.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFourtyNine" data-parent="#accordion4" href="#">What is priority?</a>
+                        </div>
+                        <div id="collapseFourtyNine" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Priority is a concept that refers to the rights a secured creditor has over a debtor’s collateral compared to someone else that has a right to the same collateral. It arises 
+                                in situations in which the debtor has granted security interests to multiple secured parties/creditors in the same collateral. The Collateral Registry Regulation has specific rules dealing with the 
+                                determination of priority conflicts between secured creditors and other claimants. In most cases, the time of registration in the Collateral Registry will determine the 
+                                parties’ respective priorities.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle"  data-toggle="collapse" data-target="#collapseFifty" data-parent="#accordion4" href="#">What is a junior security interest?</a>
+                        </div>
+                        <div id="collapseFifty" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A junior security interest refers to a security interest held by one secured creditor that has lower priority than another secured creditor with regard to the same 
+                                collateral. For example, the debtor owns a machine that is worth N100, 000 and that it has used as collateral with XYZ Bank. ABC Bank also has a security interest in the 
+                                same machine, but it is junior because it registered a financing statement after XYZ Bank did.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFiftyOne" data-parent="#accordion4" href="#">Is a junior security interest legal?</a>
+                        </div>
+                        <div id="collapseFiftyOne" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Yes, it is. A debtor may create more than one security interest in the same collateral. Secured creditors may also prohibit a debtor from using the same asset as collateral 
+                                with another secured creditor. The debtor will be in breach of such a prohibition if it creates a junior security interest in that same collateral but that breach will not affect 
+                                the validity of the junior security interest.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Enforcement Questions</h4>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="accordion" id="accordion5">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFiftyFive" data-parent="#accordion5" href="#">What happens if the debtor doesn’t pay back a loan?</a>
+                        </div>
+                        <div id="collapseFiftyFive" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                If the debtor defaults on its obligations, the secured creditor has a right to enforce its security interest in the collateral.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFiftySix" data-parent="#accordion5" href="#">What enforcement procedures are allowed?</a>
+                        </div>
+                        <div id="collapseFiftySix" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                A secured creditor may enforce its rights under the Collateral Registry Regulation or under any law governing the transaction that relates to the security interest. It may also enforce it in the 
+                                manner agreed to in the security agreement between the parties. Under the Collateral Registry Regulation, the secured creditor may enforce its security interest by taking possession of the 
+                                collateral or rendering the collateral inoperative. Subsequently, it may dispose of the collateral through a sale. The Collateral Registry Regulation permits the secured creditor to proceed extra-
+                                judicially without having to obtain a court order before repossessing the collateral. The secured creditor may also choose to apply to the court to authorise 
+                                enforcement.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFiftySeven" data-parent="#accordion5" href="#">What happens when the secured creditor has disposed of the debtor’s collateral?</a>
+                        </div>
+                        <div id="collapseFiftySeven" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Disposal of the collateral is a legal term that basically means selling the collateral in an auction, public tender, private sale or other means provided for in the security 
+                                agreement, and applying the proceeds received from the sale to repay the loan. The proceeds received from the sale of the collateral are disbursed first to cover any 
+                                expenses associated with the disposal of the collateral. Afterwards, the remaining proceeds will be applied towards the satisfaction of the obligation secured by the 
+                                security interest. Any leftover proceeds will be distributed first to the remaining secured creditors in the order of their priority, and finally any remainder goes to the 
+                                debtor. The debtor will not receive any proceeds from the sale until all secured obligations that were owed to all secured creditors have been fully satisfied. Where 
+                                there is a question as to who is entitled to receive payment from the proceeds, the secured creditor may pay the surplus into court.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="accordion" id="accordion6">                    
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFiftyEight" data-parent="#accordion6" href="#">What happens if the collateral does not sell for enough to satisfy the secured obligation?</a>
+                        </div>
+                        <div id="collapseFiftyEight" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Where the proceeds of the sale are insufficient to satisfy the loan, the debtor will be liable for the shortfall. The secured creditor has a right to obtain the balance from the 
+                                debtor directly or may proceed against other assets of the debtor. The secured creditor may initiate legal action against the debtor for the balance and get a 
+                                judgement for the amount owed. It may also choose not to take legal action against the debtor and just write off the loss on the loan.
+                            </div>
+                        </div>
+                    </div>                                        
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseFiftyNine" data-parent="#accordion6" href="#">Can the secured creditor enforce a security interest against the debtor if it isn’t registered?</a>
+                        </div>
+                        <div id="collapseFiftyNine" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                Yes. The fact that a financing statement with respect to the security interest has not been registered does not mean that it is invalid or otherwise unenforceable against 
+                                the debtor. Unless the security agreement has some defects such as in cases where the debtor did not execute (sign) it, or if it does not sufficiently describe the collateral, 
+                                the secured creditor will be able to enforce the security interest.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

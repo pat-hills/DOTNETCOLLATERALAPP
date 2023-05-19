@@ -1,0 +1,141 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Authentication
+@using System.Web.UI.WebControls
+@{
+    var statusList = new List<ListItem>
+        {
+              new ListItem { Text = "Approved", Value = "0" },
+              new ListItem { Text = "Deactivated", Value = "1" },
+              new ListItem { Text = "Pending", Value = "3" },
+              new ListItem { Text = "Deleted", Value = "2" },
+              new ListItem { Text = "Denied", Value = "5" },
+              
+        };
+}
+
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">Filter by client registraion date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((NoOfLenderStatViewModel)model).UseStartEndDateOption, "true") Filter client registraion date by specifying start and end date<br />
+                @Html.RadioButtonFor(model => ((NoOfLenderStatViewModel)model).UseStartEndDateOption, "false")  Filter client registraion date by specifying month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((NoOfLenderStatViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((NoOfLenderStatViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((NoOfLenderStatViewModel)model).SelectedMonthList, ((NoOfLenderStatViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((NoOfLenderStatViewModel)model).SelectedYear)
+                    @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).SelectedYear)
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((NoOfLenderStatViewModel)model).GroupedBy)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((NoOfLenderStatViewModel)model).GroupedBy, new SelectList(((NoOfLenderStatViewModel)Model).GroupByList, "Value", "Text", ((NoOfLenderStatViewModel)Model).GroupedBy))
+                @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).GroupedBy)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((NoOfLenderStatViewModel)model).ReportTypeId)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((NoOfLenderStatViewModel)model).ReportTypeId, new SelectList(((NoOfLenderStatViewModel)Model).ReportTypes, "Value", "Text", ((NoOfLenderStatViewModel)Model).ReportTypeId))
+                @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).ReportTypeId)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((NoOfLenderStatViewModel)model).ClientStatus)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((NoOfLenderStatViewModel)model).ClientStatus, new SelectList(statusList, "Value", "Text", ((NoOfLenderStatViewModel)Model).ClientStatus), "")
+                @Html.ValidationMessageFor(model => ((NoOfLenderStatViewModel)model).ClientStatus)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+        $('#pnlMonthYear').hide();
+        $('#pnlStartEndDate').show();
+    }
+    else {
+        $('#pnlMonthYear').show();
+        $('#pnlStartEndDate').hide();
+    }
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+
+
+
+</script>

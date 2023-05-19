@@ -1,0 +1,49 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._ListOfTransactionsJqGrid 
+  @using CRL.Infrastructure.Enums 
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("DetailPostPaidTransactions");
+        c = c.SetCaption("Postpaid Transactions Details");
+        c = c.AddColumn(new Column("EntryDate").SetSearch(false).SetLabel("Date").SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'M-d-Y'").SetWidth (100));
+        c = c.AddColumn(new Column("AccountBatchId").SetSearch(false).SetLabel("Batch No").SetWidth(80));    
+        c = c.AddColumn(new Column("NameOfLegalEntity").SetSearch(false).SetLabel("Client"));        
+        c = c.AddColumn(new Column("NameOfRepresnetative").SetSearch(false).SetLabel("Bank"));
+        c = c.AddColumn(new Column("ServiceFeeType").SetSearch(false).SetLabel ("Charged Transaction"));
+        c = c.AddColumn(new Column("Amount").SetSearch(false).SetFormatter(MvcJqGrid.Enums.Formatters.Currency));
+        c = c.AddColumn(new Column("Narration").SetSearch(false));
+        c = c.AddColumn(new Column("IsReconciled").SetSearch(false).SetLabel("Is Reconciled"));         
+        c = c.SetUrl(Url.Action("GetJsonDetailViewOfPostPaidTransactions", "Payment", Model))
+        .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(100)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50, 100 })
+        .SetViewRecords(true).SetSearchToolbar(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);         
+              
+    }
+    @(c) 
+  
+</div>
+
+
+<script>
+
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+
+
+</script>

@@ -1,0 +1,49 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._ListOfTransactionsJqGrid 
+  @using CRL.Infrastructure.Enums 
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("SummOfPostPaidTransactionsByBank");
+        c = c.SetCaption("Postpaid bill by bank");
+        c = c.AddColumn(new Column("Client").SetSearch(false).SetLabel("Bank").SetWidth (120));
+        c = c.AddColumn(new Column("Amount").SetSearch(false).SetFormatter(MvcJqGrid.Enums.Formatters.Currency).SetWidth (75));
+        c = c.SetUrl(Url.Action("GetJsonForSummaryViewOfPostpaidTransactionsByRepresentativeBank", "Payment", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(100)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true).SetSearchToolbar(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .OnLoadComplete("EnableGenerateBtn()")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);       
+              
+    }
+    @(c) 
+  
+</div>
+<script>
+
+    function EnableGenerateBtn()
+    {
+        var numOfRowsInGrid = $("#SummOfPostPaidTransactionsByBank").jqGrid('getGridParam', 'records');
+
+        if (numOfRowsInGrid > 0) {
+
+            $("#btnGenerateBatch").toggle(true);
+        }
+
+        else { $("#btnGenerateBatch").toggle(false) }
+
+    }
+
+</script>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Payments";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Generate Payment Code";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+}
+
+<div class="container" style="padding: 5px 5px 5px 5px">
+    <h3>Voucher Code successfully generated</h3>
+    <p>
+        Your payment voucher code generation request has successfully been processed.  Find below the details for the payment voucher 
+    </p>
+    <br />
+    <hr />
+    <div class="row">
+        <div class="span8">
+            <h4>
+                Payment Voucher Code: <b style="color:black;">@ViewBag.Voucher</b>
+            </h4>
+        </div>
+    </div>
+    <hr />
+   <div class="row">
+       <div class="span8">
+            <table class="table table-bordered">
+        <tbody>            
+            <tr>
+                <td><h5><b>Name</b></h5></td>
+                <td><h5>@ViewBag.Name</h5></td>
+            </tr>
+            <tr>
+                <td><h5><b>Phone</b></h5></td>
+                <td><h5>@ViewBag.Phone</h5></td>
+            </tr>
+            <tr>
+                <td><h5><b>Voucher</b></h5></td>
+                <td><h5><a href="@Url.Action("DownloadPaymentVoucher", new { voucherCode = ViewBag.Voucher })">Download Payment Voucher</a></h5></td>
+            </tr>
+        </tbody>
+    </table>
+       </div>
+   </div>
+
+</div>
+

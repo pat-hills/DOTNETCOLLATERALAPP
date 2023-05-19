@@ -1,0 +1,302 @@
+﻿@model CRL.UI.MVC.Areas.Search.Models.ViewPageModels._SearchResultJqGridViewModel
+@using CRL.UI.MVC.HTMLHelpers;
+@using CRL.Model.ModelViews.Search
+@using CRL.Infrastructure.Configuration;
+
+<div id="showResults">
+
+    <div class="well well-small" id="">
+        <h4>Summary of Search Results from NCR</h4>
+        <p>The search request generated <i>@Model.SearchResultCount</i> record(s).</p>
+        <br />
+        <h4>Special color codes</h4>
+        <p><span class="currentTagged">Legend1</span> - Debtor or collateral that is current and caused the search criteria to return results.</p>
+        <p><span class="currentUpdated">Legend2</span> - Debtor or collateral that has been updated and caused the search criteria to return results.</p>
+        <p><span class="currentDeleted">Legend3</span> - Debtor or collateral that haven been deleted or discharged from the system that caused the search criteria to return results.</p>
+
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-search"></i>
+                        Search results
+                    </h3>
+                </div>
+                <div class="box-content nopadding">
+                    <div class="dataTables_wrapper" role="grid">
+                        <table class="table table-hover table-nomargin table-bordered usertable dataTable" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr role="row">
+                                    <th></th>
+                                    <th></th>
+                                    <th>Status</th>
+                                    <th class="sorting" role="columnheader" tabindex="0">Registration No
+                                    </th>
+                                    <th>Debtor Name
+                                    </th>
+                                    <th>Debtor ID
+                                    </th>
+                                    <th>Debtor DOB
+                                    </th>
+                                    <th>Debtor Email
+                                    </th>
+                                    <th style="border-left: 2px solid #368ee0;">Collateral Serial
+                                    </th>
+                                    <th>Collateral Type
+                                    </th>
+                                    <th>Collateral Description
+                                    </th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{var clsOddEven = "odd"; var beginRow = "";}
+                                @for (int i = 0; i < Model.SearchResultView.Count(); i++)
+                                {
+                                    var length = Model.SearchResultView[i].Debtors.Length > Model.SearchResultView[i].Collaterals.Length ? Model.SearchResultView[i].Debtors.Length : Model.SearchResultView[i].Collaterals.Length;
+
+                                    for (int j = 0; j < length; j++)
+                                    {
+                                        beginRow = "";
+                                        if (j == 0)
+                                        {
+                                            clsOddEven = clsOddEven == "odd" ? "even" : "odd";
+                                            beginRow = "newRow";
+                                        }
+
+                                        if (j == length - 1)
+                                        {
+                                            //beginRow = "newRow";
+                                        }            
+                                    <tr class="@clsOddEven @beginRow" >
+                                        @if (j == 0)
+                                        { 
+                                            <td rowspan ="@length">
+                                                @*  @Html.ActionLink("Generate Report","GenerateSearchReport","Search",new {Area = "Search",
+                                                                                                                    
+                                                                                                                    SelectedId=Model.SearchResultView[i].Id,
+                                                                                                                    SearchResultCount=Model.SearchResultCount ,
+                                                                                                                    SearchId=Model.SearchId ,
+                                                                                                                        UniqueIdentifier = Model.UniqueIdentifier ,
+                                                                                                                        isNonLegalEffect =Model.isNonLegalEffect
+        
+                                                                                                                    
+                                       },null)*@
+                                                @if (Constants.EXPIRE_RESULTINSEARCH)
+                                                {
+                                                    if (Model.HasExpiredAllResults)
+                                                    {
+                                                    @Html.RadioButtonFor(modelItem => modelItem.SelectedId, Model.SearchResultView[i].Id, new { @disabled = "disabled" })
+                                                    }
+                                                    else
+                                                    {
+
+                                                        if (Model.ExpiredSearchResults.Contains(Model.SearchResultView[i].RegistrationNo))
+                                                        {                                                            
+                                                    @Html.RadioButtonFor(modelItem => modelItem.SelectedId, Model.SearchResultView[i].Id, new { @disabled = "disabled" })
+                                                        }
+                                                        else
+                                                        {
+                                                    @Html.RadioButtonFor(modelItem => modelItem.SelectedId, Model.SearchResultView[i].Id)
+                                                        }
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    @Html.RadioButtonFor(modelItem => modelItem.SelectedId, Model.SearchResultView[i].Id)
+                                                }
+
+
+
+
+                                                @Html.HiddenFor(modelItem => modelItem.SearchResultView[i].Id)
+                                            </td>
+                                            <td rowspan ="@length">
+                                                @*Show if report is generated*@
+                                                @if (Model.GeneratedSearchReportsReNos != null && Model.GeneratedSearchReportsReNos.Contains(Model.SearchResultView[i].RegistrationNo))
+                                                {                                                                                                            
+                                                    <a class="btn btn-flat green" title="Download search report"  href="@Url.Action("DownloadReport", "Search", new { Area = "Search", SearchId = Model.SearchId, RegistrationNo = Model.SearchResultView[i].RegistrationNo })"><i class="icon-file-text-alt"></i></a>                                               
+                                                }
+                                            </td>
+                                            <td rowspan ="@length">
+                                                <span>@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Status)</span>
+                                            </td>
+                                            <td rowspan ="@length">
+                                                @*@Html.DisplayFor(modelItem =>modelItem.FSGridView[i].RegistrationNo)*@
+                                                @Html.DisplayFor(modelItem => modelItem.SearchResultView[i].RegistrationNo)
+
+                                            </td>
+                                        
+                                        }
+                                        @if (j < Model.SearchResultView[i].Debtors.Length)
+                                        {
+                                            var itemClass = "";
+                                            if (Model.SearchResultView[i].Debtors[j].isTagged && Model.SearchResultView[i].Debtors[j].SearchItemState == SearchItemState.Current)
+                                            {
+                                                itemClass = "currentTagged";
+                                            }
+                                            else if (Model.SearchResultView[i].Debtors[j].isTagged && Model.SearchResultView[i].Debtors[j].SearchItemState == SearchItemState.Updated)
+                                            {
+                                                itemClass = "currentUpdated";
+                                            }
+                                            else if (Model.SearchResultView[i].Debtors[j].isTagged && Model.SearchResultView[i].Debtors[j].SearchItemState == SearchItemState.Deleted)
+                                            {
+                                                itemClass = "currentDeleted";
+                                            }
+                                    
+                                            <td style="border-left: 1px solid #ddd"><span class="@if (Model.SearchResultView[i].Debtors[j].isTaggedName)
+                                                                                                 {@itemClass}">@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Debtors[j].FullName)</span></td>
+                                            <td><span class="@if (Model.SearchResultView[i].Debtors[j].isTaggedId)
+                                                             {@itemClass}">@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Debtors[j].IDNo)</span></td>
+                                            <td><span class="@if (Model.SearchResultView[i].Debtors[j].isTaggedDOB)
+                                                             {@itemClass}">@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Debtors[j].DateOfBirth)</span></td>
+                                            <td><span class="@if (Model.SearchResultView[i].Debtors[j].isTaggedEmail)
+                                                             {@itemClass}">@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Debtors[j].Email)</span></td>
+
+                                        }
+                                        else
+                                        {
+                                            <td style="border-left: 1px solid #ddd"></td>  
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        }
+                                        @if (j < @Model.SearchResultView[i].Collaterals.Length)
+                                        {
+                                            var itemClass = "";
+                                            if (Model.SearchResultView[i].Collaterals[j].isTagged && Model.SearchResultView[i].Collaterals[j].SearchItemState == SearchItemState.Current)
+                                            {
+                                                itemClass = "currentTagged";
+                                            }
+                                            else if (Model.SearchResultView[i].Collaterals[j].isTagged && Model.SearchResultView[i].Collaterals[j].SearchItemState == SearchItemState.Updated)
+                                            {
+                                                itemClass = "currentUpdated";
+                                            }
+                                            else if (Model.SearchResultView[i].Collaterals[j].isTagged && Model.SearchResultView[i].Collaterals[j].SearchItemState == SearchItemState.Deleted)
+                                            {
+                                                itemClass = "currentDeleted";
+                                            }
+                                            <td style="border-left: 2px solid #368ee0;"><span class="@if (Model.SearchResultView[i].Collaterals[j].isTaggedSerialNo)
+                                                                                                     {@itemClass}">@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Collaterals[j].SerialNo)</span></td>
+                                            <td><span>@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Collaterals[j].SubTypeName)</span></td>
+                                            <td><span class="@if (Model.SearchResultView[i].Collaterals[j].istaggedDescription)
+                                                             {@itemClass}">@Html.DisplayFor(modelItem => modelItem.SearchResultView[i].Collaterals[j].Description)</span></td>
+    
+                                        
+
+                                        }
+                                        else
+                                        {
+                                            <td style="border-left: 2px solid #368ee0;"></td>
+                                            <td></td>
+                                        }
+                                    </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div class="dataTables_info" id="DataTables_Table_8_info">
+                            @if (Model.Pages > 1)
+                            {@:Showing Page <span>@Model.CurrentPage</span> of <span>@Model.Pages</span> of <span>@Model.SearchResultCount</span> entries
+                         }
+                            else
+                            {@:Showing <span> @Model.SearchResultCount</span> entries
+                         }
+                        </div>
+                        @if (Model.Pages > 1)
+                        {
+                            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_8_paginate">
+                                <a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_8_first">First</a>
+                                <a tabindex="0" class="previous paginate_button paginate_button_disabled" id="DataTables_Table_8_previous">Previous</a>
+                                @Html.PageLinks(Model.Pages, Model.CurrentPage)
+                                <a tabindex="0" class="next paginate_button" id="DataTables_Table_8_next">Next</a>
+                                <a tabindex="0" class="last paginate_button" id="DataTables_Table_8_last">Last</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    @if (Constants.SHOW_GENERATED_REPORTS_LIST && Model.HasGeneratedReport)
+    {
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">+ Generated Search Reports
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse ">
+                            <div class="accordion-inner">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Registration Number</th>
+                                            <th>File Name</th>
+                                            <th>Date Generated</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var reportFile in Model.SearchReports)
+                                        {
+                                            <tr>
+                                                <td><a title="Download search report"  href="@Url.Action("DownloadReport", "Search", new { Area = "Search", SearchId = reportFile.SearchId, RegistrationNo = reportFile.RegistrationNo })">Download</a>  </td>
+                                                <td>@reportFile.RegistrationNo</td>
+                                                <td>@reportFile.AttachedFileName</td>
+                                                <td>@reportFile.DateGenerated</td>
+                                            </tr> 
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    }
+
+
+    @Html.HiddenFor(modelItem => modelItem.SearchId)
+    @Html.ValidationMessageFor(model => model.SelectedId, "Please select a financing statement to generate a report on")
+</div>
+
+
+@*<script>
+    $(document).ready(function () {
+        $('.saveButton').click(function (e) {
+            var currentPage = ($(this).data("page"));
+            e.preventDefault();
+            var input = $("<input>").attr("type", "hidden").attr("name", "currentPage").val(currentPage);
+            var myform = $(this).closest('form')[0]
+            $(myform).append($(input));
+            $(myform).submit();
+        });
+        @if (!Model.DoNotGenerateSearchAlert)
+        {
+        @:bootbox.alert("Your search request returned with @Model.SearchResultCount record(s)");
+                                                                        }
+    }
+
+    );
+
+</script>*@
+@*<script>
+    @if (!Model.DoNotGenerateSearchAlert)
+    {
+        @:bootbox.alert("Your search request returned with @Model.SearchResultCount record(s)");
+                                                                                    }
+    
+</script>*@

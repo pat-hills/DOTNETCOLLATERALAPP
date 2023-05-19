@@ -1,0 +1,29 @@
+﻿@using CRL.Infrastructure.Authentication
+@model CRL.UI.MVC.Areas.Administration.Models.ViewPageModels._GlobalMessageDetailsViewModel
+@{
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}      
+        <div class="span12">
+            <div class="row-fluid">
+                <div class="span9">
+                    <h4>@Model.Title</h4>
+                </div>
+                <div class="span3">
+                    <a href="@Url.Action("GlobalMessageIndex","Configuration",new{Area="Administration"})" class="btn">
+                        <h5>Back to message list &nbsp;<span class="icon-list"></span></h5>
+                    </a> 
+
+                </div>
+            </div>
+            <hr>
+
+            <div class="row-fluid">
+                <h6>@Model.CreatedOn</h6>
+            </div>
+            
+            <br/>
+            <div class="row-fluid">
+                <h5>@Html.Raw(Model.Body)</h5>
+            </div>
+
+        </div>

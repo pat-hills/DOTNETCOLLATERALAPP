@@ -1,0 +1,225 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using ReportViewerForMvc;
+@using CRL.UI.MVC.Common.Enums;
+@using CRL.Infrastructure.Authentication;
+
+@{
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+@{
+    ViewBag.Title = String.IsNullOrWhiteSpace(Model.Name) ? "Reports" : Model.Name;
+    ViewBag.Icon = "icon-tasks";
+    ViewBag.HeaderSummary = "Generate report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Reports";
+
+
+   
+}
+
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js">
+</script>
+@using (Html.BeginForm("LoadReport", "Report", FormMethod.Post, new { Id = "FSForm" }))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+    <div class="accordion" id="SearchParam">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#SearchParam" href="#C1">+ Click to open or close search parameter</a>
+            </div>
+            <div id="C1" class="accordion-body collapse" style="height: 0px;">
+                <div class="accordion-inner">
+
+                    @Html.HiddenFor(s => s.ViewModelType)
+                    @Html.HiddenFor(s => s.PartialViewName)
+                    @Html.HiddenFor(s => s.ViewModelHelper)
+                    @Html.HiddenFor(s => s.Name)
+                    @Html.HiddenFor(s => s.ReportId)
+                    @Html.HiddenFor(s => s.PaginateRecords)
+                    <div class="filter">
+                        <div class="filterbody SearchDateParamLabelWidth">
+
+                            @{Html.RenderPartial("~/Views/Report/FilterPages/" + Model.PartialViewName + ".cshtml", Model);                                      }
+                            @if (Model.PaginateRecords)
+                            {
+                                <hr />
+                                <div class="control-group">
+                                    <div class="control-label">
+                                        @Html.LabelFor(model => model.MaximumRecords)
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model => model.MaximumRecords)
+                                        @Html.ValidationMessageFor(model => model.MaximumRecords)
+                                        <p id="errormessage" style="color: red;"></p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    @if (Model.ShowPagination)
+                                    {
+                                        <div class="control-label">
+                                            @Html.LabelFor(model => model.RecordsPage)
+                                        </div>
+                                        <div class="controls">
+                                            @Html.DropDownListFor(model => model.RecordsPage, new SelectList(Model.LimitRecordsOptions, "Value", "Text", Model.LimitRecordsOptions))
+                                            @Html.ValidationMessageFor(model => model.RecordsPage)
+                                        </div> 
+                                    }
+                                    else
+                                    {
+                                        @Html.HiddenFor(m => m.RecordsPage)
+                                    }
+                                    @Html.HiddenFor(model => model.ReportMaximumRecords)
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.HiddenFor(m => m.RecordsPage)
+                                @Html.HiddenFor(model => model.ReportMaximumRecords)
+                            }
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input type="submit" name="Generate Report" id="btngenerate" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            @*  <div class="btn-group">
+                                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Generate Report<span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a id="PreviewReport" href="#">Print preview</a></li>
+                                        <li><a id="ExportExcel" href="#">Raw Excel</a></li>
+                                        <li><a id="ExportCSV" href="#">Raw CSV</a></li>
+
+                                    </ul>
+                                </div>*@
+                            <br />
+                            <br />
+                            <br />
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+@*<div class="searchgrid">
+</div>*@
+@if (Model.ShowPagination)
+{
+    <div class="container">
+        <div class="alert alert-error" style="text-align: center;">
+            <strong>NB!</strong> The results returned from the  query is more than @Model.MaximumRecords. records. To view other records select the page number and click on the submit query button in the search parameter box.
+        </div>
+    </div>
+}
+
+
+@if (Model.LoadReport)
+{
+    @Html.ReportViewer(Model.reportViewer as Microsoft.Reporting.WebForms.ReportViewer, new { style = "Width:100%;Height:90%" }, Model.SubreportEventClass);
+
+
+
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<script>
+
+    $('#MaximumRecords').keyup(function () {
+        var maxvalue = '@Model.ReportMaximumRecords';
+
+        if (maxvalue != -1 && maxvalue != 0) {
+            isvalidated(parseInt($('#MaximumRecords').val()), 0, parseInt(maxvalue));
+            //alert(maxvalue);
+        }
+    });
+
+    function isvalidated(input, min, max) {
+
+        if (!$.isNumeric(input)) {
+            document.getElementById("errormessage").innerHTML = "";
+            return false;
+        } else {
+            message = (input <= max) ? (input >= min ? "" : "Maximum records must be greater than " + min) : "Maximum records must be less or equal to " + max;
+            document.getElementById("errormessage").innerHTML = message;
+        }
+
+        if (!$('#MaximumRecords').val().match(/^\d+$/)) {
+            document.getElementById("errormessage").innerHTML = "";
+        }
+    }
+
+
+    @if (!Model.LoadReport)
+    {
+    @:$('#C1').collapse('show');
+    }
+    else
+    {
+         @:$('#C1').collapse('hide');
+    }
+
+
+
+
+    $("#PreviewReport").click(function () {
+        $("#FSForm").submit();
+        return false;
+      @*  var mydata = $('#FSForm').serialize();
+        $(this).attr('disabled', 'disabled');
+
+        $.ajax({
+            type:'POST',
+            url: '@Url.Action("LoadReport","Report")',
+            data:mydata,
+            cache: false,
+            timeout: 30000,
+            success: function (html) { $(".searchgrid").html(html); },
+            error: function (x, t, m) {
+                if (t === "timeout") {
+                    alert("the operation timeout.  Please try again!");
+                   
+                } else {
+                    if (x.status == "401") {
+                        alert("Your session has ended.  You  are required to login again!");
+                        var url = '@Html.Raw(Url.Action("Login", "Account", new{Area=""}))';                        
+                         window.location.href = url;
+
+                     }
+                     else {
+                         alert(x.status);                        
+                     }
+                 }
+            }
+        });
+
+        $(this).removeAttr('disabled');
+        return false;*@
+    });
+
+    $("#ExportExcel").click(function () {
+        //$('#FSForm').get(0).setAttribute('action', 'LoadExcelReport');
+        $("#FSForm").submit();
+    });
+
+    $("#ExportCSV").click(function () {
+        var data = $('#FSForm').serialize();
+        var url = '@Url.Action("LoadExcelReport")';
+        $.post(url, data, function (response) {
+
+            $(".searchgrid").html(response);
+
+
+            return false;
+        })
+    });
+</script>
+

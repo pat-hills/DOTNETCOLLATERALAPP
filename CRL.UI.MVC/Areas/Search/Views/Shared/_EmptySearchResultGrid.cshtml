@@ -1,0 +1,23 @@
+﻿@model CRL.UI.MVC.Areas.Search.Models.ViewPageModels._SearchResultJqGridViewModel
+<p style="padding-bottom: 5px">The search request generated <i>0</i> records.
+    <div style="clear:both"></div>
+</p>
+    <p style="padding-bottom: 5px"> @Html.ActionLink("Generate empty search report","GenerateSearchReport","Search",new {Area = "Search",                                                                                                                    
+                                                                                                                    SelectedId=0,
+                                                                                                                    SearchResultCount=0 ,
+                                                                                                                    SearchId=Model.SearchId ,
+                                                                                                                        UniqueIdentifier = Model.UniqueIdentifier ,
+                                                                                                                        isNonLegalEffect =Model.isNonLegalEffect},null)
+        
+                                                                                                                    
+                                      </p>
+
+
+<br />
+  
+<script>
+    $(document).ready(function () { bootbox.alert("Your search request did not generate any record"); }
+
+    );
+
+    </script>

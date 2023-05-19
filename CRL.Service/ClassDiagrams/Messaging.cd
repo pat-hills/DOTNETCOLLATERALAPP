@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.FinancialActivityRequest">
+    <Position X="3" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAEAAAAAAAAgAAAAAAEAAAAgAAGAAAABEAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.SubordinateFSRequest">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.AssignFSRequest">
+    <Position X="0.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.UpdateFSRequest">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.RenewalFSRequest">
+    <Position X="0.5" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.DischargeFSRequest">
+    <Position X="2.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.GetDataForAmendRequest">
+    <Position X="6.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAAgAAAAAAAAAAAAAQgCAAAAAIAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Request.GetDataForFSUpdateRequest">
+    <Position X="11.25" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAACAEAABAAAIA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Response.FSActivityResponseBase">
+    <Position X="6.25" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAACAAAAACgAACggSBEAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Response\FSActivityResponseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Response.GetDataForAmendResponse">
+    <Position X="11.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIYAAAAAAAgAAAMQCAgAAgAAAAAABCIAABEMA=</HashCode>
+      <FileName>Messaging\Amendments\Response\FSActivityResponseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Response.GetDataForAmendViewListResponse">
+    <Position X="8.75" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Response\FSActivityResponseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Response.GetDataForAmendViewResponse">
+    <Position X="6.25" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABACAAAAAAAAAAAAAAgAAgAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Response\FSActivityResponseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.FinancialStatements.Response.GetDataForFSUpdateResponse">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEBAAAKIAAIACAAgAAAIQCAgQAgAAIBIQBAIAQAEEA=</HashCode>
+      <FileName>Messaging\Amendments\Response\FSActivityResponseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Authentication.Request.LoginRequest">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Authentication\Request\LoginRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Authentication.Response.LoginResponse">
+    <Position X="2.5" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAABA=</HashCode>
+      <FileName>Messaging\Authentication\Response\LoginResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

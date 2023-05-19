@@ -1,0 +1,125 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/necessary")
+    <link href="@Url.Content("~/Content/selectize.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/selectize.bootstrap2.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/autoNumeric.js"> </script>
+
+    <script src="~/Scripts/bootbox.min.js"></script>
+
+    @*@RenderSection("HeadScripts", required: false)*@
+</head>
+<body>
+    @model CRL.UI.MVC.Areas.Search.Models.SearchViewModel
+    @using CRL.Infrastructure.Messaging
+    @using CRL.UI.MVC.HTMLHelpers
+
+    @using (Html.BeginForm("Search", "Search", FormMethod.Post, new { id = "searchForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false)   
+  
+        @Html.HiddenFor(m => m.isNonLegalEffect)
+        @Html.HiddenFor(m => m._SearchResultJqGridViewModel.IsPreviousSearch)
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryloadmask")
+
+        }
+
+
+@*<div class="row-fluid" id="SearchParam">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Search List
+                </h3>
+            </div>
+            <div class="box-content"><div class="form-horizontal">*@
+        if (Model.IsViewMode)
+        {
+            //Html.RenderPartial("~/Areas/Search/Views/Shared/_ViewLegalSearch.cshtml", Model._SearchResultJqGridViewModel,
+            //new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+        }
+        else
+        {
+            Html.RenderPartial("~/Areas/Search/Views/Shared/_LegalSearch.cshtml", Model._SearchResultJqGridViewModel,
+            new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+        }
+    
+
+    
+@*</div></div>
+
+           </div>
+         
+
+          </div>
+         </div>*@
+
+        if (Model._SearchResultJqGridViewModel.SearchResultView != null)
+        {  
+        @Html.HiddenFor(x => x._SearchResultJqGridViewModel.SearchId, new { @Value = Model._SearchResultJqGridViewModel.SearchId });
+@* @Html.HiddenFor(m => m._SearchResultJqGridViewModel.SearchId) *@
+        @Html.HiddenFor(m => m._SearchResultJqGridViewModel.SearchResultCount)
+
+
+@* <input type="hidden" name="SearchId" value="@Model._SearchResultJqGridViewModel.SearchId">
+    @Html.TextBoxFor(model => model._SearchResultJqGridViewModel.SearchParam.DebtorEmail );
+     <input  type="submit" name="submitButton" class="btn" value="Refine Search">
+                <input type="hidden" name="SearchResultCount" value="@Model._SearchResultJqGridViewModel.SearchResultCount">*@
+                                                                                                                                   if (@Model._SearchResultJqGridViewModel.SearchId > 0 && Model._SearchResultJqGridViewModel.SearchResultCount > 0)
+                                                                                                                                   {
+                                                                                                                                       Html.RenderPartial("~/Areas/Search/Views/Shared/_SearchResultWithMultiple.cshtml", Model._SearchResultJqGridViewModel, new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+                                                                                                                       
+        <div class="row-fluid" id="genreportbutton">
+            <div class="span12">
+                <div class="form-actions">
+                    @if (Model._SearchResultJqGridViewModel.HasExpiredAllResults)
+                    {
+                        <input type="button" name="ViewAndGenerateReport" class="btn btn-primary disabled" value="View and Generate Search Report">
+                    }
+                    else
+                    {
+                        <input id="btnViewAndGenerateRpt" type="submit" name="ViewAndGenerateReport" class="btn btn-primary" value="View and Generate Search Report">
+                    }
+
+                </div>
+            </div>
+        </div>     
+    
+                                                                                                                                   }
+                                                                                                                                   else
+                                                                                                                                   {
+
+                                                                                                                                       Html.RenderPartial("~/Areas/Search/Views/Shared/_EmptySearchResultWithMultiple.cshtml", Model._SearchResultJqGridViewModel, new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+                                                                                                                                       Html.RenderPartial("~/Areas/Search/Views/Shared/_GenerateSearchReportDetails.cshtml", Model);
+                                                                                                                                   }
+
+
+
+
+
+
+
+
+
+        }
+
+
+    }
+</body>
+</html>

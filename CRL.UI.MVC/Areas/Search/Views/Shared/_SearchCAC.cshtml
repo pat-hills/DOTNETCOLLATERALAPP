@@ -1,0 +1,105 @@
+﻿@model  CRL.Model.Messaging.CACSearch
+
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "Search for financing statements";
+    ViewBag.Title = "Search Financing Statement";
+    ViewBag.MenuName = "Search";
+}*@
+
+<div id="CACResults" style="margin-top: 20px">
+    @if (Model.Serial_No == null)
+    { 
+        <div class="well well-small">
+            <h4>Summary of Search Results from CAC</h4>
+
+            @if (Model.Name == "Error connectiong to CAC")
+            { 
+                <p style="margin-top: 5px">CAC IS UNAVAILABLE</p>
+            }
+            else
+            {
+                if (@Model.Name != null)
+                { 
+                <p style="margin-top: 5px">NO CHARGE INFORMATION FOUND</p>
+                <p>NAME: <b>@Model.Name</b></p>
+                }
+                else
+                {
+                <p style="margin-top: 5px">NO RECORD FOUND</p>
+                }
+            }
+
+        </div>
+    }
+
+    else
+    {
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="box box-color box-bordered">
+                    <div class="box-title">
+                        <h3>
+                            <i class="icon-search"></i>
+                            Search results from CAC
+                        </h3>
+                    </div>
+                    <div class="box-content nopadding">
+                        <div class="dataTables_wrapper" role="grid">
+                            <table class="table table-hover table-nomargin table-bordered usertable dataTable" style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Name</th>
+                                        <th>Deed Title
+                                        </th>
+                                        <th>Asset
+                                        </th>
+                                        <th>Description
+                                        </th>
+                                        <th>Type
+                                        </th>
+                                        <th>Serial No
+                                        </th>
+                                        <th>Amount
+                                        </th>
+                                        <th>In Words
+                                        </th>
+                                        <th>Currency
+                                        </th>
+                                        <th>Bank
+                                        </th>
+                                        <th>Date
+                                        </th>
+                                        <th>BVN
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @* <td>
+                                            <input type="radio" /></td>*@
+                                        <td>@Model.Name</td>
+                                        <td>@Model.Deed_Title</td>
+                                        <td>@Model.Asset</td>
+                                        <td>@Model.Description</td>
+                                        <td>@Model.Type</td>
+                                        <td>@Model.Serial_No</td>
+                                        <td>@Model.Amount</td>
+                                        <td>@Model.In_Words</td>
+                                        <td>@Model.Currency</td>
+                                        <td>@Model.Bank</td>
+                                        <td>@Model.Date</td>
+                                        <td>@Model.BVN</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @*<input id="btnViewAndGenerateRpt" type="submit" name="ViewAndGenerateReport" class="btn btn-primary" value="Generate Search Report" style="margin-top: 20px">*@
+</div>

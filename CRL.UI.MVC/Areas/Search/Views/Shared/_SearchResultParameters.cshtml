@@ -1,0 +1,94 @@
+﻿@model  CRL.UI.MVC.Areas.Search.Models.ViewPageModels._SearchResultJqGridViewModel
+@using CRL.Infrastructure.Configuration
+@*@using HtmlHelpers.BeginCollectionItem*@
+<style>
+    .control-label {
+        font-weight: bold;
+    }
+</style>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Search Parameters Details
+                </h3>
+            </div>
+            <div class="box-content ">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.LabelFor(model => model.SearchParam.SearchType, new { @class = "control-label" })
+                    </dt>
+                    <dd>
+                        @if (Model.SearchParam.SearchType == 1)
+                        {
+                            <label>
+                                Individual Debtor
+                            </label>
+                        }
+                        else if (Model.SearchParam.SearchType == 2)
+                        {
+                            <label>
+                                Company, Coperative or Registered Business Name
+                            </label>
+                        }
+                        else if (Model.SearchParam.SearchType == 3)
+                        {
+                            <label>
+                                Collateral Serial No.
+                            </label>
+                        }
+                    </dd>
+                    <dt>
+                        <b>@if (Model.SearchParam.SearchType == 1)
+                           {
+                            <label class="control-label">
+                                Identification No
+                            </label>
+                           }
+                           else if (Model.SearchParam.SearchType == 2)
+                           {
+                            <label class="control-label">
+                                Business Reg. No
+
+                            </label>
+                           }
+                           else if (Model.SearchParam.SearchType == 3)
+                           {
+                            <label class="control-label">
+                                Collateral Serial No.
+                            </label>
+                           }</b>
+                    </dt>
+                    <dd>
+                        @if (Model.SearchParam.SearchType == 3)
+                        {
+                            @Html.DisplayFor(model => model.SearchParam.CollateralSerialNo)
+                        }
+                        else
+                        {
+                            if (Model.SearchParam.SearchType == 2)
+                            {
+                            @Html.DisplayFor(model => model.SearchParam.BusinessPrefixName)
+                            }
+                            @Html.DisplayFor(model => model.SearchParam.BorrowerIDNo)
+                        }
+
+                    </dd>
+
+
+
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@Html.HiddenFor(m => m.isNonLegalEffect)
+@Html.HiddenFor(m => m.isPayable)
+

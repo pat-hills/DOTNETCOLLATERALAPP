@@ -1,0 +1,188 @@
+﻿@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.ViewBatchDetails
+@using CRL.UI.MVC.Common.Enums
+@using CRL.Infrastructure.Enums
+@using CRL.Model.FS.Enums
+@using CRL.Infrastructure.Authentication
+@using System.Web.UI.WebControls
+@{
+    if (Model.FormMode == EditMode.View)
+    {
+        ViewBag.Title = " View Batch";
+        ViewBag.HeaderSummary = "View Selected Batch";
+
+    }
+    else
+    {
+        ViewBag.Title = " Reconcile Batch";   //**Should be payments for owners
+        ViewBag.HeaderSummary = "Reconcile Selected Batch";
+    }
+    ViewBag.Icon = "icon-money";
+
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payments";
+
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+    
+}
+
+
+
+<script src="~/Scripts/bootbox.min.js"></script>
+<div class="clear"></div>
+@*@using Enterprise.DomainDesign.Service.Common.Messages*@
+@using (Html.BeginForm("ReconcileBatches", "Payment", FormMethod.Post, new { Id = "FSForm" }))
+{ 
+    <div class="row-fluid">
+        <div class="span12">
+            <a href="@Url.Action("ViewBatches", "Payment")" class="btn btn-primary">Back To Batch List</a>
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>List
+                    </h3>
+                </div>
+                <div class="box-content">
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(false)
+                        @{
+    Html.RenderPartial("_VewBatchDetails", Model._ViewBatchDetailsPartailViewModel);
+                        }
+
+                        @if (Model.FormMode == EditMode.Edit)
+                        {
+                            Html.RenderPartial("_ReconcileBatch", Model._ViewBatchDetailsPartailViewModel);
+                           @Html.HiddenFor(model => model._BatchDetailsGrid.BatchId)
+                        }
+
+
+                        @if (Model.FormMode == EditMode.Edit)
+                        { 
+                    
+                            @Html.Action("GetBatchDetailsPartialView", Model._BatchDetailsGrid)
+
+                    
+                        }
+                        else if (Model.FormMode == EditMode.View)
+                        {                   
+                    
+                            <ul class="nav nav-tabs">
+                                @*<li class="active"><a id="SumPostPaidByBankLink" href="#bybankGrid" data-toggle="tab">Total Outstanding Bill </a></li>*@
+                                <li class="active"><a id="SumPostPaidLink" href="#SumGrid" data-toggle="tab">Expenditure Summary</a></li>
+                                <li><a id="DetailsPostPaidLink" href="#DetailGrid" data-toggle="tab">Expenditure List</a></li>
+                            </ul>
+                    
+                            <div class="tab-content">
+                                @*<div class="tab-pane active" id="bybankGrid">
+                                    @Html.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank", Model._ListOfTransactionsJqGrid)
+                                </div>*@
+                                <div class="tab-pane active" id="SumGrid">
+                                    @* @Html.Action("GetSummaryViewOfPostpaidTransactions", Model._ListOfTransactionsJqGrid)*@
+                                    @{
+                                        <table class="table table bordered">
+
+                                <thead>
+                                    <tr>
+                                        <th><b>Client</b></th>
+                                        <th><b>Bank</b></th>
+                                        <th><b>Amount</b></th>
+                                    </tr>
+                                    @{var i = 0;}
+                                </thead>
+                                <tbody>
+                                    @for (int j = 0; j < Model.ClientAmountWithRepBankViews.Length; j++)
+                                    {
+                                        <tr>
+                                            <td>@Model.ClientAmountWithRepBankViews[j].Client</td>
+                                            <td>@Model.ClientAmountWithRepBankViews[j].RepresentativeBank</td>
+                                            <td>@Model.ClientAmountWithRepBankViews[j].Amount.ToString("#,##0.00")</td>
+                                        </tr>
+       
+                                    }
+                                </tbody>
+
+                            </table>
+                                    }
+                                </div>
+                                <div class="tab-pane" id="DetailGrid">
+                                    @Html.Action("GetDetailViewOfPostPaidTransactions", Model._ListOfTransactionsJqGrid)
+                                </div>
+                            </div>
+                                    if (Model.SettledClientsInBatchViews.Length > 0)
+                                    {
+                                 <hr/>
+                            <h5 style="text-align: center;"><b>Settlement Payments</b></h5>
+                            <br/>
+                            <table class="table table bordered">
+
+                                <thead>
+                                    <tr>
+                                        <th><b>Reconcile No.</b></th>
+                                        <th><b>Settled Date</b></th>
+                                        <th><b>Client Name</b></th>
+                                        <th><b>Amount</b></th>
+                                    </tr>
+                                    @{var count = 0;}
+                                </thead>
+                                <tbody>
+                                    @for (int j = 0; j < Model.SettledClientsInBatchViews.Length; j++)
+                                    {
+                                        <tr>
+                                            <td>@Model.SettledClientsInBatchViews[j].ReconcilationNumber</td>
+                                            <td>@Model.SettledClientsInBatchViews[j].SettledDate.ToShortDateString()</td>
+                                            <td>@Html.DisplayFor(modelitem => modelitem.SettledClientsInBatchViews[j].Client)</td>
+                                            <td>@Model.SettledClientsInBatchViews[j].Amount.ToString("#,##0.00")</td>
+                                            
+                                            
+                                        </tr>
+       
+                                    }
+                                </tbody>
+
+                            </table>
+                                    }
+
+                        }
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/bootbox.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        @if (Model.FormMode == EditMode.View)
+        {<text>
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });</text>
+        }
+        else
+        {
+            <text>
+
+        $("#btnReconcileBatch").click(function (e) {
+
+            e.preventDefault();
+
+            bootbox.confirm("Are you sure you want to continue with reconcilation of the selected postpaid transactions.  Click yes to continue or no to cancel", "No", "Yes", function (result) {
+                if (result == true) {
+                    $('#FSForm').submit();
+
+                }
+                else { }
+
+            });
+        });
+        </text>
+        }
+
+    });
+</script>

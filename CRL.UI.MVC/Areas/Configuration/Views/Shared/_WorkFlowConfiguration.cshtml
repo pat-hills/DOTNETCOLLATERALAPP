@@ -1,0 +1,192 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.Shared._WorkFlowConfigurationViewModel
+<div class="container-fluid">
+
+
+    
+            <div class="form-horizontal">
+          <div class="span12"  style="margin:auto">
+          <div class="row-fluid">
+            <div class="span1"></div>
+
+            <div class="span5">
+                <div class="control-group">
+                    <label class="checkbox">
+                         @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                        @Html.DisplayNameFor(model => model.ConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                    </label>
+                  
+                </div>
+
+                <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                        @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    
+                        <label class="checkbox">
+                            @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                            @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                            @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                        </label>
+                    
+                </div>
+
+                <div class="control-group">
+         
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.AssignmentFS)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.AssignmentFS)
+                        @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.AssignmentFS)
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.CreateNewFS)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.CreateNewFS)
+                        @Html.DisplayNameFor(model => model.ConfigurationWorkflowView.CreateNewFS)
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.DischargeFS)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.DischargeFS)
+                        @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.DischargeFS)
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                        @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                         @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                    </label>
+                </div>
+
+                <div class="control-group">
+   
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                         @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                    </label>
+                </div>
+
+
+            </div>
+            
+            
+            
+            <div class="span5">
+
+          <div class="control-group">
+      <div class="control-label" style="width:240px">  @Html.LabelFor(model =>model.ConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</div>
+                    <div class="controls">
+                        @Html.EditorFor(model => model.ConfigurationWorkflowView.NumDaysWorkflowIsDelayed)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.NumDaysWorkflowIsDelayed)
+                       
+                    </div>
+                </div>
+
+
+
+
+                
+               <div class="control-group">
+           
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.SkipWhenSubmitterIsAuthroizer)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.SkipWhenSubmitterIsAuthroizer)
+                         @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.SkipWhenSubmitterIsAuthroizer)
+                    </label>
+                </div>
+
+
+
+                               <div class="control-group">
+
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                        @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                    </label>
+                </div>
+
+
+
+                
+                               <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.SubordinateFS)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.SubordinateFS)
+                          @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.SubordinateFS)
+                    </label>
+                </div>
+
+
+
+                                     <div class="control-group">
+
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.TaskAssignmentNotification)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.TaskAssignmentNotification)
+                           @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.TaskAssignmentNotification)
+                    </label>
+                </div>
+
+
+
+                
+               <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.UnitLimit)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.UnitLimit)
+                        @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.UnitLimit)
+                    </label>
+                </div>
+
+
+            <div class="control-group">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.UpdateFS)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.UpdateFS)
+                         @Html.DisplayNameFor(model =>model.ConfigurationWorkflowView.UpdateFS)
+                    </label>
+                </div>
+
+
+      <div class="control-group">
+                
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.ConfigurationWorkflowView.WorkflowDelayedWarning)
+                        @Html.ValidationMessageFor(model => model.ConfigurationWorkflowView.WorkflowDelayedWarning)
+                         @Html.LabelFor(model =>model.ConfigurationWorkflowView.WorkflowDelayedWarning)
+                    </label>
+                </div>
+
+                </div>
+              <div class="span1"></div>
+            </div>
+     </div>
+
+           </div>
+
+
+
+ </div>
+           
+       

@@ -1,0 +1,340 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.Shared._ConfigurationFeeViewModel
+@using HtmlHelpers.BeginCollectionItem
+@using CRL.UI.MVC.HTMLHelpers
+@using System.Web.UI.WebControls
+@using MvcCheckBoxList.Model
+@using CRL.Infrastructure.Enums
+@using  CRL.Model.Configuration
+@using CRL.Service.Views.Configuration
+
+
+
+@{var htmlListInfo = new HtmlListInfo(HtmlTag.table, 3, null, TextLayout.Default, TemplateIsUsed.No);}
+<div class="PerTransactionConfingurationFeeRow">
+   
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="box box-color box-small box-bordered">
+                    <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>Fee configuration
+                    </h3>
+                </div>
+                    <div class="box-content">
+
+                        <br />
+                        @{
+                            if(Model.ConfigurationFeeView !=null){
+        PerTransactionConfigurationFeeView dbInst = (PerTransactionConfigurationFeeView)Model.ConfigurationFeeView;
+                                if(dbInst.ServiceFeeCategory !=null && dbInst.ServiceFeeCategory.Count() > 0){
+                             foreach(var i in dbInst.ServiceFeeCategory)
+                             {
+                                 var subtypte = Model.ServiceFeeType.Where(x => x.LkValue == i).Single();
+                                 Model.SelectedServiceFeeType.Add(subtypte);                         
+                             }  
+                            }
+                            }
+                            }
+                         
+                          <div class="control-group">
+                                    <div class="control-label">
+                                         <div class="dvpanel" style="margin-bottom:5px">
+                                       @Html.LabelForRequired(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).Name)
+                                             </div>
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).Name)                                      
+                                        @Html.ValidationMessageFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).Name)
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="control-label">
+                                        <div class="dvpanel">
+                                        @Html.LabelForRequired(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).ServiceFeeCategory)
+                                            </div>
+                                    </div>
+                                    <div class="controls checkboxlist">
+                                          @Html.CheckBoxListFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).ServiceFeeCategory,
+                                  model => model.ServiceFeeType,
+                                  LookUpView => LookUpView.LkValue,
+                                  LookUpView => LookUpView.LkName,
+                                  model => model.SelectedServiceFeeType ,htmlListInfo
+                                  )
+                                        @Html.ValidationMessageFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).ServiceFeeCategory)
+                                    </div>
+                                </div>
+                          
+                              
+                            <div class="control-group">
+                                    <div class="control-label">
+                                       <div class="dvpanel">
+                                        <label>Other Options</label>
+                                           </div>
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).AllowPostpaidIfClientIsPostpaid)                                      
+                                        @Html.ValidationMessageFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).AllowPostpaidIfClientIsPostpaid)
+                                         @Html.LabelForRequired(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).AllowPostpaidIfClientIsPostpaid)
+                                    </div>
+                                </div>    
+                                           <div class="control-group">
+                                    <div class="control-label">
+                                      
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).IsActive)                                      
+                                        @Html.ValidationMessageFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).IsActive)
+                                          @Html.LabelForRequired(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).IsActive)
+                                    </div>
+                                </div>    
+
+       <br />
+                                <div class="control-group">
+                                    <div class="control-label">
+                                        <div class="dvpanel">
+                                       @Html.LabelForRequired(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).UseFlatAmountForAllCurrencies)
+                                            </div>
+                                    </div>
+                                    <div class="controls">
+                                     @Html.DropDownListFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).UseFlatAmountForAllCurrencies, new SelectList(new[] 
+                                                                                                                                                                                                                                    { new SelectListItem{Value =true.ToString(),Text = "Use fixed amount only for all currencies"},                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                      new SelectListItem{Value = false.ToString(),Text = "Use fixed amount for non-local currencies and per loan amount fee setup for local currencies"}  }, "Value", "Text",
+                                                                                                                                                                                                                              Model.ConfigurationFeeView !=null ?Model.ConfigurationFeeView.UseFlatAmountForAllCurrencies:true), new { @style = "width:auto", Id="UseFlatAmountForAllCurrencies"})
+                                       @Html.ValidationMessageFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).UseFlatAmountForAllCurrencies)
+                                    </div>
+                          
+                                </div>
+
+
+                            <div class="control-group">
+                                    <div class="control-label">
+                                         <div class="dvpanel" style="margin-bottom:5px">
+                                       <label id="AmountLabel" for="Amount">Amount</label>
+                                             </div>
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).Amount)                                      
+                                        @Html.ValidationMessageFor(model => ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).Amount)
+                                    </div>
+
+                                </div>
+                        
+        <div class="FeeLoanSetup">          
+            <hr />
+        <table class="table table-hover table-nomargin table-bordered" >
+
+           @Html.HiddenFor(model => model.ConfigurationFeeView.Id)
+
+            
+            <caption><h5><b>Fee Loan Setup for Loan Amounts in Liberian Dollar</b></h5></caption>
+           
+        <thead>
+           
+            <tr>
+                @*<th>Id</th>*@
+                <th>Fee in Liberian Dollar</th>
+                <th> Loan Amount </th>               
+                <th>Action</th>
+            </tr>
+        </thead>
+            <tbody>
+               @if(Model.ConfigurationFeeView != null){
+        if (((PerTransactionConfigurationFeeView)Model.ConfigurationFeeView).FeeLoanSetupsView.Count() > 0)
+        {
+
+            foreach (var item in ((PerTransactionConfigurationFeeView)Model.ConfigurationFeeView).FeeLoanSetupsView.Where(s=>s.IsLSDorUSD ==1))
+            {
+                @*<tr>
+                 <td>  @Html.EditorFor(modelItem =>item.Id )</td>
+             
+               <td>  @Html.EditorFor(modelItem =>item.LoanAmountLimit )</td>
+                  <td>   @Html.EditorFor(modelItem =>item.Fee )</td>
+                </tr>*@
+            
+                Html.RenderPartial("~/Areas/Configuration/Views/Shared/_FeeLoanSetupConfiguration.cshtml", item);
+
+            }
+        }   
+               }
+                </tbody>
+
+         </table>      
+                                                <div class="clear"></div>       
+                         <button class="btnAddNewFeeLoanSetupForLSD btn" type="button">+ Add New Fee Loan Setup</button> 
+
+
+                   <hr />
+            <table class="table table-hover table-nomargin table-bordered" >
+
+           @Html.HiddenFor(model =>  ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).Id)
+             @Html.HiddenFor(model =>  ((PerTransactionConfigurationFeeView)model.ConfigurationFeeView).PerTransactionOrReoccurence)
+                
+                 
+            <caption><h5><b>Fee Loan Setup for Loan Amounts in USD</b></h5></caption>
+           
+        <thead>
+            
+            <tr>
+                @*<th>Id</th>*@
+                <th>Fee in USD</th>
+                <th> Loan Amount </th>               
+                <th>Action</th>
+            </tr>
+        </thead>
+            <tbody>
+               @if(Model.ConfigurationFeeView != null){
+        if (((PerTransactionConfigurationFeeView)Model.ConfigurationFeeView).FeeLoanSetupsView.Count() > 0)
+        {
+
+            foreach (var item in ((PerTransactionConfigurationFeeView)Model.ConfigurationFeeView).FeeLoanSetupsView.Where(s => s.IsLSDorUSD == 2))
+            {
+                @*<tr>
+                 <td>  @Html.EditorFor(modelItem =>item.Id )</td>
+             
+               <td>  @Html.EditorFor(modelItem =>item.LoanAmountLimit )</td>
+                  <td>   @Html.EditorFor(modelItem =>item.Fee )</td>
+                </tr>*@
+            
+                Html.RenderPartial("~/Areas/Configuration/Views/Shared/_FeeLoanSetupConfiguration.cshtml", item);
+
+            }
+        }   
+               }
+                </tbody>
+
+         </table>    
+              <div class="clear"></div>       
+                         <button class="btnAddNewFeeLoanSetupForUSD btn" type="button">+ Add New Fee Loan Setup</button>
+                       </div>   
+                    </div>
+                </div>
+            </div>
+        </div>    
+    
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryloadmask")
+}
+<script>
+    //$("a.deleteParticipantRow").on("click", function () {
+    //    $(this).parents("div.ParticipantRow:first").remove();
+    //    return false;
+    //});
+
+
+    $(".FeeLoanSetup").hide();
+    handleLoanAmountFilter();
+    function handleNewItemClickLSD() {
+        //var prefixedModel = $("input[name='FSView.ParticipantsView.index']").attr('value');          
+        var prefixedModel = $(this).parents(".top:first").prev().attr('value');
+        var obj = $(this);
+        
+            var link = '@Url.Action("BlankFeeLoanSetup", "Configuration", new { IsLSDorUSD= 1  })';
+    
+@*        else if (IsLSDorUSD == 2)
+        {
+          var link = '@Url.Action("BlankFeeLoanSetup", "Configuration", new { prefixedModel = "-1",IsLSDorUSD= 2  })';
+        }*@
+        link = link.replace("-1", prefixedModel);
+       //$("#FeeLoanSetup").mask("Please wait...");
+        $.ajax({
+            url: link,
+
+            cache: false,
+            success: function (html) {
+                $(obj).prev().prev().append(html); //$("#FeeLoanSetup").unmask();
+
+            },
+            error: function (x, t, m) {
+                if (t === "timeout") {
+                    alert("the operation timeout.  Please try again!");
+                   // $("#FeeLoanSetup").unmask();
+                } else {
+                    alert(t);
+                }
+            }
+        });
+        return false;
+    }
+
+
+    function handleNewItemClickUSD() {
+        //var prefixedModel = $("input[name='FSView.ParticipantsView.index']").attr('value');          
+        var prefixedModel = $(this).parents(".top:first").prev().attr('value');
+        var obj = $(this);
+      
+            var link = '@Url.Action("BlankFeeLoanSetup", "Configuration", new { IsLSDorUSD=2  })';
+        
+@*        else if (IsLSDorUSD == 2)
+        {
+          var link = '@Url.Action("BlankFeeLoanSetup", "Configuration", new { prefixedModel = "-1",IsLSDorUSD= 2  })';
+        }*@
+         link = link.replace("-1", prefixedModel);
+         //$("#FeeLoanSetup").mask("Please wait...");
+         $.ajax({
+             url: link,
+
+             cache: false,
+             success: function (html) {
+                 $(obj).prev().prev().append(html); //$("#FeeLoanSetup").unmask();
+
+             },
+             error: function (x, t, m) {
+                 if (t === "timeout") {
+                     alert("the operation timeout.  Please try again!");
+                  //   $("#FeeLoanSetup").unmask();
+                 } else {
+                     alert(t);
+                 }
+             }
+         });
+         return false;
+     }
+
+
+    $("button.btnAddNewFeeLoanSetupForUSD").on("click",handleNewItemClickUSD);
+    $("button.btnAddNewFeeLoanSetupForLSD").on("click", handleNewItemClickLSD);
+  
+
+    function handleLoanAmountFilter()
+    {
+        
+        var selectedItem = $("#UseFlatAmountForAllCurrencies").val();
+
+        if (selectedItem == "True") {
+
+            $(".FeeLoanSetup").hide();
+            $("#AmountLabel").text("Amount for All Currencies")
+        }
+
+        else if(selectedItem== "False"){
+            $(".FeeLoanSetup").show();
+             $("#AmountLabel").text("Amount for non-local Currencies Only")
+
+        }
+
+    }
+
+
+    $(function () {
+
+
+
+        $("#UseFlatAmountForAllCurrencies").change(handleLoanAmountFilter);
+       // $(".LoanFilterRadio").each(handleLoanAmountFilter);
+    });
+
+
+
+    //Hide the element if it's is not
+    //When we load the other document must be hidden by default which we can do in the model attribute, depends on wether it is selected or not
+    //
+
+
+
+
+</script>
+

@@ -1,0 +1,57 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.ViewPageModel.BVCUploadViewModel
+@{
+    ViewBag.Title = "Upload Bank Codes";
+    ViewBag.Icon = "icon-upload-alt";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "searchgrid",
+        Url = Url.Action("BVCJqGrid")
+
+    };
+
+    }
+
+
+<div class="container">
+
+@using (Html.BeginForm("Upload", "", FormMethod.Post, new { Id = "BVCUpload", enctype = "multipart/form-data" ,@class="form-horizontal"}))
+{
+        <div class="span12">
+ @Html.AntiForgeryToken()
+@Html.ValidationSummary(false)
+           
+    <div class="span3"></div>
+            <div class="alert alert-info text-center">Click on the button below to select the CSV file from a specified location</div>
+            <div class="control-group span6 offset3 ">
+     
+                <div class="controls">
+                         @Html.TextBoxFor(model =>model.CSVfile, new { type = "file", accept = ".csv" })
+                </div>
+              </div>
+
+<div class="span3"></div>
+    </div>
+       <div class="text-center">
+      <input id="Submit" class="btn btn-primary" type="submit" value="Submit CSV File" /> 
+  </div> 
+                  
+}     
+    
+    <div class="span3"></div> 
+    <hr />
+
+      @Html.Action("BVCJqGrid", "Configuration")
+
+
+
+        
+    </div>
+
+
+    
+</div>

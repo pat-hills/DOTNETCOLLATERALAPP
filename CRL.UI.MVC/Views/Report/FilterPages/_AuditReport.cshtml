@@ -1,0 +1,276 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using MvcCheckBoxList.Model
+
+@{var htmlListInfo = new HtmlListInfo(HtmlTag.table, 3, null, TextLayout.Default, TemplateIsUsed.No);}
+<link href="~/Content/select2.min.css" rel="stylesheet" />
+<script src="~/Scripts/select2.min.js"></script>
+<style>
+    .select2-search__field {
+        height: 30px !important;
+    }
+
+    input[readonly] {
+        cursor: pointer;
+        background-color: white;
+    }
+</style>
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
+            @*  <div class="control-label">Filter Audit Date</div>*@
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((_AuditReportViewModel)model).UseStartEndDateOption, "true") Filter audit date by start and end date<br />
+                @Html.RadioButtonFor(model => ((_AuditReportViewModel)model).UseStartEndDateOption, "false") Filter audit date by month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((_AuditReportViewModel)model).StartDate, new { @readonly = true })
+                    @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((_AuditReportViewModel)model).EndDate, new { @readonly = true })
+                    @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((_AuditReportViewModel)model).SelectedMonthList, ((_AuditReportViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((_AuditReportViewModel)model).SelectedYear, ((_AuditReportViewModel)Model).YearList)
+                    @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).SelectedYear)
+                </div>
+            </div>
+            @*  <div class="control-group">
+        <div class="control-label">Year</div>
+        <div class="controls">
+            @Html.TextBoxFor(model => ((_AuditReportViewModel)model).SelectedYear)
+            @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).SelectedYear)
+        </div>
+    </div>*@
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((_AuditReportViewModel)model).AuditType)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((_AuditReportViewModel)model).AuditType, new SelectList(((_AuditReportViewModel)Model).AuditTypeList, "Value", "Text", ((_AuditReportViewModel)Model).AuditType), "", new { multiple = "multiple" })
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).AuditType)
+            </div>
+            @*<div class="controls">
+                @Html.CheckBoxListFor(model => ((_AuditReportViewModel)model).AuditType,
+                                model => ((_AuditReportViewModel)model).AuditTypeList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo)
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).AuditType)
+            </div>*@
+        </div>
+        <br />
+        @if (((CRL.Infrastructure.Authentication.SecurityUser)Context.User).IsOwnerUser)
+        {
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((_AuditReportViewModel)model).ClientId)
+                </div>
+                <div class="controls">
+                    @*@Html.EditorFor(model => ((_AuditReportViewModel)model).ClientName)*@
+                    @Html.DropDownListFor(model => ((_AuditReportViewModel)model).ClientId, new SelectList(((_AuditReportViewModel)Model).Clients, "Value", "Text", ((_AuditReportViewModel)Model).ClientId), "")
+                    @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).ClientId)
+                </div>
+            </div>
+        }
+
+        @if (((CRL.Infrastructure.Authentication.SecurityUser)Context.User).IsAdministrator())
+        {
+            <div class="control-group">
+                <div class="controls">
+                    @Html.CheckBoxFor(model => ((_AuditReportViewModel)model).LimitTo) Show only my audits
+            @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).LimitTo)
+                </div>
+            </div>
+        }
+    </div>
+    <div class="span6">
+
+
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((_AuditReportViewModel)model).UserName)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((_AuditReportViewModel)model).UserName)
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).UserName)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((_AuditReportViewModel)model).UserLoginId)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((_AuditReportViewModel)model).UserLoginId)
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).UserLoginId)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((_AuditReportViewModel)model).AuditAction)
+            </div>
+            <div class="controls">
+                @*@Html.EditorFor(model => ((_AuditReportViewModel)model).Action)*@
+                @Html.DropDownListFor(model => ((_AuditReportViewModel)model).AuditAction, new SelectList(""), null, new { multiple = "multiple" })
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).AuditAction)
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).Action)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((_AuditReportViewModel)model).Message)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((_AuditReportViewModel)model).Message)
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).Message)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((_AuditReportViewModel)model).Machiname)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((_AuditReportViewModel)model).Machiname)
+                @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).Machiname)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(function () {
+        jQuery.validator.addMethod('date',
+                function (value, element, params) {
+                    if (this.optional(element)) {
+                        return true;
+                    };
+                    var result = false;
+                    try {
+                        $.datepicker.parseDate('dd/mm/yy', value);
+                        result = true;
+                    } catch (err) {
+                        result = false;
+                    }
+                    return result;
+                },
+                ''
+            );
+    });
+    $(document).ready(function () {
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+
+        if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+            $('#pnlMonthYear').hide();
+            $('#pnlStartEndDate').show();
+        }
+        else {
+            $('#pnlMonthYear').show();
+            $('#pnlStartEndDate').hide();
+        }
+
+        var html1;
+        var clients = JSON.parse('@Html.Raw(Json.Encode(((_AuditReportViewModel)Model).Clients))');
+        $('#ClientId').autocomplete({ source: clients });
+        $('#ClientId').select2();
+
+
+        var auditActionTypes = JSON.parse('@Html.Raw(Json.Encode(((_AuditReportViewModel)Model).AuditActionList))');
+        var $ctrlAuditAction = $('#AuditAction');
+
+        $("select#AuditType").change(function () {
+            var actionTypeSelectOptionsHtml = '';
+            $ctrlAuditAction.html('');
+            var filteredActionTypes;
+            var html
+            $("select#AuditType option:selected").each(function () {
+                debugger;
+                if ($(this).val() == null || $(this).val() == "") {
+                    html = LoadOptions(auditActionTypes);
+                    actionTypeSelectOptionsHtml = actionTypeSelectOptionsHtml + html;
+                }
+                else {
+                    filteredActionTypes = filterItems(auditActionTypes, $(this).val());
+                    html = LoadOptions(filteredActionTypes);
+                    actionTypeSelectOptionsHtml = actionTypeSelectOptionsHtml + html;
+                }
+            });
+
+            $ctrlAuditAction.html(actionTypeSelectOptionsHtml);
+        });
+
+        html1 = LoadOptions(auditActionTypes);
+        $ctrlAuditAction.html(html1);
+
+        function LoadOptions(data) {
+            return $.map(data, function (selectListItem) {
+                return '<option value="' + selectListItem.Id + '">' + selectListItem.Name + '</option>'
+            }).join('');
+        }
+
+        function filterItems(data, Id) {
+            var list = [];
+            $.each(data, function (i, val) {
+                if (val.AuditCategoryId == Id) {
+                    var item = {
+                        Id: val.Id,
+                        Name: val.Name
+                    };
+                    list.push(item);
+                }
+            });
+            return list;
+        }
+
+    });
+
+
+
+
+</script>

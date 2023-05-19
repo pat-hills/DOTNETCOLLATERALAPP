@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Authorization Error!</h1>
+        <h2>You do not have the required authorization to access this resource!  Please see your administrator for furthur information.  Thank you!</h2>
+         @Html.ActionLink("Click here to go back to the Application!", "Dashboard", "Home", new { Area = "" },null)
+    </hgroup>
+</body>
+</html>

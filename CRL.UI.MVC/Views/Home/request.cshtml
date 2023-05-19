@@ -1,0 +1,171 @@
+
+@{
+    
+    Layout = null;
+    
+    }
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Collateral Registry Liberia</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/content2/css/bootstrap.css" rel="stylesheet">
+	<link href="~/content2/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="~/content2/css/crlmodme.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/content2/font-awesome/css/font-awesome.min.css">
+    <!-- Page Specific CSS -->
+	
+
+    <script type="text/javascript">
+$('#myCarousel').carousel({
+    interval: 1200
+});</script>
+
+
+    <script type="text/javascript" src="~/content2/js/jquery.1.10.js"></script>
+    <script type="text/javascript" src="~/content2/js/bootstrap.js"></script>
+
+
+</head>
+<body class="fixed-top">
+
+
+    <!---Navbar -->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="navbar navbar-default">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+                            <a class="navbar-brand" href="index.php">
+                                <img src="~/content2/img/crllogo5.png">
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="nav-collapse pull-right">
+                            <ul class="nav">
+                                <li class="#"><a href="~/">HOME</a></li>
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DOWNLOADS <b class="caret"></b></a>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Download Pdf </a></li>
+                                        <li><a href="#">Download Images</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">HELP <b class="caret"></b></a>
+                                      <ul class="dropdown-menu">
+                                        <li class="">@Html.ActionLink("About The Registry","About","Home")</li>
+					                <li class="">@Html.ActionLink("Fee Structure","Fee","Home")</li>
+					                    <li class="">@Html.ActionLink("Frequently Asked Questions","Faq","Home")</li>                                  
+                                    </ul>
+                                </li>
+                                <li class="active">@Html.ActionLink("CONTACT US","Contact","Home")</li>
+
+                                     @if(SecurityUser){
+                                <li>@Html.ActionLink("LOG OUT", "LogOff","Account" ,new { area = "" }, null)</li>      
+                               }
+                            </ul>
+                        </div><!--/.nav-collapse -->
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <!-- /.container -->		
+	
+		<div class="container-fluid">
+			<div class="row-fluid">
+		
+				 <!-- submenu -->
+				<div class="submenu">
+					<h1>Contact Us	<i class="fa fa-angle-right"></i></h1>
+				<div class="collapsed">
+					 @* <a href="contact.html#" id="submenutoggle"><h1>Contact Us<i class="fa fa-bars"></i></h1></a>*@
+				</div> 
+					<ul class="nav nav-tabs">
+					  <li >@Html.ActionLink("Address","Contact","Home")</li>
+					  <li class="active">@Html.ActionLink("Make A Request","Request","Home")</li>
+					</ul>				
+				</div>
+			  <!-- /submenu -->
+			  <div class="span8">
+				<form action="" method="post" class="contact">
+				<fieldset>
+					<legend >Send us an email!</legend>
+						<p >
+							Send us ideas, feedback, job requests or anything that you want to tell us. 
+							We want to provide service where you have a voice. 
+							We're as open as the platform that we develop for and we expect it to remain that way. 
+						</p>
+					<label>Name</label>
+					<input type="text" class="input-xlarge" name="name" placeholder="John Doe" >
+
+					<label>Email</label>
+					<input type="text" class="input-xlarge" name="email" placeholder="email@domain.com">
+					
+					<label>Phone</label>
+					<input type="text" class="input-xlarge" name="phone" placeholder="+ (231) 551 253625">
+					
+
+					<label>Subject</label>
+					<input type="text" class="input-xxlarge" name="subject" placeholder="I couldn't think of a better subject...">
+
+					<label>Body</label>
+
+					<textarea class="email-form" name="body" placeholder="I couldn't think of a better subject..."></textarea>
+					<label class="control-label" for="checkboxes"></label>
+				
+					<label class="checkbox inline" for="checkboxes-0">
+					  <input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
+					   <p>Send A Copy Of This To Yourself.</p>
+					</label>
+
+					<div class="row">
+						<div class="submit-row">
+							<div class="pull-right">
+								<!-- reCaptcha --> 
+							</div>
+							<button type="submit" class="btn btn-medium btn-primary submit-email pull-right" id="submit">Submit</button>
+						</div>
+					</div>
+				  </fieldset>
+				</form>
+			  </div>
+			  
+		   </div>
+		   
+		</div>
+		
+		<footer>
+            <hr>
+            <div class="row-fluid">
+                <div class="span12">
+                    <p> &copy; <a href="http://www.bsystemslimited.com">Bsystems Limited</a> 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    
+    <script type="text/javascript" src="~/content2/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/content2/js/bootstrap.js"></script>
+	   
+		
+	</div>
+	
+	
+	
+	 
+
+</body>

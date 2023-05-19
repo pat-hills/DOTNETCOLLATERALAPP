@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Common.Messaging.RequestBase">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAABAAAgAAAAAAEEAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Messaging\RequestBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Common.Messaging.ResponseBase">
+    <Position X="2.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Messaging\ResponseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Common.Messaging.PaginatedRequest">
+    <Position X="0.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAEAAAAAA=</HashCode>
+      <FileName>Common\Messaging\PaginatedResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Common.ViewBase">
+    <Position X="2.5" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Common\ViewBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Common.Request.ChangeItemStatusRequest">
+    <Position X="5.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Common\Request\CommonRequestClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Common.Request.DeleteItemRequest">
+    <Position X="7.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Common\Request\CommonRequestClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Common.Response.CommonResponseClasses">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Common\Response\CommonResponseClasses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CRL.Service.Messaging.FinancialStatements.Request.RequestMode">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAACEAAQAAAAA=</HashCode>
+      <FileName>Messaging\Amendments\Request\FinancialActivityRequest.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

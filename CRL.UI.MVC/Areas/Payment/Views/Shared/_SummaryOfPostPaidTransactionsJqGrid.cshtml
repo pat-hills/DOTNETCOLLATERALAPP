@@ -1,0 +1,33 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._ListOfTransactionsJqGrid 
+  @using CRL.Infrastructure.Enums 
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("SummOfPostpaidTransactions");
+        c = c.SetCaption("Postpaid bill by client");
+        c = c.AddColumn(new Column("ClientName").SetSearch(false).SetLabel("Client").SetWidth(220));   
+        c = c.AddColumn(new Column("RepresentativeClientName").SetLabel("Bank").SetSearch(false).SetWidth (220));            
+        c = c.AddColumn(new Column("Amount").SetSearch(false).SetFormatter(MvcJqGrid.Enums.Formatters.Currency).SetWidth(75));
+        c = c.SetUrl(Url.Action("GetJsonSummaryViewOfPostpaidTransactions", "Payment", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(100)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true).SetSearchToolbar(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);       
+              
+    }
+    @(c) 
+  
+</div>

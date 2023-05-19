@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.UI.MVC.Areas.Membership.Controllers.MembershipRegistrationController">
+    <Position X="1" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAUQAAAAAAA=</HashCode>
+      <FileName>Areas\Membership\Controllers\MembershipRegistrationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.UI.MVC.Areas.Membership.Models.ViewPageModels.MembershipRegistration.MembershipRegistrationViewModel">
+    <Position X="4.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Membership\Models\ViewPageModels\MembershipRegistration\MembershipRegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.UI.MVC.Areas.Membership.Models.ViewPageModels.MembershipRegistration.Partial._MembershipRegistrationPartialViewModel">
+    <Position X="4.25" Y="2" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Membership\Models\ViewPageModels\MembershipRegistration\Partial\_MembershipRegistrationPartialViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

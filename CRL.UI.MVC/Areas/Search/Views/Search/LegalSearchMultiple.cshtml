@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "Search for financing statements";
+    ViewBag.Title = "Search Financing Statement";
+    ViewBag.MenuName = "Search";
+}
+<script src="~/Scripts/bootbox.min.js"></script>
+@*<script src="@Url.Content("~/Scripts/input_mask_3x/jquery.inputmask.js")"></script>*@
+@model CRL.UI.MVC.Areas.Search.Models.SearchViewModel
+@using CRL.Infrastructure.Messaging
+@using CRL.UI.MVC.HTMLHelpers
+
+@using (Html.BeginForm("Search", "Search", FormMethod.Post, new { id = "searchForm" }))
+{
+    @Html.AntiForgeryToken()
+    //@Html.ValidationSummary(false)   
+  
+    @Html.HiddenFor(m => m.isNonLegalEffect)
+    @Html.HiddenFor(m => m._SearchResultJqGridViewModel.IsPreviousSearch)
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryloadmask")
+
+    }
+
+    
+@*<div class="row-fluid" id="SearchParam">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Search List
+                </h3>
+            </div>
+            <div class="box-content"><div class="form-horizontal">*@
+    
+    if (Model.IsViewMode)
+    {
+        Html.RenderPartial("~/Areas/Search/Views/Shared/_ViewLegalSearch.cshtml", Model._SearchResultJqGridViewModel,
+        new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+    }
+    else
+    {
+        Html.RenderPartial("~/Areas/Search/Views/Shared/_LegalSearch.cshtml", Model._SearchResultJqGridViewModel,
+        new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+    }
+
+    if (Model.IsCACResults)
+    {
+        Html.RenderPartial("~/Areas/Search/Views/Shared/_SearchCAC.cshtml", Model.CACSearch,
+            new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "CACSearch" } });
+    }
+    <br />
+    <br />
+@*</div></div>
+
+           </div>
+         
+
+          </div>
+         </div>*@
+    
+    if (Model._SearchResultJqGridViewModel.SearchResultView != null)
+    {  
+    @Html.HiddenFor(x => x._SearchResultJqGridViewModel.SearchId, new { @Value = Model._SearchResultJqGridViewModel.SearchId });
+@* @Html.HiddenFor(m => m._SearchResultJqGridViewModel.SearchId) *@
+    @Html.HiddenFor(m => m._SearchResultJqGridViewModel.SearchResultCount)
+
+
+@* <input type="hidden" name="SearchId" value="@Model._SearchResultJqGridViewModel.SearchId">
+    @Html.TextBoxFor(model => model._SearchResultJqGridViewModel.SearchParam.DebtorEmail );
+     <input  type="submit" name="submitButton" class="btn" value="Refine Search">
+                <input type="hidden" name="SearchResultCount" value="@Model._SearchResultJqGridViewModel.SearchResultCount">*@
+
+                                                                                                                               if (@Model._SearchResultJqGridViewModel.SearchId > 0 && Model._SearchResultJqGridViewModel.SearchResultCount > 0)
+                                                                                                                               {
+                                                                                                                                   Html.RenderPartial("~/Areas/Search/Views/Shared/_SearchResultWithMultiple.cshtml", Model._SearchResultJqGridViewModel, new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+                                                                                                                       
+    <div class="row-fluid" id="reportButton">
+        <div class="span12">
+            <div class="form-actions">
+                @if (Model._SearchResultJqGridViewModel.HasExpiredAllResults)
+                {
+                    <input type="button" name="ViewAndGenerateReport" class="btn btn-primary disabled" value="View and Generate Search Report">
+                }
+                else
+                {
+                    <input id="btnViewAndGenerateRpt" type="submit" name="ViewAndGenerateReport" class="btn btn-primary" value="View and Generate Search Report">
+                }
+
+            </div>
+        </div>
+    </div>
+
+                                                                                                                               }
+                                                                                                                               else
+                                                                                                                               {
+
+                                                                                                                                   Html.RenderPartial("~/Areas/Search/Views/Shared/_EmptySearchResultWithMultiple.cshtml", Model._SearchResultJqGridViewModel, new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultJqGridViewModel" } });
+                                                                                                                                   Html.RenderPartial("~/Areas/Search/Views/Shared/_GenerateSearchReportDetails.cshtml", Model);
+
+                                                                                                                               }
+    }
+
+}
+@*<script>
+    $(document).ready(function () {
+        $('#btnViewAndGenerateRpt').click(function (e) {
+            e.preventDefault();
+            var selectedId = $('[name="_SearchResultJqGridViewModel.SelectedId"]').val();
+            console.log(selectedId);
+            if (selectedId == null || selectedId == "") {
+                bootbox.alert("Please select a Financing Statement to generate report on.");
+            }
+        });
+
+    });
+</script>*@

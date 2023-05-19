@@ -1,0 +1,148 @@
+﻿@model CRL.UI.MVC.Areas.Search.Models.SearchViewModel
+
+<link href="~/Content2/css/modal-loading-animate.css" rel="stylesheet" />
+<link href="~/Content2/css/modal-loading.css" rel="stylesheet" />
+<script src="~/Scripts/modal-loading.js"></script>
+
+<div id="generateSearchReport">
+    <div class="box box-bordered">
+        <div class="box-title">
+            <h3><i class="icon-th"></i>Generate Search Result</h3>
+        </div>
+        <div class="box-content">
+            @if (@Model.isNonLegalEffect == false)
+            {                  
+@*<div class="controls">
+                                @Html.CheckBoxFor(model => model.IsCertified, new { id = "chkPublicReceiptNo" }) Generate certified search report.        
+                            </div>*@
+                @Html.HiddenFor(model => model.IsCertified)
+                if (!Request.IsAuthenticated && Model._SearchResultJqGridViewModel.isPayableGenerateReport && String.IsNullOrWhiteSpace(Model._SearchResultJqGridViewModel.PublicUserReceiptNo))
+                {
+                            
+                <div id="ReceiptNo" class="control-group">
+                    @Html.LabelFor(model => model._SearchResultJqGridViewModel.PublicUserReceiptNo, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(model => model._SearchResultJqGridViewModel.PublicUserReceiptNo, new { @class = "span2" })
+                        @Html.ValidationMessageFor(model => model._SearchResultJqGridViewModel.PublicUserReceiptNo)
+                    </div>
+                </div>
+                }
+
+            }
+            <div class="controls">
+                @Html.CheckBoxFor(model => model.SendAsMail, new { id = "chkPublicEmail" }) Send generated search report to my inbox.           
+            </div>
+            @if (!Request.IsAuthenticated)
+            {
+                <div id="EmailAddr" class="control-group">
+                    @Html.LabelFor(model => model.PublicUserEmail, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(model => model.PublicUserEmail, new { @class = "span2" })
+                        @Html.ValidationMessageFor(model => model.PublicUserEmail)
+                    </div>
+                </div>
+            }
+@* @if (Model._SearchResultJqGridViewModel.isPayable)
+                       {
+                           MessageInfo msg = new MessageInfo { Message = "Payment will be deducted after generating a search report", MessageType = CRL.Infrastructure.Messaging.MessageType.Warning };
+                     @Html.Message((MessageInfo)msg)
+                       } *@
+
+            <div class="form-actions">
+                @if (Model._SearchResultJqGridViewModel.HasGeneratedReport)
+                { 
+                    <input id="btnDownloadReport" type="button" name="submitButton" class="btn btn-primary" value="Download Existing Search Report">      
+                }
+                else
+                {
+                    <input id="btnGenerateReport" type="submit" name="submitButton" class="btn btn-primary" value="Generate Search Report">      
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @Html.HiddenFor(model => model._SearchResultJqGridViewModel.SearchId)
+    @Html.HiddenFor(model => model._SearchResultJqGridViewModel.SelectedId)
+    @Html.HiddenFor(model => model._SearchResultJqGridViewModel.isPayable)
+
+    <script>
+        function downloadSearchReport() {
+            var url = '@Html.Raw(Url.Action("DownloadReport", "Search", new { SearchId = "-1", RegistrationNo = "-3" }))';
+            url = url.replace("-1", "@Model._SearchResultJqGridViewModel.SearchId");
+            url = url.replace("-3", "@Model.RegistrationNo");
+            @if (String.IsNullOrWhiteSpace(Model._SearchResultJqGridViewModel.PublicUserReceiptNo) == false)
+            {
+                @:url = url.replace("-2", "@Model._SearchResultJqGridViewModel.PublicUserReceiptNo ");
+            }
+            window.location.href = url;
+            //e.preventDefault();
+        }
+    </script>
+</div>
+
+<script>
+
+    $("#btnGenerateReport").on('click', function () {
+        var data = $('#searchForm').serialize();
+        var loading = new Loading({
+            direction: 'ver',
+            title: 'Downloading Report...',
+            titleFontFamily: 'Century Gothic'
+        });
+        var url = '@Url.Action("AjaxGenerateReport", "Search", new { Area = "Search" })';
+       
+        $.ajax({
+            beforeSend: function () {
+                loading;
+            },
+            type: "POST",
+            data: data,
+            url: url,
+            success: function (response) {
+                if (response != "success")
+                {
+
+                    if(response.MessageType == 3) {
+                        //alert("You do not have a valid postpaid account to perform this transaction!");
+                        alert("This transaction requires payment and there's no valid post paid account to continue.");
+                    }
+
+                   // alert(response);
+
+                    return false;
+
+                }
+                downloadSearchReport();
+            },
+            complete: function () {
+                loading.out();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status == "401") {
+                    alert("Your session has ended.  You  are required to login again!  Please always remember to save draft to prevent losing data due to sessions timeouts");
+                    $("#UnsavedChanges").val("0");
+                    var url = '@Html.Raw(Url.Action("Login", "Account", new { Area = "" }))'
+                    window.location.href = url;
+                }
+                else {
+                    alert('status:' + XMLHttpRequest.status + ', status text: ' + XMLHttpRequest.statusText);
+                }
+            }
+        });
+        return false;
+        return false;
+    });
+
+
+    $('#btnDownloadReport').click(function () {
+
+        downloadSearchReport();
+    })
+
+
+
+
+</script>

@@ -1,0 +1,102 @@
+﻿@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.DirectPayTransactionDetailsViewModel
+@using CRL.UI.MVC.Common.Enums;
+@using CRL.Infrastructure.Authentication;
+@{
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+@{
+    ViewBag.Title = "Payments";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "DirectPay Transaction Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+}
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-bordered box-color">
+            <div class="box-title">
+                <h3><i class="icon-th-list"></i>DirectPay Transaction Details  </h3>
+            </div>
+            <div class="box-content nopadding">
+                <div class="form-horizontal form-bordered">
+                    <div class="control-group">
+                        <label class="control-label">
+                            Payment Voucher Code
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.PaymentVoucherCode)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Transaction Date
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.TransactionDate)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Payee's Name
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.Name)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Phone Number
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.Phone)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Email Address               
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.Email)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            BVN
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.BVN)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Currency
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.Currency)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Amount
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.Amount)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Is Topup Payment
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchDetailsView.IsTopUpPayment)
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div style="padding-top: 10px">
+            <a href="@Url.Action("DirectPayIndex", "InterSwitch")" class="btn btn-primary">Back to List of DirectPay Transactions </a>
+        </div>
+    </div>
+</div>

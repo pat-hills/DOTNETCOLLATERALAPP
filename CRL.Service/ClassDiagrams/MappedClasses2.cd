@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Mappings.Payment.PaymentMapper">
+    <Position X="8" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Payment\PaymentMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Search.SearchRequestGridViewMapper">
+    <Position X="11.5" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Search\SearchRequestGridViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.Search.SearchResultViewMapper">
+    <Position X="11.5" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\Search\SearchResultViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.CollateralMapper">
+    <Position X="0.5" Y="5.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAEAAAAAAACAAAAAIAAAAAQAAAACAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\CollateralMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.CollateralSummaryViewMapper">
+    <Position X="4.25" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\CollateralSummaryViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.CollateralReportViewMapper">
+    <Position X="0.5" Y="4.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\CollateralViewReportMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.FinancialStatementMapper">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAEBAAIAAAAAAEQAAAAAAgA=</HashCode>
+      <FileName>Mappings\FinancialStatement\FinancialStatementMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.FinancialStatementViewSummaryMapper">
+    <Position X="0.5" Y="3" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\FinancialStatementViewSummaryMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.FSReportViewMapper">
+    <Position X="11.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\FSReportViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.IndividualDebtorParticipantMapper">
+    <Position X="4.25" Y="2" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAIAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\IndividualDebtorParticipantMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.IndividualParticipantSummaryViewMapper">
+    <Position X="8" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\IndividualParticipantSummaryViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.IndividualSPParticipantMapper">
+    <Position X="4.25" Y="6.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\IndividualSPParticipantMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.InstitutionDebtorParticpantMapper">
+    <Position X="11.5" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAgAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\InstitutionDebtorParticpantMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.InstitutionParticipantSummaryViewMapper">
+    <Position X="4.25" Y="3.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\InstitutionParticipantSummaryViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.InstitutionSPParticpantMapper">
+    <Position X="8" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\InstitutionSPParticpantMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.ParticipantMapping">
+    <Position X="8" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAUAAABA=</HashCode>
+      <FileName>Mappings\FinancialStatement\ParticipantMapping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.ParticipantReportViewMapper">
+    <Position X="11.5" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\ParticipantReportViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Mappings.FinancialStatement.ParticipantSummaryViewMapper">
+    <Position X="4.25" Y="5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mappings\FinancialStatement\ParticipantSummaryViewMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

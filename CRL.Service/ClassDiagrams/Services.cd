@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Implementations.FinancialStatementService">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAABGIoIMQkIAQAEYUSADgAgCAo4gCA0h8JgEDlAAs=</HashCode>
+      <FileName>Implementations\FinancialStatementService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.AmendmentService">
+    <Position X="3.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>hAAABGI4IMEkBAQQERUQgDgAgCBo4gCAwg8BgEAhIgg=</HashCode>
+      <FileName>Implementations\AmendmentService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.SearchService">
+    <Position X="6.5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAAEAgIAIgAAQAAAVRACAAAAAoQgAQgggAABAgAAA=</HashCode>
+      <FileName>Implementations\SearchService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.ClientService">
+    <Position X="6.5" Y="3.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAgAAAAgAAAgEAAAAAUQACAAACQIYAAAAggBgAABAIA=</HashCode>
+      <FileName>Implementations\ClientService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.InstitutionService">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIAIIAAAQAAAQUCBAAAAAIQiAAwggACAAAAEA=</HashCode>
+      <FileName>Implementations\InstitutionService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.InstitutionUnitService">
+    <Position X="8.75" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAABAAAIAAAAIIACAAAAAgIgAAAA=</HashCode>
+      <FileName>Implementations\InstitutionUnitService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.UserService">
+    <Position X="11.25" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgEAAABoIYBBAAQEAAVQECACEAAIQwAA0gkAAAAQCgA=</HashCode>
+      <FileName>Implementations\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

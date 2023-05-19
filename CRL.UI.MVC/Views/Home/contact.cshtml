@@ -1,0 +1,140 @@
+﻿@using CRL.UI.MVC.HTMLHelpers
+@using CaptchaMvc.HtmlHelpers
+@{
+    
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+    ViewBag.Active = "Contact";
+}
+
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    
+}
+<div class="w-container container">
+    <div class="page-header">
+        <h2>CONTACT US</h2>
+    </div>
+    <p>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#" data-target="#address" aria-controls="address" role="tab" data-toggle="tab">Address</a></li>
+            <li role="presentation"><a href="#" data-target="#request" aria-controls="request" role="tab" data-toggle="tab">Make A Request</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="address">
+                <div>
+                    <p>The National Collateral Registry of Nigeria is located at:</p>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <h6>Physical Address</h6>
+                            <address>
+                                National Collateral Registry<br />
+                                1581 Tigris Crescent, Maitama, Abuja.<br/>
+                                (Central Bank of Nigeria)<br/>
+                                P.O. Box 100<br>
+                                Abuja.<br>
+                                Federal Capital Territory, <br />
+                                Nigeria.
+                            </address>
+
+                            <p>Web:</p>
+                            <p><a href="https://www.ncr.gov.ng" target="_blank" style="margin-left: 10px">www.ncr.gov.ng</a></p>
+                            <p>E-Mail:</p>
+                            <p><a href="#" style="margin-left: 10px"> ncr@cbn.gov.ng</a></p>
+                            <p>Instagram:</p>
+                            <p><a href="https://www.instagram.com/collateralregistryng/" target="_blank" style="margin-left: 10px">instagram.com/collateralregistryng</a></p>
+                            <p>Twitter:</p>
+                            <p><a href="https://twitter.com/NGCollateralREG" target="_blank" style="margin-left: 10px">Twitter.com/NGCollateralREG</a></p>
+                            <p>Facebook:</p>
+                            <p><a href="https://www.facebook.com/collateralregng" target="_blank" style="margin-left: 10px">Facebook.com/collateralregng</a></p>
+                        </div>
+                        <div class="span6">
+                            <h6>Postal Address</h6>
+                            <address>
+                                National Collateral Registry (NCR)<br />
+                                Central Bank of Nigeria,<br>
+                                P. O. Box 100<br>
+                                Abuja,<br>
+                                Federal Capital Territory,<br>
+                                Nigeria
+                            </address>
+                            <p>Telephone:</p>
+                            <p><a href="#" style="margin-left: 10px">07031704753   -   Registrar, NCR  </a></p>
+                            <p><a href="#" style="margin-left: 10px">07031704754   -   Assistant Registrar </a></p>
+                           
+                            <p>Help Desk:</P>
+                            <p><a href="#" style="margin-left: 10px">+2349062496799</a></p>
+                            <p><a href="#" style="margin-left: 10px">+2348107750312</a></p>     
+                            <p><a href="#" style="margin-left: 10px">+2348037162363</a></p> 
+                            <p><a href="#" style="margin-left: 10px">+2349080316777</a></p>
+                            <p><a href="#" style="margin-left: 10px">+2348097584175</a></p>     
+                            <p><a href="#" style="margin-left: 10px">+2348037162363</a></p>                   
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="request">
+                <div>
+                    <div class="page-header">
+                        <h4>Send us an email</h4>
+                    </div>
+                    <div>Send us ideas, feedback, job requests or anything that you want to tell us. We want to provide service where you have a voice. We're as open as the platform that we develop for and we want it to remain that way.</div>
+                    <form>
+                        <div class="row-fluid" style="margin-top: 2em;">
+                            <div class="span5">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" pattern="[A-Za-z -]*" placeholder="Enter your name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone number</label>
+                                    <input type="text" class="form-control phone" id="phone" placeholder="Enter phone number" required>
+                                </div>
+                                
+                            </div>
+                            <div class="span5">
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="Enter your message subject" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="body">Body</label>
+                                    <textarea rows="4"  style="height:101px;" id="body" placeholder="Enter your message body" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="inline text-center">
+                                    <h4>Security Check</h4>
+                                    <div class="text-center" style="border: 1px solid; border-color: #69b096">
+                                        <p>Please type the characters you see in the picture below</p>
+                                        @Html.Captcha("Refresh", "", 5, "The input field is required", false)
+                                        @Html.ValidationMessage("CaptchaInputText")
+                                        <p>Letters are not case sensitive</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="inline text-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </p>
+</div>

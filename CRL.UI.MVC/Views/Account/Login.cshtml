@@ -1,0 +1,226 @@
+﻿@using CRL.Infrastructure.Configuration 
+@{
+    Layout = null;
+}
+    @{
+    ViewBag.Title = "Login";
+}
+
+@model CRL.UI.MVC.Models.LoginModel
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Login | National Collateral Registry of Nigeria</title>
+
+    <!-- Mobile Specific Meta
+    ============================================= -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <!-- CSS
+    ============================================= -->
+    <link rel="stylesheet" href="~/content2/css/base.css" >
+
+    <link rel="stylesheet" href="~/content2/css/layout.css">
+
+    <link rel="stylesheet" href="~/content2/css/green.css">
+
+    <link rel="stylesheet" href="~/content2/css/carousel.css">
+
+    <link rel="stylesheet" href="~/content/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/content2/css/loginstyle.css">
+
+    <link rel="stylesheet" href="~/content2/css/loginimate.css">
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="icon" type="image/png" href="~/content2/img/favicon.png">
+
+</head>
+
+   
+<body class="sticky" style="background-color:white;">
+    @if (Constants.OnTestSite)
+    {
+        <div style="margin-bottom:10px;padding-top:5px; padding-bottom:5px; color: #FFFF00;background-color: #FF0000;text-align: center;"><strong>TEST SERVER - (@Constants.OnTestSiteSubjectPrefix.ToUpper() )</strong></div>
+    }
+    <div class="wrap">
+
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <div class="row">
+                    <div class="col span_12">
+                        <div class="header-title">
+                            <a href="@Url.Action("Index","Home")" class="ncrn"> NATIONAL COLLATERAL REGISTRY OF NIGERIA</a>
+                        </div>
+                    </div><!-- .twelve columns -->
+                </div><!-- .container -->
+            </div><!-- .header-top -->
+
+            <div class="header-nav">
+                <div class="container">
+                    <div class="col span_12">
+                        <!-- <div class="">
+                            <div class="col span_4">
+                                <div class="logo">
+                                    <a href="index.html"><img src="img/cbnlogo1.png" alt="CBN Logo"></a>
+                                </div>
+                            </div>
+
+                            <div class="col span_8">
+                                <ul id="nav">
+                                    <li>
+                                        <a class="active" href="">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="">Download</a>
+                                        <ul>
+                                            <li><a href="">Download PDF</a></li>
+                                            <li><a href="">Download Images</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="" href="">Public Search</a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="">Contact Us</a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="">Help</a>
+
+                                        <ul>
+                                            <li><a href="about.html">About The Registry</a></li>
+                                            <li><a href="fee.html">Fee Structure</a></li>
+                                            <li><a href="faq.html">Frequently Asked Questions</a></li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <a class="" href="">Login</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div><!-- .sixteen columns -->
+                </div><!-- .container -->
+            </div><!-- .header-nav -->
+        </header>
+        <!-- END Header -->
+
+        <!-- Login
+        ============================================================= -->
+        <section>
+            <div id="container" >
+                <br />
+                <div class="colspan_12">
+                    <div class="banner">
+                        <br />
+                        <img src="~/Content2/images/ncrlogo.jpg" height="60" width="270">
+                        <br />
+                        <br />
+                        
+                        @*<h4 class="green">National Collateral Registry of Nigeria</h4>*@
+                    </div>
+                </div>
+                <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                <a class="hiddenanchor" id="toregister"></a>
+                <a class="hiddenanchor" id="tologin"></a>
+                <div id="wrapper">
+                    <div id="login" class="animate form">
+                       
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            
+                            <h1>Log in</h1>
+                        @Html.ValidationSummary(true)
+                            <p>
+                               @Html.LabelFor(m => m.UserName, new { @style = "color:#65727F",data_icon = "u"})
+                                @Html.TextBoxFor(m => m.UserName)
+                                 @Html.ValidationMessageFor(m => m.UserName)
+                            </p>
+                            <p>
+                                @Html.LabelFor(m => m.Password, new { @style = "color:#65727F",data_icon = "p" })
+                               @Html.PasswordFor(m => m.Password, new { @Class = "form-control", autocomplete = "off"})
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </p>
+
+                            <button type="submit" class="login btn btn-6 btn-6d">Login
+                            </button>
+                            <a href="@Url.Action("PasswordReset", "User",  new { Area = "Membership" })">Forgot Password?</a>
+                            <p class="change_link"> <a href="@Url.Action("ClientVerification", "MembershipRegistration", new { area = "Membership"})" class="to_register" >Create new account</a> 
+                            </p>
+                            @Html.HiddenFor(model => model.UniqueGuidForm) 
+                        }
+                    </div>
+
+                    <!-- <div id="register" class="animate form">
+                        <form  action="mysuperscript.php" autocomplete="on">
+                            <h1> Sign up </h1>
+                            <p>
+                                <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+                                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                            </p>
+                            <p>
+                                <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                                <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
+                            </p>
+                            <p>
+                                <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                                <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                            </p>
+                            <p>
+                                <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                                <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                            </p>
+                            <p class="signin btn btn-6 btn-6d">
+                                <input type="submit" value="Sign up"/>
+                            </p>
+                            <p class="change_link">
+                                Already a member ?
+                                <a href="#tologin" class="to_register"> Go and log in </a>
+                            </p>
+                        </form>
+                    </div> -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- END Login
+        ========================================================= -->
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="col span_12 copyright">
+                        <span> © Copyright 2015 <a class="home" href="http://www.bsystemslimited.com"> Powered By Bsystems Ltd </a>.  All Rights Reserved.</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

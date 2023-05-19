@@ -1,0 +1,100 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.Shared._FeeConfigurationViewModel
+@using CRL.Service.Views.Configuration
+
+
+
+   @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<div class="row-fluid">
+    <div class="span2"></div>
+     
+    <div id="FeeConfig" class="span8">
+       @foreach (var modelItem in Model._ConfigurationFeeViewModel)
+          
+       {
+           
+           if (modelItem.ConfigurationFee is PerTransactionConfigurationFeeView)
+           {
+              
+               Html.RenderPartial("~/Areas/Configuration/Views/Shared/_PerTransactionFeeConfiguration.cshtml", modelItem);
+
+           }
+
+
+           else 
+           
+          {
+
+              Html.RenderPartial("~/Areas/Configuration/Views/Shared/_PeriodicFeeConfiguration.cshtml", modelItem);
+           
+           }
+       
+       }
+        <br />
+          <button class="AddNewPerTransactionFeeConfiguration btn btn-primary" type="button">+ Add New Fee Configuration</button>
+    </div>
+  
+          
+          @*  <button class="AddNewPeriodicFeeConfiguration btn btn-success" type="button"> + Add New Periodic Fee Configuration</button>*@
+    <div class="span2"></div>
+</div>
+       <br />
+       <hr />
+       <div class="text-center">
+       <input type="button" value="Save Fee Configuration" class="btn btn-primary"/>
+           </div>
+   }
+
+<script>
+
+
+    $(".AddNewPerTransactionFeeConfiguration").click(function () {
+
+        $("#FeeConfig").mask("Please wait...");
+        $.ajax({
+
+                 url: '@Url.Action("BlankPerTransactionFeeConfiguration", "Configuration")',     
+                
+
+            cache: false,
+            success: function (html) { $("#FeeConfig").append(html); $("#FeeConfig").unmask(); },
+            error: function (x, t, m) {
+                if (t === "timeout") {
+                    alert("the operation timeout.  Please try again!");
+                    $("#FeeConfig").unmask();
+                } else {
+                    alert(t);
+                    $("#FeeConfig").unmask();
+                }
+            }
+        });
+        return false;
+    });
+
+
+
+    $(".AddNewPeriodicFeeConfiguration").click(function () {
+
+        $("#FeeConfig").mask("Please wait...");
+        $.ajax({
+
+            url: '@Url.Action("BlankPeriodicFeeConfiguration", "Configuration")',
+
+
+            cache: false,
+            success: function (html) { $("#FeeConfig").append(html); $("#FeeConfig").unmask(); },
+            error: function (x, t, m) {
+                if (t === "timeout") {
+                    alert("the operation timeout.  Please try again!");
+                    $("#FeeConfig").unmask();
+                } else {
+                    alert(t);
+                    $("#FeeConfig").unmask();
+                }
+            }
+        });
+            return false;
+        });
+</script>
+ 

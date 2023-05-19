@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.Title = "Payments";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Generate Payment Code";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.InterSwitchUserViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CaptchaMvc.HtmlHelpers
+
+<script src="@Url.Content("~/Scripts/input_mask_3x/jquery.inputmask.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.number.min.js")"></script>
+<style>
+    .radio {
+        line-height: 14px;
+        padding-bottom: 7px;
+    }
+</style>
+<div class="clear"></div>
+
+
+@using (Html.BeginForm("GenerateVoucherCode", "InterSwitch", FormMethod.Post, new {Area="Payment", name = "gcform" }))
+{
+      
+          
+    <div class="container">
+        <div>
+            @Html.ValidationSummary(false)
+        </div>
+        <div class="form-horizontal">
+
+            <div class="row-fluid">
+                <div class="span4 offset2">
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.Name)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.Name, new { @placeholder = "Name", autocomplete="off" })
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.Name)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.InterSwitchUserView.Email, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.Email, new { @placeholder = "Email Address", autocomplete="off"  })
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.Email)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.Phone)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.Phone, new { @placeholder = "Phone Number", autocomplete="off"})
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.Phone)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.BVN)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.BVN, new { @placeholder = "BVN", maxlength = 11 , autocomplete="off"})
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.BVN)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelFor(m => m.InterSwitchUserView.PricePerSearch)
+                        </div>
+                        <div class="controls">
+                            @Html.DisplayFor(m => m.InterSwitchUserView.PricePerSearch)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <div class="row-fluid">
+                <div class="span6 offset2">
+                    <div class="inline text-center">
+                        <h4>Security Check</h4>
+                        <div class="text-center" style="border: 1px solid; border-color: #69b096">
+                            <p>Please type the characters you see in the picture below</p>
+                            @Html.Captcha("Refresh", "", 5, "The input field is required", false)
+                            @Html.ValidationMessage("CaptchaInputText")
+                            <p>Letters are not case sensitive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row-fluid">
+                <div class="span6 offset3">
+                    <div class="control-group">
+                        <div class="controls">
+                            <a href="#myModal" role="button" data-toggle="modal" id="btngenerate" class="btn btn-primary">Generate Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.InterSwitchUserView.Currency)                  
+    @Html.HiddenFor(m => m.InterSwitchUserView.Amount)  
+    @Html.HiddenFor(m => m.InterSwitchUserView.TransactionDate)   
+    @Html.HiddenFor(m => m.InterSwitchUserView.Quantity)    
+    @Html.HiddenFor(m => m.InterSwitchUserView.PricePerSearch)
+    @Html.HiddenFor(m => m.InterSwitchUserView.TopUpCode)
+    @Html.HiddenFor(m => m.InterSwitchUserView.IsTopUpPayment)
+
+    
+    
+    
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 style="text-align: center;" id="myModalLabel">Payment Details</h4>
+        </div>
+        <div class="form-horizontal">
+            <div id="userdetails" style="padding: 15px">
+                <fieldset>
+                    <legend></legend>
+                    <div style="text-align: center"><b>Please make sure the information provided is correct.</b></div>
+                    <br />
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.InterSwitchUserView.Name)
+                        </div>
+                        <div class="controls">
+                            <p id="name"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.InterSwitchUserView.Email)
+                        </div>
+                        <div class="controls">
+                            <p id="email"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.InterSwitchUserView.Phone)
+                        </div>
+                        <div class="controls">
+                            <p id="phone"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.InterSwitchUserView.BVN)
+                        </div>
+                        <div class="controls">
+                            <p id="bvn"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <input type="button" id="submitButton" class="btn btn-primary" value='Generate' />
+        </div>
+    </div>
+}
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryloadmask")
+}
+
+
+<script>
+    var _telname = "InterSwitchUserView.Phone";
+    $("input[name='" + _telname + "']").inputmask("(999) 9 999 99999");
+
+
+    $(document).ready(function () {
+
+        $("#btngenerate").click(function () {
+
+            var name = $("#InterSwitchUserView_Name").val();
+            var email = $("#InterSwitchUserView_Email").val();
+            var phone = $("#InterSwitchUserView_Phone").val();
+            var bvn = $("#InterSwitchUserView_BVN").val();
+
+            $("#name").text(name);
+            $("#email").text(email);
+            $("#phone").text(phone);
+            $("#bvn").text(bvn);
+
+            $("myModal").modal("show");
+
+        });
+
+        $("#submitButton").click(function () {
+            document.gcform.submit();
+        });
+
+    });
+
+
+</script>

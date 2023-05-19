@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Messaging.Configuration.Request.GetDataForConfigurationRequest">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Configuration\Request\GetDataForConfigurationRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Configuration.Request.SaveConfigurationRequest">
+    <Position X="0.5" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Messaging\Configuration\Request\SaveConfigurationRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveFeeConfigurationRequest">
+    <Position X="3.25" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Configuration\Request\SaveConfigurationRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Configuration.Response.GetWorkflowConfigurationResponse">
+    <Position X="3.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Messaging\Configuration\Response\GetDataForConfigurationResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Configuration.Response.GetFeeConfigurationResponse">
+    <Position X="9.5" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Messaging\Configuration\Response\GetDataForConfigurationResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Configuration.Response.SaveConfigurationResponse">
+    <Position X="6.5" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Messaging\Configuration\Response\SaveConfigurationResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Configuration.Response.SaveFeeConfigurationResponse">
+    <Position X="3.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Configuration\Response\SaveConfigurationResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.EmailAdministration.Request.ViewEmailRequest">
+    <Position X="6.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\EmailAdministration\Request\ViewEmailRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.EmailAdministration.Response.ViewEmailResponse">
+    <Position X="6.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\EmailAdministration\Response\ViewEmailResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Workflow.Request.GetDataForTaskHandleRequest">
+    <Position X="3.5" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Messaging\Workflow\Request\GetDataForTaskHandleRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Workflow.Request.GetNumberOfTaskRequest">
+    <Position X="9.75" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Workflow\Request\GetNumberOfTaskRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Workflow.Request.ViewMyTasksRequest">
+    <Position X="6.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Workflow\Request\GetNumberOfTaskRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Workflow.Request.HandleWorkItemRequest">
+    <Position X="0.5" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAABAAAABAAAAA=</HashCode>
+      <FileName>Messaging\Workflow\Request\HandleWorkItemRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Workflow.Request.ViewMyTasksResponse">
+    <Position X="6.5" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Workflow\Request\HandleWorkItemRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Service.Messaging.Workflow.Response.GetDataForTaskHandleResponse">
+    <Position X="9.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAJIKAAAAAAAAAAAACAgAAwAAAAAAAAAAABAEA=</HashCode>
+      <FileName>Messaging\Workflow\Response\GetDataForTaskHandleResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CRL.Service.Messaging.Configuration.Request.ConfigurationPage">
+    <Position X="0.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAgAAAAACAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messaging\Configuration\Request\GetDataForConfigurationRequest.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

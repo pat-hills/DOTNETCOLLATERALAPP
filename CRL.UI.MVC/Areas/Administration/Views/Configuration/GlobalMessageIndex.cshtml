@@ -1,0 +1,146 @@
+﻿@model CRL.UI.MVC.Areas.Administration.Models.ViewPageModels.GlobalMessageIndexViewModel
+@using CRL.UI.MVC.Common.Enums;
+@using CRL.Infrastructure.Authentication;
+@using CRL.UI.MVC.Areas.Administration.Models.ViewPageModels;
+@{
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+@{
+    ViewBag.Title = "Global Messaging";
+    ViewBag.Icon = "icon-envelope";
+    ViewBag.HeaderSummary = "Global Messaging";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Notifications";
+ AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "searchgrid",
+        Url = Url.Action("SubmitSearchFilterForJqGrid")
+
+    };
+    }
+
+
+<div class="row-fluid">
+    <div class="span12">
+        @if (SecurityUser.IsInAnyRoles("Administrator (Owner)"))
+        {
+          <p>
+            <a href="@Url.Action("GlobalMessageDetails",new{mode=2})" class="btn btn-small btn-primary">Create Global Message</a>
+        </p>
+        }
+        
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>List
+                </h3>
+            </div>
+            <div class="box-content">
+                <div class="form-horizontal">
+                    @using (Ajax.BeginForm(ajaxOpts))
+                    { 
+
+                        <div class="filter form-horizontal">
+                            <div class="filterbody SearchDateParamLabelWidth">
+                                <fieldset>
+                                    <legend>Filter Messages</legend>
+                                    <div class="control-group"><div class="control-label">Date Search Method</div>
+                                        <div class="controls">
+                                            @Html.RadioButtonFor(model => model._GlobalMessageJqGridViewModel.UseStartEndDateOption, "true") Start End Date
+                                            @Html.RadioButtonFor(model => model._GlobalMessageJqGridViewModel.UseStartEndDateOption, "false") Month and Year
+                                        </div>
+                                    </div>
+                                    <div id="pnlStartEndDate">
+                                        <div class="control-group">
+                                            <div class="control-label">Start Date</div>
+                                            <div class="controls">
+                                                @Html.TextBoxFor(model => model._GlobalMessageJqGridViewModel.StartDate)
+                                                @Html.ValidationMessageFor(model => model._GlobalMessageJqGridViewModel.StartDate)
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="control-label">End Date</div>
+                                            <div class="controls">
+                                                @Html.TextBoxFor(model => model._GlobalMessageJqGridViewModel.EndDate)
+                                                @Html.ValidationMessageFor(model => model._GlobalMessageJqGridViewModel.EndDate)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="pnlMonthYear">
+                                        <div class="control-group">
+                                            <div class="control-label">Month</div>
+                                            <div class="controls">
+                                                @Html.DropDownListFor(model => model._GlobalMessageJqGridViewModel.SelectedMonthList, Model._GlobalMessageJqGridViewModel.MonthsList)
+                                                @Html.ValidationMessageFor(model => model._GlobalMessageJqGridViewModel.SelectedMonthList)
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="control-label">Year</div>
+                                            <div class="controls">
+                                                @Html.TextBoxFor(model => model._GlobalMessageJqGridViewModel.SelectedYear)
+                                                @Html.ValidationMessageFor(model => model._GlobalMessageJqGridViewModel.SelectedYear)
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="clear"></div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input type="submit" class="btn btn-primary" name="Search by name" value="Submit Search" />
+                                        </div>
+                                    </div>
+                
+                                </fieldset>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+ 
+
+
+                    }
+                </div>
+                @Html.Action("SubmitSearchFilterForJqGrid", Model._GlobalMessageJqGridViewModel)
+            </div>
+        </div>
+    </div>
+    </div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    }
+
+
+<script>
+    $("#pnlMonthYear").hide();
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+        $("input[name='_GlobalMessageJqGridViewModel.StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='_GlobalMessageJqGridViewModel.EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='_GlobalMessageJqGridViewModel.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+    </script>

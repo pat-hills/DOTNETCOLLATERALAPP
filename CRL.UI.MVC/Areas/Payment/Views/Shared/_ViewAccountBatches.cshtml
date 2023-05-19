@@ -1,0 +1,201 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._ViewAccountBatchesJqGrid
+@using CRL.Infrastructure.Enums
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+@{var SecurityUser = (SecurityUser)HttpContext.Current.User;}
+
+<style type="text/css">
+    .ui-jqgrid tr.jqgrow td {
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+    }
+
+    .btn-info, .btn-info:link {
+        background: #4a96d1;
+        border-color: #4a96d1;
+        color: #fff;
+    }
+
+    .btn-danger {
+        background: #D84C47;
+        border-color: #D84C47;
+    }
+
+    a .btn-info, a:hover.btn-info, a:link.btn-info, a:active.btn-info, a:focus.btn-info {
+        color: #fff !important;
+    }
+
+    .icon-edit-sign, .icon-remove-sign, .icon-ban-circle, .icon-check-sign, .icon-group, .icon-building, .icon-user, .icon-key {
+        color: white;
+    }
+
+    .btn-purple {
+        background: #ab28a5 !important;
+        border-color: #ab28a5;
+    }
+
+    .btn-success {
+        background: #159241;
+        border-color: #159241;
+    }
+
+    .btn-purple:hover, .btn-purple:focus, .btn-purple:active, .btn-purple.active, .btn-purple.disabled, .btn-purple[disabled] {
+        background-color: #c83ac2 !important;
+    }
+</style>
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("SummOfPostPaidTransactionsByBank");
+        c = c.SetCaption("List Of Account Transaction Batches");
+        c = c.AddColumn(new Column("Id").SetCustomFormatter("buttonize").SetLabel("Actions").SetSearch(false).SetSortable(false).SetWidth(320));
+        c = c.AddColumn(new Column("Id").SetLabel("Batch No").SetSearch(true));
+        c = c.AddColumn(new Column("CreatedOn").SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'd-M-Y'").SetSearchType(MvcJqGrid.Enums.Searchtype.Datepicker).SetSearchDateFormat("M/dd/yy").SetLabel("Date"));
+        c = c.AddColumn(new Column("PeriodStartDate").SetSearch(false).SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'M-d-Y'").SetLabel("Period Start Date"));
+        c = c.AddColumn(new Column("PeriodEndDate").SetSearch(false).SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'M-d-Y'").SetLabel("Period End Date"));
+        c = c.AddColumn(new Column("BatchStatus").SetSearchType(MvcJqGrid.Enums.Searchtype.Select).SetSortable(false)
+        .SetSearchTerms((IDictionary<string, string>)Model.BatchStatusTypes).SetLabel("Batch Status"));
+        c = c.AddColumn(new Column("Comment").SetSearch(false).SetHidden(true));
+        if (((SecurityUser)HttpContext.Current.User).IsOwnerUser)
+        {
+            c = c.AddColumn(new Column("InstitutionName").SetSearch(false).SetLabel("Institution"));
+        }
+        c = c.SetUrl(Url.Action("GetJsonForAccountBatchesJqGrid", "Payment", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetRowNum(15)
+        .SetAutoWidth(true)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true).SetSearchToolbar(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);
+
+    }
+    @(c)
+
+
+
+    <script>
+        function buttonize(cellvalue, options, rowobject) {
+            var buttons = "";
+
+            var Button3 = '<a class="btn btn-flat orange" title="Download Report"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',3 )"><i class="icon-download-alt"></i></a>'
+                //'<button class="" title="Download Report"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',3 )">Download Report</button>'
+            buttons = buttons + Button3
+
+            var Button4 = '<a class="btn btn-flat btn-purple purple" title="View"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',4 )">View</a>'
+                //'<button class="" title="View"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',4 )">View</button>'
+            buttons = buttons + Button4
+
+
+              @if (SecurityUser.IsInAnyRoles("Administrator (Owner)", "CRL Finance Officer"))
+              {
+            <text>
+            var Button1 = "";
+            if (!(rowobject['isReconciled'])) {
+                var Button1 = '<a class="btn btn-flat" title="Reconcile"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',1 )">Reconcile</a>';
+                buttons = buttons + Button1;
+
+            }
+
+
+        </text>
+              }
+              else if (SecurityUser.IsInAnyRoles("Administrator (Client)", "Finance Officer"))
+              {
+            <text>
+            var Button1 = "";
+            if (rowobject['ConfirmSubPostpaidAccount']) {
+                Button1 = '<a class="btn btn-flat green" title="Confirm"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',5 )">Confirm</a>';
+                buttons = buttons + Button1;
+            }
+
+
+            </text>
+              }
+            if (!(rowobject['isReconciled'])) {
+                var Button2 = '<a class="btn btn-danger btn-flat red" title="Delete"  style="margin:3px 3px 3px 0; " onclick="edit(' + cellvalue + ',2 )">Delete</a>'
+
+                buttons = buttons + Button2
+            }
+
+            return buttons;
+
+        }
+
+
+        function edit(id, cmd) {
+
+            if (cmd == 1) {
+                var url = '@Html.Raw(Url.Action("ReconcileBatches", "Payment", new { Id = "-1" }))'
+                url = url.replace("-1", id);
+                window.location.assign(url);
+                // location.href = url;
+
+
+
+            }
+
+          @*  if (cmd == 2) {
+                var url = '@Html.Raw(Url.Action("Delete", "Payment", new { Id = "-1" }))'
+                url = url.replace("-1", id);
+                window.location.assign(url);
+
+
+            }*@
+
+            if (cmd == 2) {
+                var url = '@Url.Action("Delete", "Payment", new { Id = "-1" })'
+                url = url.replace("-1", id);
+
+                bootbox.confirm("Are you sure you want to delete this batch", function (result) {
+                    if (result == true) {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: id,
+                            datatype: "json",
+                            cache: false,
+                            error: function (data) { bootbox.alert("Error Processing Request") },
+                            success: function (data) { bootbox.alert(data); $("#SummOfPostPaidTransactionsByBank").jqGrid('setGridParam', { url: '@Url.Action("GetJsonForAccountBatchesJqGrid", "Payment", Model)' }).trigger('reloadGrid'); },
+                           });
+                       }
+                       else {
+
+                       }
+                   });
+               }
+
+               if (cmd == 3) {
+                   var url = '@Html.Raw(Url.Action("DownloadBatchDetailReport", "Payment", new { Id = "-1" }))'
+                url = url.replace("-1", id);
+                window.location.assign(url);
+
+
+            }
+
+            if (cmd == 4) {
+                var url = '@Html.Raw(Url.Action("ViewBatchDetails", "Payment", new { Id = "-1" }))'
+            url = url.replace("-1", id);
+            window.location.assign(url);
+
+
+        }
+
+        if (cmd == 5) {
+            var url = '@Html.Raw(Url.Action("ReconcileSubPostpaidClients", "Payment", new { Id = "-1" }))'
+                url = url.replace("-1", id);
+                window.location.assign(url);
+
+
+            }
+        }
+
+    </script>
+</div>

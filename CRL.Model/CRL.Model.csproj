@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC045B2C-AC6C-4DEF-87D6-65501BCF83C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRL.Model</RootNamespace>
+    <AssemblyName>CRL.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.5.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caching\CachedData.cs" />
+    <Compile Include="Common\ViewBase.cs" />
+    <Compile Include="Factories\FactoryChangeServiceModel.cs" />
+    <Compile Include="Messaging\CACSearch.cs" />
+    <Compile Include="Messaging\ChangeFSMsgs.cs" />
+    <Compile Include="Messaging\CreateEditFSRequest.cs" />
+    <Compile Include="Messaging\HandleWorkItemRequest.cs" />
+    <Compile Include="Messaging\SearchRequest.cs" />
+    <Compile Include="Messaging\SearchResponse.cs" />
+    <Compile Include="Messaging\ViewAuditDetailsRequest.cs" />
+    <Compile Include="Messaging\ViewAuditDetailsResponse.cs" />
+    <Compile Include="Messaging\ViewAuditsRequest.cs" />
+    <Compile Include="Messaging\ViewAuditsResponse.cs" />
+    <Compile Include="Messaging\ViewClientInstitutionsRequest.cs" />
+    <Compile Include="Messaging\ViewClientInstitutionsResponse.cs" />
+    <Compile Include="Messaging\ViewCreditActivitiesRequest.cs" />
+    <Compile Include="Messaging\ViewCreditActivitiesResponse.cs" />
+    <Compile Include="Messaging\ViewFSChangesMsgs.cs" />
+    <Compile Include="Messaging\ViewFSMsgs.cs" />
+    <Compile Include="Messaging\ViewPaymentsResponse.cs" />
+    <Compile Include="Messaging\ViewPaypViewPostpaidClientsRequest.cs" />
+    <Compile Include="Messaging\ViewUsersRequest.cs" />
+    <Compile Include="Messaging\ViewUsersResponse.cs" />
+    <Compile Include="ModelService\ConfigurationServiceModel.cs" />
+    <Compile Include="ModelService\FSServiceModel.cs" />
+    <Compile Include="ModelService\FS\AssignServiceModel.cs" />
+    <Compile Include="ModelService\FS\AuthoriseFSServiceModel.cs" />
+    <Compile Include="ModelService\FS\AuthorizeUpdateServiceModel.cs" />
+    <Compile Include="ModelService\FS\ChangeServiceModel.cs" />
+    <Compile Include="ModelService\FS\CreateFSServiceModel.cs" />
+    <Compile Include="ModelService\FS\DischargeFSDueToErrorModelService.cs" />
+    <Compile Include="ModelService\FS\DischargeServiceModel.cs" />
+    <Compile Include="ModelService\FS\FSServiceModelBase.cs" />
+    <Compile Include="ModelService\FS\SearchServiceModel.cs" />
+    <Compile Include="ModelService\FS\SubmitFSServiceModel.cs" />
+    <Compile Include="ModelService\FS\SubmitUpdateFSServiceModel.cs" />
+    <Compile Include="ModelService\FS\SubordinateServiceModel.cs" />
+    <Compile Include="ModelService\FS\UpdateFSServiceModel.cs" />
+    <Compile Include="ModelService\LookUpServiceHelper.cs" />
+    <Compile Include="ModelService\MembershipService.cs" />
+    <Compile Include="ModelService\WorkflowServiceModel.cs" />
+    <Compile Include="ModelViewMappers\ChangeDescriptionMapper.cs" />
+    <Compile Include="ModelViewMappers\ClientReportViewMapper.cs" />
+    <Compile Include="ModelViewMappers\CollateralReportViewExtension.cs" />
+    <Compile Include="ModelViewMappers\CollateralSummaryViewMapper.cs" />
+    <Compile Include="ModelViewMappers\CollateralViewExtension.cs" />
+    <Compile Include="ModelViewMappers\FSActivityMapper.cs" />
+    <Compile Include="ModelViewMappers\FSActivitySummaryReportViewBuilder.cs" />
+    <Compile Include="ModelViewMappers\FSReportViewExtension.cs" />
+    <Compile Include="ModelViewMappers\FSViewExtension.cs" />
+    <Compile Include="ModelViewMappers\IndividualDebtorViewExtension.cs" />
+    <Compile Include="ModelViewMappers\IndividualSPViewExtension.cs" />
+    <Compile Include="ModelViewMappers\IndividualSubordinatingPartyMapper.cs" />
+    <Compile Include="ModelViewMappers\InstitutionDebtorViewExtension.cs" />
+    <Compile Include="ModelViewMappers\InstitutionSPViewExtension.cs.cs" />
+    <Compile Include="ModelViewMappers\InstitutionSubordinatingPartyMapper.cs" />
+    <Compile Include="ModelViewMappers\MembershipMapper.cs" />
+    <Compile Include="ModelViewMappers\OtherIdentificationExtensions.cs" />
+    <Compile Include="ModelViewMappers\ParticipantReportViewExtensions.cs" />
+    <Compile Include="ModelViewMappers\ParticipantViewExtension.cs" />
+    <Compile Include="ModelViewMappers\SearchResultViewMapper.cs" />
+    <Compile Include="ModelViewMappers\SubordinatingPartyMapping.cs" />
+    <Compile Include="ModelViewMappers\SubordinatingPartyReportViewMapper.cs" />
+    <Compile Include="ModelViewMappers\UserMapper.cs" />
+    <Compile Include="ModelViews\Administration\GlobalMessageView.cs" />
+    <Compile Include="ModelViews\Amendment\AemdnemntReportClasses.cs" />
+    <Compile Include="ModelViews\Amendment\ChangeDescriptionView.cs" />
+    <Compile Include="ModelViews\Amendment\FSActivityGridView.cs" />
+    <Compile Include="ModelViews\Amendment\IndividualSubordinatingPartyView.cs" />
+    <Compile Include="ModelViews\Amendment\InstitutionSubordinatingPartyView.cs" />
+    <Compile Include="ModelViews\Amendment\SubordinatingPartyView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\CollateralSummaryView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\CollateralView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\CountyView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\DraftView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\FileUploadView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\FSCustomReportView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\FSGridView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\FSReportView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\FSStatView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\FSView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\IndividualDebtorParticipantView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\IndividualSPParticipantView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\InstitutionDebtorParticipantView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\InstitutionSPParticipantView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\LKLGAView.cs" />
+    <Compile Include="ModelViews\FinancingStatement\ParticipantView.cs" />
+    <Compile Include="ModelViews\Administration\AuditView.cs" />
+    <Compile Include="ModelViews\Membership\AuditActionView.cs" />
+    <Compile Include="ModelViews\Membership\ClientSummaryView.cs" />
+    <Compile Include="ModelViews\Membership\ClientView.cs" />
+    <Compile Include="ModelViews\Membership\InstitutionGridView.cs" />
+    <Compile Include="ModelViews\Membership\InstitutionUnitGridView.cs" />
+    <Compile Include="ModelViews\Membership\InstitutionUnitView.cs" />
+    <Compile Include="ModelViews\Membership\InstitutionView.cs" />
+    <Compile Include="ModelViews\Membership\MembershipRegistrationView.cs" />
+    <Compile Include="ModelViews\Membership\MembershipView.cs" />
+    <Compile Include="ModelViews\Membership\PersonView.cs" />
+    <Compile Include="ModelViews\Membership\RoleGridView.cs" />
+    <Compile Include="ModelViews\Membership\RoleView.cs" />
+    <Compile Include="ModelViews\Membership\UserGridView.cs" />
+    <Compile Include="ModelViews\Membership\UserView.cs" />
+    <Compile Include="ModelViews\Payment\AccountBatchView.cs" />
+    <Compile Include="ModelViews\Payment\CreditActivityView.cs" />
+    <Compile Include="ModelViews\Payment\PaymentView.cs" />
+    <Compile Include="ModelViews\Search\CACSearchView.cs" />
+    <Compile Include="ModelViews\Search\SearchParamReportView.cs" />
+    <Compile Include="ModelViews\Search\SearchRequestGridView.cs" />
+    <Compile Include="ModelViews\Search\SearchResultView.cs" />
+    <Compile Include="ModelViewValidators\FinancingStatement\CollateralViewValidator.cs" />
+    <Compile Include="ModelViewValidators\FinancingStatement\FSActivityRequestValidator.cs" />
+    <Compile Include="ModelViewValidators\FinancingStatement\FSViewValidator.cs" />
+    <Compile Include="ModelViewValidators\FinancingStatement\IdentifcationViewValidator.cs" />
+    <Compile Include="ModelViewValidators\FinancingStatement\ParticipantViewValidator.cs" />
+    <Compile Include="ModelViewValidators\FinancingStatement\RenewalViewValidator.cs" />
+    <Compile Include="ModelViewValidators\MembershipViews\InstitutionViewValidator.cs" />
+    <Compile Include="ModelViewValidators\MembershipViews\MembershipViewValidator.cs" />
+    <Compile Include="Model\Audit.cs" />
+    <Compile Include="Common\AddressInfo.cs" />
+    <Compile Include="Common\AuditedEntityBaseModel.cs" />
+    <Compile Include="Common\CommonLookUpClasses.cs" />
+    <Compile Include="Common\Enum\CompanyCategory.cs" />
+    <Compile Include="Common\IRepository\CommonLookUpRepositories.cs" />
+    <Compile Include="Model\Configuration\CurrencyRate.cs" />
+    <Compile Include="Model\Configuration\FeeConfiguration.cs" />
+    <Compile Include="Model\Configuration\IRepository\IConfigurationFeeRepository.cs" />
+    <Compile Include="Model\Configuration\IRepository\IConfigurationWorkflowRepository.cs" />
+    <Compile Include="Model\Configuration\IRepository\IRepositoryLookUps.cs" />
+    <Compile Include="Model\Configuration\WorkflowPlaceAssignmentConfiguration.cs" />
+    <Compile Include="Model\Configuration\WorkflowConfiguration.cs" />
+    <Compile Include="Model\Email\Email.cs" />
+    <Compile Include="Model\Email\EmailGenerator.cs" />
+    <Compile Include="Model\Email\EmailTemplate.cs" />
+    <Compile Include="Model\Email\IRepository\IEmailRepository.cs" />
+    <Compile Include="Model\Email\IRepository\IEmailTemplateRepository.cs" />
+    <Compile Include="Model\FS\ActivityAssignment.cs" />
+    <Compile Include="Model\FS\ActivityDischargeDueToError.cs" />
+    <Compile Include="Model\FS\ActivitySubordination.cs" />
+    <Compile Include="Model\FS\Collateral.cs" />
+    <Compile Include="Model\FS\ActivityDischarge.cs" />
+    <Compile Include="Model\FS\Enums\AuditEnums.cs" />
+    <Compile Include="Model\FS\Enums\CollateralEnums.cs" />
+    <Compile Include="Model\FS\Enums\FinancialStatementActivityEnum.cs" />
+    <Compile Include="Model\FS\Enums\FinancialStatementEnum.cs" />
+    <Compile Include="Model\FS\Enums\ParticipationEnum.cs" />
+    <Compile Include="Model\FS\Enums\PersonIndetificationEnum.cs" />
+    <Compile Include="Model\FS\FinancialStatement.cs" />
+    <Compile Include="Model\FS\FinancialStatementActivity.cs" />
+    <Compile Include="Model\FS\FinancialStatementComplexDuplicator.cs" />
+    <Compile Include="Model\FS\FSActivityReportBuilder.cs" />
+    <Compile Include="Model\FS\FSBatch.cs" />
+    <Compile Include="Model\FS\FSBatchAttachment.cs" />
+    <Compile Include="Model\FS\FSDetailReportBuilder.cs" />
+    <Compile Include="Model\FS\IRepository\ICollateralRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IFinancialStatementActivityRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IFinancialStatementRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IFSBatchRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IIndividualParticipantRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IInstitutionParticipantRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IParticipantRepository.cs" />
+    <Compile Include="Model\FS\IRepository\IRepositoryLookUps.cs" />
+    <Compile Include="Model\FS\IRepository\ISubordinatingParty.cs" />
+    <Compile Include="Model\FS\PersonIdentificationCard.cs" />
+    <Compile Include="Common\IIndividual.cs" />
+    <Compile Include="Common\IInsititution.cs" />
+    <Compile Include="Model\FS\IndividualParticipant.cs" />
+    <Compile Include="Model\FS\InstitutionParticipant.cs" />
+    <Compile Include="Model\FS\Participant.cs" />
+    <Compile Include="Model\FS\ActivityRenewal.cs" />
+    <Compile Include="Model\FS\ActivityUpdate.cs" />
+    <Compile Include="Model\FS\SubordinatingParticipant.cs" />
+    <Compile Include="Model\IAuditRepository.cs" />
+    <Compile Include="Model\IMessageRepository.cs" />
+    <Compile Include="Model\ISerialTrackerRepository.cs" />
+    <Compile Include="Model\LookUpFs.cs" />
+    <Compile Include="Model\Memberships\BankVerificationCode.cs" />
+    <Compile Include="Model\Memberships\Enums\MembershipEnum.cs" />
+    <Compile Include="Model\Memberships\InstitutionUnit.cs" />
+    <Compile Include="Model\Memberships\IRepository\IBankVerificationCodeRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\ILKInstitutionCategoryRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IInstitutionRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IInstitutionUnitRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\ILKMembershipCategoryRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IMembershipRegistrationRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IMembershipRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IPasswordResetRequestRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IPersonRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IRoleRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IRoleCategoryRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IRoleGroupRepository.cs" />
+    <Compile Include="Model\Memberships\IRepository\IUserRepository.cs" />
+    <Compile Include="Model\Memberships\Membership.cs" />
+    <Compile Include="Model\Memberships\MembershipRegistrationRequest.cs" />
+    <Compile Include="Model\Memberships\PasswordResetRequest.cs" />
+    <Compile Include="Model\Memberships\Person.cs" />
+    <Compile Include="Model\Memberships\Institution.cs" />
+    <Compile Include="Model\Memberships\Role.cs" />
+    <Compile Include="Model\Memberships\RoleCategory.cs" />
+    <Compile Include="Model\Memberships\RoleGroup.cs" />
+    <Compile Include="Model\Memberships\UserAssignmentRule.cs" />
+    <Compile Include="Model\Memberships\User.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\Payment\AccountTransaction.cs" />
+    <Compile Include="Model\Payment\BatchDetailsReportBuilder.cs" />
+    <Compile Include="Model\Payment\Fees.cs" />
+    <Compile Include="Model\Payment\IRepository\IPaymentRepository.cs" />
+    <Compile Include="Model\Payment\Payment.cs" />
+    <Compile Include="Model\Payment\PaymentProcessingService.cs" />
+    <Compile Include="Model\Search\IRepository\ITrackSearchResultRepository.cs" />
+    <Compile Include="Model\Search\SearchFSReportBuilder.cs" />
+    <Compile Include="Model\Search\SearchResultTracker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Reporting\IRepository\IReportRepository.cs" />
+    <Compile Include="Model\Reporting\Report.cs" />
+    <Compile Include="Model\Search\IRepository\ISearchFinancialStatement.cs" />
+    <Compile Include="Model\Search\SearchFinancialStatement.cs" />
+    <Compile Include="Model\Search\SearchParameters.cs" />
+    <Compile Include="Model\SerialTracker.cs" />
+    <Compile Include="Model\WorkflowEngine\ApplicationTask.cs" />
+    <Compile Include="Model\WorkflowEngine\AssignUsersFromService.cs" />
+    <Compile Include="Model\WorkflowEngine\Enums\WorkflowRequestType.cs" />
+    <Compile Include="Model\WorkflowEngine\IRepository\IWFCaseRepository.cs" />
+    <Compile Include="Model\WorkflowEngine\IRepository\IWFWorkflowRepository.cs" />
+    <Compile Include="Model\WorkflowEngine\UserAssignmentRuleProcessorService.cs" />
+    <Compile Include="Model\WorkflowEngine\UserNotificationRuleProcessorService.cs" />
+    <Compile Include="Model\WorkflowEngine\WFTasks.cs" />
+    <Compile Include="Model\WorkflowEngine\WFTransitionOwnership.cs" />
+    <Compile Include="Model\WorkflowEngine\WFArc.cs" />
+    <Compile Include="Model\WorkflowEngine\WFCase.cs" />
+    <Compile Include="Model\WorkflowEngine\WFPlace.cs" />
+    <Compile Include="Model\WorkflowEngine\WFToken.cs" />
+    <Compile Include="Model\WorkflowEngine\WFTransition.cs" />
+    <Compile Include="Model\WorkflowEngine\WFWorkflow.cs" />
+    <Compile Include="Model\WorkflowEngine\WFWorkItem.cs" />
+    <Compile Include="Model\WorkflowEngine\WorkflowManager.cs" />
+    <Compile Include="Model\WorkflowEngine\WorkflowTemplate.cs" />
+    <Compile Include="ModelViews\Search\SearchReportView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\FS\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRL.Infrastructure\CRL.Infrastructure.csproj">
+      <Project>{d6d0eba3-e928-4d03-806c-6b7e0e28e706}</Project>
+      <Name>CRL.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagrams\FinancialStatement.cd" />
+    <None Include="ClassDiagrams\Infrastructure.cd" />
+    <None Include="ClassDiagrams\ModelFinancialStatementActivity.cd" />
+    <None Include="Model\FS\ClassDiagrams\FinancialStatement.cd" />
+    <None Include="Model\Memberships\ClassDiagrams\Membership.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\CRL.Model.ModelViews.Payments.ExpenditureByTransactionView.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\AddDescriptionToSectorOfOperations.txt" />
+    <Content Include="Scripts\CACResults-19-03-2019.txt" />
+    <Content Include="Scripts\DOBMandatory.txt" />
+    <Content Include="Scripts\MakeExpiryDateAndSecurityAgreementDateMandatory.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

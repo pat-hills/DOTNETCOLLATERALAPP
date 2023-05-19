@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Model.FS.FinancialStatement" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACMAAABAIAAoAAABoiAhAEEQQQkM4AoIGgAAKEAAAI=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKFinancialStatementLoanCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKFinancialStatementTransactionCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.FinancialStatementSnapshot" BaseTypeListCollapsed="true">
+    <Position X="3" Y="11" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABAAAAAAAAAAAAACAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.FileUpload" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABIQBACAAAAAAAAAAAAIAAAAAAIAAAAAAAAAIAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.Collateral" BaseTypeListCollapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAgAABABAgZAAAAoKAAAAAAAAAIAAAAAEgAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Collateral.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKCollateralCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="11.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Collateral.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKAssetCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Collateral.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKCollateralSubTypeCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="10.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAEAAgAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Collateral.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.CollateralExtensions" Collapsed="true">
+    <Position X="7.25" Y="11.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Collateral.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.Participant" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABABAAAACAAACAAAQCAAIQIAAKAAFgAIAACCA=</HashCode>
+      <FileName>Model\FinancialStatement\Participant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKParticipationCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Participant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKParticipantCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Participant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKSectorOfOperationCategory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Participant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.FS.ParticipantExtensions" Collapsed="true">
+    <Position X="7.25" Y="12.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\Participant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.IndividualParticipant">
+    <Position X="4.75" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABCAAAAECBAAAACAAAABAAIAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\IndividualParticipant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.InstitutionParticipant">
+    <Position X="4.75" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAACAAgAAAAAAAgEAgBQAABAAIAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\FinancialStatement\InstitutionParticipant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKDebtorCategory" Collapsed="true">
+    <Position X="9.5" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\InstitutionParticipant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKSecuringPartyIndustryCategory" Collapsed="true">
+    <Position X="9.5" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\InstitutionParticipant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.FSBatch">
+    <Position X="5.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABIAAAAAAAAAAAAAQAAAAAABABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FSBatch.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.FSBatchDetail">
+    <Position X="7.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABQAAAIAAAAAAAEAAEkAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FSBatch.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

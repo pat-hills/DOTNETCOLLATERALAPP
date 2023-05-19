@@ -1,0 +1,1489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{730C0B49-30EC-40B8-9A13-ECC4419EDCEE}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRL.UI.MVC</RootNamespace>
+    <AssemblyName>CRL.UI.MVC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="BeginCollectionItem">
+      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper">
+      <HintPath>..\packages\Bootstrapper.2.0.3.9\lib\Net40\Bootstrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Bootstrapper.AutoMapper">
+      <HintPath>..\packages\Bootstrapper.AutoMapper.2.0.3.11\lib\Net40\Bootstrapper.AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CaptchaMvc.Mvc4.1.5.0\lib\net40-full\CaptchaMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CsvHelper.2.13.0.0\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.11.0.0\lib\net20\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcCheckBoxList">
+      <HintPath>..\packages\MvcCheckBoxList.1.4.4.4\lib\net45\MvcCheckBoxList.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcJqGrid">
+      <HintPath>..\packages\MvcJqGrid.1.0.12\lib\net40\MvcJqGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\EmailAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Models\ModelHelpers\AdminViewModelHelper.cs" />
+    <Compile Include="Areas\Administration\Models\ModelHelpers\GlobalMessageViewModelHelper.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\EmailsIndexViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\EmailViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\GlobalMessageDetailsViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\GlobalMessageIndexViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\_EmailJqGridViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\_GlobalMessageDetailsViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\ViewPageModels\_GlobalMessageJqGridViewModel.cs" />
+    <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
+    <Compile Include="Areas\Configuration\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\Configuration\Models\ModelBinders\ConfigurationFeeModelBinder.cs" />
+    <Compile Include="Areas\Configuration\Models\ModelHelpers\_BVCJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_BvcJqgridViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_ConfigurationFeeViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_FeeConfigurationsJqgrid.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_FeeConfigurationView.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_FeeLoanConfigurationSetupViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_GeneralConfigurationViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_PeriodicFeeConfigurationViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_PerTransactionFeeConfigurationViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\Shared\_WorkFlowConfigurationViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\ViewPageModel\BVCUploadViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\ViewPageModel\ConfigurationViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\ViewPageModel\FeeConfigurationDetailViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\ViewPageModel\FeeConfigurationViewModel.cs" />
+    <Compile Include="Areas\Configuration\Models\ViewPageModel\IndexOfFeeConfigurationViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Controllers\FinancialStatementActivityController.cs" />
+    <Compile Include="Areas\FinancialStatement\Controllers\FinancialStatementBatchUploadController.cs" />
+    <Compile Include="Areas\FinancialStatement\Controllers\FinancialStatementController.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ModelBinders\ActivityViewModelBaseBinder.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ModelBinders\SubordinatingPartyViewModelBinder.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ModelHelpers\_FSJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\AmendSummaryViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\AmendViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\SelectAmendmentTypeViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\AmendViewModelBase.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_AssignViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_DischargeDueToErrorViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SubordinateViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SummaryViewDischargeDueToErrorViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SummaryViewSubordinateViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementBatchUpload\FSBatchDetailsViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementBatchUpload\FSBatchIndexViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementBatchUpload\FSBatchUploadViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementBatchUpload\Shared\_FSBatchDetailJqGridViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementBatchUpload\Shared\_FSBatchIndexJqGridViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\CustomValidators\DischargeViewValidator.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ModelHelpers\FSViewModelHelper.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ModelHelpers\SavedDraftViewModelHelpers.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ModelHelpers\_FSJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\BusinessRegPrefix.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\DetailViewFSViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\FSViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\IndexOfSavedDraftsViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_ActivitiesViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_FileUploadViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_IndividualDebtorParticipantViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_IndividualSPViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_InstitutionDebtorParticipantViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_ListOfInstitutionsViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_OtherIdentificationViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_ParticipantViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\FinancialStatementAreaRegistration.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ModelBinders\ParticipantViewModelBinder.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SummaryViewAmendmentViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_CollateralViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_DischargeViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_RenewalViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\DischargedCollateralView.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SummaryViewDischargeViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\FinancialStatementSummaryView.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\FSActivitySummaryViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\FSCreateEditViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_FSActivityJqGridViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\FSActivityIndexViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\FSIndexViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_FSJqGridViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\FSSummaryViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_NewAndPreviousDetailFSViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_InstitutionSPViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SummaryViewRenewalViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatementActivity\ViewPageModels\Shared\_SummaryViewUpdateViewModel.cs" />
+    <Compile Include="Areas\FinancialStatement\Models\FinancialStatement\ViewPageModels\Shared\_SavedDraftsJqGrid.cs" />
+    <Compile Include="Areas\Membership\Controllers\ClientController.cs" />
+    <Compile Include="Areas\Membership\Controllers\InstitutionController.cs" />
+    <Compile Include="Areas\Membership\Controllers\InstitutionUnitController.cs" />
+    <Compile Include="Areas\Membership\Controllers\MembershipRegistrationController.cs" />
+    <Compile Include="Areas\Membership\Controllers\UserController.cs" />
+    <Compile Include="Areas\Membership\MembershipAreaRegistration.cs" />
+    <Compile Include="Areas\Membership\Models\DataSourceLookups\GlobilisationHelperClass.cs" />
+    <Compile Include="Areas\Membership\Models\LgaHelper.cs" />
+    <Compile Include="Areas\Membership\Models\LgaRepository.cs" />
+    <Compile Include="Areas\Membership\Models\ModelBinders\MembershipRegistrationBinder.cs" />
+    <Compile Include="Areas\Membership\Models\ModelHelpers\InstitutionUnitViewModelHelper.cs" />
+    <Compile Include="Areas\Membership\Models\ModelHelpers\InstitutionViewModelHelper.cs" />
+    <Compile Include="Areas\Membership\Models\ModelHelpers\MapViewToAuditTrailRequest.cs" />
+    <Compile Include="Areas\Membership\Models\ModelHelpers\_EmailJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\Membership\Models\ModelHelpers\_InstitutionGridViewJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\AuditDetailsViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\AuditIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\CreditActivitiesIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\EmailDetailViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\EmailIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\SetupPostpaidMembershipViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\SubmitPayPointRequestViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Client\_SetupPostpaidMembershipViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\IndividualRegistrationViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\InstitutionRegistrationViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\InstitutionUnit\InstitutionUnitIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\InstitutionUnit\InstitutionUnitViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Institution\InstitutionIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Institution\InstitutionViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Institution\PostPaidIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\MembershipRegistration\ClientVerificationViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\MembershipRegistration\MembershipRegistrationIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\MembershipRegistration\MembershipRegistrationViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\RegistrationIndexViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Client\_AuditJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Client\_CreditActivitiesJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Client\_EmailJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Client\_NonPayPointUsersJqGrid.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Client\_PayPointUsersJqGrid.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\InstitutionUnit\_InstitutionUnitsJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\InstitutionUnit\_InstitutionUnitViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Institution\_InstitutionsJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Institution\_InstitutionViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\Institution\_PostPaidClientsJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\MembershipRegistration\_MembershipRegistrationsJqGrid.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\MembershipRegistration\_MembershipRegistrationViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\User\_ChangePasswordViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\User\_UsersListViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\User\_UserRolesJqGridViewModel .cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\User\_UsersJqGridViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\Shared\User\_UserViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\UserAdministration\RoleDetailPage.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\UserAdministration\UserDetailViewModel.cs" />
+    <Compile Include="Areas\Membership\Models\ViewPageModels\UserAdministration\UserIndexViewModel.cs" />
+    <Compile Include="Areas\Payment\Controllers\InterSwitchController.cs" />
+    <Compile Include="Areas\Payment\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Payment\Models\ModelHelpers\InterSwitchViewModelHelper.cs" />
+    <Compile Include="Areas\Payment\Models\ModelHelpers\PaymentViewModelViewHelper.cs" />
+    <Compile Include="Areas\Payment\Models\ModelHelpers\_BatchJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\Payment\Models\ModelHelpers\_PaymentJqGridViewModelHelper.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\AccountBatchesIndexViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\CheckBalanceViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\DirectPayTransactionDetailsViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\DirectPayTransactionIndexViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\InterSwitchPaymentSummaryViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\InterSwitchResponseViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\InterSwitchTransactionDetailsViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\InterSwitchTransactionIndexViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\InterSwitchUserViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\PaymentIndexViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\PaymentViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\GenerateBatchViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\SelectClientViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\SubPostpaidClientsViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\TransactionDetailsViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\ViewBatchDetails.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_BatchDetailsGrid.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_DirectPayTransactionsJqGrid.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_InterSwitchJqGrid.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_InterSwitchTransactionsJqGrid.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_ListOfTransactionsJqGrid.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_PaymentJqGridViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_SubPostpaidClientsJqGridViewModel.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_TransactionDetailsPartialView.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_ViewAccountBatchesJqGrid.cs" />
+    <Compile Include="Areas\Payment\Models\ViewPageModels\_ViewBatchDetailsPartailViewModel.cs" />
+    <Compile Include="Areas\Payment\PaymentAreaRegistration.cs" />
+    <Compile Include="Areas\Search\Controllers\SearchController.cs" />
+    <Compile Include="Areas\Search\Models\ModelHelpers\SearchViewModelHelper.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\CACSearch_Backup.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\GenerateSearchReportViewModel.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\ResultSearchViewModel.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\SearchViewModel.cs" />
+    <Compile Include="Areas\Search\Models\ModelHelpers\_FSSearchesViewModelHelper.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\FSSearchesIndexViewModel.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\ViewSearchesViewModel.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\_FSSearchesViewModel.cs" />
+    <Compile Include="Areas\Search\Models\ViewPageModels\_SearchResultJqGridViewModel.cs" />
+    <Compile Include="Areas\Search\SearchAreaRegistration.cs" />
+    <Compile Include="Areas\Workflow\Controllers\TaskHandleController.cs" />
+    <Compile Include="Areas\Workflow\Models\ViewPageModels\Shared\_TaskJqGridViewModel.cs" />
+    <Compile Include="Areas\Workflow\Models\ViewPageModels\Shared\_TaskHandleViewModel.cs" />
+    <Compile Include="Areas\Workflow\Models\ViewPageModels\TaskHandleViewModel.cs" />
+    <Compile Include="Areas\Workflow\Models\ViewPageModels\TaskIndexViewModel.cs" />
+    <Compile Include="Areas\Workflow\WorkflowAreaRegistration.cs" />
+    <Compile Include="BootStrapper.cs" />
+    <Compile Include="CBLDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CBLDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Common\BaseDetailViewModel.cs" />
+    <Compile Include="Common\ControllerBase.cs" />
+    <Compile Include="Common\CustomActionFilters\ActionFilters.cs" />
+    <Compile Include="Common\DateSearchParamHelper.cs" />
+    <Compile Include="Common\Enums\ViewModelBuildType.cs" />
+    <Compile Include="Common\HandleUnauthorised.cs" />
+    <Compile Include="Common\ParamDateSearch.cs" />
+    <Compile Include="Common\SelectListExtensions.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HTMLHelpers\HtmlExtensions.cs" />
+    <Compile Include="HTMLHelpers\MenuHelper.cs" />
+    <Compile Include="HTMLHelpers\MessageHelper.cs" />
+    <Compile Include="HTMLHelpers\PageLinksHelper.cs" />
+    <Compile Include="HTMLHelpers\RadioButtonForSelectList.cs" />
+    <Compile Include="Models\Dashboard\ViewModel\DashboardViewModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Report\ModelBinders\ReportViewModelBinder.cs" />
+    <Compile Include="Models\Report\ReportBaseViewModel.cs" />
+    <Compile Include="Models\Report\ReportBaseViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\AuditViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\ClientExpenditureByTransactionModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\DebtorStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\FSCustomQueryViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfCollateralStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\CreditActivitiesViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\FSListViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\FSStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\LegalEntitiesViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfAmendStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfDebtorStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfDischargeStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfLenderStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfSearchStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\NoOfServiceStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\PaymentsViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\PaypointPaymentViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\ReportsViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\SearchesViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\StaticReport.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\SummaryBillByClientViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\SummaryBillViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\SummaryClientExpendituresViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\UsersViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\ValueOfFeesStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModelHelper\ValueOfFSStatViewModelHelper.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\AuditViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\ClientExpenditureByTransactionViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\DebtorStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\FSCustomQueryViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfCollateralStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfDebtorStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfDischargeStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfServiceStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\PaypointPaymentViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\SummaryClientExpendituresViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\SummaryBillByClientViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\CreditActivitiesViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\FSListViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\FSStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\LegalEntitiesViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfAmendStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfLenderStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\NoOfSearchStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\PaymentsViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\SearchesViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\SummaryBillViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\UsersViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\ValueOfFeesStatViewModel.cs" />
+    <Compile Include="Models\Report\ReportsViewModel\ValueOfFSStatViewModel.cs" />
+    <Compile Include="Models\Report\ViewModel\ReportDescriptionViewModel.cs" />
+    <Compile Include="Models\Report\ViewModel\ReportIndexViewModel.cs" />
+    <Compile Include="Models\Report\ViewModel\ReportViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Shared\ReportViewer.ascx.cs">
+      <DependentUpon>ReportViewer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\ReportViewer.ascx.designer.cs">
+      <DependentUpon>ReportViewer.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content2\css\base.css" />
+    <Content Include="Content2\css\bootstrap-responsive.css" />
+    <Content Include="Content2\css\bootstrap-responsive.min.css" />
+    <Content Include="Content2\css\bootstrap.css" />
+    <Content Include="Content2\css\bootstrap.min.css" />
+    <Content Include="Content2\css\carousel.css" />
+    <Content Include="Content2\css\collateralsystem-nigeria.webflow.css" />
+    <Content Include="Content2\css\crlmodme.css" />
+    <Content Include="Content2\css\flexslider.css" />
+    <Content Include="Content2\css\font-awesome.css" />
+    <Content Include="Content2\css\font-awesome.min.css" />
+    <Content Include="Content2\css\fonts\BebasNeue-webfont.svg" />
+    <Content Include="Content2\css\fonts\Dharma Type Font License.txt" />
+    <Content Include="Content2\css\fonts\fontomas-webfont.svg" />
+    <Content Include="Content2\css\fonts\franchise-bold-webfont.svg" />
+    <Content Include="Content2\css\green.css" />
+    <Content Include="Content2\css\homelayout.css" />
+    <Content Include="Content2\css\jquery.treeview.css" />
+    <Content Include="Content2\css\jquery.Wload.css" />
+    <Content Include="Content2\css\layout.css" />
+    <Content Include="Content2\css\loginimate.css" />
+    <Content Include="Content2\css\loginstyle.css" />
+    <Content Include="Content2\css\modal-loading-animate.css" />
+    <Content Include="Content2\css\modal-loading.css" />
+    <Content Include="Content2\css\normalize.css" />
+    <Content Include="Content2\css\parallax-slider.css" />
+    <Content Include="Content2\css\reset.css" />
+    <Content Include="Content2\css\site.css" />
+    <Content Include="Content2\css\tabstyle.css" />
+    <Content Include="Content2\css\themes.gif" />
+    <Content Include="Content2\css\webflow.css" />
+    <Content Include="Content2\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content2\images\ajax-loader.gif" />
+    <Content Include="Content2\images\Bsystem-logo.jpg" />
+    <Content Include="Content2\images\bx_loader.gif" />
+    <Content Include="Content2\images\car.png" />
+    <Content Include="Content2\images\Central-Bank-Building.jpg" />
+    <Content Include="Content2\images\Farm.jpg" />
+    <Content Include="Content2\images\Farm_1.jpg" />
+    <Content Include="Content2\images\Favicon.png" />
+    <Content Include="Content2\images\flag-nigeria.jpg" />
+    <Content Include="Content2\images\furniture.png" />
+    <Content Include="Content2\images\ic-create.png" />
+    <Content Include="Content2\images\ic-help.png" />
+    <Content Include="Content2\images\ic-login.png" />
+    <Content Include="Content2\images\ic-search.png" />
+    <Content Include="Content2\images\Loginbkg.jpg" />
+    <Content Include="Content2\images\Logo-nigeria.png" />
+    <Content Include="Content2\images\market.png" />
+    <Content Include="Content2\images\money.png" />
+    <Content Include="Content2\images\Nigerian-Notes.jpg" />
+    <Content Include="Content2\images\poultry.png" />
+    <Content Include="Content2\images\publicuser.png" />
+    <Content Include="Content2\images\timber.jpg" />
+    <Content Include="Content2\images\Webclip.png" />
+    <Content Include="Content2\images\w_load.gif" />
+    <Content Include="Content2\img\banner.jpg" />
+    <Content Include="Content2\img\banner.png" />
+    <Content Include="Content2\img\bg-clouds.png" />
+    <Content Include="Content2\img\bg-sequence.jpg" />
+    <Content Include="Content2\img\bg-sky.png" />
+    <Content Include="Content2\img\bsystems.png" />
+    <Content Include="Content2\img\bt-next.png" />
+    <Content Include="Content2\img\bt-prev.png" />
+    <Content Include="Content2\img\cbl.png" />
+    <Content Include="Content2\img\cbl1.png" />
+    <Content Include="Content2\img\cbl2.png" />
+    <Content Include="Content2\img\cbn1.png" />
+    <Content Include="Content2\img\cbn2.png" />
+    <Content Include="Content2\img\cbnlog.png" />
+    <Content Include="Content2\img\cbnlogo.png" />
+    <Content Include="Content2\img\cbnlogo1.png" />
+    <Content Include="Content2\img\cbnlogo2.jpg" />
+    <Content Include="Content2\img\client.png" />
+    <Content Include="Content2\img\CRLiberia.png" />
+    <Content Include="Content2\img\crllogo.png" />
+    <Content Include="Content2\img\crllogo2.png" />
+    <Content Include="Content2\img\crllogo3.png" />
+    <Content Include="Content2\img\crllogo4.png" />
+    <Content Include="Content2\img\crllogo5.png" />
+    <Content Include="Content2\img\glyphicons-halflings-white.png" />
+    <Content Include="Content2\img\glyphicons-halflings.png" />
+    <Content Include="Content2\img\help.png" />
+    <Content Include="Content2\img\logo1.png" />
+    <Content Include="Content2\images\ncrlogo.jpg" />
+    <Content Include="Content2\img\register.png" />
+    <Content Include="Content2\img\search.png" />
+    <Content Include="Content2\img\TreeviewImages\ajax-loader.gif" />
+    <Content Include="Content2\img\TreeviewImages\file.gif" />
+    <Content Include="Content2\img\TreeviewImages\folder-closed.gif" />
+    <Content Include="Content2\img\TreeviewImages\folder.gif" />
+    <Content Include="Content2\img\TreeviewImages\minus.gif" />
+    <Content Include="Content2\img\TreeviewImages\plus.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-black-line.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-black.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-default-line.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-default.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-famfamfam-line.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-famfamfam.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-gray-line.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-gray.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-red-line.gif" />
+    <Content Include="Content2\img\TreeviewImages\treeview-red.gif" />
+    <Content Include="Content2\jquery.bxslider.min.css" />
+    <Content Include="Content2\js\app.js" />
+    <Content Include="Content2\js\back-to-top.js" />
+    <Content Include="Content2\js\bootstrap.js" />
+    <Content Include="Content2\js\bootstrap.min.js" />
+    <Content Include="Content2\js\cbpFWTabs.js" />
+    <Content Include="Content2\js\CRNTabs.js" />
+    <Content Include="Content2\js\flexslider-min.js" />
+    <Content Include="Content2\js\index.js" />
+    <Content Include="Content2\js\jcarousel.min.js" />
+    <Content Include="Content2\js\jquery-1.11.2.min.js" />
+    <Content Include="Content2\js\jquery-1.8.2.min.js" />
+    <Content Include="Content2\js\jquery-ui.min.js" />
+    <Content Include="Content2\js\jquery.cslider.js" />
+    <Content Include="Content2\js\jquery.flexslider-min.js" />
+    <Content Include="Content2\js\jquery.sticky.js" />
+    <Content Include="Content2\js\jquery.treeview.js" />
+    <Content Include="Content2\js\modernizr.custom.js" />
+    <Content Include="Content2\js\modernizr.js" />
+    <Content Include="Content2\js\quicksand.js" />
+    <Content Include="Content2\js\respond.js" />
+    <Content Include="Content2\js\responsiveslides.min.js" />
+    <Content Include="Content2\js\selectnav.min.js" />
+    <Content Include="Content2\js\switch.js" />
+    <Content Include="Content2\js\ui.totop.js" />
+    <Content Include="Content2\js\webflow.js" />
+    <Content Include="Content2\TreeviewImages\ajax-loader.gif" />
+    <Content Include="Content2\TreeviewImages\file.gif" />
+    <Content Include="Content2\TreeviewImages\folder-closed.gif" />
+    <Content Include="Content2\TreeviewImages\folder.gif" />
+    <Content Include="Content2\TreeviewImages\minus.gif" />
+    <Content Include="Content2\TreeviewImages\plus.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-black-line.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-black.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-default-line.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-default.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-famfamfam-line.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-famfamfam.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-gray-line.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-gray.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-red-line.gif" />
+    <Content Include="Content2\TreeviewImages\treeview-red.gif" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BackUp\HomePage\default.css" />
+    <Content Include="Content\BackUp\HomePage\fonts.css" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-social-webfont.svg" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\BackUp\HomePage\Images\banner.jpg" />
+    <Content Include="Content\BackUp\HomePage\Images\cblLogo.gif" />
+    <Content Include="Content\BackUp\HomePage\Images\cblLogo.jpg" />
+    <Content Include="Content\BackUp\HomePage\Images\top_back.png" />
+    <Content Include="Content\BackUp\HomePage\jquery-1.7.1.min.js" />
+    <Content Include="Content\BackUp\HomePage\jquery.slidertron-1.3.js" />
+    <Content Include="Content\CRLLogin.css" />
+    <Content Include="Content\font-awesome\css\font-awesome-ie7.css" />
+    <Content Include="Content\font-awesome\css\font-awesome-ie7.min.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome\font\fontawesome-webfont.svg" />
+    <Content Include="Content\graph\loading.gif" />
+    <Content Include="Content\Images\back.png" />
+    <Content Include="Content\Images\Background\back.png" />
+    <Content Include="Content\Images\CBNLogoWhiteSmaller.png" />
+    <Content Include="Content\Images\crl-logo.png" />
+    <Content Include="Content\Images\crllogo5.png" />
+    <Content Include="Content\Images\icons\help.png" />
+    <Content Include="Content\Images\icons\home.png" />
+    <Content Include="Content\Images\Interswitch\paylogo.png" />
+    <Content Include="Content\Images\Interswitch\paypal-img.png" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\MainToolbar\account_off.png" />
+    <Content Include="Content\Images\MainToolbar\account_on.png" />
+    <Content Include="Content\Images\MainToolbar\cblLogo2.jpg" />
+    <Content Include="Content\Images\MainToolbar\help_off.png" />
+    <Content Include="Content\Images\MainToolbar\help_on.png" />
+    <Content Include="Content\Images\MainToolbar\Logo.png" />
+    <Content Include="Content\Images\MainToolbar\menu_background.png" />
+    <Content Include="Content\Images\MainToolbar\profile_off.png" />
+    <Content Include="Content\Images\MainToolbar\profile_on.png" />
+    <Content Include="Content\Images\MainToolbar\settings_off.png" />
+    <Content Include="Content\Images\MainToolbar\settings_on.png" />
+    <Content Include="Content\Images\menu_back.png" />
+    <Content Include="Content\Images\messages\ico-delete.gif" />
+    <Content Include="Content\Images\messages\ico-done.gif" />
+    <Content Include="Content\Images\messages\ico-info.gif" />
+    <Content Include="Content\Images\messages\ico-warning.gif" />
+    <Content Include="Content\Images\progressbar.gif" />
+    <Content Include="Content\Images\top_back.png" />
+    <Content Include="Content\Images\w_load.gif" />
+    <Content Include="Content\jquery.fileupload.css" />
+    <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\BackUp\jquery.jWizard.css" />
+    <Content Include="Content\BackUp\jquery.jWizard.min.css" />
+    <Content Include="Content\BackUp\jquery.steps.css" />
+    <Content Include="Content\BackUp\login-box.css" />
+    <Content Include="Content\BackUp\login.css" />
+    <Content Include="Content\jquery.multiselect.css" />
+    <Content Include="Content\jquery.Te\jquery-te-1.4.0.css" />
+    <Content Include="Content\jquery.Te\jquery-te.png" />
+    <Content Include="Content\jumbotron.css" />
+    <Content Include="Content\login-box.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\messages.css" />
+    <Content Include="Content\BackUp\superfish-navbar.css" />
+    <Content Include="Content\BackUp\superfish.css" />
+    <Content Include="Content\BackUp\TableCSSCode.css" />
+    <Content Include="Content\BackUp\tables.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\selectize.bootstrap2.css" />
+    <Content Include="Content\selectize.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_0073ea_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_333333_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_368EE0_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_525252_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_666666_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_dddddd_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ff0084_0.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_0.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\BackUp\Site.css" />
+    <Content Include="Areas\FinancialStatement\Views\Web.config" />
+    <Content Include="Areas\Membership\Views\Web.config" />
+    <Content Include="Areas\Membership\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\_Collateral.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\_IndividualDebtorParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\_Renew.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\_Discharge.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_CollateralSummaryView.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_ParticipantSummaryView.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_NewAndPreviousFSView.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SummaryViewDischarge.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SummaryViewAmendment.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SummaryViewUpdate.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SummaryViewRenewal.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_FSJqGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\Index.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\Index.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_FSActivityIndexJqGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\SummaryView.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\SummaryView.cshtml" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-social-webfont.eot" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-social-webfont.ttf" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-social-webfont.woff" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\BackUp\HomePage\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\BackUp\HomePage\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Membership\Backup\SelectRegistrationType.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\_InstitutionDebtorParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\_IndividualSPParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\_InstitutionSPParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\Copy of _IndividualDebtorParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewFS.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\Create.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\Copy %282%29 of FS.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewCollateral.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewIndividualDebtorParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewIndividualSPParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewInstitutionDebtorParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewInstitutionSPParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\DetailViewFS.cshtml" />
+    <Content Include="Areas\Membership\Views\MembershipRegistration\Index.cshtml" />
+    <Content Include="Areas\Membership\Backup\RegistrationSuccess.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\MembershipRegistration\_MembershipJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Backup\_MembershipRegistrationWizard.cshtml" />
+    <Content Include="Areas\Workflow\Views\Web.config" />
+    <Content Include="Areas\Workflow\Views\Shared\_HandleTask.cshtml" />
+    <Content Include="Areas\Workflow\Views\TaskHandle\HandleTask.cshtml" />
+    <Content Include="Areas\Workflow\Views\Shared\_AssignTask.cshtml" />
+    <Content Include="Areas\Administration\Views\Web.config" />
+    <Content Include="Areas\Administration\Views\Configuration\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Configuration\Index.cshtml" />
+    <Content Include="Areas\Search\Views\Web.config" />
+    <Content Include="Areas\Search\Views\Shared\_LegalSearch.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_SearchResultGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\Amend.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\_Update.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\SelectAmendmentType.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\_Subordinate.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\_Assign.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_FSSearchesJqGrid.cshtml" />
+    <Content Include="Areas\Search\Views\Search\Index.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_EmptySearchResultGrid.cshtml" />
+    <Content Include="Areas\Workflow\Views\Shared\_TaskJqGrid.cshtml" />
+    <Content Include="Areas\Workflow\Views\TaskHandle\Index.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SummaryViewSubordination.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SummaryViewAssignment.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_ActivitiesView.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\AmendSummaryView.cshtml" />
+    <Content Include="Content\font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\font\FontAwesome.otf" />
+    <Content Include="Content\font-awesome\less\bootstrap.less" />
+    <Content Include="Content\font-awesome\less\core.less" />
+    <Content Include="Content\font-awesome\less\extras.less" />
+    <Content Include="Content\font-awesome\less\font-awesome-ie7.less" />
+    <Content Include="Content\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\font-awesome\less\icons.less" />
+    <Content Include="Content\font-awesome\less\mixins.less" />
+    <Content Include="Content\font-awesome\less\path.less" />
+    <Content Include="Content\font-awesome\less\variables.less" />
+    <Content Include="Content\font-awesome\scss\font-awesome-ie7.scss" />
+    <Content Include="Content\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome\scss\_bootstrap.scss" />
+    <Content Include="Content\font-awesome\scss\_core.scss" />
+    <Content Include="Content\font-awesome\scss\_extras.scss" />
+    <Content Include="Content\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome\scss\_path.scss" />
+    <Content Include="Content\font-awesome\scss\_variables.scss" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\FS.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\_IndividualDebtorParticipant.cshtml" />
+    <Content Include="Areas\Membership\Backup\MembershipRegistrationWizard.cshtml" />
+    <Content Include="Areas\Membership\Views\MembershipRegistration\SelectRegistrationType.cshtml" />
+    <Content Include="Areas\Membership\Views\MembershipRegistration\RegistrationSuccess.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\MembershipRegistration\_MembershipRegistrationWizard.cshtml" />
+    <Content Include="Areas\Payment\Views\Web.config" />
+    <Content Include="Areas\Payment\Views\Payment\SelectRegisteredClient.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_ClientSummary.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\CreatePayment.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\Index.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_PaymentJqGrid.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\ViewPayment.cshtml" />
+    <Content Include="Areas\Membership\Views\Institution\Index.cshtml" />
+    <Content Include="Areas\Membership\Views\Institution\Institution.cshtml" />
+    <Content Include="Areas\Membership\Views\InstitutionUnit\Index.cshtml" />
+    <Content Include="Areas\Membership\Views\InstitutionUnit\InstitutionUnit.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Institution\_Institution.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Institution\_InstitutionsJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\InstitutionUnit\_InstitutionUnit.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\InstitutionUnit\_InstitutionUnitsJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_User.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_UserRolesJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_UserRoleTableGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_UsersJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\User\EditUserRole.cshtml" />
+    <Content Include="Areas\Membership\Views\User\Index.cshtml" />
+    <Content Include="Areas\Membership\Views\User\User.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\Copy%283%29 of _IndividualDebtorParticipant.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\Configuration.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_FeeConfiguration.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_GeneralConfiguration.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_WorkFlowConfiguration.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_WorkFlowConfiguration2.cshtml" />
+    <Content Include="Areas\Configuration\Views\Web.config" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\SelectClientType.cshtml" />
+    <Content Include="CBLDataSet1.xsc">
+      <DependentUpon>CBLDataSet1.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\Membership\Views\Client\SubmitPostpaidRequest.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_FeeLoanSetupConfiguration.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_PeriodicFeeConfiguration.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_PerTransactionFeeConfiguration.cshtml" />
+    <Content Include="Areas\Membership\Views\User\ChangePassword.cshtml" />
+    <Content Include="Areas\Membership\Views\User\ChangePasswordSuccess.cshtml" />
+    <Content Include="Areas\Membership\Views\User\PasswordReset.cshtml" />
+    <Content Include="Areas\Membership\Views\User\PasswordResetSuccess.cshtml" />
+    <Content Include="Areas\Membership\Views\User\IndexOfPayPointUsers.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_ChangePassword.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_PayPointUsersJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\IndexOfPostPaidClients.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Institution\_PostPaidClientsJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Client\_SubmitPostpaidRequest.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\IndexOfAudits.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\IndexOfCreditActivities.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Client\_AuditsJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Client\_CreditActivitiesJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\ClientPostpaidSetupSuccess.cshtml" />
+    <Content Include="Areas\Search\Views\Search\GenerateSearchReport.cshtml" />
+    <Content Include="Areas\Search\Views\Search\AfterGenerateReport.cshtml" />
+    <Content Include="Areas\Membership\Views\User\MandatoryPasswordChange.cshtml" />
+    <Content Include="Areas\Administration\Views\EmailAdministration\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_EmailsJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\User\LoggedInUserChangePassword.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\IndexOfAccountBatches.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\GenerateBatch.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_DetailsOfPostPaidTransactionsJqGrid.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_SummaryOfPostpaidPerRepresentativeClientJqGrid.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_SummaryOfPostPaidTransactionsJqGrid.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_ViewAccountBatches.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_BatchDetailsGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\Copy of FS.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\Copy %282%29 of FS.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\FS.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementBatchUpload\BatchUpload.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementBatchUpload\Index.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementBatchUpload\_FSBatchIndexJqGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementBatchUpload\_FSBatchDetailsJqGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementBatchUpload\FSBatchDetails.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementBatchUpload\DetailViewFSInBatch.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\IndexOfFeeConfigurations.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_FeeConfigurationsJqGrid.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\FeeConfigurationDetail.cshtml" />
+    <Content Include="Areas\Membership\Views\MembershipRegistration\ClientVerification.cshtml" />
+    <Content Include="Areas\Membership\Views\MembershipRegistration\MembershipRegistrationAfterVerification.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_SearchResultWithMultiple.cshtml" />
+    <Content Include="Areas\Search\Views\Search\LegalSearchMultiple.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_EmptySearchResultWithMultiple.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Backup\Copy%284%29 of _IndividualDebtorParticipant.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\IndexOfSavedDrafts.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SavedDraftsJqGrid.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_SelectInstitution.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\EmailIndex.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Client\_EmailJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\ViewEmailDetails.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_FileUpload.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\UploadBankVerification.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_BVCcodeGrid.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_ViewLegalSearch.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\Client\_NonPayPointUsersJqGrid.cshtml" />
+    <Content Include="Areas\Membership\Views\User\SubmitPayPointUsers.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\_DetailViewFileAttachments.cshtml" />
+    <Content Include="Areas\Administration\Views\Configuration\GlobalMessageIndex.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_GlobalMessageJqGrid.cshtml" />
+    <Content Include="Areas\Administration\Views\Configuration\GlobalMessageDetails.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_GlobalMessageCreateEditPartialView.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_GlobalMessageDetailsPartialView.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\User\_UserList.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\PaymentDetails.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\VerifyPaymentDetails.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\ViewPayment.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\TransactionDetails.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_TransactionDetails.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\InterSwitchTransactionsIndex.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\_InterSwitchTransactionJqGrid.cshtml" />
+    <Content Include="Areas\Configuration\Views\Configuration\TransactionsFeeConfiguration.cshtml" />
+    <Content Include="Areas\Administration\Views\EmailAdministration\ViewEmailDetails.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\GenerateBatchIndex.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\PreviewAndGenerateBatch.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\ReconcileSubPostpaidClients.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_VewBatchDetails.cshtml" />
+    <Content Include="Areas\Payment\Views\Payment\ReconcileBatch.cshtml" />
+    <Content Include="Areas\Payment\Views\Shared\_ReconcileBatch.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_CollateralReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_individualDebtorReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_individualLenderReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_InstitutionDebtorReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_InstitutionLenderReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_loanInformationReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_OtherIdentificationInfoReview.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\Shared\ReviewFS\_ReviewFS.cshtml" />
+    <Content Include="Areas\Search\Views\Search\SearchResult.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_SearchResultParameters.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_SearchResult.cshtml" />
+    <Content Include="Areas\Search\Views\Search\ViewSearches.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_GenerateSearchReport.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_GenerateSearchReportDetails.cshtml" />
+    <Content Include="Areas\Membership\Views\Client\ViewAuditDetails.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\MembershipRegistration\ReviewRegistration\_ReviewRegistration.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\MembershipRegistration\ReviewRegistration\_SecuredCreditorProfileReview.cshtml" />
+    <Content Include="Areas\Membership\Views\Shared\MembershipRegistration\ReviewRegistration\_AdminAccountProfileReview.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\CheckBalance.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatement\Copy %283%29 of FS.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\GenerateVoucherCode.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\GenerateVoucherCodeSuccess.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\DirectPayIndex.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\_DirectPayTransactionsJqGrid.cshtml" />
+    <Content Include="Areas\Payment\Views\InterSwitch\ViewDirectPayDetails.cshtml" />
+    <Content Include="Areas\Membership\Views\User\InvalidPasswordResetRequest.cshtml" />
+    <Content Include="Areas\FinancialStatement\Views\FinancialStatementActivity\_DischargeDueToError.cshtml" />
+    <Content Include="Areas\Configuration\Views\Shared\_TransactionsFeeConfigurations.cshtml" />
+    <Content Include="Areas\Search\Views\Search\LegalSearchMultiple2.cshtml" />
+    <Content Include="Areas\Search\Views\Search\DummyView.cshtml" />
+    <Content Include="Areas\Search\Views\Search\AnotherDummyView.cshtml" />
+    <Content Include="Areas\Search\Views\Search\SearchCAC.cshtml" />
+    <Content Include="Areas\Search\Views\Shared\_SearchCAC.cshtml" />
+    <None Include="CBLDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CBLDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="CBLDataSet1.xss">
+      <DependentUpon>CBLDataSet1.xsd</DependentUpon>
+    </Content>
+    <Content Include="docs\HOW TO v3.pdf" />
+    <Content Include="docs\Liberia Regulation.pdf" />
+    <Content Include="docs\Commercial Code - Title 7 - Liberian Code of Laws Revised.pdf" />
+    <Content Include="Content2\css\fonts\BebasNeue-webfont.eot" />
+    <Content Include="Content2\css\fonts\BebasNeue-webfont.ttf" />
+    <Content Include="Content2\css\fonts\BebasNeue-webfont.woff" />
+    <Content Include="Content2\css\fonts\fontomas-webfont.eot" />
+    <Content Include="Content2\css\fonts\fontomas-webfont.ttf" />
+    <Content Include="Content2\css\fonts\fontomas-webfont.woff" />
+    <Content Include="Content2\css\fonts\franchise-bold-webfont.eot" />
+    <Content Include="Content2\css\fonts\franchise-bold-webfont.ttf" />
+    <Content Include="Content2\css\fonts\franchise-bold-webfont.woff" />
+    <Content Include="Content2\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content2\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content2\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content2\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content2\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\NCRN.pubxml" />
+    <None Include="Scripts\Backup\jquery-2.0.3.intellisense.js" />
+    <Content Include="MailTemplates\ApproveClientAccount.html" />
+    <Content Include="MailTemplates\ApproveRegistrationOfFSTemplate.html" />
+    <Content Include="MailTemplates\ConfirmEmail.html" />
+    <Content Include="MailTemplates\CreateRegistrationTemplate.html" />
+    <Content Include="MailTemplates\DeniedClientAccount.html" />
+    <Content Include="MailTemplates\DenyRegistrationOfFSTemplate.html" />
+    <Content Include="MailTemplates\HTML.html" />
+    <Content Include="MailTemplates\HtmlPage2.html" />
+    <Content Include="MailTemplates\NotifyLegalEntityRegistrationAdmin.html" />
+    <Content Include="MailTemplates\NotifyUser.html" />
+    <Content Include="MailTemplates\RegisteredUserPaymentHtml.html" />
+    <Content Include="MailTemplates\ResetPassword.html" />
+    <Content Include="MailTemplates\TaskAssignment.html" />
+    <Content Include="MailTemplates\TaskAssignment2.html" />
+    <Content Include="MvcReportViewer.aspx" />
+    <Content Include="Reporting\ReportImages\BOG.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\ReportImages\cbnlogo2.jpg" />
+    <Content Include="Reporting\ReportImages\Signature.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\ReportImages\Watermark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\ReportImages\Watermark2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="Scripts\additional-methods.js" />
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\autoNumeric.js" />
+    <Content Include="Scripts\Backup\autoNumeric.js" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Backup\BreakULCol.js" />
+    <Content Include="Scripts\flot\excanvas.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.axislabels.js" />
+    <Content Include="Scripts\flot\jquery.flot.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.orderBars.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.js" />
+    <Content Include="Scripts\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\Backup\jquery-2.0.3.js" />
+    <Content Include="Scripts\Backup\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\Backup\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\input_mask_3x\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.11.0.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\jquery.bxslider.min.js" />
+    <Content Include="Scripts\jquery.easyListSplitter.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\Backup\jquery.jWizard.js" />
+    <Content Include="Scripts\Backup\jquery.jWizard.min.js" />
+    <Content Include="Content\jquery.loadmask.css" />
+    <Content Include="Scripts\jquery.loadmask.js" />
+    <Content Include="Scripts\jquery.loadmask.min.js" />
+    <Content Include="Scripts\jquery.multiselect.js" />
+    <Content Include="Scripts\jquery.multiselect.min.js" />
+    <Content Include="Scripts\jquery.number.min.js" />
+    <Content Include="Scripts\jquery.printElement.min.js" />
+    <Content Include="Scripts\jquery.steps.js" />
+    <Content Include="Scripts\jquery.steps.min.js" />
+    <Content Include="Scripts\jquery.Te\jquery-te-1.4.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.Wload.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\Backup\layout_page.js" />
+    <Content Include="Scripts\modal-loading.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Backup\superfish.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\selectize.js" />
+    <Content Include="Scripts\selectize.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Error\AuthorizeError.cshtml" />
+    <Content Include="Views\Home\about.cshtml" />
+    <Content Include="Views\Home\contact.cshtml" />
+    <Content Include="Views\Home\faq.cshtml" />
+    <Content Include="Views\Home\fee.cshtml" />
+    <Content Include="Views\Backup\_homeLayout.cshtml" />
+    <Content Include="Views\Account\backup\Login.cshtml" />
+    <Content Include="Views\Home\Copy of index.cshtml" />
+    <Content Include="Views\Home\Fees.cshtml" />
+    <Content Include="Views\Home\HowTo.cshtml" />
+    <None Include="Views\Home\Index-old.cshtml" />
+    <None Include="Views\Home\home.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Views\Home\Index2.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\ReportViewer.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Backup\_Layout.cshtml" />
+    <Content Include="Views\Account\Login2.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\Copy of _Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\LoadReport.cshtml" />
+    <Content Include="Views\Report\_LoadReport.cshtml" />
+    <Content Include="Views\Home\request.cshtml" />
+    <Content Include="Views\Shared\_homeLayout.cshtml" />
+    <Content Include="Views\Report\_ReportDescription.cshtml" />
+    <Content Include="Views\Report\FilterPages\_AuditReport.cshtml" />
+    <Content Include="Views\Report\FilterPages\_ClientActivities.cshtml" />
+    <Content Include="Views\Report\FilterPages\_FSCustomQuery.cshtml" />
+    <Content Include="Views\Report\FilterPages\_FSList.cshtml" />
+    <Content Include="Views\Report\FilterPages\_FSStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_LegalEntities.cshtml" />
+    <Content Include="Views\Report\FilterPages\_NoOfAmendStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_NoOfCollateralStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_NoOfLenderStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_NoOfSearchStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_PaymentsReport.cshtml" />
+    <Content Include="Views\Report\FilterPages\_Searches.cshtml" />
+    <Content Include="Views\Report\FilterPages\_SummaryBill.cshtml" />
+    <Content Include="Views\Report\FilterPages\_SummaryBillByClient.cshtml" />
+    <Content Include="Views\Report\FilterPages\_SummaryClientExpenditures.cshtml" />
+    <Content Include="Views\Report\FilterPages\_Users.cshtml" />
+    <Content Include="Views\Report\FilterPages\_ValueOfFeesStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_ValueOfFSStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_ClientExpenditureByTransaction.cshtml" />
+    <Content Include="Views\Report\FilterPages\_PaypointPayment.cshtml" />
+    <Content Include="Views\Report\FilterPages\_DebtorStat.cshtml" />
+    <Content Include="Views\Home\VideoTutorials.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Report\FilterPages\_NoOfServiceStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_NoOfDebtorStat.cshtml" />
+    <Content Include="Views\Report\FilterPages\_NoOfDischargeStat.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\FinancialStatement\Models\FinancialStatement\ModelBuilders\" />
+    <Folder Include="Areas\Membership\Models\ViewPageModelValidators\" />
+    <Folder Include="Areas\Search\Models\ViewPageModels\Shared\" />
+    <Folder Include="Diagrams\" />
+    <Folder Include="docs\Client profiles\" />
+    <Folder Include="Models\Report\ViewModelHelper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRL.Infrastructure\CRL.Infrastructure.csproj">
+      <Project>{d6d0eba3-e928-4d03-806c-6b7e0e28e706}</Project>
+      <Name>CRL.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRL.Model\CRL.Model.csproj">
+      <Project>{ec045b2c-ac6c-4def-87d6-65501bcf83c2}</Project>
+      <Name>CRL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRL.Repository.EF.All\CRL.Repository.EF.All.csproj">
+      <Project>{553b2b5a-b05b-4392-ab0d-e62d714eab3d}</Project>
+      <Name>CRL.Repository.EF.All</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRL.Service\CRL.Service.csproj">
+      <Project>{37556bfc-cc4a-4922-aa36-8fc4db3df20f}</Project>
+      <Name>CRL.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportViewerForMvc\ReportViewerForMvc.csproj">
+      <Project>{b7f6a951-ece3-4bdd-be20-0f7ffd944695}</Project>
+      <Name>ReportViewerForMvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reporting\FinancingStatement\VerificationReportFSDischarge.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\VerificationReportFSSubordinate.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_OtherIdentificationDetails.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\VerificationReportFSUpdate.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\AuditReport.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\SearchReport1.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_AssignedClient.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_ChangeDescription.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_DischargedCollaterals.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_FSDetails.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\PaymentReceipt.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_SubordinatingParty.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reporting\Administration\LegalEntities.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Administration\Users.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\FSCustomRawStat.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\FSCustomStatbyNo.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\FS.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\FSCustomStatbyValueNo.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\FSList.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\VerificationReportFSAssignment.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_Collaterals.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_Debtors.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_SecuredParties.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\Payments.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\SummaryBillByClient.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Statistical\GraphedNoOfCountItem.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reporting\FinancingStatement\FSListCustom.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reporting\FinancingStatement\CurrentFS.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\SearchReport.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\_CACResults.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\FinancingStatement\VerificationReportFSRegistration.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\BatchDetails.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\ClientExpenditureByTransaction.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\CreditActivities.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\PaymentVoucher.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\PaypointPaymentSummary.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\SummaryClientExpenditure-old.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Statistical\NoOfCountItem.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Statistical\ValueOFFeesStat.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Statistical\ValueOfFSStat.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\SummaryBill.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Search\Searches.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\SummaryClientExpenditure.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Payment\SummaryClientExpenditure1.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reporting\Statistical\NoOfCountItem-old.rdlc" />
+    <Content Include="Reporting\Statistical\NoOfCountItem1.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Statistical\NoOfCountItem3.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reporting\Statistical\NoOfCountItem4.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reporting\Statistical\ValueOFFeesStat-old.rdlc" />
+    <Content Include="Reporting\Statistical\ValueOFFeesStat1.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reporting\Statistical\ValueOfFSStat-old.rdlc" />
+    <Content Include="Reporting\Statistical\ValueOfFSStat1.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62873</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

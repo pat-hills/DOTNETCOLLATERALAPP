@@ -1,0 +1,117 @@
+﻿@model CRL.UI.MVC.Models.Report.ViewModel.ReportIndexViewModel
+@{ViewBag.Title = "Reports Index"; ViewBag.Icon = "icon-list-alt";
+  
+  AjaxOptions ajaxOpts = new AjaxOptions
+  {
+    
+      
+      UpdateTargetId = "Reportlayer",
+      Url = Url.Action("ReportDescription")
+
+  };
+  
+  }
+  
+<link href="~/Content2/css/jquery.treeview.css" rel="stylesheet" />
+
+
+<div class="row-fluid">
+    <div class="span3"  style="border-right:1px solid #e3e3e3">
+        <h4>Categories</h4>
+        <hr />
+        <ul class="browser filetree treeview">
+                <li>
+                    <span class="ReportCatName" style="font-weight: bold" >All Reports</span>
+               
+                
+
+           
+        @foreach (var item in Model.Categories.OrderBy(c => c))
+        {
+
+      
+     
+      
+            <ul class=" browser filetree treeview">
+
+
+                <li>
+                    @if (Model.Modules.Count() > 0)
+                    {
+                    <span style="font-weight: bold" >@item</span>
+                    <ul>
+
+                        @foreach (var item2 in Model.Modules.OrderBy(c=>c))
+                        {
+                            
+                            
+                            <li>
+                                @if (Model.ReportView.Where(c => c.ModuleName == item2 && c.CategoryName == item).Count() > 0 )
+                                {
+                                <span style="font-weight: bold" class="ReportCatName">@item2</span>
+                                <ul>
+                                    @foreach (var item3 in Model.ReportView.Where(c =>c.ModuleName == item2 && c.CategoryName == item).OrderBy(r => r.Name))
+                                    {
+                                    <li>
+                                         @Html.ActionLink(item3.Name, "LoadReport", "Report", new { Id = item3.Id }, new { })
+                                    </li>
+                                    }
+                                </ul>   
+                                }                          
+                            </li>           
+                        }
+                    </ul>
+                    }
+                </li>
+            </ul>
+         
+        }
+                    </li>
+            </ul>
+    </div>
+
+
+    <div class="span9">
+          <h4>Details</h4>
+        <hr />
+        <div id="Reportlayer" class=" well">
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<script type="text/javascript" src="~/Content2/js/jquery.treeview.js"></script>
+<script type="text/javascript">
+
+    var url = '@Url.Action("ReportDescription", "Report")';
+    var param = "All Reports";
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: ({ module: param }),
+        cache: false,
+        error: function (data) { alert("Error") },
+        success: function (data) { $('#Reportlayer').html(data); },
+    });
+
+
+    $(".ReportCatName").click(function () {
+        var url = '@Url.Action("ReportDescription", "Report")';
+        var param = $(this).text();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: ({ module: param }),
+            cache: false,
+            error: function (data) { alert("Error") },
+            success: function (data) { $('#Reportlayer').html(data); },
+        });
+    });
+
+    $(".browser").treeview();
+</script>

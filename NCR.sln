@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.UI.MVC", "CRL.UI.MVC\CRL.UI.MVC.csproj", "{730C0B49-30EC-40B8-9A13-ECC4419EDCEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.EmailService", "CRL.EmailService\CRL.EmailService.csproj", "{1203C140-F355-4F39-8399-EDB3A281AF40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88741E27-A3AB-4918-94E8-194940BB19CA}"
+	ProjectSection(SolutionItems) = preProject
+		CRL.vsmdi = CRL.vsmdi
+		dlls\LinqKit\LinqKit.dll = dlls\LinqKit\LinqKit.dll
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.WebAndLoadTests", "CRL.WebAndLoadTests\CRL.WebAndLoadTests.csproj", "{D30C8F44-5A37-46DE-B1C9-BBDF7620C3EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportViewerForMvc", "ReportViewerForMvc\ReportViewerForMvc.csproj", "{B7F6A951-ECE3-4BDD-BE20-0F7FFD944695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.Service", "CRL.Service\CRL.Service.csproj", "{37556BFC-CC4A-4922-AA36-8FC4DB3DF20F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.Model", "CRL.Model\CRL.Model.csproj", "{EC045B2C-AC6C-4DEF-87D6-65501BCF83C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.Repository.EF.All", "CRL.Repository.EF.All\CRL.Repository.EF.All.csproj", "{553B2B5A-B05B-4392-AB0D-E62D714EAB3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.Infrastructure", "CRL.Infrastructure\CRL.Infrastructure.csproj", "{D6D0EBA3-E928-4D03-806C-6B7E0E28E706}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.ReportGenerators", "MicrosoftReportGenerators\CRL.ReportGenerators.csproj", "{FFC999E8-B207-4A39-93AB-898E8DB6DA1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRL.WebService.InterswitchPayment", "CRL.WebService.InterswitchPayment\CRL.WebService.InterswitchPayment.csproj", "{EE33D8B2-0419-4B09-92D4-36CDF0F3BC7F}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CRL.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{730C0B49-30EC-40B8-9A13-ECC4419EDCEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730C0B49-30EC-40B8-9A13-ECC4419EDCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730C0B49-30EC-40B8-9A13-ECC4419EDCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730C0B49-30EC-40B8-9A13-ECC4419EDCEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1203C140-F355-4F39-8399-EDB3A281AF40}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{1203C140-F355-4F39-8399-EDB3A281AF40}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{1203C140-F355-4F39-8399-EDB3A281AF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1203C140-F355-4F39-8399-EDB3A281AF40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D30C8F44-5A37-46DE-B1C9-BBDF7620C3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30C8F44-5A37-46DE-B1C9-BBDF7620C3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30C8F44-5A37-46DE-B1C9-BBDF7620C3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30C8F44-5A37-46DE-B1C9-BBDF7620C3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F6A951-ECE3-4BDD-BE20-0F7FFD944695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F6A951-ECE3-4BDD-BE20-0F7FFD944695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F6A951-ECE3-4BDD-BE20-0F7FFD944695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F6A951-ECE3-4BDD-BE20-0F7FFD944695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37556BFC-CC4A-4922-AA36-8FC4DB3DF20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37556BFC-CC4A-4922-AA36-8FC4DB3DF20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37556BFC-CC4A-4922-AA36-8FC4DB3DF20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37556BFC-CC4A-4922-AA36-8FC4DB3DF20F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC045B2C-AC6C-4DEF-87D6-65501BCF83C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC045B2C-AC6C-4DEF-87D6-65501BCF83C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC045B2C-AC6C-4DEF-87D6-65501BCF83C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC045B2C-AC6C-4DEF-87D6-65501BCF83C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553B2B5A-B05B-4392-AB0D-E62D714EAB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553B2B5A-B05B-4392-AB0D-E62D714EAB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553B2B5A-B05B-4392-AB0D-E62D714EAB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553B2B5A-B05B-4392-AB0D-E62D714EAB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D0EBA3-E928-4D03-806C-6B7E0E28E706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D0EBA3-E928-4D03-806C-6B7E0E28E706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D0EBA3-E928-4D03-806C-6B7E0E28E706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D0EBA3-E928-4D03-806C-6B7E0E28E706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC999E8-B207-4A39-93AB-898E8DB6DA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC999E8-B207-4A39-93AB-898E8DB6DA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC999E8-B207-4A39-93AB-898E8DB6DA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC999E8-B207-4A39-93AB-898E8DB6DA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE33D8B2-0419-4B09-92D4-36CDF0F3BC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE33D8B2-0419-4B09-92D4-36CDF0F3BC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE33D8B2-0419-4B09-92D4-36CDF0F3BC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE33D8B2-0419-4B09-92D4-36CDF0F3BC7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

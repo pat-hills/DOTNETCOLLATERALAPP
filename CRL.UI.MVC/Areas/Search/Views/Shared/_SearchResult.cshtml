@@ -1,0 +1,12 @@
+﻿@model CRL.UI.MVC.Areas.Search.Models.ViewPageModels.ResultSearchViewModel
+
+
+<a href="@Url.Action("LoadSearch", "Search", new { Area = "Search", SearchId = Model.SearchId, IsPreviousSearch=Model._SearchResultJqGridViewModel.IsPreviousSearch})" class="btn btn-primary"><i class="icon-mail-reply"></i> Back to My Search Results</a>
+
+
+@{Html.RenderPartial("~/Areas/Search/Views/Shared/_SearchResultParameters.cshtml", Model._SearchResultJqGridViewModel,
+        new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_SearchResultParameters" } });}
+
+@{Html.RenderPartial("~/Areas/FinancialStatement/Views/Shared/_DetailViewFS.cshtml", Model.fsViewModel);}
+
+@{Html.RenderPartial("~/Areas/Search/Views/Shared/_GenerateSearchReport.cshtml", Model);}

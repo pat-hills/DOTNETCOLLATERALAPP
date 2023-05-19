@@ -1,0 +1,114 @@
+﻿@model  CRL.UI.MVC.Areas.Administration.Models.ViewPageModels._EmailJqGridViewModel
+    @using CRL.Infrastructure.Enums 
+<div id="searchgrid">
+    @using MvcJqGrid
+ 
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";   
+        Grid c = Html.Grid("ListOfEmails");
+        c = c.SetCaption("List of Emails");
+
+        c = c.AddColumn(new Column("Id").SetHidden(false).SetCustomFormatter("buttonize").SetLabel("Actions"));
+            c = c.AddColumn(new Column("EmailSubject").SetLabel("Email Subject"));
+            c = c.AddColumn(new Column("EmailTo").SetLabel("Email To"));
+            c = c.AddColumn(new Column("EmailBody").SetLabel("Email Body"))
+            .AddColumn(new Column("NumRetries").SetLabel("Number of Retries"))
+           .AddColumn(new Column("LastRetryDate").SetLabel("Last retry Date").SetFormatter(MvcJqGrid.Enums.Formatters.Date))
+            .AddColumn(new Column("HasAttachment").SetLabel("Has File Attachments"))
+         .AddColumn(new Column("FailedMail").SetLabel("Failed Mail"));
+        c = c.SetUrl(Url.Action("ViewEmailJsonData", "EmailAdministration", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(15)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true)
+        .SetGridView(true)
+        .SetPager("pager")    
+       // .SetMultiSelect(true)
+        //.SetMultiBoxOnly(true)
+       .SetSearchToolbar(true)
+        .SetMultiSelectWidth(20)
+       // .OnSelectRow("onRowSelected(rowid, status)")  
+       .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);       
+   
+              
+    }
+    @(c) 
+  
+</div>
+<@*div style="clear:both"></div>
+<br />
+<button id="btnSendMails" class="btn btn-primary pull-right">Send Mails</button>*@
+<script type="text/javascript">
+
+
+    function buttonize(cellvalue, options, rowobject) {
+        var Buttons = "";
+        var Button1 =  '<a class="btn btn-flat green" title="View Email Details"  style="margin:3px 3px 3px 0; " onclick="edit(\'' + cellvalue + '\',1)"><i class="icon-file-text-alt"></i></a>';
+        Buttons += Button1;
+        //if (rowobject['HasAttachment'] === true) { 
+        //    var Button2 = '<a class="btn btn-flat orange" title="Download file attachment"  style="margin:3px 3px 3px 0; " onclick="edit(\'' + cellvalue + '\',2)"><i class="icon-download-alt"></i></a>';
+        //    //var Button5 = '<input type="button" title="Download file attachment" style="margin:3px 3px 3px 0;   padding: 2px 3px 2px 3px;" value="Attachment" onclick="edit(' + cellvalue + ',5)">';                   
+        //    Buttons += Button2;
+
+        //}
+        return Buttons;
+        
+    }
+    function edit(id, cmd) {
+
+        if (cmd == 1) {
+            var url = '@Url.Action("ViewEmailDetails", "EmailAdministration", new{Id="-1"})';
+                url = url.replace("-1", id);
+                window.location.assign(url);
+            }
+
+        }
+
+
+ $(document).ready(function () {
+
+     $("#btnSendMails").click(function () {
+
+
+         var selectedarray = $("#ListOfEmails").jqGrid('getGridParam', 'selarrrow');
+         var arraylength = selectedarray.length
+         var selectedIds=[]
+         var selectedRowData=[];
+         for (var i = 0; i < arraylength; i++) {
+             var currentid = selectedarray[i];
+             selectedIds[i] = currentid;
+              selectedRowData[i] = $("#ListOfEmails").jqGrid('getRowData', currentid);
+         }
+
+         var url = '@Url.Action("ResendMail", "EmailAdministration")'
+         $.ajax({
+             type: "POST",
+             url: url,
+             contentType: 'application/json',
+             datatype: "json",
+             data: JSON.stringify({ selectedIds: selectedIds, selectedRowData: selectedRowData }),
+             cache: false,
+             error: function (data) { alert("Error") },
+             success: function (data) { alert(data) },
+         });
+
+
+     });
+
+
+
+ });
+
+
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+ 
+ </script>

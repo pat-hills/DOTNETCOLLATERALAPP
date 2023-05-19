@@ -1,0 +1,11 @@
+﻿@model CRL.UI.MVC.Areas.Search.Models.SearchViewModel
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { Id = "searchForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)   
+    
+    Html.RenderPartial("~/Areas/Search/Views/Shared/_GenerateSearchReportDetails.cshtml", Model);
+    @Html.HiddenFor(model=>model.RegistrationNo)
+    
+}

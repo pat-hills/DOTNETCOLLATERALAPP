@@ -1,0 +1,245 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Authentication
+<div class="row-fluid">
+     @if (((CreditActivitiesViewModel)Model).InBatchMode == true)
+        {
+
+             <div class="control-group">
+                <div class="control-label">Batch No</div>
+                <div class="controls">
+                    @Html.EditorFor(model => ((CreditActivitiesViewModel)model).BatchId )
+                    @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).BatchId )
+                </div>
+            </div>
+
+        }
+    else
+    {
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">Transaction Date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((CreditActivitiesViewModel)model).UseStartEndDateOption, "true") Filter transaction date by start and end date<br />
+            @Html.RadioButtonFor(model => ((CreditActivitiesViewModel)model).UseStartEndDateOption, "false")  Filter transaction date by month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((CreditActivitiesViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((CreditActivitiesViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+<div id="pnlMonthYear">
+    <div class="control-group">
+        <div class="control-label">Month</div>
+        <div class="controls">
+            @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).SelectedMonthList, ((CreditActivitiesViewModel)Model).MonthsList)
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).SelectedMonthList)
+        </div>
+    </div>
+     <div class="control-group">
+        <div class="control-label">Year</div>
+        <div class="controls">
+            @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).SelectedYear, ((CreditActivitiesViewModel)Model).YearList)
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).SelectedYear)
+        </div>
+    </div>
+  @*  <div class="control-group">
+        <div class="control-label">Year</div>
+        <div class="controls">
+            @Html.TextBoxFor(model => ((_AuditReportViewModel)model).SelectedYear)
+            @Html.ValidationMessageFor(model => ((_AuditReportViewModel)model).SelectedYear)
+        </div>
+    </div>*@
+</div>
+     <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).AccountTypeTransactionId )
+        </div>
+        <div class="controls">
+
+            @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).AccountTypeTransactionId, new SelectList(((CreditActivitiesViewModel)Model).AccountTypeTransactionList , "Value", "Text", ((CreditActivitiesViewModel)Model).AccountTypeTransactionId), "")
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).AccountTypeTransactionId)
+        </div></div>
+         <div class="chargedView control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).SettlementType )
+        </div>
+        <div class="controls">
+
+            @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).SettlementType , new SelectList(((CreditActivitiesViewModel)Model).SettlementList   , "Value", "Text", ((CreditActivitiesViewModel)Model).SettlementType), "")
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).SettlementType)
+        </div></div>
+         @if(((SecurityUser)(Context.User .Identity )).IsOwnerUser==false)
+   {  
+   <div class="chargedView control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).LimitTo)
+        </div>
+        <div class="controls">
+
+            @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).LimitTo , new SelectList(((CreditActivitiesViewModel)Model).LimitToList    , "Value", "Text", ((CreditActivitiesViewModel)Model).LimitTo))
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).LimitTo)
+        </div></div>}
+
+    </div>
+
+<div class="span6">
+       <div class="chargedView control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).ServiceFeeTypeId )
+        </div>
+        <div class="controls">
+
+            @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).ServiceFeeTypeId, new SelectList(((CreditActivitiesViewModel)Model).ServiceFeeList  , "Value", "Text", ((CreditActivitiesViewModel)Model).AccountTypeTransactionId), "")
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).ServiceFeeTypeId)
+        </div></div>
+    <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).CreditOrDebit )
+            </div>
+            <div class="controls">
+                 @Html.DropDownListFor(model => ((CreditActivitiesViewModel)model).CreditOrDebit , new SelectList(((CreditActivitiesViewModel)Model).CreditDebitList   , "Value", "Text", ((CreditActivitiesViewModel)Model).CreditOrDebit), "")
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).CreditOrDebit)
+            </div>
+        </div>
+    @if(((SecurityUser)Context .User).IsOwnerUser )
+    {
+     <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).ClientName )
+        </div>
+        <div class="controls">
+            @Html.EditorFor(model => ((CreditActivitiesViewModel)model).ClientName)
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).ClientName)
+        </div>
+    </div>
+    }
+    <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).Narration )
+        </div>
+        <div class="controls">
+            @Html.EditorFor(model => ((CreditActivitiesViewModel)model).Narration)
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).Narration)
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).AccountBatchId)
+        </div>
+        <div class="controls">
+            @Html.EditorFor(model => ((CreditActivitiesViewModel)model).AccountBatchId)
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).AccountBatchId)
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            @Html.LabelForRequired(model => ((CreditActivitiesViewModel)model).AccountReconcileId)
+        </div>
+        <div class="controls">
+            @Html.EditorFor(model => ((CreditActivitiesViewModel)model).AccountReconcileId)
+            @Html.ValidationMessageFor(model => ((CreditActivitiesViewModel)model).AccountReconcileId)
+        </div>
+    </div>    
+</div>}
+</div>
+
+
+
+
+
+@Html.HiddenFor(model => (( CreditActivitiesViewModel)model).InBatchMode )
+
+   @if (((CreditActivitiesViewModel)Model).InBatchMode == false)
+        {<text>
+<script>
+
+    if ($('#AccountTypeTransactionId').val() == 1 || 
+        $('#AccountTypeTransactionId').val() == 2 || 
+        $('#AccountTypeTransactionId').val() == 4) {
+        $('.chargedView').hide();
+
+
+    }
+    else {
+        $('.chargedView').show();
+     
+    }
+
+    $('#AccountTypeTransactionId').change(handleChangeofReportView);
+    function handleChangeofReportView() {
+        if ($(this).val() == 1 ||
+            $(this).val() == 2 ||
+            $(this).val() == 4) {
+            $('.chargedView').hide();
+
+        }
+        else {
+            $('.chargedView').show();
+        }
+
+    }
+
+
+  
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+        if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+            $('#pnlMonthYear').hide();
+            $('#pnlStartEndDate').show();
+        }
+        else {
+            $('#pnlMonthYear').show();
+            $('#pnlStartEndDate').hide();
+        }
+    });
+
+
+
+</script> </text>
+ }

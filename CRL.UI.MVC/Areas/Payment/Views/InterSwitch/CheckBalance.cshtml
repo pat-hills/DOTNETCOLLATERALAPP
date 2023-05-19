@@ -1,0 +1,63 @@
+﻿@{
+        
+    ViewBag.Title = "Payments";   //**Should be payments for owners
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Check Account Balance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.CheckBalanceViewModel
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "balanceform" }))
+{
+    @Html.AntiForgeryToken()   
+    <div style="text-align: center">
+        <div class="alert alert-info text-center">Please enter your PIN code and click on 'Check Balance' button to view your current balance.</div>
+        <br />
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <div class="span2"></div>
+                    <div class="span8">
+                        <div class="control-group">
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.PublicUserSecurityCode, new { autocomplete = "off", @Placeholder = "PIN Code" })
+                            </div>
+                            <div class="text-center">
+                            </div>
+                            <input id="Submit" class="btn btn-primary" type="submit" value="Check Balance" />
+                        </div>
+                    </div>
+
+                    <div class="span2"></div>
+                </div>
+            </div>
+            @if (Model.HasResponse)
+            {
+                <br />
+                <hr />
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span2"></div>
+                        <div class="span8">
+
+                            <ul class="media-list">
+                                <li class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Account Balance  Summary</h4>
+                                        Your account balance is <b>@Html.DisplayFor(m=>m.Balance) Naira.</b>
+               
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+   
+    
+}

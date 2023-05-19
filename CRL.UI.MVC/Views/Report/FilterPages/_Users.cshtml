@@ -1,0 +1,184 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">Filter by user registration date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((UsersViewModel)model).UseStartEndDateOption, "true") Filter user's creation date by start and end date<br />
+                @Html.RadioButtonFor(model => ((UsersViewModel)model).UseStartEndDateOption, "false") Filter user's creation date by month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((UsersViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((UsersViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((UsersViewModel)model).SelectedMonthList, ((UsersViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((UsersViewModel)model).SelectedYear)
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).SelectedYear)
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((UsersViewModel)model).Username)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((UsersViewModel)model).Username)
+                @Html.ValidationMessageFor(model => ((UsersViewModel)model).Username)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((UsersViewModel)model).Fullname)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((UsersViewModel)model).Fullname)
+                @Html.ValidationMessageFor(model => ((UsersViewModel)model).Fullname)
+            </div>
+        </div>
+
+
+    </div>
+    <div class="span6">
+        @if (((UsersViewModel)Model).LoadOnlyIndividualClients == true)
+        {
+
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((UsersViewModel)model).ClientCode)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => ((UsersViewModel)model).ClientCode)
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).ClientCode)
+                </div>
+            </div>
+        }
+        @if (((CRL.Infrastructure.Authentication.SecurityUser)Context.User).IsOwnerUser && ((UsersViewModel)Model).LoadOnlyIndividualClients == false)
+        {
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((UsersViewModel)model).UserListOption)
+                </div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((UsersViewModel)model).UserListOption, new SelectList(((UsersViewModel)Model).UserListOptions, "Value", "Text", ((UsersViewModel)Model).UserListOption), "")
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).UserListOption)
+                </div>
+
+            </div>
+              
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelForRequired(model => ((UsersViewModel)model).ClientName)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => ((UsersViewModel)model).ClientName)
+                    @Html.ValidationMessageFor(model => ((UsersViewModel)model).ClientName)
+                </div>
+            </div> 
+        }
+
+
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((UsersViewModel)model).Email)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => ((UsersViewModel)model).Email)
+                @Html.ValidationMessageFor(model => ((UsersViewModel)model).Email)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((UsersViewModel)model).AccountStatus)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((UsersViewModel)model).AccountStatus, new SelectList(((UsersViewModel)Model).AccountStatusList, "Value", "Text", ((UsersViewModel)Model).AccountStatusList), "", new { multiple = "multiple" })
+                @Html.ValidationMessageFor(model => ((UsersViewModel)model).AccountStatus)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (((CRL.Infrastructure.Authentication.SecurityUser)Context.User).IsOwnerUser)
+{
+    @Html.HiddenFor(model => ((UsersViewModel)model).LoadOnlyIndividualClients)
+}
+
+
+
+<script>
+    // $("#pnlMonthYear").hide();
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+
+        if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+            $('#pnlMonthYear').hide();
+            $('#pnlStartEndDate').show();
+        }
+        else {
+            $('#pnlMonthYear').show();
+            $('#pnlStartEndDate').hide();
+        }
+
+    });
+
+
+</script>

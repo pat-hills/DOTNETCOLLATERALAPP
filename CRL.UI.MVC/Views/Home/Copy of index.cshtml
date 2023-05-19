@@ -1,0 +1,184 @@
+﻿ 
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    var LoginText = SecurityUser ? "Enter Application" : "Client Login";
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+}
+
+
+
+
+        <!-- INFO Section -->
+
+        <div class="row">
+            <div class="colspan_12">
+
+            </div>
+            <div class="col span_12" style="padding-top:1%;">
+                <div class="infobox">
+                    <div class="col span_7">
+                        <div class="rslides_container">
+                            <ul class="rslides" id="slider2">
+                              <li><img src="~/content2/img/cbn1.png" alt=""></li>
+                              <li><img src="~/content2/img/cbn2.png" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col span_5">
+                        <div class="about" style="padding-right:20px">
+                            <h3>National Collateral Registry of Nigeria</h3>
+                            <p>The  National Collateral Registry Of Nigeria  is an initiative of the Central Bank of Nigeria
+                                (with the support of IFC) to improve access to finance particularly for MSMEs.
+                                The Collateral Registry establishes a web based system that allows
+                                lenders to determine any prior security interests, as well as establish their
+                                security interests over movable assets pledged as collateral.
+                            </p>
+                             <button class="btn btn-6 btn-6d">About Us</button>                          
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="col span_12">
+                <div class="container">
+                    <div class="services-wrap">
+                        <div class="col span_3">
+                            <a href="@Url.Action("Dashboard","Home",null)" class="btn btn-6 btn-6d center buttonResize"><span class="fa fa-lock"></span>
+                           @LoginText</a>
+                            <a href="@Url.Action("Dashboard","Home",null)" class="services-box">
+                                <p class="services">
+                                    If you already have an account in the system,
+                                    please click on the icon above or button below
+                                    to login into the Collateral Registry.
+                                </p>
+                            </a>
+
+                        </div>
+                        <div class="col span_3">
+                            <a href="@Url.Action("ClientVerification", "MembershipRegistration", new { area = "Membership"})" class="btn btn-6 btn-6d center buttonResize"><span class="fa fa-file-text"></span>
+                            Create new Account</a>
+                            <a href="@Url.Action("ClientVerification", "MembershipRegistration", new { area = "Membership"})" class="services-box">
+                                <p class="services">
+                                    If you are a new user, register an account by
+                                    clicking on the register icon above or the button
+                                    below.
+                                </p>
+                            </a>
+
+
+                        </div>
+                        <div class="col span_3">
+                            <a href="@Url.Action("Search", "Search", new { Area = "Search"})" class="btn btn-6 btn-6d center buttonResize"><span class="fa fa-search"></span>
+                            Search</a>
+                            <a href="@Url.Action("Search", "Search", new { Area = "Search"})" class="services-box">
+                                <p class="services">
+                                    If you wish to perform a public search on the
+                                    collateral registry, please click on the
+                                    search icon above or the button below.
+                                </p>
+                            </a>
+
+
+                        </div>
+                        <div class="col span_3">
+                            <a href="" class="btn btn-6 btn-6d center buttonResize"><span class="fa fa-question-circle"></span>
+                            Help</a>
+                            <a href="index.html#" class="services-box">
+                                <p class="services">
+                                    For more information concerning various functions of
+                                    the Collateral Registry, please click the help
+                                    button above or the button below.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ <script type="text/javascript" src="~/content2/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="~/content2/js/flexslider-min.js"></script>
+    <script type="text/javascript" src="~/content2/js/selectnav.min.js"></script>
+    <script type="text/javascript" src="~/content2/js/ui.totop.js"></script>
+    <script type="text/javascript" src="~/content2/js/respond.js"></script>
+
+    <!-- // <script type="text/javascript" src="js/custom.js"></script> -->
+    <script type="text/javascript" src="~/content2/js/switch.js"></script>
+    <script type="text/javascript" src="~/content2/js/quicksand.js"></script>
+    <script type="text/javascript" src="~/content2/js/responsiveslides.min.js"></script>
+    <script src="~/content2/js/CRNTabs.js"></script>
+
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+
+            // Slideshow 1
+            $("#slider1").responsiveSlides({
+                auto: true,
+                pager: false,
+                nav: true,
+                speed: 500,
+                maxwidth: 800,
+                //   namespace: "centered-btns"
+            });
+
+            // Slideshow 2
+            $("#slider2").responsiveSlides({
+                auto: true,
+                pager: false,
+                nav: false,
+                speed: 500,
+                maxwidth: 800,
+                //   namespace: "transparent-btns"
+            });
+
+            // Slideshow 3
+            $("#slider3").responsiveSlides({
+                auto: true,
+                pager: false,
+                nav: true,
+                speed: 500,
+                maxwidth: 800,
+                namespace: "large-btns"
+            });
+
+        });
+    </script>
+
+    <script>
+        new CRNTabs(document.getElementById('tabs'));
+
+    </script>
+
+    <script>
+
+        if (typeof jQuery == 'undefined') {
+            document.write(unescape('%3Cscript src="js/jquery-1.11.2.min.js" %3E%3C/script%3E'));
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var stickyNavTop = $('.header-nav').offset().top;
+
+            var stickyNav = function () {
+                var scrollTop = $(window).scrollTop();
+
+                if (scrollTop > stickyNavTop) {
+                    $('.header-nav').addClass('sticky');
+                }
+                else {
+                    $('.header-nav').removeClass('sticky');
+                }
+            };
+
+            stickyNav();
+
+            $(window).scroll(function () {
+                stickyNav();
+            });
+        });
+
+    </script>

@@ -1,0 +1,13 @@
+﻿@if (Request.IsAuthenticated) {
+
+        @:Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", new { area = "" }, htmlAttributes: new { @class = "username", title = "Manage" })!
+ @Html.ActionLink("Log Out", "LogOff","Account" ,new { area = "" }, null)@:!
+       @* @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }*@
+
+} else {  @Html.ActionLink("Register", "SelectRegistrationType", "MembershipRegistration", new { Area = "Membership",id = "registerLink" }, new  { }) @:|  
+        @Html.ActionLink("Log in", "Login", "Account", new { area = "" }, htmlAttributes: new { id = "loginLink" })        
+  
+}

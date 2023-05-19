@@ -1,0 +1,105 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.ViewPageModel.ConfigurationViewModel
+@using CRL.Service.Messaging.Configuration.Request
+@using CRL.Infrastructure.Authentication;
+@section HeadScripts {
+<script src="~/Scripts/bootbox.min.js"></script>
+@Styles.Render("~/Content/jqueryloadmask")    
+    }
+@{
+    ViewBag.Title = "Workflow Configuration";
+    ViewBag.Icon = "icon-cog";
+    ViewBag.HeaderSummary = "Workflow Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+
+    
+
+
+
+
+<div class="container-fluid">
+
+    @if (Model._WorkFlowConfigurationViewModel != null)
+{
+    Html.RenderPartial("~/Areas/Configuration/Views/Shared/_WorkFlowConfiguration2.cshtml", Model._WorkFlowConfigurationViewModel, 
+        new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_WorkFlowConfigurationViewModel" } });
+    
+    
+      
+ 
+     
+             
+    
+       @Html.HiddenFor(model => model.ConfigurationPage);
+        @Html.HiddenFor(model => model._WorkFlowConfigurationViewModel.MemberConfigurationWorkflowView.MembershipId);
+        @Html.HiddenFor(model => model._WorkFlowConfigurationViewModel.MemberConfigurationWorkflowView.Id);
+    
+}
+</div>
+
+
+
+
+
+
+
+
+
+    @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryloadmask")
+}
+<script type="text/javascript">
+
+
+
+
+    $(document).ready(function () {
+        @*   @if (Model._WorkFlowConfigurationViewModel != null)
+        {
+            if (Model._WorkFlowConfigurationViewModel.MemberConfigurationWorkflowView.MembershipId == null)
+            {
+               @:$("#SaveSettings").hide();
+        @:$("#ConfigurationForm :input").prop("disabled", true);
+    }
+        @:$("#EditGlobalSettings").click(function () {
+            @:$("#ConfigurationForm :input").prop("disabled", false);
+           @: $("#EditGlobalSettings").hide();
+          @: $("#SaveSettings").show();
+       @: });
+        }*@
+
+        if ($("Select[name='_WorkFlowConfigurationViewModel.MemberConfigurationWorkflowView.UseGlobalSettings']").val() == "true") {
+            $("#global").show()
+        }
+        else {
+            $("#member").show()
+
+        }
+
+
+        $("Select[name='_WorkFlowConfigurationViewModel.MemberConfigurationWorkflowView.UseGlobalSettings']").change(function () {  //**We have to have a better way of representing this name since it would be called from outside
+            //**we need to store prefixed names
+
+            if ($(this).val() == "true") {
+                $("#member").hide();
+                $("#global").show();
+            }
+            else {
+                $("#global").hide();
+                $("#member").show();
+            }
+
+        });
+
+
+
+
+
+
+
+    });
+
+
+</script>

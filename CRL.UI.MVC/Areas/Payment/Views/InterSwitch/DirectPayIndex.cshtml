@@ -1,0 +1,173 @@
+﻿@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.DirectPayTransactionIndexViewModel
+@using CRL.UI.MVC.Common.Enums;
+@using CRL.Infrastructure.Configuration;
+@{
+    
+    ViewBag.Title = "Payments";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Directpay Transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "searchgrid",
+        Url = Url.Action("SubmbitDirectPaySearchFilterForJqGrid", "InterSwitch"),
+        OnFailure = "Failure"
+    };
+}
+
+
+<script src="~/Scripts/bootbox.min.js"></script>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Directpay Transaction List
+                </h3>
+            </div>
+            <div class="box-content">
+                @using (Ajax.BeginForm(ajaxOpts))
+                {
+                    <div class="form-horizontal">
+
+                        <fieldset>
+                            <legend>Filter Directpay Transactions</legend>
+                            <div class="control-group">
+                                <label class="control-label">Date Search Method</label>
+                                <div class="controls">
+                                    <label class="radio">
+                                        @Html.RadioButtonFor(model => model._DirectPayTransactionsJqGridViewModel.UseStartEndDateOption, "true")
+                                        Use start and end date
+                                    </label>
+                                    <label class="radio">
+                                        @Html.RadioButtonFor(model => model._DirectPayTransactionsJqGridViewModel.UseStartEndDateOption, "false")
+                                        Use month and year
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="pnlStartEndDate">
+                                <div class="control-group">
+                                    <label class="control-label">Start Date</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._DirectPayTransactionsJqGridViewModel.StartDate, new { Id = "StartDate" })
+                                        @Html.ValidationMessageFor(model => model._DirectPayTransactionsJqGridViewModel.StartDate)
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="control-label">End Date</div>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._DirectPayTransactionsJqGridViewModel.EndDate, new { Id = "EndDate" })
+                                        @Html.ValidationMessageFor(model => model._DirectPayTransactionsJqGridViewModel.EndDate)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="textfield" class="control-label">Payment Voucher Code</label>
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => model._DirectPayTransactionsJqGridViewModel.PaymentVoucherCode, new { Id = "VoucherCode" })
+                                    @Html.ValidationMessageFor(model => model._DirectPayTransactionsJqGridViewModel.PaymentVoucherCode)
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="textfield" class="control-label">Transaction Type</label>
+                                <div class="controls">
+                                    @Html.DropDownListFor(model => model._DirectPayTransactionsJqGridViewModel.SelectedTransactionLogTypeId, Model._DirectPayTransactionsJqGridViewModel.TransactionLogTypeItems)
+                                    @Html.ValidationMessageFor(model => model._DirectPayTransactionsJqGridViewModel.SelectedTransactionLogTypeId)
+                                </div>
+                            </div>
+                            <div id="pnlMonthYear">
+                                <div class="control-group">
+                                    <label for="textfield" class="control-label">Month</label>
+                                    <div class="controls">
+                                        @Html.DropDownListFor(model => model._DirectPayTransactionsJqGridViewModel.SelectedMonthList, Model._DirectPayTransactionsJqGridViewModel.MonthsList)
+                                        @Html.ValidationMessageFor(model => model._DirectPayTransactionsJqGridViewModel.SelectedMonthList)
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="textfield" class="control-label">Year</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._DirectPayTransactionsJqGridViewModel.SelectedYear)
+                                        @Html.ValidationMessageFor(model => model._DirectPayTransactionsJqGridViewModel.SelectedYear)
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">Submit Search</button>
+                            </div>
+                        </fieldset>
+                        <div class="clear"></div>
+
+                        <div class="control-group">
+                            <div class="well well-small">
+                                <div class="row" style="padding: 3px">
+
+
+                                    <div class="span3"></div>
+                                    <div class="span3">
+                                        <p><span class="btn btn-flat green"><i class="icon-file-text-alt"></i></span>- View Transaction Details</p>
+                                    </div>
+                                    <div class="span3">                                      
+                                    </div>
+                                    <div class="span3"></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    @Html.Action("SubmbitDirectPaySearchFilterForJqGrid", Model._DirectPayTransactionsJqGridViewModel)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+
+<script>
+
+
+    $("#pnlMonthYear").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+        $("#StartDate").datepicker({ dateFormat: dateFormatMode });
+        $("#EndDate").datepicker({ dateFormat: dateFormatMode });
+
+
+        $("input[name='_DirectPayTransactionsJqGridViewModel.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlStartEndDate').hide();
+                $('#pnlMonthYear').show();
+
+            }
+        });
+    });
+
+</script>

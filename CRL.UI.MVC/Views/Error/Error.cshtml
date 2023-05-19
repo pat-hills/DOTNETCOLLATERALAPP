@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Error.</h1>
+        @if (ViewBag.PageNotFound != null)
+        {
+             <h2>Page not found</h2>
+        }
+        else if (ViewBag.Timeout != null)
+        {
+             <h2>Request timeout!</h2>
+        }
+      
+        else
+        {
+            
+        <h2>An error occurred while processing your request.</h2>
+        }
+        @*  @{
+              Exception ex = (Exception)HttpContext.Current.Application["TheException"];
+              }
+       @ex.Message   *@  </hgroup>
+       @if (ViewBag.ErrorMessage != null)
+        {
+            <p>@ViewBag.ErrorMessage</p>
+        }
+</body>
+</html>

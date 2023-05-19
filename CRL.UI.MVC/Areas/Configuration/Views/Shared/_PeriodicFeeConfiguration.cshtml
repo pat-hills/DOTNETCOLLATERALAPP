@@ -1,0 +1,185 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.Shared._ConfigurationFeeViewModel
+@using HtmlHelpers.BeginCollectionItem
+@using CRL.UI.MVC.HTMLHelpers
+@using System.Web.UI.WebControls
+@using MvcCheckBoxList.Model
+@using CRL.Infrastructure.Enums
+@using  CRL.Model.Configuration
+@using CRL.Service.Views.Configuration
+
+
+
+@{var htmlListInfo = new HtmlListInfo(HtmlTag.table, 5, null, TextLayout.Default, TemplateIsUsed.No);}
+
+<div class="PeriodicFeeConfigurationRow">
+    @using (Html.BeginCollectionItem("FeeConfigurationView.PeriodicFeeConfigurationView"))
+    {      
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="box box-color box-small box-bordered">
+                    <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>Periodic Fee Configuration
+                    </h3>
+                </div>
+                    <div class="box-content ">
+                        <div class="actions pull-right">
+                            <a href="#" class="btn btn-mini content-remove">
+                                <i class="icon-remove"></i>
+                            </a>
+                        </div>
+                        <br />
+                        <hr />
+                        @{
+                            if(Model.ConfigurationFee !=null){
+        PeriodicConfigurationFeeView dbInst = (PeriodicConfigurationFeeView)Model.ConfigurationFee;
+                             foreach(var i in dbInst.ServiceFeeCategory)
+                             {
+                                 var subtypte = Model.ServiceFeeType.Where(x => x.LkValue == i).Single();
+                                 Model.SelectedServiceFeeType.Add(subtypte);                         
+                             }  
+                            }
+                            }
+                         
+                                <div class="control-group">
+                                    <div class="control-label">
+                                        @Html.LabelForRequired(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).ServiceFeeCategory)
+                                    </div>
+                                    <div class="controls">
+                                          @Html.CheckBoxListFor(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).ServiceFeeCategory,
+                                  model => model.ServiceFeeType,
+                                  LookUpView => LookUpView.LkValue,
+                                  LookUpView => LookUpView.LkName,
+                                  model => model.SelectedServiceFeeType ,htmlListInfo
+                                  )
+                                        @Html.ValidationMessageFor(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).ServiceFeeCategory)
+                                    </div>
+                                </div>
+                          
+
+       
+                                <div class="control-group">
+                                    <div class="control-label">
+                                        @Html.LabelForRequired(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).ReoccurencePeriod)
+                                    </div>
+                                    <div class="controls">
+                                        @Html.DropDownListFor(model =>  ((PeriodicConfigurationFeeView)model.ConfigurationFee).ReoccurencePeriod,new SelectList(new[]{new SelectListItem{ Text="Daily", Value=ReoccurencePeriod.Daily.ToString()},
+                                                                                               new SelectListItem{ Text="Monthly", Value=ReoccurencePeriod.Monthly.ToString()},
+                                                                                               new SelectListItem{ Text="Quartely", Value=ReoccurencePeriod.Quarterly.ToString()} ,     
+                                                                                               new SelectListItem{ Text="Semi-Annually", Value=ReoccurencePeriod.SemiAnually.ToString()},
+                                                                                               new SelectListItem{ Text="Yearly", Value=ReoccurencePeriod.Yearly.ToString()}}, "Value", "Text"))
+                                        
+                                        @Html.ValidationMessageFor(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).ReoccurencePeriod)
+                                    </div>
+
+                                </div>
+
+              
+                            <div class="control-group">
+                                    <div class="control-label">
+                                        @Html.LabelForRequired(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).Amount)
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PeriodicConfigurationFeeView)model.ConfigurationFee).Amount)                                      
+                                        @Html.ValidationMessageFor(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).Amount)
+                                    </div>
+
+                                </div>
+               
+      
+                            <div class="control-group">
+                                    <div class="control-label">
+                                        @Html.LabelForRequired(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).AllowPostpaidIfClientIsPostpaid)
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PeriodicConfigurationFeeView)model.ConfigurationFee).AllowPostpaidIfClientIsPostpaid)                                      
+                                        @Html.ValidationMessageFor(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).AllowPostpaidIfClientIsPostpaid)
+                                    </div>
+                                </div>       
+
+                           <div class="control-group">
+                                    <div class="control-label">
+                                        @Html.LabelForRequired(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).IsActive)
+                                    </div>
+                                    <div class="controls">
+                                        @Html.EditorFor(model =>  ((PeriodicConfigurationFeeView)model.ConfigurationFee).IsActive)                                      
+                                        @Html.ValidationMessageFor(model => ((PeriodicConfigurationFeeView)model.ConfigurationFee).IsActive)
+                                    </div>
+                                </div>      
+
+
+
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>       
+        
+    
+    }
+
+
+</div>
+
+<script>
+    //$("a.deleteParticipantRow").on("click", function () {
+    //    $(this).parents("div.ParticipantRow:first").remove();
+    //    return false;
+    //});
+
+
+    $("a.content-remove").on("click", function () {
+        $(this).parents("div.PeriodicFeeConfigurationRow:first").remove();
+        return false;
+    });
+
+    function handleNewItemClick() {
+        //var prefixedModel = $("input[name='FSView.ParticipantsView.index']").attr('value');          
+        var prefixedModel = $(this).parents(".top:first").prev().attr('value');
+        var obj = $(this);
+        var link = '@Url.Action("BlankFeeLoanSetup", "Configuration", new { prefixedModel = "-1" })';
+        link = link.replace("-1", prefixedModel);
+        $("#FeeLoanSetup").mask("Please wait...");
+        $.ajax({
+            url: link,
+
+            cache: false,
+            success: function (html) {
+                $(obj).prev().prev().append(html); $("#FeeLoanSetup").unmask();
+
+            },
+            error: function (x, t, m) {
+                if (t === "timeout") {
+                    alert("the operation timeout.  Please try again!");
+                    $("#FeeLoanSetup").unmask();
+                } else {
+                    alert(t);
+                }
+            }
+        });
+        return false;
+    }
+
+
+    $(document).ready(function () {
+
+
+    });
+
+    $("button.btnAddNewFeeLoanSetup").on("click", handleNewItemClick);
+
+
+
+
+
+
+
+    //Hide the element if it's is not
+    //When we load the other document must be hidden by default which we can do in the model attribute, depends on wether it is selected or not
+    //
+
+
+
+
+</script>
+

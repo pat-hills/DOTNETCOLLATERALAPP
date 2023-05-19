@@ -1,0 +1,223 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+    
+}
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    var LoginText = SecurityUser ? "Enter Application" : "Client Login";
+}
+<style>
+    p {
+    margin: 0 0 0px;
+}
+</style>
+<div class="w-clearfix section">
+    <div class="middle-column">
+        <div class="w-slider w-clearfix slider" data-animation="slide" data-duration="500" data-infinite="1" data-delay="5000" data-autoplay="1">
+            <div class="w-slider-mask mask">
+                <div class="w-slide slide-1">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">                            
+                            <div style="margin-top:70px">                                
+                                <h1 class="slider-heading">What is collateral?</h1>
+                            </div>
+                            <p class="slider-content">Collateral is any movable property, whether tangible or intangible, that is subject to a security interest.</p>
+                        </div>
+                        <div class="w-col w-col-6 column _1"></div>
+                    </div>
+                </div>
+                <div class="w-slide slider-2">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                            <div style="margin-top:70px">         
+                                <h1 class="slider-heading">Who is a debtor?</h1>
+                            </div>
+                            <p class="slider-content">A person is a debtor only if the person’s debt is secured with some (personal) movable property, which the person has rights in. </p>
+                        </div>
+                        <div class="w-col w-col-6 column _2"></div>
+                    </div>
+                </div>
+                <div class="w-slide slider-3">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                           <div style="margin-top:70px">                              
+                                <h1 class="slider-heading">Public Users</h1>
+                            </div>
+                            <p class="slider-content">For more information concerning various functions of the National Collateral Registry, please click the help button above. </p>
+                        </div>
+                        <div class="w-col w-col-6 column _3"></div>
+                    </div>
+                </div>
+                <div class="w-slide slide-4">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">                            
+                            <div style="margin-top:70px">                              
+                                <h1 class="slider-heading">Movable Property</h1>
+                            </div>
+                            <p class="slider-content">Movable property under the Collateral Registry Regulation, refers to tangible property that can be physically moved like equipment and livestock, or any intangible property like accounts receivable and bank accounts. </p>
+                        </div>
+                        <div class="w-col w-col-6 column _4"></div>
+                    </div>
+                </div>
+                <div class="w-slide slide-5">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                             <div style="margin-top:70px">                              
+                                <h1 class="slider-heading">Payment Option</h1>
+                            </div>
+                            <p class="slider-content">The system has been designed for easy payments. Public Users may pay online. </p>
+                        </div>
+                        <div class="w-col w-col-6 column _5"></div>
+                    </div>
+                </div>
+                <div class="w-slide slide-6">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                             <div style="margin-top:70px">                               
+                                <h1 class="slider-heading">Can I use my Farm products as collaterals?</h1>
+                            </div>
+                            <p class="slider-content">Yes! Farm products including crops (grown, growing or to be grown), fish stocks, poultry, livestock (and their unborn offspring), seeds, and other supplies used or produced during farming operations can be used.</p>
+                        </div>
+                        <div class="w-col w-col-6 column _6"></div>
+                    </div>
+                </div>
+                <div class="w-slide slide-7">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                             <div style="margin-top:70px">                              
+                                <h1 class="slider-heading">Can individuals pool assets and apply for a loan together?</h1>
+                            </div>
+                            <p class="slider-content">Yes, individuals may apply for a loan as a group. They may use their assets that they own individually or jointly as collateral for the loan. </p>
+                        </div>
+                        <div class="w-col w-col-6 column _7"></div>
+                    </div>
+                </div>
+                <div class="w-slide slide-8">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                             <div style="margin-top:70px">                              
+                                <h1 class="slider-heading">Who can take a security interest in collateral?</h1>
+                            </div>
+                            <p class="slider-content">For the purpose of the Regulations, only a bank or financial institutions licensed by the CBN under the Banks and Other Financial Institutions Act (BOFIA), can take a security interest in collateral.   </p>
+                        </div>
+                        <div class="w-col w-col-6 column _8"></div>
+                    </div>
+                </div>
+                <div class="w-slide slide-9">
+                    <div class="w-row">
+                        <div class="w-col w-col-6">
+                            <div style="margin-top:70px">                               
+                                <h1 class="slider-heading">Does the Collateral Registry Regulations apply to a debtor without any assets?</h1>
+                            </div>
+                            <p class="slider-content">Yes. The Collateral Registry Regulations applies to not only business assets but also to consumer goods that are used primarily for personal, family, or household purposes. </p>
+                        </div>
+                        <div class="w-col w-col-6 column _9"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-slider-nav w-slider-nav-invert w-round slide-nav"></div>
+        </div>
+    </div>
+    <div class="start-here">
+        <div class="button-description">Already have an account?</div>
+        <a class="button mainlinks" href="@Url.Action("Dashboard", "Home", null)">@LoginText</a>
+        <div class="button-description">Don't have an account?</div>
+        <a class="button mainlinks" href="@Url.Action("ClientVerification", "MembershipRegistration", new { area = "Membership" })">Create New Account</a>
+    </div>
+</div>
+<div class="section">
+    <div class="info-block">
+        <div class="info-content" style="padding-bottom:20px;">
+            <div class="w-row row-fluid" style="background-color:#f7f7f7;padding:20px;">
+                <div class="w-col w-col-6">
+                    <h1 class="info-content-heading">About the Registry</h1>
+                    <div class="info-content-body"  style="margin-bottom:30px;text-align:justify">The National Collateral Registry is an initiative of the Central Bank of Nigeria (with the support of IFC) to improve access to finance particularly for MSMEs. The Collateral Registry establishes a web based system that allows lenders to determine any prior security interests, as well as establish their security interests over movable assets pledged as collateral. <a href="@Url.Action("About", "Home")">Read more...</a></div>
+                    <h1 class="info-content-heading">Useful Tips</h1>
+                    <ul class="bxslider">
+                        <li>
+                            <p style="font-weight: bold; font-size: 15px">
+                                How to Search Registrations as a Public User
+                            </p>
+                            <p>
+                                - Ensure payment for the required fees covering the number of searches to be conducted.
+                            </p>
+                            <p>
+                                - Click on the search menu item above and enter the search parameters. 
+                            </p>
+                            <p>
+                                - Click submit search request and then provide your PIN code.
+                            </p>
+                            <p>
+                                - The results of your search will be displayed below the search parameters.
+                            </p>
+                            <p>
+                                - Follow the steps to generate a search certificate.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p style="font-weight: bold; font-size: 15px">
+                                How to make Online Payment
+                            </p>
+                            <p>
+                                - Click on the search menu tab.
+                            </p>
+                            <p>
+                                - At the main search page, click on the payment menu tab.
+                            </p>
+                            <p>
+                                - Select the make online payment option.
+                            </p>
+                            <p>
+                                - Provide both your personal and payment information details.
+                            </p>
+                            <p>
+                                - Follow the steps to complete.
+                            </p>
+                        </li>
+                        <li>
+                            <p style="font-weight: bold; font-size: 15px">
+                                How to Check your Payment Balance
+                            </p>
+                            <p>
+                                - Click on the search menu tab.
+                            </p>
+                            <p>
+                                - Select the check payment balance option.
+                            </p>
+                            <p>
+                                - Enter your PIN code in the textbox provided.
+                            </p>
+                            <p>
+                                - Click on check balance to complete.
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="outside">
+                        <p><span id="slider-prev" style="color: #cf081e"></span>| <span id="slider-next" style="color: #cf081e"></span></p>
+                    </div>
+                </div>
+                <div class="w-col w-col-6 quicktip-boarder">
+                    <h1 class="info-content-heading">Features</h1>
+                    <div class="info-content-body">The National Collateral Registry system holds a number of functionalities for both registered users and public users.</div>
+                    <div class="info-content-title">The system allows the following online operations:</div>
+                    <div class="info-content-body">
+                        <ul>
+                            <li>Processing of Client Account Registration</li>
+                            <li>Processing Registration of Financing Statement</li>
+                            <li>Processing of Client Postpaid Requests</li>
+                            <li>Processing of Search Requests</li>
+                            <li>Processing Payments</li>
+                            <li>Processing of Change on a Financing Statement (Amendment, Transfer, Renewals and Subordination)</li>
+                            <li>Processing of Cancellation</li>
+                            <li>Generation of Reports</li>
+                            <li>Application Administration</li>
+                            <li>Application Configuration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>

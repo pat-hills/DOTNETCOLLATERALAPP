@@ -1,0 +1,124 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Payment Summary View";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Summary view of payment";
+    ViewBag.MenuName = "Payment";
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.PaymentViewModel
+@using CRL.Service.Views.FinancialStatement
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Service.Common
+@using CRL.Infrastructure.Enums
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Payment Information
+                </h3>
+            </div>
+            <div class="box-content ">
+                <dl class="dl-horizontal">
+                     <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.PaymentDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.PaymentDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.PaymentNo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.PaymentNo)
+                    </dd>
+                      <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.PaymentSource)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.PaymentSourceName )
+                    </dd>
+                      <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.PaymentTypeName )
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.PaymentTypeName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.Amount)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.Amount)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.Client)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.Client)
+                    </dd>
+                      @if (Model.PaymentView.IsPublicUser)
+                      {
+                       <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.SecurityCode)
+                    </dt>
+                  
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.SecurityCode)
+                    </dd>  }
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.Payee)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.Payee)
+                    </dd>
+                       <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.PublicUserEmail)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.PublicUserEmail)
+                    </dd>                   
+                       <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.Paypoint )
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.Paypoint )
+                    </dd>
+                       <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.PaypointUser )
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.PaypointUser )
+                    </dd>
+                          <dt>
+                        @Html.DisplayNameFor(model => model.PaymentView.T24TransactionNo  )
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaymentView.T24TransactionNo )
+                    </dd>
+
+
+
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    //$(function () {
+    //    $("#accordion").accordion({
+    //        collapsible: true,
+    //        heightStyle: "content"
+    //    });
+    //});
+
+    //$(function () {
+    //    $("#tabs").tabs();
+    //});
+</script>

@@ -1,0 +1,74 @@
+ body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+	  .nav
+	  {
+	  display:block;
+	  text-decoration:none;
+	  }
+	  
+	  
+	  #banner {
+		background-image: url(img/blurredgreenafrica.png);
+		color: #fff;
+		padding: 220px 0;
+		
+	  }
+	  #banner h1,
+	  #banner h2, 
+	  #banner h3 {
+		  text-align: center;
+	  }
+	  .colour_block_red
+	  {
+		  background-image:url(img/client.png) ;
+		  min-height: 200px;
+	  }
+	  
+	  .colour_block_yellow
+	  {
+		  background-image: url(img/register.png);		
+		  min-height: 200px;
+	  }
+	  
+	  .colour_block_green
+	  {
+		  background-image:url(img/search.png);
+		  min-height: 200px;
+	  }
+	  
+	  .colour_block_blue
+	  {
+		  background-image:url(img/help.png);
+		  min-height: 200px;
+	  }
+	  .img_text {
+		  text-align: center;
+		  color: #C36;	  
+	  }
+      
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

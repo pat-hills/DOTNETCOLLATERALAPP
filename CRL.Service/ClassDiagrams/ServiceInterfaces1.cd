@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="CRL.Service.Interfaces.IAmendmentService">
+    <Position X="0.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAEABAAAABAQAAgAgCBAAACAAAAAAAAAIAg=</HashCode>
+      <FileName>Interfaces\IAmendmentService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.FinancialStatement.IFinancialStatementService">
+    <Position X="3" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAIAAAAIACAAgAgCAAAAAAEBIAAADEAAs=</HashCode>
+      <FileName>Interfaces\IFinancialStatementService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IClientService">
+    <Position X="10.5" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAgAAAAAAAAAEAAAAAAAAAAAACQAIAAAAAABAAAAAIA=</HashCode>
+      <FileName>Interfaces\IClientService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IInstitutionService">
+    <Position X="0.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAECBAAAAAAACAAAAAACAAAAAA=</HashCode>
+      <FileName>Interfaces\IInstitutionService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IInstitutionUnitService">
+    <Position X="8" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAIACAAAAAgIgAAAA=</HashCode>
+      <FileName>Interfaces\IInstitutionUnitService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IUserService">
+    <Position X="8" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgEAAABAAQBBAAAEAAAAEAAAEAAAAQAAAAEAAAAACgA=</HashCode>
+      <FileName>Interfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IMembershipRegistrationService">
+    <Position X="10.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAACCAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMembershipRegistrationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IReportService">
+    <Position X="5.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAQQAABAIAAaAAAEAgAACQIAAAAAAQgQIAkgAAAEAIA=</HashCode>
+      <FileName>Interfaces\IReportService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

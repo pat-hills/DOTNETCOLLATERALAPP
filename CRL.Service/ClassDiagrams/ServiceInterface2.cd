@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="CRL.Service.Interfaces.IEmailService">
+    <Position X="3.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IEmailService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IWorkflowService">
+    <Position X="6.25" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAABAAAAAACAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IWorkflowService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IWidgetService">
+    <Position X="6.25" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAADAAAA=</HashCode>
+      <FileName>Interfaces\IWidgetService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.ISearchService">
+    <Position X="3.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAQAAAAABAgAAA=</HashCode>
+      <FileName>Interfaces\ISearchService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IConfigurationService">
+    <Position X="6.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Interfaces\IConfigurationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IPaymentService">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAgAJAkABAIAAAAIAAAAAIAICAAAAAACg=</HashCode>
+      <FileName>Interfaces\IPaymentService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Service.Interfaces.IFSBatchService">
+    <Position X="3.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEAAgAAAEAAAACAAAAAAAAAAAAAAAgAAAAQBA=</HashCode>
+      <FileName>Interfaces\IFSBatchService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

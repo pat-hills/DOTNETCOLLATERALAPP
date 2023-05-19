@@ -1,0 +1,107 @@
+﻿@model  CRL.UI.MVC.Areas.Search.Models.ViewPageModels._FSSearchesViewModel  
+@using CRL.Infrastructure.Enums
+@using CRL.Infrastructure.Authentication
+@using CRL.Service.Messaging.Workflow.Request
+
+<div id="searchgrid">
+    @using MvcJqGrid
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";
+        Grid c = Html.Grid("jqueryGrid");
+        c = c.SetCaption("List of searches");
+        c = c.AddColumn(new Column("Id").SetCustomFormatter("buttonize").SetSearch(false).SetWidth(80).SetLabel("Actions").SetHidden(true));
+        c = c.AddColumn(new Column("SearchCode").SetLabel("Search No").SetCustomFormatter("RegistrationLabelLink").SetWidth(120));
+        c = c.AddColumn(new Column("SearchDate").SetFormatter(MvcJqGrid.Enums.Formatters.Date, "newformat: 'd-M-Y'").SetSearchType(MvcJqGrid.Enums.Searchtype.Datepicker).SetLabel("Search Date"));
+        c = c.AddColumn(new Column("NameOfSearcher").SetLabel("Name of Searcher").SetSortable(false).SetSearch(false));
+        c = c.AddColumn(new Column("MembershipName").SetLabel("Client").SetSortable(false).SetSearch(false));
+        if (Request.IsAuthenticated && (((SecurityUser)HttpContext.Current.User).InstitutionUnitId == null || ((SecurityUser)HttpContext.Current.User).IsOwnerUser))
+        {
+            c = c.AddColumn(new Column("InstitutionUnit").SetLabel("Unit").SetSortable(false).SetSearch(false));
+        }
+        c = c.AddColumn(new Column("HasCertifiedReport").SetHidden(true).SetLabel("Report Generated").SetFormatter(MvcJqGrid.Enums.Formatters.Checkbox));
+        //c = c.AddColumn(new Column("HasUncertifiedReport").SetHidden(false).SetLabel("Uncertified Report").SetFormatter(MvcJqGrid.Enums.Formatters.Checkbox));
+        //c = c.AddColumn(new Column("IsPublicUser").SetHidden(false));
+        c = c.SetUrl(Url.Action("GetJsonFSSearchesJqGrid", "Search", Model))
+       .SetAutoEncode(true)
+     .SetDataType(MvcJqGrid.Enums.DataType.Json)
+     .SetAutoWidth(true)
+     .SetRowNum(15)
+     .SetJsonReader(jsonReader)
+     .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+     .SetRowList(new int[] { 10, 15, 20, 50 })
+     .SetViewRecords(true).SetSearchToolbar(true)
+     .SetGridView(true)
+     .SetPager("pager")
+     .OnLoadError("GetServerErrors(xhr, status, error)")
+     .SetSearchToggleButton(true).SetSearchOnEnter(true);       
+              
+    }
+    @(c)
+
+</div>
+<script>
+
+
+    function buttonize(cellvalue, options, rowobject) {
+        var Buttons = "";
+
+        if (rowobject['HasCertifiedReport'] === true) {
+            var Button5 = '<input type="button" title="Download certified report" style="margin:3px 3px 3px 0;   padding: 2px 3px 2px 3px;" value="Certified Report" onclick="edit(' + cellvalue + ',1)">';
+            Buttons += Button5;
+
+        }
+        //if (rowobject['HasUncertifiedReport'] === true) {
+        //    var Button5 = '<input type="button" title="Download uncertified report" style="margin:3px 3px 3px 0;   padding: 2px 3px 2px 3px;" value="Uncertified Report" onclick="edit(' + cellvalue + ',2)">';
+        //    Buttons += Button5;
+
+        //}
+
+        return Buttons;
+    }
+
+
+    function edit(id, cmd) {
+        if (cmd == 1) {
+            //alert("This operation has been temporarily disabled because it's currently undergoing some minor changes");
+            //return false;
+            var url = '@Html.Raw(Url.Action("DownloadReport", "Search", new { SearchId = "-1" }))'
+            url = url.replace("-1", id);
+            window.location.assign(url);
+        }
+
+        if (cmd == 2) {
+            alert("This operation has been temporarily disabled because it's currently undergoing some minor changes");
+            return false;
+          @*  var url = '@Html.Raw(Url.Action("HandleTask", "TaskHandle", new {Area="Workflow", CaseId= "-1", RequestType=RequestType.RegistrationOfFinancingStatement }))'
+              url = url.replace("-1", id);
+               window.location.assign(url);*@
+        }
+
+        if (cmd == 3) {
+            //alert("This feature is currently under development and will be available shortly");
+            //return false;
+
+            var url = '@Html.Raw(Url.Action("LoadSearch", "Search", new { SearchId = "-1",IsPreviousSearch="-2" }))'
+            url = url.replace("-1", id);
+            url = url.replace("-2", 'true');
+            window.location.assign(url);
+        }
+
+
+
+
+    }
+
+    function RegistrationLabelLink(cellvalue, options, rowobject) {
+        return '<a href="#" class="link" onclick="edit(' + rowobject['Id'] + ',3)">' + rowobject['SearchCode'] + '</a>';
+    }
+
+
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+
+
+</script>

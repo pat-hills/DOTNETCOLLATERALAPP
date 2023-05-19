@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "List of all search requests";
+    ViewBag.Title = "My Search Requests";
+    ViewBag.MenuName = "Search";
+
+}
+
+@model CRL.UI.MVC.Areas.Search.Models.ViewPageModels.FSSearchesIndexViewModel
+@using CRL.UI.MVC.Common.Enums
+@{
+    ViewBag.Title = "Search List";
+    //ViewBag.MenuName = "List of Searches";
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "searchgrid",
+        Url = Url.Action("GetPartialViewOfFSSearchesGrid")
+
+    };
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Search List
+                </h3>
+            </div>
+            <div class="box-content">
+                <div class="form-horizontal">
+                    @using (Ajax.BeginForm(ajaxOpts))
+                    {
+                    
+         
+                        <div class="control-group">
+                            @*  <div class="control-label">Filter Audit Date</div>*@
+                            <div class="controls">
+                                @Html.RadioButtonFor(model => model._FSSearchesViewModel.UseStartEndDateOption, "true") Filter search date by start and end date<br />
+                                @Html.RadioButtonFor(model => model._FSSearchesViewModel.UseStartEndDateOption, "false") Filter search date by month and year
+                            </div>
+                        </div>
+                        <div id="pnlStartEndDate">
+                            <div class="control-group">
+                                <label for="textfield" class="control-label">From</label>
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => model._FSSearchesViewModel.StartDate, new { Id = "StartDate" })
+                                    @Html.ValidationMessageFor(model => model._FSSearchesViewModel.StartDate)
+                                    @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="textfield" class="control-label">To</label>
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => model._FSSearchesViewModel.EndDate, new { Id = "EndDate" })
+                                    @Html.ValidationMessageFor(model => model._FSSearchesViewModel.EndDate)
+                                    @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                                </div>
+                            </div>
+                        </div> 
+                        <div id="pnlMonthYear">
+                            <div class="control-group">
+                                <label for="textfield" class="control-label">Month</label>
+                                <div class="controls">
+                                    @Html.DropDownListFor(model => model._FSSearchesViewModel.SelectedMonthList, Model._FSSearchesViewModel.MonthsList)
+                                    @Html.ValidationMessageFor(model => model._FSSearchesViewModel.SelectedMonthList)
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="textfield" class="control-label">Year</label>
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => model._FSSearchesViewModel.SelectedYear)
+                                    @Html.ValidationMessageFor(model => model._FSSearchesViewModel.SelectedYear)
+                                </div>
+                            </div>
+                        </div>             
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Submit Search</button>
+                        </div>
+                              
+
+                        @Html.Action("GetPartialViewOfFSSearchesGrid", Model._FSSearchesViewModel)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Action("GetPartialViewOfFSSearchesGrid", Model._FSSearchesViewModel)
+
+<script>
+
+
+    $("#pnlMonthYear").hide();
+
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("#StartDate").datepicker({ dateFormat: dateFormatMode });
+        $("#EndDate").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='_FSSearchesViewModel.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,165 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.Shared._ConfigurationFeeViewModel
+@{
+ var   hash = "#";
+var prefix = "collapse";
+    
+}
+<div>
+
+    <ul class="nav nav-tabs" id="feesTab">
+        <li class="active"><a href="#view" id="viewTab">View Fee Configurations</a></li>
+        <li><a href="#update" id="updateTab">Update Fee Configurations</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="view">
+
+            <div class="accordion" id="accordion2">
+
+                @foreach (var item in Model.LenderTransactionFeeConfigurationViews)
+                {
+                 
+         
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="@hash@prefix@item.LenderTypeId">@item.LenderType
+                            </a>
+                        </div>
+                        <div id="@prefix@item.LenderTypeId" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <table class="table table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th><b>Service Type</b></th>
+                                            <th><b>Fee</b> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(var serviceType in item.ConfigurationFeeViews){
+                                        <tr>
+                                            <td>@serviceType.ServiceType.Name</td>
+                                            <td>@serviceType.Fee</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+         
+         
+         
+                }                
+            </div>
+
+        </div>
+        <div class="tab-pane" id="update">
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="lenderType">Select the Client Type</label>
+                    <div class="controls">
+                        @Html.DropDownListFor(m => m.LenderTypeId, new SelectList(Model.LenderTypes, "LkValue", "LkName", null),"", null)
+                        @Html.ValidationMessageFor(m => m.LenderTypeId)
+                    </div>
+                </div>
+
+            </div>
+
+            <table class="table table-hover table-nomargin table-bordered">
+
+
+                <thead>
+
+                    <tr>
+                        <th>Transaction Name</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                                <tr class="public">
+                                    <td>@Html.LabelFor(m=>m.PublicSearch)</td>
+                                    <td>@Html.TextBoxFor(m=>m.PublicSearch) @Html.HiddenFor(m=>m.PublicSearchId)</td>
+                                </tr>
+                                 <tr class="public">
+                                    <td>@Html.LabelFor(m=>m.PublicGenerateCertificate)</td>
+                                    <td>@Html.TextBoxFor(m=>m.PublicGenerateCertificate)  @Html.HiddenFor(m=>m.PublicGenerateCertificateId)</td>
+                                </tr>
+                    
+
+
+                    @if (Model.ConfigurationTransactionFeesViews != null)
+                    {
+                        if (Model.ConfigurationTransactionFeesViews.Count() > 0)
+                        {
+
+                            for (int i = 0; i < Model.ConfigurationTransactionFeesViews.Count; i++)
+                            {
+                        @Html.HiddenFor(model => model.ConfigurationTransactionFeesViews[i].Id)
+                        
+                        @Html.HiddenFor(model => model.ConfigurationTransactionFeesViews[i].ServiceTypeId)
+                        <tr class="nonpublic">
+                            <td>@Html.DisplayFor(model => model.ConfigurationTransactionFeesViews[i].ServiceType.Name)</td>
+                            <td>@Html.EditorFor(model => model.ConfigurationTransactionFeesViews[i].Fee)</td>
+                        </tr>
+                            }
+                        }
+                    }
+                </tbody>
+
+            </table>
+            <div class="text-center">
+                <input type="button" id="submitButton" value="Save Fee Configuration" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#feesTab a:first').tab('show');
+        })
+
+        $("#updateTab").click(function () {
+            $('#feesTab a:last').tab('show');
+        });
+        $("#viewTab").click(function () {
+            $('#feesTab a:first').tab('show');
+        });
+
+        $(".public").hide();
+
+        $('[name="_ConfigurationFeeViewModel.LenderTypeId"]').change(function () {
+            if ($('[name="_ConfigurationFeeViewModel.LenderTypeId"]').val() == 360) {
+                $(".public").show();
+                $(".nonpublic").hide();
+            } else {
+                $(".public").hide();
+                $(".nonpublic").show();
+            }
+        });
+
+
+        $("#submitButton").click(function () {
+            if ($('[name="_ConfigurationFeeViewModel.LenderTypeId"]').val() == null || $('[name="_ConfigurationFeeViewModel.LenderTypeId"]').val() == "")
+            {
+                bootbox.alert("Please select a client type!");
+            }
+            else {
+                var type = $('[name="_ConfigurationFeeViewModel.LenderTypeId"] option:selected').text();
+                var msg = "Are you sure want to submit this new fee configuration on the form? This will update all transactions associated with " + type;
+                bootbox.confirm(msg, function (result) {
+                    if (result == true) {
+                        document.fcform.submit();
+                    } else {
+
+                    }
+
+                });
+
+            }
+
+        });
+
+    </script>
+
+</div>

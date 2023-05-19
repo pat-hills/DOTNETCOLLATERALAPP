@@ -1,0 +1,518 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using MvcCheckBoxList.Model
+@using CRL.Infrastructure.Authentication
+@using CRL.UI.MVC.Areas.Membership.Models.DataSourceLookups
+@{var htmlListInfo = new HtmlListInfo(HtmlTag.table, 3, null, TextLayout.Default, TemplateIsUsed.No);}
+@{var htmlListInfoForSate = new HtmlListInfo(HtmlTag.table, 8, null, TextLayout.Default, TemplateIsUsed.No);}
+@{var htmlListInfoForSOE = new HtmlListInfo(HtmlTag.table, 4, null, TextLayout.Default, TemplateIsUsed.No);}
+
+<link href="~/Content/jquery.multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.multiselect.min.js"></script>
+
+<style>
+    #btngenerate {
+        margin-left: 22px;
+    }
+    .checkboxlist label {
+        padding-right: 60px !important;
+    }
+     input[readonly] {
+        cursor: pointer;
+        background-color: white;
+    }
+</style>
+
+<div class="row-fluid">
+    <div class="span12">
+
+        <div class="box box-color box-bordered">
+            <div class="box-content " style="border-color: #ffffff;">
+                <div id="registerationrows">
+                    <div class="row-fluid">
+                        <div class="control-group">
+                            <div class="control-label">Registration Date</div>
+                            <div class="controls">
+                                @Html.RadioButtonFor(model => ((FSCustomQueryViewModel)model).UseStartEndDateOption, "true") Filter registration date by start and end date<br />
+                                @Html.RadioButtonFor(model => ((FSCustomQueryViewModel)model).UseStartEndDateOption, "false")  Filter registration date by month and year
+                            </div>
+                        </div>
+                        <div id="pnlStartEndDate">
+                            <div class="control-group">
+                                <div class="control-label">Start Date</div>
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => ((FSCustomQueryViewModel)model).StartDate, new {@readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).StartDate)
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">End Date</div>
+                                <div class="controls">
+                                    @Html.TextBoxFor(model => ((FSCustomQueryViewModel)model).EndDate ,new {@readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).EndDate)
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pnlMonthYear">
+                            <div class="control-group">
+                                <div class="control-label">Month</div>
+                                <div class="controls">
+                                    @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).SelectedMonthList, ((FSCustomQueryViewModel)Model).MonthsList)
+                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).SelectedMonthList)
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">Year</div>
+                                <div class="controls">
+                                    @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).SelectedYear, ((FSCustomQueryViewModel)Model).YearList)
+                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).SelectedYear)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="accordion">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Loan Information
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+                            <div class="accordion-inner">
+                                <div id="loaninforows">
+
+                                    <div class="row-fluid">
+                                        @if (CRL.Infrastructure.Configuration.Constants.Project == CRL.Infrastructure.Configuration.Project.Liberia)
+                                        {
+                                            <div class="control-group">
+                                                <div class="dvpanel">
+                                                    @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId)
+                                                </div>
+                                                <div class="controls checkboxlist">
+                                                    @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId,
+                                  model => ((FSCustomQueryViewModel)model).FSTransactionTypeList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                                    @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId)
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="control-group">
+                                            <div class="dvpanel">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).FinancialStatementLoanTypeId)
+                                            </div>
+                                            <div class="controls checkboxlist">
+
+                                                @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementLoanTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSLoanTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementLoanTypeId), new { @class = "ddl" })*@
+                                                @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).FinancialStatementLoanTypeId,
+                                  model => ((FSCustomQueryViewModel)model).FSLoanTypeList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).FinancialStatementLoanTypeId)
+                                            </div>
+                                        </div>
+
+
+                                        <div class="control-group">
+                                            <div class="dvpanel">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).MaximumCurrency)
+                                            </div>
+                                            <div class="controls">
+                                                @Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).MaximumCurrency, new SelectList(((FSCustomQueryViewModel)Model).MaximumAmountSecuredCurrencyList, "Value", "Text", ((FSCustomQueryViewModel)Model).MaximumCurrency), new { @class = "ddl" })
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).MaximumCurrency)
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Secured Creditor
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="accordion-body collapse" style="height: 0px;">
+                            <div class="accordion-inner">
+                                <div id="SecuredCreditorrows">
+                                    <div class="control-group">
+                                        <div class="dvpanel">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).SecuredPartyTypeId)
+                                        </div>
+                                        <div class="controls checkboxlist">
+                                            @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).SecuredPartyTypeId,
+                                  model => ((FSCustomQueryViewModel)model).SecuredPartyList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                            @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                            @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).SecuredPartyTypeId)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Debtor
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse" style="height: 0px;">
+                            <div class="accordion-inner">
+                                <div id="debtorrows">
+
+                                    <div class="control-group">
+                                        <div class="dvpanel">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).DebtorTypeId)
+                                        </div>
+
+                                        <div class="controls checkboxlist">
+                                            @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).DebtorTypeId,
+                                  model => ((FSCustomQueryViewModel)model).DebtorTypes,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                            @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                            @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).DebtorTypeId)
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="dvpanel">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).DebtorCountryId)
+                                        </div>
+                                        <div class="controls">
+
+                                            @Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).DebtorCountryId, new SelectList(((FSCustomQueryViewModel)Model).Countries, "Value", "Text", ((FSCustomQueryViewModel)Model).DebtorCountryId), new { @class = "ddl" })
+                                            @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).DebtorCountryId)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="dvpanel">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).DebtorCountyId)
+                                        </div>
+                                        <div class="controls">
+
+                                            <div class="controls checkboxlist">
+                                                @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).DebtorCountyId,
+                                  model => ((FSCustomQueryViewModel)model).Countys,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfoForSate
+                                  )
+
+                                                @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).DebtorCountyId)
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="control-label">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).MajorityOwnershipId)
+                                        </div>
+                                        <div class="controls">
+
+                                            @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).MajorityOwnershipId, new SelectList(((FSCustomQueryViewModel)Model).MajorityOwnershipList, "Value", "Text", ((FSCustomQueryViewModel)Model).MajorityOwnershipId), "")
+                                            @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).MajorityOwnershipId)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="control-label">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).ExistingRelationshipId)
+                                        </div>
+                                        <div class="controls">
+
+                                            @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).ExistingRelationshipId, new SelectList(((FSCustomQueryViewModel)Model).ExistingRelationshipList, "Value", "Text", ((FSCustomQueryViewModel)Model).ExistingRelationshipId), "")
+                                            @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).ExistingRelationshipId)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="dvpanel">
+                                            @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).SectorOfOperationId)
+                                        </div>
+
+                                        <div class="controls checkboxlist">
+                                            @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).SectorOfOperationId,
+                                  model => ((FSCustomQueryViewModel)model).SectorOfOperationList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                            @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                            @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).SectorOfOperationId)
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Collateral
+                            </a>
+                        </div>
+                        <div id="collapseFour" class="accordion-body collapse" style="height: 0px;">
+                            <div class="accordion-inner">
+                                <div id="collateralrows">
+                                    <div class="row-fluid">
+                                        @if (CRL.Infrastructure.Configuration.Constants.Project == CRL.Infrastructure.Configuration.Project.Liberia)
+                                        {
+                                            <div class="control-group">
+                                                <div class="dvpanel">
+                                                    @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).CollateralTypeId)
+                                                </div>
+                                                <div class="controls checkboxlist">
+                                                    @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).CollateralTypeId,
+                                  model => ((FSCustomQueryViewModel)model).CollateralTypeList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                                    @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).CollateralTypeId)
+
+                                                </div>
+
+                                            </div>
+                                        }
+                                        <div class="control-group">
+                                            <div class="dvpanel">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).CollateralSubtypeId)
+                                            </div>
+                                            <div class="controls checkboxlist">
+                                                @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).CollateralSubtypeId,
+                                  model => ((FSCustomQueryViewModel)model).CollateralSubTypesList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected,
+                                  htmlListInfo)
+
+                                                @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).CollateralSubtypeId)
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Customize Report Output
+                            </a>
+                        </div>
+                        <div id="collapseFive" class="accordion-body collapse" style="height: 0px;">
+                            <div class="accordion-inner">
+                                <div id="customizereport">
+                                    <div class="row-fluid">
+
+                                        @if (((CRL.Infrastructure.Authentication.SecurityUser)Context.User).IsOwnerUser)
+                                        {
+                                            <div class="control-group">
+                                                <div class="control-label">
+                                                    @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).ClientId)
+                                                </div>
+                                                <div class="controls">
+
+                                                    @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).ClientId, new SelectList(((FSCustomQueryViewModel)Model).Clients, "Value", "Text", ((FSCustomQueryViewModel)Model).ClientId), "")
+                                                    @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).ClientId)
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="control-group">
+                                            <div class="control-label">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).ReportType)
+                                            </div>
+                                            <div class="controls">
+                                                @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).ReportType, new SelectList(((FSCustomQueryViewModel)Model).ReportTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).ReportType))
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).ReportType)
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="control-label">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).FSStateType)
+                                            </div>
+                                            <div class="controls">
+                                                @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).FSStateType, new SelectList(((FSCustomQueryViewModel)Model).FSStateTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FSStateType))
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).FSStateType)
+                                            </div>
+                                        </div>
+
+                                        <div class="financeView control-group">
+                                            <div class="dvpanel">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).ShowSection)
+                                            </div>
+                                            <div class="controls checkboxlist">
+                                                @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).ShowSection,
+                                  model => ((FSCustomQueryViewModel)model).ShowSectionList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                                @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).ShowSection)
+
+                                            </div>
+                                        </div>
+                                        <div class="financeView control-group">
+                                            <div class="dvpanel">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).LimitToFirstItem)
+                                            </div>
+                                            <div class="controls checkboxlist">
+                                                @Html.CheckBoxListFor(model => ((FSCustomQueryViewModel)model).LimitToFirstItem,
+                                  model => ((FSCustomQueryViewModel)model).LimitToFirstItemList,
+                                  LookUpView => LookUpView.Value,
+                                  LookUpView => LookUpView.Text,
+                                 LookUpView => LookUpView.Selected, htmlListInfo
+                                  )
+
+                                                @*@Html.ListBoxFor(model => ((FSCustomQueryViewModel)model).FinancialStatementTransactionTypeId, new SelectList(((FSCustomQueryViewModel)Model).FSTransactionTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).FinancialStatementTransactionTypeId), new { @class = "ddl" })*@
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).LimitToFirstItem)
+
+                                            </div>
+                                        </div>
+                                        <div class="statisticsView control-group">
+                                            <div class="control-label">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).StatisticalReportType)
+                                            </div>
+                                            <div class="controls">
+
+                                                @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).StatisticalReportType, new SelectList(((FSCustomQueryViewModel)Model).StatisticalReportTypeList, "Value", "Text", ((FSCustomQueryViewModel)Model).StatisticalReportType))
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).StatisticalReportType)
+                                            </div>
+                                        </div>
+                                        <div class="statisticsView control-group">
+                                            <div class="control-label">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).GroupedBy)
+                                            </div>
+                                            <div class="controls">
+
+                                                @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).GroupedBy, new SelectList(((FSCustomQueryViewModel)Model).GroupByList, "Value", "Text", ((FSCustomQueryViewModel)Model).GroupedBy))
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).GroupedBy)
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="control-label">
+                                                @Html.LabelForRequired(model => ((FSCustomQueryViewModel)model).FSState)
+                                            </div>
+                                            <div class="controls">
+
+                                                @Html.DropDownListFor(model => ((FSCustomQueryViewModel)model).FSState, new SelectList(((FSCustomQueryViewModel)Model).FSStateList, "Value", "Text", ((FSCustomQueryViewModel)Model).FSState))
+                                                @Html.ValidationMessageFor(model => ((FSCustomQueryViewModel)model).FSState)
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+
+    if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+        $('#pnlMonthYear').hide();
+        $('#pnlStartEndDate').show();
+    }
+    else {
+        $('#pnlMonthYear').show();
+        $('#pnlStartEndDate').hide();
+    }
+
+
+    if ($('#ReportType').val() == 1) {
+        $('.financeView').show();
+        $('.statisticsView').hide();
+
+    }
+    else {
+        $('.financeView').hide();
+        $('.statisticsView').show();
+    }
+
+    $('#ReportType').change(handleChangeofReportView);
+    function handleChangeofReportView() {
+        if ($(this).val() == 1) {
+            $('.financeView').show();
+            $('.statisticsView').hide();
+
+        }
+        else {
+            $('.financeView').hide();
+            $('.statisticsView').show();
+        }
+
+    }
+
+
+</script>

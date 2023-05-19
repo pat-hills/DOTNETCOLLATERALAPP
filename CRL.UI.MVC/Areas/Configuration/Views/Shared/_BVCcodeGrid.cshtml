@@ -1,0 +1,124 @@
+﻿@model  CRL.UI.MVC.Areas.Configuration.Models.Shared._BvcJqgridViewModel
+    @using CRL.Infrastructure.Enums 
+
+<style>
+    #gs_Level, #gs_Type {
+    height: 24px;
+    line-height: 30px;
+}
+</style>
+
+<div id="searchgrid">
+    @using MvcJqGrid
+
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";   
+        Grid c = Html.Grid("BVCList");
+        c = c.SetCaption("List of Bank Verification Codes");
+        c = c.AddColumn(new Column("Name").SetLabel("Name").SetSearch(true));
+        c = c.AddColumn(new Column("Level").SetLabel("Level").SetSearchType(MvcJqGrid.Enums.Searchtype.Select)
+                .SetSearchTerms((IDictionary<string, string>)Model.Levels));
+        c = c.AddColumn(new Column("Code").SetLabel("Code").SetSearch(true));
+        c = c.AddColumn(new Column("Type").SetLabel("Type").SetSearchType(MvcJqGrid.Enums.Searchtype.Select)
+                .SetSearchTerms((IDictionary<string, string>)Model.BVCTypes));
+
+        c = c.SetUrl(Url.Action("BVCJsonData", "Configuration", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(15)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true)
+        .SetGridView(true)
+        .SetPager("pager")
+        .SetSearchToolbar(true)
+        .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true);         
+              
+    }
+    @(c)
+    
+</div>
+
+<script>
+ function buttonize(cellvalue, options, rowobject)
+ {
+     var buttons;
+      
+     var Button1 = '<input class="btn btn-primary SetAsPayPoint" type="button" style="margin:3px 3px 3px 0; padding: 2px 3px 2px 3px;" value="Revoke Paypoint Status" onclick="edit(' + cellvalue + ',1)">';
+     buttons = Button1;
+   
+     return buttons;
+     
+    }
+    function edit(id, cmd) {
+        if (cmd == 1) {
+            var url = '@Url.Action("SetPayPointUser", "User",new{userId="-1"})',
+              url = url.replace("-1", id);
+            
+            bootbox.confirm("Are you sure you want to revoke the paypoint status of this user", function (result) {
+                if (result == true) {
+                    $.ajax({
+                        url: url,
+                        cache: false,
+                        error: function () { alert("Error Processing request"); },
+                        success: function (data) { bootbox.alert(data);$("#ListOfPayPointUsers").jqGrid('setGridParam', { url: '@Url.Action("ViewUserJsonDataForPayPoint", "User", Model)' }).trigger('reloadGrid'); },
+                    });
+                }
+                else {
+
+                }
+            });
+            
+        }
+        
+
+        if (cmd == 2) {
+            var url = '@Url.Action("Delete", "Institution",new{Id="-1"})'
+              url = url.replace("-1", id);
+               window.location.assign(url);
+        }
+
+        if (cmd == 3) {
+            var url = '@Url.Action("Deactivate", "Institution",new{Id="-1"})'
+              url = url.replace("-1", id);
+               window.location.assign(url);
+          }
+
+        if (cmd == 4) {
+            var url = '@Url.Action("Activate", "Institution",new{Id="-1"})'
+            url = url.replace("-1", id);
+             window.location.assign(url);
+        }
+        if (cmd == 5) {
+            var url = '@Url.Action("Index", "User",new{InstitutionId="-1"})'
+             url = url.replace("-1", id);
+              window.location.assign(url);
+        }
+        if (cmd == 6) {
+            var url = '@Url.Action("Index", "InstitutionUnit",new{Id="-1"})'
+             url = url.replace("-1", id);
+              window.location.assign(url);
+        }
+        if (cmd == 7) {
+            var url = '@Url.Action("Details", "User",new{Id="-1"})'
+             url = url.replace("-1", id);
+              window.location.assign(url);
+         }
+      
+    }
+
+    function NameLabelLink(cellvalue, options, rowobject) {
+        return '<a href="#" onclick="edit(' + rowobject['Id'] + ',7)">' + rowobject['Name'] + '</a>';
+    }
+
+
+    function GetServerErrors(xhr, status, error) {
+        bootbox.alert("<h4 style='color:red'><i class=' icon-remove'></i> Error Loading data</h4><hr/>There was an error while the data in the grid. Please contact your administrator for assistance<br/>" + "<b>Response: " + xhr.status + " " + xhr.statusText + "</b> ");
+    }
+
+        </script>

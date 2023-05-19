@@ -1,0 +1,139 @@
+﻿@using CRL.UI.MVC.HTMLHelpers
+@using CRL.UI.MVC.Common
+@using CRL.Infrastructure.Messaging
+@using CRL.Infrastructure.Configuration 
+
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    var Contactactive = ViewBag.Active == "Contact"?"active":"";
+    var HelpActive =  ViewBag.Active == "Help" ? "active" : "";
+    Layout = "";
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+      
+   @Styles.Render("~/Content/themes/base/css")
+  
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/content2/css/crlmodme.css" rel="stylesheet">
+    <link href="~/content/messages.css" rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/necessary")
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js" ></script>
+    @RenderSection("HeadScripts", required: false)
+
+    <style type="text/css">
+        body {
+            font-family:'Segoe UI','Open Sans','Droid Arabic Naskh','Mplus Fulah',sans-serif;
+        }
+        label {
+    display: inline;
+
+        }
+        
+.required {
+    color: #FF0000;
+    margin-left: 3px;
+}
+
+.field-validation-error {
+    color: #FF0000;
+}
+
+.validation-summary-errors {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.maincontent {float: left;width: 100%;}
+.maincontentinner {padding: 20px;}
+
+    </style>
+</head>
+  
+<body>
+        @if (Constants.OnTestSite)
+    {
+        <div style="margin-bottom:10px;padding-top:10px; padding-bottom:10px; color: #FFFF00;background-color: #FF0000;text-align: center;"><strong>TEST SERVER - (@Constants.OnTestSiteSubjectPrefix.ToUpper() )</strong></div>
+    }
+    <div id="mainwrapper">
+ 			<div class="navbar navbar-default" >
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+							<a class="navbar-brand" href="index.php">
+								<img src="~/content2/img/crllogo5.png">
+							</a>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="nav-collapse pull-right">
+							<ul class="nav">
+							  <li class="@ViewBag.Home"><a href="~/">HOME</a></li>
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DOWNLOADS <b class="caret"></b></a>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="~/docs/Liberia Regulation.pdf">Collateral Registry Regulation</a></li>
+                                        <li><a href="~/docs/Commercial Code - Title 7 - Liberian Code of Laws Revised.pdf">Commercial Code</a></li>
+                                          <li><a href="~/docs/HOW TO v3.pdf">How to</a></li>
+                                         @if(SecurityUser){
+                                             <li><a href="~/docs/CRLBatchUpload_dotNet_Included.exe">Batch Upload(.Net Included)</a></li> 
+                                          <li><a href="~/docs/CRLBatchUpload.exe">Batch Upload</a></li>                                     
+                                              <li>@Html.ActionLink("Client Profile File", "DownloadBatchFIle", "Home", new { area=""},null)</li>
+                                          }
+
+                                    </ul>
+                                </li>
+							   <li class="dropdown @HelpActive"><a class="dropdown-toggle" data-toggle="dropdown" href="#">HELP <b class="caret"></b></a>
+                                      <ul class="dropdown-menu">
+                                       <li class="">@Html.ActionLink("About The Registry","About","Home", new { area=""},null)</li>
+					                <li class="">@Html.ActionLink("Fee Structure","Fee","Home", new { area=""},null)</li>
+					                    <li class="">@Html.ActionLink("Frequently Asked Questions","Faq","Home", new { area=""},null)</li>
+                                                                        
+                                    </ul>
+                                </li>
+							  <li class=@Contactactive>@Html.ActionLink("CONTACT US", "Contact", "Home", new { area=""},null)</li>			  		
+                              
+                               @if(SecurityUser){
+                                <li>@Html.ActionLink("LOG OUT", "LogOff","Account" ,new { area = "" }, null)</li>      
+                               }
+							</ul>
+						</div><!--/.nav-collapse -->
+						
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+			</div>
+        
+        <div id="main" class="rightpanel">
+            <div class="maincontent">
+                <div class="maincontentinner">
+                      @if (ViewBag.TitleMessage != null)
+            {
+                @Html.Message((MessageInfo)ViewBag.TitleMessage);
+            }
+                @RenderBody()
+                     <footer>
+            <hr>
+            <div class="row-fluid">
+                <div class="span12">
+                    <p style="text-align :center"> Powered by <a href="http://www.bsystemslimited.com">Bsystems Limited</a> 2014</p>
+                </div>
+            </div>
+        </footer>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+     
+    @RenderSection("Scripts", required: false)
+       
+</body>
+</html>

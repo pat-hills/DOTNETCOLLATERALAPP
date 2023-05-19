@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Payments";   //**Should be payments for owners
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "List of all payments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+   
+        var SecurityUser = (SecurityUser)HttpContext.Current.User;
+    
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.PaymentIndexViewModel 
+@using CRL.UI.MVC.Common.Enums
+@using CRL.Infrastructure.Enums
+@using CRL.Model.FS.Enums
+@using CRL.Infrastructure.Authentication
+@{
+   
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "searchgrid",
+        Url = Url.Action("GetPartialViewOfPaymentIndexGrid"),
+         OnFailure = "OnFailure" 
+    };
+}
+
+<script src="~/Scripts/bootbox.min.js"></script>
+@*We need to also check for the roles here*@
+@*@if (((SecurityUser)HttpContext.Current.User).IsOwnerUser == false)
+{
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">+ Make new payment<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Pay Registered Client", "CreateSubmit", new { _FSTransactionCategory = FinancialStatementTransactionCategory.SecurityInterest })</li>
+            <li>@Html.ActionLink("Pay Unregistered Client", "CreateSubmit", new { _FSTransactionCategory = FinancialStatementTransactionCategory.FinancialLease })</li>           
+        </ul>
+    </div>
+}*@
+<div class="clear"></div>
+@*@using Enterprise.DomainDesign.Service.Common.Messages*@
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>List
+                </h3>
+            </div>
+            <div class="box-content"><div class="form-horizontal">
+                @using (Ajax.BeginForm(ajaxOpts))
+                {
+                    
+                    <div class="control-group">
+                        <label class="control-label">Date Search Method<small>More information here</small></label>
+                        <div class="controls">
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model._PaymentJqGridViewModel.UseStartEndDateOption, "true")
+                                Use start and end date
+                            </label>
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model._PaymentJqGridViewModel.UseStartEndDateOption, "false")
+                                Use month and year
+                            </label>
+                        </div>
+                    </div>
+                    <div id="pnlStartEndDate">
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Start Date</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._PaymentJqGridViewModel.StartDate, new { Id = "StartDate" })
+                                @Html.ValidationMessageFor(model => model._PaymentJqGridViewModel.StartDate)
+                                @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">End Date</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._PaymentJqGridViewModel.EndDate, new { Id = "EndDate" })
+                                @Html.ValidationMessageFor(model => model._PaymentJqGridViewModel.EndDate)
+                                @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                            </div>
+                        </div>
+                    </div> 
+                    <div id="pnlMonthYear">
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Month</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model._PaymentJqGridViewModel.SelectedMonthList, Model._PaymentJqGridViewModel.MonthsList)
+                                @Html.ValidationMessageFor(model => model._PaymentJqGridViewModel.SelectedMonthList)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Year</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._PaymentJqGridViewModel.SelectedYear)
+                                @Html.ValidationMessageFor(model => model._PaymentJqGridViewModel.SelectedYear)
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model=>model._PaymentJqGridViewModel.ShowType);
+                                  
+                     <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit Search</button>
+                    </div>
+                   
+                
+                    //@Html.Action("GetPartialViewOfPaymentIndexGrid")
+                   
+       
+                }  @Html.Action("GetPartialViewOfPaymentIndexGrid")
+            </div></div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function OnFailure(ajaxContext) {
+
+        if (ajaxContext.status == "401") {
+            alert("Your session has ended.  You  are required to login again!");
+            var url = '@Html.Raw(Url.Action("Login", "Account", new{Area=""}))'
+            window.location.href = url;
+
+        }
+        else {
+
+            alert(x.status);
+         
+        }
+
+
+
+    }
+    $("#pnlMonthYear").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("#StartDate").datepicker({ dateFormat: dateFormatMode });
+        $("#EndDate").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='_PaymentJqGridViewModel.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+
+</script>
+    }

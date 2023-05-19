@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Service.Implementations.ReportService">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>hAQQACJoIMI+AIAEEgQQSRoAACAoQQiQYgshAAAEAIA=</HashCode>
+      <FileName>Implementations\ReportSerivce.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.FSBatchService">
+    <Position X="6" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgiBOIsIMgkAAUAEAUSADAAACAoYgCAwgEggACBQBA=</HashCode>
+      <FileName>Implementations\FSBatchService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.AuthenticatonService">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAoIAAAAAAAAAQQAAAAAAAIQgAAgABAAAAAAAE=</HashCode>
+      <FileName>Implementations\AuthenticatonService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.ConfigurationService">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACAAAEAAAAQAAAAEAAQQAAAAAAAIIAAAAAAAAICAAAA=</HashCode>
+      <FileName>Implementations\ConfigurationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.EmailService">
+    <Position X="3.25" Y="6" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\EmailService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.MembershipRegistrationService">
+    <Position X="6" Y="4.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQgAACoAIAQAAQCAAWSACAAAAAIQgAAwggAAAAQAAA=</HashCode>
+      <FileName>Implementations\MembershipRegistrationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.WidgetService">
+    <Position X="3.25" Y="3.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAoQAAAAAAAAADBAAA=</HashCode>
+      <FileName>Implementations\WidgetService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Service.Implementations.WorkflowService">
+    <Position X="8.75" Y="3.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIkAgIABAAAAAAAFAACAAACAoAgAAAghAgAAhAAA=</HashCode>
+      <FileName>Implementations\WorkflowService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

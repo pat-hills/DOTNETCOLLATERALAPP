@@ -1,0 +1,75 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._BatchDetailsGrid 
+
+@*              //  @Html.HiddenFor(modelitem => item.RepresentativeClientName, new { @Name="item.RepresentativeClientName["+count+"]"})*@
+<table class="table table bordered">
+
+    <thead>
+        <tr>
+           @* <th></th>*@
+            <th>Bank Name</th>
+            <th>Amount</th>
+        </tr>
+        @{var count = 0;}
+    </thead>
+    <tbody>
+     @*   @foreach(var item in Model.BatchDetails ){
+            count++;
+        <tr>
+            
+            <td>
+                @Html.CheckBoxFor(modelitem => item.isSelected, new { @Value = item.RepresentativeMembershipId})
+
+            </td>
+            <td>@Html.DisplayFor(modelitem=> item.RepresentativeClientName)           
+            </td>
+            <td>@item.Amount</td>
+        </tr>
+            }*@
+          @for (int j = 0; j < Model.BatchDetails.Length; j++)
+    {
+                <tr>
+            
+           @* <td>
+                @Html.CheckBoxFor(modelitem => modelitem.BatchDetails[j].isSelected)
+                 @Html.HiddenFor(modelItem => modelItem.BatchDetails[j].RepresentativeMembershipId)
+            </td>*@
+            <td>@Html.DisplayFor(modelitem=> modelitem.BatchDetails[j].Client)           
+            </td>
+            <td>@Model.BatchDetails[j].Amount</td>
+        </tr>
+       
+    }
+    </tbody>
+
+</table>
+
+<script type="text/javascript">
+
+
+
+   @* $("#btnReconcileBatch").click(function () {
+        var selectedIds = new Array();
+
+        $('input[name="item.isSelected"]:checked').each(function () {
+            selectedIds.push(this.value);
+        });
+
+        var ReconcileCommet = $("#ReconcileComment").val();
+        var BatchId = @Model.BatchId
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ReconcileBatches","Payment")',
+            contentType: 'application/json',
+            datatype: "json",
+            data: JSON.stringify({ SelectedIds: selectedIds, ReconcileComment: ReconcileCommet, BatchId: BatchId }),
+            success: function (data) {
+                if (data == "Success") {
+                    url = '@Url.Action("ViewBatches","Payment")';
+                window.location.href = url;
+            }
+            }
+        });
+
+    });*@
+</script>

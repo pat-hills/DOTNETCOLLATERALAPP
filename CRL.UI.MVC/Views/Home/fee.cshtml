@@ -1,0 +1,209 @@
+﻿@{
+    
+    Layout = null;
+    
+    }
+
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Collateral Registry Liberia</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/content2/css/bootstrap.css" rel="stylesheet">
+	<link href="~/content2/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="~/content2/css/crlmodme.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/content2/font-awesome/css/font-awesome.min.css">
+    <!-- Page Specific CSS -->
+	
+
+    <script type="text/javascript">
+$('#myCarousel').carousel({
+    interval: 1200
+});</script>
+
+
+    <script type="text/javascript" src="~/content2/js/jquery.1.10.js"></script>
+    <script type="text/javascript" src="~/content2/js/bootstrap.js"></script>
+
+</head>
+<body class="fixed-top">
+
+	<!---Navbar -->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="navbar navbar-default">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+                            <a class="navbar-brand" href="index.php">
+                                <img src="~/content2/img/crllogo5.png">
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="nav-collapse pull-right">
+                            <ul class="nav">
+                            <li class="@ViewBag.Home"><a href="~/">HOME</a></li>
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DOWNLOADS <i class="fa fa-angle-down"></i></a>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Download Pdf </a></li>
+                                        <li><a href="#">Download Images</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">HELP <b class="caret"></b></a>
+                                      <ul class="dropdown-menu">
+                                  <li class="">@Html.ActionLink("About The Registry","About","Home")</li>
+					            <li class="">@Html.ActionLink("Fee Structure","Fee","Home")</li>
+					             <li class="">@Html.ActionLink("Frequently Asked Questions","Faq","Home")</li>                           
+                                    </ul>
+                                </li>
+                                <li class="">@Html.ActionLink("Contact Us","Contact","Home")</li>
+
+                                        @if(SecurityUser){
+                                <li>@Html.ActionLink("LOG OUT", "LogOff","Account" ,new { area = "" }, null)</li>      
+                               }
+                            </ul>
+                        </div><!--/.nav-collapse -->
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+        </div>
+    
+    	
+	
+		<div class="container-fluid">
+			<div class="row-fluid">
+		
+				 <!-- submenu -->
+				<div class="submenu">
+					<h1 style="padding:0px 15px 25px 0;">Help	<i class="fa fa-angle-right"></i></h1>
+				<div class="collapsed">
+					  @*<a href="about.html#" id="submenutoggle"><h1>Help<i class="fa fa-angle-right"></i></h1></a>*@
+				</div> 
+					<ul class="nav nav-tabs">
+					  <li class="">@Html.ActionLink("About The Registry","About","Home")</li>
+					  <li class="active">@Html.ActionLink("Fee Structure","Fee","Home")</li>
+					  <li class="">@Html.ActionLink("Frequently Asked Questions","Faq","Home")</li>
+					</ul>				
+				</div>
+			  <!-- /submenu -->
+		   </div>
+		   <hr>
+		
+			<!-- fees Table-->
+			<div class="container-fluid">
+				<div class="row span10">
+					
+					<h5>FEES STRUCTURE FOR THE REGISTRY’S SERVICES</h5>
+					<p style="text-align: justify;">Below is the fee structure for registration, amendment and certified search report of financing statement, 
+					which involve the three core services of the Collateral Registry.  Except for the issuance of certified search certificate which will be 
+					charged a flat fee of L$240.00 and the registration and amendment for any currency apart from USD and LD which will be charged a flat rate 
+					of L$480.00 and L$240.00, respectively, the rest of the fees will be charged based on the established threshold of the loan amount indicated 
+					below for which a movable collateral has been pledged and a security interest registered or amended. All fees will be charged per transaction. 
+					There is no fee for a non-certified search report generated from the Collateral Registry records.</p>
+					<hr>
+					
+					<div class="tile-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th><h5>Loan Amount in Liberian Dollar (LD)</h5></th>
+									<th><h5>Fees for Registration in Liberian Dollar (LD)</h5></th>
+									<th><h5>Fees for Amendment in Liberian Dollar  (LD)</h5></th>
+									<th><h5>Fees for Certified Search Certificate in Liberian Dollar (LD)</h5></th>
+									<tbody>
+										<tr>
+										 <td>Micro - L$ 560,000 and below</td>
+										 <td>160.00</td>
+										 <td>80.00</td>
+										 <td>240.00</td>
+										</tr>
+										<tr>
+										 <td>Micro - L$ 560,001 to L$ 4,000,000</td>
+										 <td>320.00</td>
+										 <td>160.00</td>
+										 <td>240.00</td>
+										</tr>
+										<tr>
+										 <td>Large – above L$ 4,000,000</td>
+										 <td>480.00</td>
+										 <td>240.00</td>
+										 <td>240.00</td>
+										</tr>									
+									</tbody>							
+								</tr>
+							
+							</thead>
+						</table>
+					
+					</div>
+					
+					<div class="tile-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th><h5>Loan Amount in USD</h5></th>
+									<th><h5>Fees for Registration in Liberian Dollar (LD)</h5></th>
+									<th><h5>Fees for Amendment in Liberian Dollar  (LD)</h5></th>
+									<th><h5>Fees for Certified Search Certificate in Liberian Dollar (LD)</h5></th>
+									<tbody>
+										<tr>
+										 <td>Micro - USD 7,000 and below</td>
+										 <td>160.00</td>
+										 <td>80.00</td>
+										 <td>240.00</td>
+										</tr>
+										<tr>
+										 <td>Micro - USD 7,000 to USD 50,000</td>
+										 <td>320.00</td>
+										 <td>160.00</td>
+										 <td>240.00</td>
+										</tr>
+										<tr>
+										 <td>Large – above USD$ 50,000</td>
+										 <td>480.00</td>
+										 <td>240.00</td>
+										 <td>240.00</td>
+										</tr>									
+									</tbody>							
+								</tr>
+							
+							</thead>
+						</table>
+					
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<hr>	
+	<footer style="margin-top:50px;">
+        
+        <div class="row-fluid">
+            <div class="span12">
+                <p> &copy; <a href="http://www.bsystemslimited.com">Bsystems Limited</a> 2014</p>
+            </div>
+        </div>
+    </footer>	
+
+    
+    <script type="text/javascript" src="~/content2/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/content2/js/bootstrap.js"></script>
+		
+</body>
+</html>

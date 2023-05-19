@@ -1,0 +1,213 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+    
+}
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    ViewBag.Active = "Help";
+}
+<div class="w-container container">
+    <div class="page-header">
+        <h2>HOW TO...</h2>
+    </div>
+
+    <div class="top">
+        <h4>SETUP CLIENT ACCOUNT</h4>
+        <div>
+            <ol>
+                <li>From the Home page of the application click on the <b>“Create New Account”</b> button to open the Verification page.</li>
+                <li>Enter your <b>Bank Verification Code</b> in the box and click on <b>Submit</b> to open the <b>Secured Creditor</b> Profile page.</li>
+                <li>Provide details for your Profile and complete the <b>Security Administrator</b> Profile.</li>
+                <li>After completing the Administrator profile, enter the same image text on the “Security Check”
+                    page in the box provided and click on the “Submit Registration” button.</li>
+                <li>The <b>“Account Successfully Submitted”</b> message appears to confirm the success of the submission. </li>
+                <li>Wait for an approval email message from the Collateral Registry when the account setup request is approved and the account is created.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO CREATE CLIENT USERS</h4>
+        <div>
+            <ol>
+                <li>Login into the application with your <b>“Login id”</b> and <b>“Password”</b> as Client Administrator or Unit Administrator.</li>
+                <li>Click on the <b>“Administrator”</b> menu tab.</li>
+                <li>Select <b>“My Users”</b> from the drop down list to load the Users page.</li>
+                <li>Click the <b>“Create New User”</b> button and complete the form with the User Profile. </li>
+                <li>Select the option <b>Notify User with password </b>to send password notice to user.</li>
+                <li>Click the <b>“Save”</b> button to create a new user and complete.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO ASSIGN ROLES TO A USERS</h4>
+        <div>
+            <ol>
+                <li>Login to the application as the Client Administrator</li>
+                <li>Click on the <b>Administration</b> menu tab and Select <b>My Users</b> from the drop down list. </li>
+                <li>This takes you to the <b>Users</b> page.</li>
+                <li>Move to the <b>List of Users</b> Section and Click on the <b>Edit button</b> of the preferred User.</li>
+                <li>When the <b>Edit User</b> page opens, click on the <b>Modify roles</b> button to load the Roles page.</li>
+                <li>Click in the box of a role to assign to user depending his/her responsibilities and then click the <b>“Save Role”</b> button to complete.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO CREATE UNITS</h4>
+        <div>
+            <ol>
+                <li>Login to the application as the Client Administrator</li>
+                <li>Click on the <b>Administration</b> menu tab and Select <b>My Users</b> from the drop down list. </li>
+                <li>The Financial Institution Unit page opens.</li>
+                <li>Click on the <b>Register a New Financial Institution Unit</b> button to load the <b>Financial Institution Unit Registration</b>
+                page.
+						<li>5.	Enter unit details and click on <b>Save</b>
+                button to create unit and complete.
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>CHANGE YOUR PASSWORD</h4>
+        <div>
+            <ol>
+                <li>From the Login page, click the link <b>Forgot Password? Click Here</b></li>
+                <li>The <b>Password Reset</b> page loads requesting for your email address.</li>
+                <li>Enter your email address in the email box and the same text on the security image box.</li>
+                <li>Click on the <b>Submit</b> button to send request for password reset. </li>
+                <li>After successfully submitting password reset request, go to the inbox of the email address you provided above and open the system generated email received from the Registry.</li>
+                <li>Click on the <b>Reset Password</b> link to take you to the <b>Change Password</b> page.</li>
+                <li>Enter a <b>New Password</b> in the New Password box and enter the same password in the <b>Confirm New Password</b> box.</li>
+                <li>Enter the
+                    <link />
+                    text in the Security Check box and Submit.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>REGISTER A FINANCING STATEMENT</h4>
+        <div>
+            <ol>
+                <li>Login into the application with your <b>“Login id”</b> and <b>“Password”</b>. [Users of organizations must do so as Client or Financing Statement Officers].</li>
+                <li>Click on the <b>“Financing Statement”</b> Menu and select <b>“Create New Financing Statement”</b> option from the drop down. </li>
+                <li>Provide information for the fields on the <b>“Loan Information”</b> form. </li>
+                <li>Click on the <b>“Secured Party”</b> tab under the <b>“Registration Information”</b> column to display the <b>“Secured Party”</b> profile details captured during the account setup stage.</li>
+                <li>To enter additional Secured Party details, click on the appropriate button on the form and provide information for the fields.</li>
+                <li>Click on the <b>“Debtor”</b> and <b>“Collateral”</b> tabs to fill the forms. Make sure information for all mandatory fields are provided.</li>
+                <li>Click on the <b>“Add File”</b> button to attach a file document in Word or PDF formats to the financing statement and then click on the <b>“Upload”</b> button to upload the file attachment.</li>
+                <li>To request for stamp duty exempt click inside the <b>Stamp Duty Exempt</b> box and provide your comments in the Comment box.  </li>
+                <li>Click inside the Acknowledgement box and then Click <b>“Submit Financing Statement”</b> to submit financing statement for authorization. </li>
+
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO AUTHORIZE A FINANCING STATEMENT</h4>
+        <div>
+            <ol>
+                <li>Login to the application with your <b>“Login id”</b> and <b>“Password”</b> as a Client Authorizer. </li>
+                <li>Click on <b>“My Tasks”</b> Menu and select “My Pending Tasks” from the drop down.  </li>
+                <li>Click on the <b>“Handle”</b> button of the financing statement of interest. </li>
+                <li>This opens the <b>“Handle Task” </b>page to review registration details.</li>
+                <li>Scroll down to the Authorization section. Select <b>“Authorize”</b> to approve, <b>“Deny”</b> to terminate or <b>“Resend to Submitter”</b> to return to the Submitter for or correction and resubmission. </li>
+                <li>Click the <b>“Submit”</b> button when done.</li>
+
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>SEARCH SECURITY INTEREST (REGISTERED USER)</h4>
+        <div>
+            <ol>
+                <li>Login to the application with <b>Login id</b> and <b>Password</b>.</li>
+                <li>Click on the <b>Search</b> menu and Select the type of Search to perform from the dropdown list.</li>
+                <li>The default Search page is the Legally Effective Search.</li>
+                <li>Select the Search criteria. You may conduct a search by: </li>
+                <ol type="a">
+                    <li>Debtor (<b>Individual</b> or <b>Organization</b>) Identification Number</li>
+                    <li>Collateral Serial Number</li>
+                    <li>Financing Statement Initial Registration Number</li>
+                </ol>
+                <li>Click on the <b>“Submit Search Request”</b> button.</li>
+                <li>Click <b>OK</b> to open the <b>Search Results</b> page.</li>
+                <li>Select the financing statement of choice and click <b>View and Generate Search Report</b> button to view the details of the search.</li>
+                <li>To generate the Search Certificate, click on <b>Generate Search Report</b> to generate the Search Certificate.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>SEARCH SECURITY INTEREST (PUBLIC USER)</h4>
+        <div>
+            <ol>
+                <li>Click on the <b>Search</b> menu tab at the <b>Home</b> page and Select <b>Search</b> from the dropdown list.</li>
+                <li>The <b>Search Financing Statement</b> page is displayed.</li>
+                <li>The default Search page is the Legally Effective Search.</li>
+                <li>Select the Search criteria. You may conduct a search by: </li>
+                <ol type="a">
+                    <li>Individual Debtor Identification Number (<b>BVN</b>)</li>
+                    <li>Company, Cooperative or Registered Business Name.</li>
+                    <li>Collateral Serial Number</li>
+                </ol>
+                <li>Click on the <b>“Submit Search Request”</b> button.</li>
+                <li>Enter your <b>PIN Code</b> in the <b>Payment Verification</b> box.</li>
+                <li>If payment verification is successful, the Search Results will be displayed</li>
+                <li>To generate a Search Certificate, move to the displayed Search Results, click the box of the search you want.</li>
+                <li>Click the <b>View and Generate Search Report</b> button to generate and download the Search Certificate.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO MAKE ONLINE PAYMENT</h4>
+        <ol>
+            <li>Click on the <b>Search</b> Menu tab at the <b>Home</b> page.</li>
+            <li>At the Main Search page, click on the <b>Payment</b> menu tab.</li>
+            <li>Select the <b>Make an Online Payment</b> option from the drop down.</li>
+            <li>At the Personal information section, enter your personal information ensuring that all mandatory fields are provided.</li>
+            <li>At the Payment information section, choose whether to do a <em>Top Up Payment</em> or <em>New Payment</em>.</li>
+            <li>For a <em>Top Up Payment</em>, enter your previous PIN code for the top up.</li>
+            <li>Select your preferred format of entry and based on your choice, enter the quantity of searches you want to generate or amount in the <em>Quantity of Search</em> or <em>Amount</em> boxes respectively.</li>
+            <li>At the security section, enter the text on the security image in the box and then Click on the <b>Continue</b> button to verify the payment details entered. </li>
+            <li>Verify the payment details and then click on the <b>Pay</b> button to generate a <em>Transaction Reference Number</em> for the payment.</li>
+            <li>Click <b>OK</b> to continue.</li>
+            <li>At the <b>WebPay</b> page, select the Card Type and provide the card details.</li>
+            <li>When complete, click on the <b>Pay</b> button and wait for the payment to be processed.</li>
+            <li>After successful processing of payment, the payment transaction confirmation page is displayed with the <b>Transaction Reference Number and PIN Code.</b></li>
+            <li>Use these two payment information to confirm payment and perform a Search.</li>
+        </ol>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO GENERATE A PAYMENT VOUCHER FOR DIRECTPAY</h4>
+        <div>
+            <ol>
+                <li>Click on the <b>Search</b> Menu tab at the <b>Home</b> page.</li>
+                <li>At the Main Search page, click on the <b>Payment</b> menu tab.</li>
+                <li>Select the <b>Generate Payment Voucher</b> option from the drop down </li>
+                <li>Click <b>Generate Voucher Code</b> to generate the payment Voucher code.</li>
+                <li>Use the Voucher Code generated to make your <b>DirectPay</b> transaction at the bank.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+    <div class="top">
+        <h4>HOW TO CHECK PAYMENT BALANCE</h4>
+        <div>
+            <ol>
+                <li>Click on the <b>Search</b> Menu tab at the <b>Home</b> page.</li>
+                <li>At the Main Search page, click on the <b>Payment</b> menu tab.</li>
+                <li>Select the <b>Check Payment Balance</b> option from the drop down list</li>
+                <li>Enter <b>PIN Code</b> in the box.</li>
+                <li>Click the <b>Check Balance</b> button to complete.</li>
+            </ol>
+        </div>
+    </div>
+    <br />
+</div>

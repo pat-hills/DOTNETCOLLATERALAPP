@@ -1,0 +1,103 @@
+﻿@model CRL.UI.MVC.Areas.Workflow.Models.ViewPageModels.Shared._TaskHandleViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Messaging
+
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-bordered box-color">
+            <div class="box-title">
+                <h3><i class="icon-th-list"></i>@Model.TaskHandleView.CaseTitle </h3>
+            </div>
+            <div class="box-content nopadding">
+                <div class="form-horizontal form-bordered">
+                    <div class="control-group">
+                        <label class="control-label">
+                            @Html.DisplayNameFor(model => model.TaskHandleView.CurrentStatus)
+                        </label>
+                        <div class="controls">
+                            @Model.TaskHandleView.CurrentStatus
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Details         
+                        </label>
+                        <div class="controls">
+                            You are receiving this task because the user <span style="color: blue; font-style: italic;">@Html.DisplayFor(model => model.TaskHandleView.AssigningUser.Fullname)
+                                @Html.DisplayFor(model => model.TaskHandleView.AssigningUserAction) </span>.
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+
+                            @Html.DisplayNameFor(model => model.TaskHandleView.AssingingUserComment)
+                        </label>
+                        <div class="controls">
+                            @Html.DisplayFor(model => model.TaskHandleView.AssingingUserComment)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+
+                            @Html.LabelForRequired(model => model.TaskHandleView.SelectedTask)
+                        </label>
+                        <div class="controls">
+                            @if (Model.TaskHandleView.TasksNotAllowedInHandleProcess == false)
+                            {
+                                @Html.RadioButtonForSelectList(model => model.TaskHandleView.SelectedTask, new SelectList(Model.Tasks, "Value", "Text", Model.TaskHandleView.SelectedTask))
+                                @Html.ValidationMessageFor(model => model.TaskHandleView.SelectedTask)
+                            }
+                            else
+                            {
+                                if ((Model.TaskHandleView .WFTaskType  == CRL.Model.WorkflowEngine.WFTaskType.CreateRegistration))
+                                {
+                                    @Html.ActionLink(@Model.Tasks.FirstOrDefault().Text , "ReSubmit","FinancialStatement", new{Area="FinancialStatement",Id=Model.TaskHandleView.AssociatedItemId ,CaseId = Model.TaskHandleView.CaseId, WorkItemId = Model.Tasks.FirstOrDefault ().Value },null)
+                                }
+                                else if (Model.TaskHandleView .WFTaskType == CRL.Model.WorkflowEngine.WFTaskType.UpdateRegistration)
+                                {
+                                   @Html.ActionLink(@Model.Tasks.FirstOrDefault().Text , "ReSubmitFSUpdate","FinancialStatementActivity", new{Area="FinancialStatement",UpdateId=Model.TaskHandleView.AssociatedItemId ,CaseId = Model.TaskHandleView.CaseId, WorkItemId = Model.Tasks.FirstOrDefault ().Value },null)
+                                }
+                            }
+                        </div>
+                    </div>
+                       @if (Model.TaskHandleView.TasksNotAllowedInHandleProcess == false)
+                            {
+                    <div class="control-group">
+
+                        <label class="control-label">
+                            @Html.LabelForRequired(model => model.TaskHandleView.Comment) <span id="clabel" style="color:red;">*</span>
+                        </label>
+                        <div class="controls commentbox">
+                            @Html.EditorFor(model => model.TaskHandleView.Comment)
+                            @Html.ValidationMessageFor(model => model.TaskHandleView.Comment)
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.TaskHandleView.CaseType)
+                   @Html.HiddenFor(model => model.TaskHandleView.WorkflowId )
+                             @Html.HiddenFor(model => model.TaskHandleView.WFTaskType  )
+
+
+
+                           for(int i = 0; i < Model.TaskHandleView.TaskTransitions.Count(); i++)
+{
+    @Html.HiddenFor(model => Model.TaskHandleView.TaskTransitions[i])
+}
+                          
+                    if (Model.isPayable)
+                    {
+                        MessageInfo msg = new MessageInfo { Message = "Please note that authorisation of this process will cost a fee of <b>$" + Model.Amount.ToString("#,###.00") + "</b>", MessageType = CRL.Infrastructure.Messaging.MessageType.Warning };
+                        @Html.Message((MessageInfo)msg)
+                    }
+                                <div class="form-actions">
+                                    <input type="button" id="btnHandle" class="btn btn-primary" value="Submit" />
+                                </div>
+                   }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

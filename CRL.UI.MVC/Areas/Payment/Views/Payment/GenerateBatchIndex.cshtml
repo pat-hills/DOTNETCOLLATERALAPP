@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = " Generate Batch";   //**Should be payments for owners
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Create batch for postpaid transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+    
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.GenerateBatchViewModel
+@using CRL.UI.MVC.Common.Enums
+@using CRL.Infrastructure.Enums
+@using CRL.Model.FS.Enums
+@using CRL.Infrastructure.Authentication
+@using System.Web.UI.WebControls
+@{
+   
+
+    //AjaxOptions ajaxOpts = new AjaxOptions
+    //{
+    //    UpdateTargetId = "searchgrid",
+    //    Url = Url.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank") ,
+    //    OnBegin = "ajaxValidate"
+
+
+    //};
+
+    var listItems = new List<ListItem>
+        {
+              new ListItem { Text = "Unbatched transactions", Value = "1" },
+              new ListItem { Text = "Batched transactions", Value = "2" },
+              new ListItem { Text = "All transactions", Value = "3" }
+        };
+}
+
+<div class="clear"></div>
+@using (Html.BeginForm("GenerateBatch", "Payment", FormMethod.Post, new { Id = "FSForm" }))
+{
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span8 offset2">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(false)
+                    <div>
+                        <div class="control-group">
+                            <label class="control-label">Transaction Selection<small>Choose selection mode</small></label>
+                            <div class="controls">
+                                <label class="radio">
+                                    @Html.RadioButtonFor(model => model._ListOfTransactionsJqGrid.SelectAllOustandingTransactions, "true", new { id = "rdtxn" })
+                                    All Outstanding Postpaid Transactions
+                                </label>
+                                <label class="radio">
+                                    @Html.RadioButtonFor(model => model._ListOfTransactionsJqGrid.SelectAllOustandingTransactions, "false")
+                                    Outstanding Postpaid Transactions for a period
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div id="periodSelection">
+                        <div class="hero-unit">
+                            <div class="control-group">
+                                <label class="control-label">Transaction Period<small>More information here</small></label>
+                                <div class="controls">
+                                    <label class="radio">
+                                        @Html.RadioButtonFor(model => model._ListOfTransactionsJqGrid.UseStartEndDateOption, "true")
+                                        By start and end date
+                                    </label>
+                                    <label class="radio">
+                                        @Html.RadioButtonFor(model => model._ListOfTransactionsJqGrid.UseStartEndDateOption, "false")
+                                        By month and year
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="pnlStartEndDate">
+                                <div class="control-group">
+                                    <label for="textfield" class="control-label">Start Date</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._ListOfTransactionsJqGrid.StartDate, new { Id = "StartDate" })
+                                        @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.StartDate)
+                                        @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="textfield" class="control-label">End Date</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._ListOfTransactionsJqGrid.EndDate, new { Id = "EndDate" })
+                                        @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.EndDate)
+                                        @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="pnlMonthYear">
+                                <div class="control-group">
+                                    <label for="textfield" class="control-label">Month</label>
+                                    <div class="controls">
+                                        @Html.DropDownListFor(model => model._ListOfTransactionsJqGrid.SelectedMonthList, Model._ListOfTransactionsJqGrid.MonthsList)
+                                        @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.SelectedMonthList)
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="textfield" class="control-label">Year</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model._ListOfTransactionsJqGrid.SelectedYear)
+                                        @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.SelectedYear)
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="control-group">
+                        <div class="well" style="margin: 0 auto 10px;">
+
+                            <label class="control-label">Transactions Status</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched, new SelectList(listItems, "Value", "Text", Model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched))
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched)
+
+                                <div class="pull-right">
+                                    <input type="submit" class="btn btn-primary" id="btnPreview" value="Continue To Preview Batch" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $("#pnlMonthYear").hide();
+    $("#btnGenerateBatch").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("#StartDate").datepicker({ dateFormat: dateFormatMode });
+        $("#EndDate").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='_ListOfTransactionsJqGrid.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+        $("input[name='_ListOfTransactionsJqGrid.SelectAllOustandingTransactions']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#periodSelection').fadeOut("slow");
+            }
+            else {
+                $('#periodSelection').fadeIn("slow");
+            }
+        });
+
+
+        if ($('#rdtxn').is(':checked'))
+            $('#periodSelection').hide();
+    });
+</script>

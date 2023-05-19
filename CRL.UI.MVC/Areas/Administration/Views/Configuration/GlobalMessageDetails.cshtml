@@ -1,0 +1,81 @@
+﻿@model CRL.UI.MVC.Areas.Administration.Models.ViewPageModels.GlobalMessageDetailsViewModel
+@using CRL.Infrastructure.Enums
+@using CRL.UI.MVC.Common.Enums;
+@using CRL.Infrastructure.Authentication;
+@using CRL.UI.MVC.Areas.Administration.Models.ViewPageModels;
+@{
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+@{
+    ViewBag.Title = "Global Messaging";
+    ViewBag.Icon = "icon-envelope";
+    ViewBag.HeaderSummary = "Global Messaging";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Notifications";
+}
+<link href="~/Content/jquery.Te/jquery-te-1.4.0.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.Te/jquery-te-1.4.0.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<style>
+    a, a:hover, a:link, a:active, a:focus {
+        cursor: pointer;
+    }
+
+    #template {
+        border-right: 1px solid #D6D6D6;
+        padding-right: 10px;
+        height: 510px;
+        overflow-y: auto;
+    }
+
+    .jqte_focused {
+        box-shadow: 0 0 0;
+    }
+
+    .jqte {
+        border: 1px solid #D6D6D6;
+        box-shadow: 0 0 0;
+        margin: 0;
+        height: 300px;
+    }
+
+    .jqte_editor {
+        height: 300px;
+    }
+
+    #saveTemplate {
+        margin-top: 3px;
+    }
+</style>
+
+<div class="row-fluid">
+    <div class="span8 offset2">
+        @{
+            using (Html.BeginForm("CreateSubmitGlobalMessage", "Configuration", FormMethod.Post))
+            {
+                @Html.HiddenFor(model=>model.InUpdateMode)
+                if (Model.FormMode == EditMode.View)
+                {
+                     @Html.Partial("_GlobalMessageDetailsPartialView", Model._GlobalMessageDetailsViewModel,
+        new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_GlobalMessageDetailsViewModel" } });
+                }
+                else
+                {
+                      @Html.Partial("_GlobalMessageCreateEditPartialView", Model._GlobalMessageDetailsViewModel,
+        new ViewDataDictionary { TemplateInfo = new System.Web.Mvc.TemplateInfo { HtmlFieldPrefix = "_GlobalMessageDetailsViewModel" } });
+                     <div class="control-group">
+                         <div class="controls">
+                           <input type="Submit" class="btn btn-primary" value="Submit Global Message" />
+                         </div>
+                    </div>
+                }
+
+            }
+          
+        }
+    </div>
+</div>
+<script>
+    $("textarea").jqte()
+</script>

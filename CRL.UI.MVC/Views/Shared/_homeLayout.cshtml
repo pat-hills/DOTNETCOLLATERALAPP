@@ -1,0 +1,176 @@
+﻿@using CRL.UI.MVC.HTMLHelpers
+@using CRL.UI.MVC.Common
+@using CRL.Infrastructure.Messaging
+@using CRL.Infrastructure.Configuration
+
+@{
+    var SecurityUser = User.Identity.IsAuthenticated;
+    var Contactactive = ViewBag.Active == "Contact" ? "active" : "";
+    var HelpActive = ViewBag.Active == "Help" ? "active" : "";
+    var HomeActive = ViewBag.Active == "Home" ? "active" : "";
+    var AccountCreation = ViewBag.Active == "AccountCreation" ? "active" : "";
+    Layout = "";
+    
+}
+
+
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Jun 26 2015 14:31:10 GMT+0000 (UTC) -->
+<html data-wf-site="556c43227801991770cc84c6" data-wf-page="556c43227801991770cc84c9">
+<head>
+    <meta charset="utf-8">
+    <title>Collateral System - Nigeria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Webflow">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content2/css/normalize.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content2/css/webflow.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content2/css/collateralsystem-nigeria.webflow.css")">
+    <link href="@Url.Content("~/Content2/jquery.bxslider.min.css")" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/messages.css" rel="stylesheet" />
+    <link href="~/Content2/css/homelayout.css" rel="stylesheet" />
+
+    <!-- Slider CSS -->
+    @*<link href="~/Content/nigeria/css/slider.css" rel="stylesheet">*@
+    <!-- Pretty Photo -->
+    @*<link href="~/Content/malawi/css/prettyPhoto.css" rel="stylesheet">*@
+    <!-- Font awesome CSS -->
+    @*<link href="~/Content2/css/font-awesome.css" rel="stylesheet">		
+		<!-- Custom CSS -->
+		<link href="~/Content/nigeria/css/style.css" rel="stylesheet">*@
+    @Scripts.Render("~/bundles/jquery")
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/necessary")
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["PT Serif:400,400italic,700,700italic", "Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic"]
+            }
+        });
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Content2/js/modernizr.js")"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="images/Favicon.png">
+    <link rel="apple-touch-icon" href="@Url.Content("~/Content2/images/Webclip.png")">
+    <style>
+        .caret {
+            margin-left: 5px;
+            border-top: 4px solid white;
+        }
+
+
+
+ 
+
+        .w-dropdown-list a:hover {
+            background-color: #2BA065;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav-link:hover {
+          border-top: 4px solid black;
+        }
+
+        .w-dropdown-link.w--current {
+            color: black;
+        }
+
+        div .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .center {
+    margin: auto;
+    width: 30%;
+    border: none;
+    padding: 10px;
+}
+    </style>
+</head>
+<body>
+    @if (Constants.OnTestSite)
+    {
+        <div style="margin-bottom: 1px; padding-top: 1px; padding-bottom: 3px; color: #FFFF00; background-color: #FF0000; text-align: center;"><strong>TEST SERVER - (@Constants.OnTestSiteSubjectPrefix.ToUpper() )</strong></div>
+    }
+    <div class="w-section top-section" style="background-color:white">
+           
+        
+        <div class="w-clearfix section logosection " >
+            <div class="w-clearfix logo">
+                <div class="w-clearfix logo-div" ">                    
+                    <img class="collateral-logo" src="@Url.Content("~/Content2/images/ncrlogo.jpg")" style="height:90px;width:400px;">
+                </div>
+                
+            </div>
+        </div>
+        <div class="section">
+            <div>
+                <div class="w-nav navbar" data-collapse="medium" data-animation="default" data-duration="400" data-contain="1">
+                    <div class="w-container navbar-container">
+                        <nav class="w-nav-menu navmenu-mobile" role="navigation">
+                            <a class="w-nav-link nav-link" href="@Url.Content("~/")">Home</a><a class="w-nav-link nav-link" href="@Url.Action("Search", "Search", new { Area = "Search" })">search</a>
+                            <div class="dropdown w-dropdown" data-delay="0">
+                                <div class="dropdown-toggle w-nav-link nav-link" data-toggle="dropdown">Resources<span class="caret"></span></div>
+                                <nav class="dropdown-menu w-dropdown-list dropdown-list">
+                                    <a class="w-dropdown-link dropdown-link" href="docs/CBN-NCRN Movable Assets RegulationsPDF3.pdf">Collateral Registry Regulations, 2015</a>
+                                    <a class="w-dropdown-link dropdown-link" href="docs/NCR User Manual.pdf" target="_blank">NCRN User's Manual</a>
+                                    <a class="w-dropdown-link dropdown-link" href="docs/Secured Transactions in Movable Assets Act.pdf" target="_blank">Secured Transactions in Movable Assets Act, 2017</a>
+                                    <a class="w-dropdown-link dropdown-link" href="@Url.Action("VideoTutorials", "Home", new { Area = "" })">NCR Video Tutorials</a>
+                               </nav>
+                            </div>
+                            <div class="dropdown w-dropdown" data-delay="0">
+                                <div class="dropdown-toggle w-nav-link nav-link" data-toggle="dropdown">Help<span class="caret" style="margin-left: 5px"></span></div>
+                                <nav class="dropdown-menu w-dropdown-list dropdown-list">
+                                    <a class="w-dropdown-link dropdown-link" href="@Url.Action("About", "Home", new { Area = "" })">About the Registry</a>
+                                    <a class="w-dropdown-link dropdown-link" href="@Url.Action("Fees", "Home", new { Area = "" })">Fee Structure</a>
+                                    <a class="w-dropdown-link dropdown-link" href="@Url.Action("Faq", "Home", new { Area = "" })">Frequently Asked Questions</a>
+                                    <a class="w-dropdown-link dropdown-link" href="@Url.Action("HowTo", "Home", new { Area = "" })">How to</a>
+                                </nav>
+                            </div>
+                            <a class="w-nav-link nav-link" href="@Url.Action("Contact", "Home", new { Area = "" })">Contact</a>
+                        </nav>
+                        <div class="w-nav-button menu-button">
+                            <div class="w-icon-nav-menu"></div>
+                        </div>
+                    </div>
+                    <div class="flag"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <div class="w-section footer">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-6 w-col-small-6">
+                    <div class="copyright-text">&copy; Copyright National Collateral Registry Of Nigeria</div>
+                </div>
+                <div class="w-col w-col-6 w-col-small-6">
+                    <img class="bsystems-logo" src="@Url.Content("~/Content2/images/Bsystem-logo.jpg")" width="86"><a class="footer-links poweredby" href="http://www.bsystemslimited.com/">Developed by</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content2/js/webflow.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery.bxslider.min.js")"></script>
+    <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.bxslider').bxSlider({
+            nextSelector: '#slider-next',
+            prevSelector: '#slider-prev',
+            nextText: 'Next →',
+            prevText: '← Previous',
+            pager: false
+        });
+    });
+</script>

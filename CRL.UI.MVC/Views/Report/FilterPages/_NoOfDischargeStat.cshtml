@@ -1,0 +1,175 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using CRL.UI.MVC.Models.Report.ViewModel
+@using CRL.UI.MVC.Models.Report.ReportsViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Authentication
+
+@*<style>
+    input[readonly] {
+        cursor: pointer;
+        background-color: white;
+    }
+</style>*@
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">Filter by registration date</div>
+            <div class="controls">
+                @Html.RadioButtonFor(model => ((NoOfDischargeStatViewModel)model).UseStartEndDateOption, "true") Filter registration date by start and end date<br />
+                @Html.RadioButtonFor(model => ((NoOfDischargeStatViewModel)model).UseStartEndDateOption, "false") Filter registration date by month and year
+            </div>
+        </div>
+        <div id="pnlStartEndDate">
+            <div class="control-group">
+                <div class="control-label">Start Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((NoOfDischargeStatViewModel)model).StartDate)
+                    @Html.ValidationMessageFor(model => ((NoOfDischargeStatViewModel)model).StartDate)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">End Date</div>
+                <div class="controls">
+                    @Html.TextBoxFor(model => ((NoOfDischargeStatViewModel)model).EndDate)
+                    @Html.ValidationMessageFor(model => ((NoOfDischargeStatViewModel)model).EndDate)
+                </div>
+            </div>
+
+        </div>
+        <div id="pnlMonthYear">
+            <div class="control-group">
+                <div class="control-label">Month</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((NoOfDischargeStatViewModel)model).SelectedMonthList, ((NoOfDischargeStatViewModel)Model).MonthsList)
+                    @Html.ValidationMessageFor(model => ((NoOfDischargeStatViewModel)model).SelectedMonthList)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Year</div>
+                <div class="controls">
+                    @Html.DropDownListFor(model => ((NoOfDischargeStatViewModel)model).SelectedYear, ((NoOfDischargeStatViewModel)Model).YearList)
+                    @Html.ValidationMessageFor(model => ((NoOfDischargeStatViewModel)model).SelectedYear)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((NoOfDischargeStatViewModel)model).GroupedBy)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((NoOfDischargeStatViewModel)model).GroupedBy, new SelectList(((NoOfDischargeStatViewModel)Model).GroupByList, "Value", "Text", ((NoOfDischargeStatViewModel)Model).GroupedBy))
+                @Html.ValidationMessageFor(model => ((NoOfDischargeStatViewModel)model).GroupedBy)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelForRequired(model => ((NoOfDischargeStatViewModel)model).ReportTypeId)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(model => ((NoOfDischargeStatViewModel)model).ReportTypeId, new SelectList(((NoOfDischargeStatViewModel)Model).ReportTypes, "Value", "Text", ((NoOfDischargeStatViewModel)Model).ReportTypeId))
+                @Html.ValidationMessageFor(model => ((NoOfDischargeStatViewModel)model).ReportTypeId)
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+        $('#pnlMonthYear').hide();
+        $('#pnlStartEndDate').show();
+    }
+    else {
+        $('#pnlMonthYear').show();
+        $('#pnlStartEndDate').hide();
+    }
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(document).ready(function () {
+        @if (Request.UserAgent.Contains("Edge") || Request.Browser.Browser == "InternetExplorer" || Request.Browser.Browser == "Safari")
+        { 
+        <text>
+        dateFormatMode = 'dd/mm/yy';
+        </text>
+        }
+        else
+        {
+         <text>
+        dateFormatMode = 'dd/M/yy';
+        </text>
+        }
+
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+    });
+
+
+
+</script>
+
+@*<script>
+
+    $("#clientstatus").hide();
+    var dateFormatMode;
+    $(function () {
+        jQuery.validator.addMethod('date',
+                function (value, element, params) {
+                    if (this.optional(element)) {
+                        return true;
+                    };
+                    var result = false;
+                    try {
+                        $.datepicker.parseDate('dd/mm/yy', value);
+                        result = true;
+                    } catch (err) {
+                        result = false;
+                    }
+                    return result;
+                },
+                ''
+            );
+    });
+    $(document).ready(function () {
+        $("input[name='StartDate']:text").datepicker({ dateFormat: dateFormatMode });
+        $("input[name='EndDate']:text").datepicker({ dateFormat: dateFormatMode });
+
+
+        $("input[name='UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+        if ($("input[name='UseStartEndDateOption']:checked").val() == "true") {
+            $('#pnlMonthYear').hide();
+            $('#pnlStartEndDate').show();
+        }
+        else {
+            $('#pnlMonthYear').show();
+            $('#pnlStartEndDate').hide();
+        }
+    });
+
+
+
+</script>*@

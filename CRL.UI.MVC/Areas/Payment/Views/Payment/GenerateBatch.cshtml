@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = " Generate Batch";   //**Should be payments for owners
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Create batch for postpaid transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+    
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.GenerateBatchViewModel  
+@using CRL.UI.MVC.Common.Enums
+@using CRL.Infrastructure.Enums
+@using CRL.Model.FS.Enums
+@using CRL.Infrastructure.Authentication
+@using System.Web.UI.WebControls
+@{
+   
+
+    //AjaxOptions ajaxOpts = new AjaxOptions
+    //{
+    //    UpdateTargetId = "searchgrid",
+    //    Url = Url.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank") ,
+    //    OnBegin = "ajaxValidate"
+        
+
+    //};
+    
+    var listItems = new List<ListItem>
+        {
+              new ListItem { Text = "Unbatched transactions only", Value = "1" },
+              new ListItem { Text = "Batched transactions only", Value = "2" },
+              new ListItem { Text = "All", Value = "3" },
+             
+        };
+}
+
+
+<script src="~/Scripts/bootbox.min.js"></script>
+@*We need to also check for the roles here*@
+@*@if (((SecurityUser)HttpContext.Current.User).IsOwnerUser == false)
+{
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">+ Make new payment<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Pay Registered Client", "CreateSubmit", new { _FSTransactionCategory = FinancialStatementTransactionCategory.SecurityInterest })</li>
+            <li>@Html.ActionLink("Pay Unregistered Client", "CreateSubmit", new { _FSTransactionCategory = FinancialStatementTransactionCategory.FinancialLease })</li>           
+        </ul>
+    </div>
+}*@
+<div class="clear"></div>
+@*@using Enterprise.DomainDesign.Service.Common.Messages*@
+ @using (Html.BeginForm("GenerateBatch", "Payment", FormMethod.Post, new { Id = "FSForm" }))
+                {
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>List of Transactions
+                </h3>
+            </div>
+            <div class="box-content"><div class="form-horizontal">
+               
+                      @Html.ValidationSummary(false)
+                    <div class="control-group">
+                        <label class="control-label">Transaction Period<small>More information here</small></label>
+                        <div class="controls">
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model._ListOfTransactionsJqGrid.UseStartEndDateOption, "true")                          
+                               By start and end date
+                            </label>
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model._ListOfTransactionsJqGrid.UseStartEndDateOption, "false")
+                                By month and year
+                            </label>
+                        </div>
+                    </div>
+                    <div id="pnlStartEndDate">
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Start Date</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._ListOfTransactionsJqGrid.StartDate, new { Id = "StartDate" })
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.StartDate)
+                                @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">End Date</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._ListOfTransactionsJqGrid.EndDate, new { Id = "EndDate" })
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.EndDate)
+                                @*<input type="text" name="textfield" id="textfield" placeholder="Text input" class="input-xlarge">*@
+                            </div>
+                        </div>
+                    </div> 
+                    <div id="pnlMonthYear">
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Month</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model._ListOfTransactionsJqGrid.SelectedMonthList, Model._ListOfTransactionsJqGrid.MonthsList)
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.SelectedMonthList)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Year</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model._ListOfTransactionsJqGrid.SelectedYear)
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.SelectedYear)
+                            </div>
+                        </div>
+
+                 
+                    </div>
+                
+                <div class="control-group">
+                <label for="textfield" class="control-label">Transaction batch status</label>
+                            <div class="controls">
+                     
+                                      @Html.DropDownListFor(model => model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched, new SelectList(listItems, "Value", "Text", Model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched))
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.AllOrBatchedOrUnBatched)
+                            </div>
+                        </div>
+                    
+                     <div class="control-group">
+                            <label for="textfield" class="control-label">Batch Comment</label>
+                            <div class="controls">
+                                @Html.TextAreaFor(model => model._ListOfTransactionsJqGrid.BatchComment)
+                                @Html.ValidationMessageFor(model => model._ListOfTransactionsJqGrid.BatchComment)
+                            </div>
+                        </div>
+                    
+                     <div class="controls">
+                        <button type="button" class="btn btn-primary" id="btnPreview">Preview</button>                 
+                    </div>
+                   
+                
+                   <br />
+
+ <ul class="nav nav-tabs">
+    <li class="active"><a id="SumPostPaidByBankLink" href="#bybankGrid" data-toggle="tab">Postpaid bill by banks</a></li>
+    <li><a id="SumPostPaidLink" href="#SumGrid" data-toggle="tab">Postpaid bill by client</a></li>
+    <li><a id="DetailsPostPaidLink" href="#DetailGrid" data-toggle="tab">Postpaid transactions details</a></li>
+   </ul>
+                    
+       <div class="tab-content">
+<div class="tab-pane active" id="bybankGrid">
+   @* @Html.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank")*@
+ 
+</div>
+<div class="tab-pane" id="SumGrid">
+    @*@Html.Action("GetSummaryViewOfPostpaidTransactions")*@
+
+</div>
+<div class="tab-pane" id="DetailGrid">
+@*      @Html.Action("GetDetailViewOfPostPaidTransactions")*@
+  
+</div>
+</div>
+              
+            </div>
+                  <div style="clear:both"></div>
+                <br />
+                  <button type="button" class="btn btn-primary pull-left" id="btnGenerateBatch">Generate Batch</button>
+            </div>
+           
+        </div>
+    </div>
+</div> }
+<script src="~/Scripts/bootbox.min.js"></script>
+<script>
+    $("#pnlMonthYear").hide();
+    $("#btnGenerateBatch").hide();
+    $(document).ready(function () {
+        $("#StartDate").datepicker({ dateFormat: 'd-M-yy' });
+        $("#EndDate").datepicker({ dateFormat: 'd-M-yy' });
+
+        $("input[name='_ListOfTransactionsJqGrid.UseStartEndDateOption']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+                $('#pnlMonthYear').hide();
+                $('#pnlStartEndDate').show();
+            }
+            else {
+                $('#pnlMonthYear').show();
+                $('#pnlStartEndDate').hide();
+            }
+        });
+
+        var LoadedByBank = "NotLoaded";
+        var LoadedSummary = "NotLoaded";
+        var LoadedDetails = "NotLoaded";
+
+
+      @*  $("#SumPostPaidByBankLink").click({ Url: "@Url.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank","Payment",Model._ListOfTransactionsJqGrid)", divToLoad: "#bybankGrid" }, handleTabsLoading);*@
+        $("#SumPostPaidLink").click({ Url: "@Url.Action("GetSummaryViewOfPostpaidTransactions","Payment",Model._ListOfTransactionsJqGrid)", divToLoad: "#SumGrid" }, handleTabsLoading);
+        $("#DetailsPostPaidLink").click({ Url: "@Url.Action("GetDetailViewOfPostPaidTransactions","Payment",Model._ListOfTransactionsJqGrid)", divToLoad: "#DetailGrid" }, handleTabsLoading);
+     
+
+
+
+
+        var form = $("#FSForm");
+        $("#btnPreview").click(function (e) {
+         
+            $('#SumPostPaidByBankLink').tab('show');
+           
+            LoadedByBank = "NotLoaded";
+            LoadedSummary = "NotLoaded";
+            LoadedDetails = "NotLoaded";
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetSummaryViewOfPostpaidTransactionsByRepresentativeBank","Payment")',
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            $("#bybankGrid").html(data);
+                          
+                        }
+                });
+            
+            e.preventDefault();
+        });
+        //$("#btnPreview").click();
+
+        $("#btnGenerateBatch").click(function (e) {
+          //  var batchName = $("input[name='_ListOfTransactionsJqGrid.BatchName']:text").val();
+       
+                bootbox.confirm("Are you sure you want to batch these postpaid transactions.  Click yes to continue or no to stop", "No", "Yes", function (result) {
+                    if (result == true) {
+                        $('#FSForm').submit();
+                       @* $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("GenerateBatches","Payment",Model._ListOfTransactionsJqGrid)',
+                            data: $(form).serialize(),
+                            cache: false,
+                            success: function (data) {
+                                if (data == "Success") {
+                                    url = '@Url.Action("ViewBatches","Payment")';
+                                    window.location.href = url;
+                                }
+
+                                else {
+                                    bootbox.alert(data);
+                                }
+                            },
+                            error: function () { bootbox.alert("There was an error while trying to communicate with the server. Please check your internet connection or contact your administrator") },
+                        });*@
+                    }
+                    else { }
+
+                });
+            e.preventDefault();
+            
+ 
+         
+        });
+
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+        var startDateParam = "";
+        var endDateParam = "";
+        startDateParam = $("input[name='_ListOfTransactionsJqGrid.StartDate']:text").val();
+        endDateParam = $("input[name='_ListOfTransactionsJqGrid.EndDate']:text").val();
+        $("input[name='_ListOfTransactionsJqGrid.StartDate']:text").change(function () {
+            startDateParam = $(this).val();
+        });
+
+        $("input[name='_ListOfTransactionsJqGrid.EndDate']:text").change(function () {
+            endDateParam = $(this).val();
+        });
+
+
+        function handleTabsLoading(event) {
+            var activeTab = $(this).parent().hasClass("active");
+
+            if ($(this).is("#SumPostPaidByBankLink")) {
+                if ((activeTab == false) && (LoadedByBank == "NotLoaded")) {
+                    $.ajax({
+                        type: 'POST',
+                        data: $(form).serialize(),
+                        url: event.data.Url,
+                        success: function (data) {
+                            $(event.data.divToLoad).html(data);
+                        }
+                    });
+                }
+
+                LoadedByBank = "Loaded";
+
+            }
+            else if ($(this).is("#SumPostPaidLink")) {
+                if ( (activeTab == false) && (LoadedSummary == "NotLoaded")) {
+                    $.ajax({
+                        url: event.data.Url,
+                        type: 'POST',
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            $(event.data.divToLoad).html(data);
+                        }
+                    });
+                }
+                LoadedSummary = "Loaded";
+            }
+
+            else if ($(this).is("#DetailsPostPaidLink")) {
+                if ((activeTab == false) && (LoadedDetails == "NotLoaded")) {
+                    $.ajax({
+                        type: 'POST',
+                        url: event.data.Url,
+                        data: $(form).serialize(),
+                        success: function (data) {
+                            $(event.data.divToLoad).html(data);
+                        }
+                    });
+                }
+                LoadedDetails = "Loaded";
+            }
+
+
+
+        }
+
+    });
+
+
+</script>

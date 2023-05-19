@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "Search for financing statements";
+    ViewBag.Title = "Search Financing Statement";
+    ViewBag.MenuName = "Search";
+}
+
+<div id="CACResults1" style="margin-top: 20px">
+    <div class="well well-small" id="">
+        <h4>Summary of Search Results from NCR</h4>
+        <p>The search request generated <i>1</i> record(s).</p>
+        <br />
+        <h4>Special color codes</h4>
+        <p><span class="currentTagged">Legend1</span> - Debtor or collateral that is current and caused the search criteria to return results.</p>
+        <p><span class="currentUpdated">Legend2</span> - Debtor or collateral that has been updated and caused the search criteria to return results.</p>
+        <p><span class="currentDeleted">Legend3</span> - Debtor or collateral that haven been deleted or discharged from the system that caused the search criteria to return results.</p>
+
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-search"></i>
+                        Search results from NCR
+                    </h3>
+                </div>
+                <div class="box-content nopadding">
+                    <div class="dataTables_wrapper" role="grid">
+                        <table class="table table-hover table-nomargin table-bordered usertable dataTable" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr role="row">
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Deed Title
+                                    </th>
+                                    <th>Asset
+                                    </th>
+                                    <th>Serial No
+                                    </th>
+                                    <th>Type
+                                    </th>
+                                    <th>BVN
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="radio" /></td>
+                                    <td>EBONA ENTERPRISE LTD</td>
+                                    <td>Deed of Floating Charge</td>
+                                    <td>Toyota Corolla 2018</td>
+                                    <td>VI180A897654321</td>
+                                    <td>moveable</td>
+                                    <td>12345678910</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="dataTables_info" id="DataTables_Table_8_info">Showing <span>1</span> entrie(s)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

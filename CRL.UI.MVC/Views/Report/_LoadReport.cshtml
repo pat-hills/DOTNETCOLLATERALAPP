@@ -1,0 +1,13 @@
+﻿@model CRL.UI.MVC.Models.Report.ReportBaseViewModel
+@using ReportViewerForMvc; 
+@Html.ReportViewer(Model.reportViewer as Microsoft.Reporting.WebForms.ReportViewer, new { style = "Width:100%;Height:100%" });
+
+ 
+
+         <script>
+ 
+     
+             $('.accordion-body').collapse('hide');
+
+       
+</script>

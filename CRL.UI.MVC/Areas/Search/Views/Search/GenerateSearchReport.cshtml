@@ -1,0 +1,155 @@
+﻿@model CRL.UI.MVC.Areas.Search.Models.ViewPageModels.GenerateSearchReportViewModel 
+@{
+    ViewBag.Title = "Generate Search Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "Generate search report";
+   
+}
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Infrastructure.Messaging
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "searchForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    @Html.HiddenFor(m => m.SearchId)
+    @Html.HiddenFor(m => m.SearchResultCount)
+    @Html.HiddenFor(m => m.SelectedFSToSearch)
+    @Html.HiddenFor(m => m.UniqueIdentifier)
+  <div class="row-fluid">
+        <div class="span12">
+            <div class="box box-bordered">
+                <div class="box-title">
+                    <h3><i class="icon-th"></i>Generate Search Result</h3>
+                </div>
+                <div class="box-content">   
+                    @if (@Model.isNonLegalEffect == false && ViewBag.IsOwner==false)
+                    {    
+                         <div class="control-group">
+                                  <div class="control-label" title="Select the search report type to generate (certified or uncertified)">
+                            @Html.LabelForRequired(model =>model.IsCertified)
+                        </div>
+                        <div class="controls" style="width:300px">
+                            @Html.RadioButtonFor(model => model.IsCertified, "false", new { id = "rbd1" }) Uncertified Search Report
+                            <br />
+                            @Html.RadioButtonFor(model => model.IsCertified, "true", new { id = "rbd2" }) Certified Search Report ( signed by the Registrar)    
+                            @Html.ValidationMessageFor(model => model.IsCertified)
+                        </div></div>
+                                  
+                          
+                        if (!Request.IsAuthenticated)
+                        {
+                            
+                        <div id="ReceiptNo" class="control-group">
+                            @Html.LabelFor(model => model.PublicUserReceiptNo, new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.PublicUserReceiptNo, new { @class = "span2",autocomplete = "off" })
+                                @Html.ValidationMessageFor(model => model.PublicUserReceiptNo)
+                            </div>
+                        </div>
+                        }
+
+                    }                 
+                            <div class="controls">
+                                @Html.CheckBoxFor(model => model.SendAsMail, new { id = "chkPublicEmail" }) Send generated search report to my inbox.           
+                            </div>
+                   @if (!Request.IsAuthenticated)
+                   {
+                        <div id="EmailAddr" class="control-group">
+                            @Html.LabelFor(model => model.PublicUserEmail, new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.PublicUserEmail, new { @class = "span2" })
+                                @Html.ValidationMessageFor(model => model.PublicUserEmail)
+                            </div>
+                        </div>
+                   }
+                       @if (Model.isPayable)
+                       {
+                           MessageInfo msg = new MessageInfo { Message = "Payment will be deducted when approval is done", MessageType = CRL.Infrastructure.Messaging.MessageType.Warning };
+                     @Html.Message((MessageInfo)msg)
+                       }
+               
+                    <div class="form-actions">
+                        <input  type="submit" name="submitButton"  class="btn btn-primary" value="Generate Search Report">
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+}    
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+
+
+      
+            @if (!Request.IsAuthenticated)
+            {
+            <text>
+
+        if ($('#rbd2').attr("checked")) {
+            $('#ReceiptNo').show();
+
+        }
+
+
+        else {
+            $('#ReceiptNo').hide();
+        }
+
+        if ($('#chkPublicEmail').attr("checked")) {
+            $('#EmailAddr').show();
+
+        }
+
+        else {
+            $('#EmailAddr').hide();
+        }
+        </text>
+                if (Model.publicUserCode == null)
+                {<text>
+        $("input[name='IsCertified']:radio").change(function () {
+
+            if ($(this).val() == "true") {
+
+                $('#ReceiptNo').show();
+            }
+            else {
+
+                $('#ReceiptNo').hide();
+            }
+        });
+        //$('#rbd2').click(function () {
+        //    var $this = $(this);
+        //    // $this will contain a reference to the checkbox   
+        //    if ($this.is(':checked')) {
+        //        $('#ReceiptNo').show();// the checkbox was checked 
+        //    } else {
+        //        $('#ReceiptNo').hide(); // the checkbox was unchecked
+        //    }
+        //});</text>
+                }
+<text>
+        $('#chkPublicEmail').click(function () {
+            var $this = $(this);
+            // $this will contain a reference to the checkbox   
+            if ($this.is(':checked')) {
+                $('#EmailAddr').show();// the checkbox was checked 
+            } else {
+                $('#EmailAddr').hide(); // the checkbox was unchecked
+            }
+        });
+
+        </text>
+
+
+            }
+        
+    });
+</script>

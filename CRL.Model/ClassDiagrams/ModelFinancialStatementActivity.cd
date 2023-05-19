@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Model.FS.PersonIdentification">
+    <Position X="8" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAABCAAAIAABAAAAIAAAAAEAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\PersonIdentificationCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKPersonIdentificationCategory" Collapsed="true">
+    <Position X="3" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\PersonIdentificationCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.ActivityAssignment">
+    <Position X="0.5" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAgAAAAAAAAAAAAACAAIAAAAQAAAAAAAiA=</HashCode>
+      <FileName>Model\FinancialStatement\ActivityAssignment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.ActivityDischarge">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAEAAAAgAAAAAAAAIAAAAIiAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\ActivityDischarge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.ActivitySubordination">
+    <Position X="5.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAACBAAAAIAAAAAAAABAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\ActivitySubordination.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.ActivityUpdate">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAEAAAAgAAAAAAAAAAAAAAAAIAAAAAQAAAAgAAA=</HashCode>
+      <FileName>Model\FinancialStatement\ActivityUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.ActivityRenewal">
+    <Position X="0.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\ActivityRenewal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.FinancialStatementActivity">
+    <Position X="3.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAGBAAIAEAAAAAgAAAAGQCIAIQggAAEgAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatementActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.LKFinancialStatementActivityCategory" Collapsed="true">
+    <Position X="5" Y="8" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatementActivity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.FS.FinancialStatementComplexDuplicator">
+    <Position X="8" Y="4.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatementComplexDuplicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.FinancialStatementActivityComplexDuplicator">
+    <Position X="8" Y="2.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatementComplexDuplicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.FS.FinancialStatementComplexDuplicatorList">
+    <Position X="8" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAACAAAAAABAAAAAAABAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\FinancialStatementComplexDuplicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CRL.Model.FS.ChangeDescription">
+    <Position X="5.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAQAAAAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\FinancialStatement\ActivityUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

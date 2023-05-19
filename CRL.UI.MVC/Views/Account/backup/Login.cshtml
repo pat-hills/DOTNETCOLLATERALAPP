@@ -1,0 +1,111 @@
+﻿@using CRL.Infrastructure.Configuration 
+@{
+    Layout = null;
+}
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <link href="~/Content/CRLLogin.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/Content/font-awesome/css/font-awesome-ie7.min.css" rel="stylesheet" />
+
+    @{
+    ViewBag.Title = "Login";
+}
+
+</head>
+@model CRL.UI.MVC.Models.LoginModel
+
+
+  
+
+
+<body>
+    <div class="eternity-form colorBg1 colorBg active">
+        @if (Constants.OnTestSite)
+    {
+        <div style="margin-bottom:10px;padding-top:10px; padding-bottom:10px; color: #FFFF00;background-color: #FF0000;text-align: center;"><strong>TEST SERVER - (@Constants.OnTestSiteSubjectPrefix.ToUpper() )</strong></div>
+    }
+    <div id="main">
+        <div  id="demo1" data-panel="first">
+
+            <div class=" container">
+
+                <div class="login-form-section">
+                    <div class="login-content">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="section-title" style="text-align:center">
+                                <img src="~/Content/Images/crl-logo.png"  width=50 height=50 />
+                               
+                                <h4 class="blue">National Collateral Registry of Nigeria</h4>   
+                                    <h4 class="blue"> Login</h4>     
+                            </div>
+                            
+                           @Html.ValidationSummary(true)
+                       
+                                <div class="textbox-wrap">
+                                    @Html.LabelFor(m => m.UserName, new { @style = "color:#65727F" })
+                                    <div class="input-group">
+                                        <span class="input-group-addon spanhide"><i class="icon-user icon-color"></i></span>
+
+                                        @Html.TextBoxFor(m => m.UserName, new { @Class = "form-control " })
+
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.UserName)
+                                </div>
+                                <div class="textbox-wrap" style="padding-bottom: 20px;">
+                                    @Html.LabelFor(m => m.Password, new { @style = "color:#65727F" })
+                                    <div class="input-group">
+                                        <span class="input-group-addon spanhide"><i class="icon-key icon-color"></i></span>
+                                        @Html.PasswordFor(m => m.Password, new { @Class = "form-control" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.Password)
+                                </div>
+                                  <div class="login-form-action clearfix">  
+                                <button type="submit" class="btn btn-primary pull-right blue-btn">LogIn &nbsp; <i class="icon-chevron-right spanhide"></i></button>
+                            </div>
+                        }
+                    </div>
+                    <div style="height:20px \9" ></div>
+           
+        
+                    <div class="login-form-links link1" >
+                        <h4 class="blue">Don't have an Account?</h4>
+                        @Html.ActionLink("Click Here", "SelectRegistrationType", "MembershipRegistration", new { Area = "Membership" }, new  { })
+                        <span>to Register</span>
+                    </div>
+                    
+                    <div style="margin-top:10px"></div>
+                      <div class="login-form-links link1" >
+                        <h4 class="blue">Forgot your Password?</h4>
+                        @Html.ActionLink("Click Here", "PasswordReset", "User", new { Area = "Membership" }, new  { })
+                        <span>to reset it</span>
+                    </div>
+
+                    @*<div class="login-form-links link2 ">
+                        <h4 class="green">Forget your Password?</h4>
+                        <span>Dont worry</span>
+                        <a href="#demo3" class="green">Click Here</a>
+                        <span>to Get New One</span>
+                    </div>*@
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+        </div>
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

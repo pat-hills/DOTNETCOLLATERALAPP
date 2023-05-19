@@ -1,0 +1,94 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.ViewPageModel.FeeConfigurationViewModel
+@using CRL.Service.Views.Configuration
+
+
+@{
+    
+    ViewBag.Title = "Fee Configuration";
+    ViewBag.Icon = "icon-cog";
+    ViewBag.HeaderSummary = "Configuration For Transaction Fees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Workflow = "";
+    ViewBag.General = "";
+    ViewBag.Fees = "";
+
+    
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row-fluid">
+        <div class="span2"></div>
+        <div id="FeeConfig" class="span8">
+
+            <div class="clear"></div>
+
+            <div class="text-center">
+                <h5><b>Transaction Fees Setup </b></h5>
+            </div>
+            <hr />
+            <table class="table table-hover table-nomargin table-bordered">
+
+
+                <thead>
+
+                    <tr>
+                        <th>Transaction Name</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ConfigurationTransactionFeesView != null)
+                    {
+                        if (Model.ConfigurationTransactionFeesView.Count() > 0)
+                        {
+
+                            for (int i = 0; i < Model.ConfigurationTransactionFeesView.Count;i++ )
+                            {
+                                @Html.HiddenFor(model=>model.ConfigurationTransactionFeesView[i].Id)
+                        
+                                @Html.HiddenFor(model => model.ConfigurationTransactionFeesView[i].ServiceTypeId)
+                                <tr>
+                                    <td>@Html.DisplayFor(model => model.ConfigurationTransactionFeesView[i].ServiceType.Name)</td>
+                                    <td>@Html.EditorFor(model => model.ConfigurationTransactionFeesView[i].Fee)</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+
+            </table>
+
+            
+            <hr />
+        </div>
+         
+    </div>
+   
+    <div class="text-center">
+        <input type="submit" value="Save Fee Configuration" class="btn btn-primary" />
+    </div>
+}
+
+<script>
+
+    $('.text-box').keyup(function (event) {
+
+        // skip for arrow keys
+        if (event.which >= 37 && event.which <= 40) {
+            event.preventDefault();
+        }
+
+        $(this).val(function (index, value) {
+            return value
+              .replace(/\D/g, "")
+              .replace(/([0-9])([0-9]{2})$/, '$1.$2')
+              .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",")
+            ;
+        });
+    });
+
+</script>

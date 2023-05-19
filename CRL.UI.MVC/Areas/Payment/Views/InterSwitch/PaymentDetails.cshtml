@@ -1,0 +1,333 @@
+﻿@{
+    ViewBag.Title = "Payments";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Online Payment Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payment";
+
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.InterSwitchUserViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CaptchaMvc.HtmlHelpers
+
+<script src="@Url.Content("~/Scripts/input_mask_3x/jquery.inputmask.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.number.min.js")"></script>
+<style>
+    .radio {
+        line-height: 14px;
+        padding-bottom: 7px;
+    }
+</style>
+<div class="clear"></div>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "ipform" }))
+{
+      
+          
+    <div class="container">
+        <div>
+            @Html.ValidationSummary(false)
+        </div>
+        <div class="form-horizontal">
+            <h5><b>Personal Information</b></h5>
+            <hr />
+            <div class="row-fluid">
+                <div class="span4 offset1">
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.Name)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.Name, new { @placeholder = "Name", autocomplete="off" })
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.Name)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.LabelFor(m => m.InterSwitchUserView.Email, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.Email, new { @placeholder = "Email Address", autocomplete="off" })
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.Email)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.Phone)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.Phone, new { @placeholder = "Phone Number" , autocomplete="off"})
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.Phone)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.BVN)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.InterSwitchUserView.BVN, new { @placeholder = "BVN", maxlength = 11 , autocomplete="off" })
+                            @Html.ValidationMessageFor(m => m.InterSwitchUserView.BVN)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <h5><b>Payment Information</b></h5>
+            <hr />
+            <div class="row-fluid">
+                <div class="span4 offset1">
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.PricePerSearch)
+                        </div>
+                        <div class="controls">
+                            <div class="form-inline">
+                                @Html.DisplayFor(m => m.InterSwitchUserView.PricePerSearch)
+                                @Html.HiddenFor(m => m.InterSwitchUserView.PricePerSearch)
+                                @Html.ValidationMessageFor(m => m.InterSwitchUserView.PricePerSearch)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.IsTopUpPayment)
+                        </div>
+                        <div class="controls">
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model.InterSwitchUserView.IsTopUpPayment, "false")
+                                New Payment
+                            </label>
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model.InterSwitchUserView.IsTopUpPayment, "true", new { id = "rdtopup" })
+                                Top Up Payment
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-group" id="topUp">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.TopUpCode)
+                        </div>
+                        <div class="controls">
+                            <div class="form-inline">
+                                @Html.TextBoxFor(m => m.InterSwitchUserView.TopUpCode, new { @placeholder = "PIN code", Id = "txtSecurityCode", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.InterSwitchUserView.TopUpCode)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.UsePaymentAmount)
+                        </div>
+                        <div class="controls">
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model.InterSwitchUserView.UsePaymentAmount, "false")
+                                Number of Searches
+                            </label>
+                            <label class="radio">
+                                @Html.RadioButtonFor(model => model.InterSwitchUserView.UsePaymentAmount, "true", new { id = "rdpayment" })
+                                Payment Amount
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.Quantity)
+                        </div>
+                        <div class="controls">
+                            <div class="form-inline">
+                                @Html.TextBoxFor(m => m.InterSwitchUserView.Quantity, new { @placeholder = "Number of Searches", Id = "txtquantity", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.InterSwitchUserView.Quantity)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(m => m.InterSwitchUserView.Amount)
+                        </div>
+                        <div class="controls">
+                            <div class="form-inline">
+                                @Html.TextBoxFor(m => m.InterSwitchUserView.Amount, new { @placeholder = "Amount", @readonly = "readonly", Id = "txtamount", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.InterSwitchUserView.Amount)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(m=>m.InterSwitchUserView.BalanceBeforeTopUp)
+            @Html.HiddenFor(m => m.InterSwitchUserView.txn_ref)
+            <hr />
+            <div class="row-fluid">
+                <div class="span6 offset2">
+                    <div class="inline text-center">
+                        <h4>Security Check</h4>
+                        <div class="text-center" style="border: 1px solid; border-color: #69b096">
+                            <p>Please type the characters you see in the picture below</p>
+                            @Html.Captcha("Refresh", "", 5, "The input field is required", false)
+                            @Html.ValidationMessage("CaptchaInputText")
+                            <p>Letters are not case sensitive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row-fluid">
+                <div class="span6 offset3">
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="button" id="btncontinue" class="btn btn-primary">Continue <i class="icon-hand-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                        
+                
+}
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryloadmask")
+}
+
+
+<script>
+    var _telname = "InterSwitchUserView.Phone";
+    $("input[name='" + _telname + "']").inputmask("(999) 9 999 99999");
+
+    $('#txtamount').number(true, 2);
+
+    $(document).ready(function () {
+
+        $("input[name='InterSwitchUserView.UsePaymentAmount']:radio").change(function () {
+            if ($(this).val() == "false") {
+                $('#txtquantity').attr("readonly", false);
+                $('#txtamount').attr("readonly", true);
+            }
+            else {
+                $('#txtquantity').attr("readonly", true);
+                $('#txtamount').attr("readonly", false);
+            }
+
+            $('#txtquantity').val("");
+            $('#txtamount').val("0");
+        });
+
+
+        if (!$('#rdtopup').is(':checked'))
+            $('#topUp').hide();
+
+        if ($('#rdpayment').is(':checked')) {
+            $('#txtquantity').attr("readonly", true);
+            $('#txtamount').attr("readonly", false);
+        }
+
+
+        $("input[name='InterSwitchUserView.IsTopUpPayment']:radio").change(function () {
+            if ($(this).val() == "false") {
+                $('#topUp').fadeOut("slow");
+            }
+            else {
+                $('#topUp').fadeIn("slow");
+            }
+            $('#txtSecurityCode').val("");        });
+
+
+       
+
+        function getBalance(code) {
+            var url = '@Url.Action("CheckSecurityCode", "Search", new { Area = "Search" })';
+            var tempBal;
+
+
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                async: false,
+                data: { SecurityCode: code },
+                success: function (data) {
+                    tempBal = data.Balance;
+                    if (data.IsValid == false)
+                    {
+                        bootbox.alert("You have entered a wrong security code. Your top up amount will be rendered invalid");
+                    }
+                },
+                fail: function (data) {
+                    bootbox.alert("Sorry an error occured while proccessing top up code, please refresh browser and try again.");
+                }
+            });
+
+            return tempBal;
+        }
+
+        $('#txtSecurityCode').change(function () {
+            $('#InterSwitchUserView_BalanceBeforeTopUp').val(getBalance($('#txtSecurityCode').val()));
+        });
+
+
+        $('#txtquantity').keyup(function () {
+            var quantity = $('#txtquantity').val();
+            if ($.isNumeric(quantity)) {
+                var amount = quantity * '@Model.InterSwitchUserView.PricePerSearch';
+                    $('#txtamount').val(amount.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+                } else if (quantity === '' || quantity === null) {
+
+                    $('#txtamount').val("");
+                }
+        });
+
+        $('#txtamount').keyup(function () {
+            var amount = $('#txtamount').val();
+            if ($.isNumeric(amount)) {
+                var quantity = parseFloat(amount) / '@Model.InterSwitchUserView.PricePerSearch';
+                $('#txtquantity').val(parseInt(quantity));
+            } else if (quantity === '' || quantity === null) {
+
+                $('#txtquantity').val("");
+            }
+        });
+
+
+
+        $("#btncontinue").click(function () {
+
+            var amount = $('#txtamount').val();
+            if ($('#rdtopup').is(':checked') && $('#InterSwitchUserView_BalanceBeforeTopUp').val() != null) {
+                amount = parseFloat(amount) + parseFloat($('#InterSwitchUserView_BalanceBeforeTopUp').val());
+                
+            }
+
+            var result = false;
+            var calc = amount % '@Model.InterSwitchUserView.PricePerSearch';
+        if (calc === 0)
+            result = true
+
+        if (result === true) {
+            document.ipform.submit();
+        } else {
+
+            var message = message = "The payment amount should be a multiple of the price of a search. Example: "
+                + '@Model.InterSwitchUserView.PricePerSearch' + ", " + ('@Model.InterSwitchUserView.PricePerSearch' * 2.00).toFixed(2)
+                + ", " + ('@Model.InterSwitchUserView.PricePerSearch' * 3.00).toFixed(2) + " etc."
+
+            if($('#rdtopup').is(':checked'))
+            {
+                message = "The payment amount plus your top up amount should be a multiple of the price of a search. Example: "
+                + '@Model.InterSwitchUserView.PricePerSearch' + ", " + ('@Model.InterSwitchUserView.PricePerSearch' * 2.00).toFixed(2)
+                + ", " + ('@Model.InterSwitchUserView.PricePerSearch' * 3.00).toFixed(2) + " etc. Make sure your top up code is valid"
+            }
+
+            bootbox.alert(message);
+        }
+        });
+
+
+
+    });
+
+
+</script>

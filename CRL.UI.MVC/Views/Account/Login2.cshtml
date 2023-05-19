@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+<head>
+ <link href="~/Content/login.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/login-box.css" rel="stylesheet" type="text/css" />
+    @{
+    ViewBag.Title = "Login";
+}
+
+</head>
+@model CRL.UI.MVC.Models.LoginModel
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+  
+
+
+    <div id="main" >
+        <div id="header">
+        </div>        
+        <div id="content">
+           <img id="loginImg" alt="logo" src="/content/images/logo1.png">
+            <div id="login-box">
+                <h2>
+                    Login</h2>
+                  @Html.ValidationSummary(true)
+               Please enter your username and password.
+                <br />
+                 @Html.ActionLink("Register", "SelectRegistrationType", "MembershipRegistration", new { Area = "Membership" }, new  { }) if you don't have an account.  
+                <br />
+                <br />
+                        <table>
+                        <tr>
+                        <td nowrap="nowrap"><div id="login-box-name" style="color:white">
+                            @Html.LabelFor(m => m.UserName):
+                        </div></td>
+                        <td><div id="login-box-field" > 
+                              @Html.TextBoxFor(m => m.UserName, new { @Class = "form-login"})
+                             @Html.ValidationMessageFor(m => m.UserName)
+                        </div></td>
+                        </tr>
+                        <tr>
+                        <td nowrap="nowrap"><div id="login-box-name"  style="color:white">
+                            @Html.LabelFor(m => m.Password):
+                        </div><td><div id="login-box-field">
+                         @Html.PasswordFor(m => m.Password, new { @Class = "form-login"})
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div></td>
+                        </tr>                       
+                        </table>
+                           <p>
+            <input type="submit" value="Login" />
+        </p>
+                 
+                
+            </div>
+        </div>
+        <div id="footer">
+    
+    
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

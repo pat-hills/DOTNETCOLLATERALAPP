@@ -1,0 +1,197 @@
+﻿@{
+        
+    ViewBag.Title = "Payments";   //**Should be payments for owners
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Verify Payment Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.MenuName = "Payments";
+
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.InterSwitchTransactionDetailsViewModel
+@using CRL.Infrastructure.Helpers;
+@using CRL.Infrastructure.Configuration
+@using CRL.UI.MVC.HTMLHelpers
+<div class="clear"></div>
+<div class="container">
+    <div class="form-horizontal">
+        <div class="row-fluid">
+            <div class="span2"></div>
+            <div class="span8 text-center">
+                <div class="alert alert-info">
+                    <b>Click <a href="#" id="printCode">here</a> to print <span class="txncode">Transaction Reference No: @Html.DisplayFor(m => m.txn_ref)</span></b>
+                </div>
+
+            </div>
+            <div class="span_2"></div>
+        </div>
+        <h5><b>Personal Information</b></h5>
+        <hr />
+        <div class="row-fluid">
+            <div class="span4 offset1">
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelForRequired(m => m.InterSwitchUserView.Name)
+                    </div>
+                    <div class="controls">
+                        @Html.DisplayFor(m => m.InterSwitchUserView.Name)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.InterSwitchUserView.Email, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DisplayFor(m => m.InterSwitchUserView.Email)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelForRequired(m => m.InterSwitchUserView.Phone)
+                    </div>
+                    <div class="controls">
+                        @Html.DisplayFor(m => m.InterSwitchUserView.Phone)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelForRequired(m => m.InterSwitchUserView.BVN)
+                    </div>
+                    <div class="controls">
+                        @Html.DisplayFor(m => m.InterSwitchUserView.BVN)
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.InterSwitchUserView.Id)
+                @Html.HiddenFor(m => m.InterSwitchUserView.Currency)
+
+            </div>
+        </div>
+        <hr />
+        <h5><b>Payment Information</b></h5>
+        <hr />
+        <div class="row-fluid">
+
+            <div class="span4 offset1">
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelForRequired(m => m.txn_ref)
+                    </div>
+                    <div class="controls">
+                        <div class="form-inline">
+                            @Html.DisplayFor(m => m.txn_ref)
+
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelForRequired(m => m.InterSwitchUserView.Quantity)
+                    </div>
+                    <div class="controls">
+                        <div class="form-inline">
+                            @Html.DisplayFor(m => m.InterSwitchUserView.Quantity)
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelForRequired(m => m.InterSwitchUserView.Amount)
+                    </div>
+                    <div class="controls">
+                        <div class="form-inline">
+                            @Html.DisplayFor(m => m.InterSwitchUserView.Amount)
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        @{
+            if (Model.InterSwitchUserView.IsTopUpPayment)
+            {
+            <hr />
+            <h5><b>TopUp Summary Preview</b></h5>
+            <hr />
+            <div class="row-fluid">
+                <div class="span4 offset1">
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelFor(m => m.InterSwitchUserView.BalanceBeforeTopUp)
+                        </div>
+                        <div class="controls">
+                            <div class="form-inline">
+                              Amount = @Html.DisplayFor(m => m.InterSwitchUserView.BalanceBeforeTopUp) | Number of Searches = @(((decimal)Model.InterSwitchUserView.BalanceBeforeTopUp / (decimal)Model.InterSwitchUserView.PricePerSearch).ToString("#,##0"))
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelFor(m => m.InterSwitchUserView.BalanceAfterTopUp)
+                        </div>
+                        <div class="controls">
+                            <div class="form-inline">
+                               Amount = @Html.DisplayFor(m => m.InterSwitchUserView.BalanceAfterTopUp) | Number of Searches = @(((decimal)Model.InterSwitchUserView.BalanceAfterTopUp / (decimal)Model.InterSwitchUserView.PricePerSearch).ToString("#,##0"))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+        <hr />
+        <div class="row-fluid">
+            <div class="span4 offset1">
+                @Html.HiddenFor(m => m.InterSwitchUserView.Id)
+                @Html.HiddenFor(m => m.InterSwitchUserView.Currency)
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "webpayform", @action = InterSwitchConfig.PurchaseUrl }))
+                {
+                    @Html.HiddenFor(m => m.product_id)
+                    @Html.HiddenFor(m => m.pay_item_id)
+                    @Html.HiddenFor(m => m.amount)
+                    @Html.HiddenFor(m => m.currency)
+                    @Html.HiddenFor(m => m.site_redirect_url)
+                    @Html.HiddenFor(m => m.txn_ref)
+                    @Html.HiddenFor(m => m.hash)
+                    @Html.HiddenFor(m => m.cust_id)
+                    @Html.HiddenFor(m => m.pay_item_name)
+                    @Html.HiddenFor(m => m.cust_name)
+                    <div class="control-group">
+                        <div class="form-inline">
+                            <a href="@Url.Action("PaymentDetails", new { refno = InterSwitchHelper.Encrypt(Model.txn_ref) })" class="btn"><i class="icon-hand-left"></i>Back</a>
+                            <button type="button" id="btnwebpay" class="btn btn-primary" style="margin-left: 80px;">Pay <i class="icon-credit-card"></i></button>
+                        </div>
+                    </div>
+                           
+                    <hr />
+                    <div class="well" style="width: 100%; text-align: center;">
+                        <p>
+                            <img src="~/Content/Images/Interswitch/paypal-img.png" />
+                        </p>
+                    </div> 
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="@Url.Content("~/Scripts/jquery.printElement.min.js")"></script>
+<script>
+    $("#printCode").click(function () {
+        $(".txncode").printElement();
+    });
+
+
+    $("#btnwebpay").click(function () {
+
+        var msg = 'Please make sure you have a copy of your transaction reference number. Click Ok to continue payment process else click Cancel to terminate process.';
+        bootbox.confirm(msg, function (result) {
+            if (result == true) {
+                $("#webpayform").submit();
+            } else {
+
+            }
+
+        });
+
+    });
+</script>

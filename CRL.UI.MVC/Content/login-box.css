@@ -1,0 +1,123 @@
+﻿body 
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin:0;
+    padding:0;
+    
+    /*background-color: #f6f6f6;*/
+}
+
+#main 
+{
+    margin: 0 auto;
+    width: 800px;
+    min-width: 800px;
+    border: 1px solid #ccc;
+    margin-top: 50px;
+    background-color: #fff;
+    /*min-height: 600px;*/
+}
+
+#content
+{
+    clear: both;
+}
+
+#header
+{
+    margin:0;
+    padding:0;
+    /*width: 800px;
+    height: 100px;
+    background-image: url(Image/header.png) ;
+    background-repeat:  no-repeat;
+    background-position: center top;*/
+}
+
+#header h1
+{
+    line-height:40px;
+}
+
+#footer
+{
+    text-align: center;
+    /*padding: 20px 0;*/
+    padding-bottom: 5px;
+}
+
+a {
+	color: Orange;
+	text-decoration: none;
+}
+
+#login-box {
+	width:333px;
+	height: 352px;
+	padding: 85px 80px 10px 80px;
+	margin: 0 auto;
+	color: #ebebeb;
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	background: url(images/login/login-box-backg.png) no-repeat left top;
+}
+
+#login-box img {
+	border:none;
+}
+
+#loginImg 
+{
+    float: right;
+    left: -370px;
+    top: 40px;
+    z-index: 1000;
+    position: relative;
+}
+
+#login-box h2 {
+	padding:0;
+	margin:0;
+	color: #ebebeb;
+	font: bold 44px "Calibri", Verdana, Arial;
+}
+
+
+#login-box-name {
+	float: left;
+	display:inline;
+	width:80px;
+	text-align: right;
+	padding: 14px 10px 0 0;
+	margin:0 0 7px 0;
+}
+
+#login-box-field {
+	float: left;
+	display:inline;
+	width:230px;
+	margin:0;
+	margin:0 0 7px 0;
+}
+
+
+.form-login  {
+	width: 205px;
+	padding: 10px 4px 6px 3px;
+	border: 1px solid #0d2c52;
+	background-color:#1e4f8a;
+	font-size: 16px;
+	color: #ebebeb;
+}
+
+
+.login-box-options  {
+	clear:both;
+	font-size: 11px;
+	float: right;
+}
+
+.login-box-options a {
+	color: #ebebeb;
+	font-size: 11px;
+}

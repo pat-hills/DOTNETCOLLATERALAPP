@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Model.Membership.LKMembershipAccountCategory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="11.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\Membership.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.Membership.LKMembershipCategory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="9" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\Membership.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.Membership.MembershipRegistrationRequest">
+    <Position X="6.75" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>kAAIAEABAABAAECACAAQAAEABAAAAAACAAQFQAAAAAA=</HashCode>
+      <FileName>Membership\MembershipRegistrationRequest.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.Membership.LegalEntityMembershipRegistrationRequest">
+    <Position X="9.75" Y="4.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Membership\MembershipRegistrationRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.Membership.Person">
+    <Position X="4" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEABCAAAAECAQAAQAAAABAACAAACAAAAAAAACAA=</HashCode>
+      <FileName>Membership\Person.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.Membership.Role">
+    <Position X="10" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAACABAAAgAIAAAAAACAQQAAAAQAAAAAAAAQEAAAA=</HashCode>
+      <FileName>Membership\Role.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.Membership.RoleCategory">
+    <Position X="6.75" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\RoleCategory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CRL.Model.Membership.RoleGroup">
+    <Position X="4" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAABAAAAAAAAAAAAAAAAQgAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\RoleGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="CRL.Model.Membership.Enums.MembershipCategory">
+    <Position X="6.25" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Membership\Enums\MembershipEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CRL.Model.Membership.Enums.MembershipAccountCategory">
+    <Position X="3.75" Y="12" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAgEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Membership\Enums\MembershipEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

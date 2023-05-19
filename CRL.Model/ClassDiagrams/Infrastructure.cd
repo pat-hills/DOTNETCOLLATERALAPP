@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CRL.Model.Common.AddressInfo">
+    <Position X="0.5" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAIAAAAAAAAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Common\AddressInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.Common.PersonIdentificationInfo">
+    <Position X="0.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAQCAAABAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\AddressInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.Common.AuditedEntityBaseModel&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\AuditedEntityBaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRL.Model.Common.LKNationality" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonLookUpClasses.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.Common.LKCountry" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonLookUpClasses.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CRL.Model.Common.LKCounty" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonLookUpClasses.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="CRL.Model.Common.IIndividual">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAiCAAAECAAAAQAAACBAAQAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Common\IIndividual.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IDetailIndividual">
+    <Position X="3" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IIndividual.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IInsititution">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAgAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IInsititution.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IDetailInstitution">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAEAAAAAAAAAEAAAEECAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IInsititution.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IRepository.ILKCountyRepository">
+    <Position X="0.5" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IRepository\CommonLookUpRepositories.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IRepository.ILKCountryRepository">
+    <Position X="3" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IRepository\CommonLookUpRepositories.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CRL.Model.Common.IRepository.ILKNationalityRepository">
+    <Position X="0.5" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\IRepository\CommonLookUpRepositories.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CRL.Model.Common.Enum.DebtorCategory">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAIAAAAAAAAIAAQCAggAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Enum\CompanyCategory.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

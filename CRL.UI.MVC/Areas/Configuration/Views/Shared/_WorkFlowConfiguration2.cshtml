@@ -1,0 +1,489 @@
+﻿@model CRL.UI.MVC.Areas.Configuration.Models.Shared._WorkFlowConfigurationViewModel
+@using CRL.Infrastructure.Authentication;
+@{
+    var SecurityUser = (SecurityUser)HttpContext.Current.User;
+}
+   @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+<div id="ConfigurationForm" class="container-fluid">
+    @if (!SecurityUser.IsOwnerUser)
+    {
+        <div id="SettingOption" class=" form-horizontal">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="span4"></div>
+                    <div class="control-label">
+                        Choose Active Settings
+                    </div>
+                    <div class="controls">
+
+                        @Html.DropDownListFor(model => model.MemberConfigurationWorkflowView.UseGlobalSettings, new SelectList(new[]{new SelectListItem{ Text="Use Global settings", Value="true"},
+                                                                                                                                                                                                             new SelectListItem{ Text="Use Personalised settings", Value="false"}}, "Value", "Text"))
+                    </div>
+                    <div class="span4"></div>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+    }
+
+    <div class="row-fluid">
+
+        <div class="span12">
+            <div class="span2"></div>
+
+            <div class="span8">
+
+
+                @if (!SecurityUser.IsOwnerUser)
+                {
+@*<div class="span2"></div>
+                        <div class="span4">
+                            <ul class="nav nav-pills center" id="myTab">
+
+                                <li class="active"><a href="#global" data-toggle="tab">Global Settings</a></li>
+                                <li><a href="#member" data-toggle="tab">Member Settings</a></li>
+                            </ul>
+                        </div>
+                        <div class="span2"></div>*@
+                    
+                }
+
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="global">
+                        <div class="form-horizontal">
+                            <div class="span12" style="margin: auto">
+
+                                <div class="row-fluid">
+                                    <div class="span2"></div>
+
+                                    <div class="span8">
+                                        <table class="table table-bordered table-striped">
+                                            <colgroup>
+                                                <col class="span6" />
+                                                <col class="span2" />
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-weight: bold">SETTING</th>
+                                                    <th style="font-weight: bold">STATUS</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                     <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.CreateNewFS)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.CreateNewFS,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.CreateNewFS)
+                                                    </td>
+                                                </tr>
+                                                      <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.UpdateFS)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.UpdateFS,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.UpdateFS)
+                                                    </td>
+                                                </tr>
+                                                 
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.DischargeFS)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.DischargeFS,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.DischargeFS)
+                                                    </td>
+                                                </tr>
+                                                  <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.SubordinateFS)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.SubordinateFS,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.SubordinateFS)
+                                                    </td>
+                                                </tr>
+                                                   <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.AssignmentFS)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.AssignmentFS,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.AssignmentFS)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.EnforceWorkflowForUsersWithBothOfficerAndAuthorizerRoles)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.EnforceWorkflowForUsersWithBothOfficerAndAuthorizerRoles,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.EnforceWorkflowForUsersWithBothOfficerAndAuthorizerRoles)
+                                                    </td>
+                                                </tr>
+
+                                               @Html.HiddenFor(model=>model.GlobalConfigurationWorkflowView.Id)
+                                                @Html.HiddenFor(model=>model.GlobalConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                                                 @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                                                 @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                                                @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                     @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                 @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                                                @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                                                 @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed)
+                                                  @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                                                 @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.TaskAssignmentNotification)
+                                                  @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.UnitLimit)
+                                                 @Html.HiddenFor(model => model.GlobalConfigurationWorkflowView.WorkflowDelayedWarning)
+                                                      @Html.HiddenFor(model=>model.GlobalConfigurationWorkflowView.SkipWhenSubmitterIsAuthroizer)
+@*                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification,
+                                                        (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned,
+                                                        (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToSelectAssignedUsers,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                                                    </td>
+                                                </tr>
+
+                                             
+                                          
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAfterWorkflowClose)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAfterWorkflowClose,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                                                    </td>
+                                                </tr>
+                                                @if (!SecurityUser.IsOwnerUser)
+                                                {
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</td>
+                                                        <td>@Html.TextBoxFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed, new { disabled = "true" })
+                                                            @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</td>
+                                                    </tr>
+
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</td>
+                                                        <td>@Html.EditorFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed)
+                                                            @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</td>
+                                                    </tr>}
+
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.SkipWorkflowForIndividuals)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.SkipWorkflowForIndividuals,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                                                    </td>
+                                                </tr>
+
+
+                                              
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.TaskAssignmentNotification)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.TaskAssignmentNotification,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.TaskAssignmentNotification)
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.UnitLimit)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.UnitLimit,
+                                                    (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.UnitLimit)
+                                                    </td>
+                                                </tr>
+
+                                          
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.GlobalConfigurationWorkflowView.WorkflowDelayedWarning)  </td>
+
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.GlobalConfigurationWorkflowView.WorkflowDelayedWarning,
+                                                        (!SecurityUser.IsOwnerUser ? new { disabled = "true" } : null))
+                                                        @Html.ValidationMessageFor(model => model.GlobalConfigurationWorkflowView.WorkflowDelayedWarning)
+                                                    </td>
+                                                </tr>*@
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="span2"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @if (!SecurityUser.IsOwnerUser)
+                    {
+                        <div class="tab-pane" id="member">
+                            <div class="form-horizontal">
+                                <div class="span12" style="margin: auto">
+
+                                    <div class="row-fluid">
+                                        <div class="span2"></div>
+
+                                        <div class="span8">
+                                            <table class="table table-bordered table-striped">
+                                                <colgroup>
+                                                    <col class="span6" />
+                                                    <col class="span2" />
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th style="font-weight: bold">SETTING</th>
+                                                        <th style="font-weight: bold">STATUS</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                              @*      <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                                                        </td>
+                                                    </tr>*@
+
+                                                   @* <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                                                        </td>
+                                                    </tr>*@
+
+                                              @*      <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                                                        </td>
+                                                    </tr>*@
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.CreateNewFS)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.CreateNewFS)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.CreateNewFS)
+                                                        </td>
+                                                    </tr>
+                                                      <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.UpdateFS)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.UpdateFS)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.UpdateFS)
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.DischargeFS)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.DischargeFS)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.DischargeFS)
+                                                        </td>
+                                                    </tr>
+                                                        <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.SubordinateFS)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.SubordinateFS)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.SubordinateFS)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.AssignmentFS)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.AssignmentFS)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.AssignmentFS)
+                                                        </td>
+                                                    </tr>
+
+                                                <tr>
+                                                    <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.EnforceWorkflowForUsersWithBothOfficerAndAuthorizerRoles)  </td>
+
+                                                    <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.EnforceWorkflowForUsersWithBothOfficerAndAuthorizerRoles)
+                                                        @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.EnforceWorkflowForUsersWithBothOfficerAndAuthorizerRoles)
+                                                    </td>
+                                                </tr>
+
+
+                                                  @*  <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.NotifyAllAfterWorkflowClose)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</td>
+                                                        <td>@Html.EditorFor(model => model.MemberConfigurationWorkflowView.NumDaysWorkflowIsDelayed)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.NumDaysWorkflowIsDelayed)</td>
+                                                    </tr>
+
+
+
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.SkipWorkflowForIndividuals)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                                                        </td>
+                                                    </tr>
+
+
+                                                
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.TaskAssignmentNotification)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.TaskAssignmentNotification)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.TaskAssignmentNotification)
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.UnitLimit)  </td>
+
+                                                        <td>@Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.UnitLimit)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.UnitLimit)
+                                                        </td>
+                                                    </tr>
+
+                                                  
+                                                    <tr>
+                                                        <td>@Html.LabelFor(model => model.MemberConfigurationWorkflowView.WorkflowDelayedWarning)  </td>
+
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model.MemberConfigurationWorkflowView.WorkflowDelayedWarning)
+                                                            @Html.ValidationMessageFor(model => model.MemberConfigurationWorkflowView.WorkflowDelayedWarning)
+                                                        </td>
+                                                    </tr>*@
+                                                    @Html.HiddenFor(model=>model.MemberConfigurationWorkflowView.Id)
+                                                       @Html.HiddenFor(model=>model.MemberConfigurationWorkflowView.MembershipId)
+
+                                                     @Html.HiddenFor(model=>model.MemberConfigurationWorkflowView.AllowUsersToAddEmailsForTaskNotification)
+                                                 @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.AllowWorkflowWhenNoUserAssigned)
+                                                 @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.AllowUsersToSelectAssignedUsers)
+                                                @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                     @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.NotifyAdministratorWhenNoUserAssigned)
+                                                 @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.NotifyAllAfterWorkflowClose)
+                                                @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.NotifyAllAssignedAfterTaskExecution)
+                                                 @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.NumDaysWorkflowIsDelayed)
+                                                  @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.SkipWorkflowForIndividuals)
+                                                 @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.TaskAssignmentNotification)
+                                                  @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.UnitLimit)
+                                                 @Html.HiddenFor(model => model.MemberConfigurationWorkflowView.WorkflowDelayedWarning)
+                                                    @Html.HiddenFor(model=>model.MemberConfigurationWorkflowView.SkipWhenSubmitterIsAuthroizer)
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+
+
+
+
+                                        <div class="span2"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="span2"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="text-center"><input id="SaveSettings" type="submit" class="btn btn-primary" value="Save"/></div>
+   }
+<script type="text/javascript">
+    $("#member").hide()
+       @if (!SecurityUser.IsOwnerUser)
+                {
+    <text>$("#global").hide()</text>
+       }
+
+</script>

@@ -1,0 +1,63 @@
+﻿@model  CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._DirectPayTransactionsJqGridViewModel
+@using CRL.Infrastructure.Enums 
+@using CRL.Infrastructure.Configuration;
+@using CRL.Infrastructure.Helpers
+<div id="searchgrid">
+    @using MvcJqGrid
+
+    @{
+        MvcJqGrid.DataReaders.JsonReader jsonReader = new MvcJqGrid.DataReaders.JsonReader();
+        jsonReader.RepeatItems = false;
+        jsonReader.Id = "dataJson";   
+        Grid c = Html.Grid("ListOfInterSwitchTransactions");
+        c = c.SetCaption("List Of InterSwitch Transactions");
+        c = c.AddColumn(new Column("Id").SetLabel("Actions").SetCustomFormatter("buttonize").SetSearch(false).SetSortable(false).SetWidth(150));
+        c = c.AddColumn(new Column("PaymentVoucherCode").SetLabel("Payment Voucher Code").SetSearch(false));
+        c = c.AddColumn(new Column("Name").SetLabel("Name"));
+        c = c.AddColumn(new Column("Email").SetFormatter(MvcJqGrid.Enums.Formatters.Email))
+       .AddColumn(new Column("Phone").SetWidth(80));
+        c = c.AddColumn(new Column("Amount").SetSearch(false).SetSortable(true).SetLabel("Amount").SetWidth(100));
+        c = c.AddColumn(new Column("TransactionDate").SetFormatter(MvcJqGrid.Enums.Formatters.Date, " newformat: 'd-M-Y H:i:s A'").SetLabel("Transaction Date").SetSearchType(MvcJqGrid.Enums.Searchtype.Datepicker).SetSearchDateFormat("M/dd/yy").SetWidth(120));
+        c = c.AddColumn(new Column("IsTopUpPayment").SetLabel("Is Top Up").SetSearch(false).SetSortable(false).SetWidth(50));
+        c = c.AddColumn(new Column("Status").SetLabel("Status").SetSearch(false));
+        c = c.SetUrl(Url.Action("ViewDirectPayJsonData", "InterSwitch", Model))
+          .SetAutoEncode(true)
+        .SetDataType(MvcJqGrid.Enums.DataType.Json)
+        .SetAutoWidth(true)
+        .SetRowNum(15)
+        .SetJsonReader(jsonReader)
+        .SetLoadUi(MvcJqGrid.Enums.LoadUi.Block)
+        .SetRowList(new int[] { 10, 15, 20, 50 })
+        .SetViewRecords(true)
+        .SetGridView(true)
+        .SetPager("pager")
+            // .SetMultiSelect(true)
+            //.SetMultiBoxOnly(true)
+       .SetSearchToolbar(true)
+        .SetMultiSelectWidth(20)
+            // .OnSelectRow("onRowSelected(rowid, status)")  
+       .OnLoadError("GetServerErrors(xhr, status, error)")
+        .SetSearchToggleButton(true).SetSearchOnEnter(true); 
+    }
+    @(c) 
+</div>
+<script>
+    function buttonize(cellvalue, options, rowobject) {
+        var Buttons = "";
+        var Button1 = '<a class="btn btn-flat green" title="View Transaction Details"  style="margin:3px 3px 3px 0; " onclick="edit(\'' + cellvalue + '\',1)"><i class="icon-file-text-alt"></i></a>';
+        Buttons = Buttons + Button1;
+              
+        return Buttons;
+    }
+
+    function edit(id, cmd) {
+        
+        if (cmd == 1) {
+            var url = '@Html.Raw(Url.Action("DirectPayDetails", "InterSwitch", new { Area = "Payment", id = "-1"}))'
+            url = url.replace("-1", id);
+             window.location.assign(url);
+         }
+
+        
+    }
+        </script>

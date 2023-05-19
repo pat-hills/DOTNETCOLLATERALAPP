@@ -1,0 +1,179 @@
+﻿@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.SelectRegisteredClientViewModel
+@using CRL.UI.MVC.HTMLHelpers
+@using CRL.Service.Common
+@using CRL.Infrastructure.Enums
+@using System.Web.Helpers
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Select Client";
+    ViewBag.Icon = "icon-money";
+    ViewBag.HeaderSummary = "Client";
+    ViewBag.MenuName = "Payment";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>Search List
+                    </h3>
+                </div>
+
+                <div class="box-content form-horizontal">
+                     @*<label class="control-label">Select Client Type</label>
+                     <div class="controls">
+                       <label class="radio">
+                            @Html.RadioButtonFor(model => model.RegisteredOrPublicUser , "false")
+                            Client is a registered user
+                        </label>
+                        <label class="radio">
+                            @Html.RadioButtonFor(model => model.RegisteredOrPublicUser , "true")
+                            Client is a public user
+                        </label>
+                    </div>*@
+                     <div class="control-group">
+                    <label class="control-label">Search for Secured Creditor By</label>
+                    <div class="controls">
+                        
+                        
+                            @Html.RadioButtonFor(model => model.SearchByClientCodeOrName, 1, new { @class = "code", id = "rbd1" }) Secured Creditor Code
+                       
+                            @Html.RadioButtonFor(model => model.SearchByClientCodeOrName, 2, new { @class = "code", id = "rbd2" }) Secured Creditor Name
+                      
+                    </div></div>
+                    <div id="pnlClientCode">
+                        <div class="control-group">
+                            <label for="textfield" class="control-label">Secured Creditor Code</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.SearchClientCode)
+                                @Html.ValidationMessageFor(model => model.SearchClientCode)
+                            </div>
+                        </div>
+                        </div>
+                    <div  id="pnlClientName"> 
+                       @if (CRL.Infrastructure.Configuration.Constants.Project == CRL.Infrastructure.Configuration.Project.Liberia){
+                        <div class="control-group">
+                            <label class="control-label">Select Client Type</label>
+                            <div class="controls">
+                                @Html.RadioButtonFor(model => model.IsSelectedIndividual, "1", new { @class = "hello", id = "rb1" }) Individual
+            @Html.RadioButtonFor(model => model.IsSelectedIndividual, "2", new { @class = "hello", id = "rb2" }) Financial Institution
+                            </div>
+                        </div>
+                       }
+
+                        else
+                        {
+                       
+                       @Html.HiddenFor(model=>model.IsSelectedIndividual)
+                       }
+                        <div id="lstIndividual" class="control-group">
+                            <label for="textfield" class="control-label">Individual Client</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.SelectedIndividualMembershipId, Model.IndividualClientList)
+                                @Html.ValidationMessageFor(model => model.SelectedIndividualMembershipId)
+                            </div>
+                        </div>
+                        <div id="lstLegal" class="control-group">
+                            <label for="textfield" class="control-label">Financial Institution</label>
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.SelectedLegalEntityMembershipId, Model.LegalEntityClientList)
+                                @Html.ValidationMessageFor(model => model.SelectedLegalEntityMembershipId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" name="submitButton" class="btn btn-primary" value="Find Secured Creditor">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    if (Model.ClientSummaryView != null)
+    {
+    
+    @Html.HiddenFor(x =>  x.ClientSummaryView.MembershipId, new { @Value =  Model.ClientSummaryView.MembershipId });
+    @Html.HiddenFor(x => x.SelectedAmendmentType);
+    @Html.HiddenFor(x => x.FinancialStatementId);
+        Html.RenderPartial("~/Areas/Payment/Views/Shared/_ClientSummary.cshtml", Model.ClientSummaryView);
+        
+    <div class="form-actions">
+        <input type="submit" name="submitButton" class="btn" value="Continue with this client >>">
+    </div>
+    }
+   
+
+}
+  @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+<script>
+ $(document).ready(function () {
+        if ($('#rb1').attr("checked")) {
+            $('#lstLegal').hide();
+            $('#lstIndividual').show();
+        }
+
+        else {
+            $('#lstLegal').show()
+            $('#lstIndividual').hide();
+        }
+
+        if ($('#rbd1').attr("checked")) {
+            $('#pnlClientCode').show();
+            $('#pnlClientName').hide();
+        }
+        else {
+            $('#pnlClientCode').hide()
+            $('#pnlClientName').show();
+        }
+        $('.hello').change(function () {
+
+            if ($(this).val() == true) {
+
+                //$("#pnlDischargedCollaterals").prop('disabled', true);
+                $('#lstLegal').hide();
+                $('#lstIndividual').show();
+
+            }
+            else {
+                //if ($("#rb2").attr("checked")) 
+
+                $('#lstLegal').show()
+                $('#lstIndividual').hide();
+
+            }
+
+
+        })
+        $('.code').change(function () {
+
+            if ($(this).val() == true) {
+
+                //$("#pnlDischargedCollaterals").prop('disabled', true);
+                $('#pnlClientCode').show();
+                $('#pnlClientName').hide();
+
+            }
+            else {
+                //if ($("#rb2").attr("checked")) 
+
+                $('#pnlClientCode').hide()
+                $('#pnlClientName').show();
+
+            }
+
+
+        })
+
+
+ });
+    </script>

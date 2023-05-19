@@ -1,0 +1,164 @@
+﻿@using CRL.UI.MVC.HTMLHelpers
+@using System.Web.UI.WebControls
+@using CaptchaMvc.HtmlHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels.PaymentViewModel
+
+@{
+    ViewBag.Title = "Receive Payment";
+    ViewBag.Icon = "icon-money";
+    ViewBag.MenuName = "Payments";
+}
+
+
+
+@using (Html.BeginForm()){
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="icon-table"></i>Payment Details
+                    </h3>
+                </div>
+
+                <div class="box-content form-horizontal">
+                    <div class="control-group">
+
+                        <div class="control-label">
+                            @Html.LabelForRequired(model => model.PaymentView.PaymentDate)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.PaymentView.PaymentDate , "{0:dd/MMM/yyyy}", new { placeholder = "dd/mm/yyyy" })                            
+                            @Html.ValidationMessageFor(model => model.PaymentView.PaymentDate)
+                        </div>
+                    </div>                     
+                     <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(model => model.PaymentView.Amount)
+                        </div>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PaymentView.Amount)
+                            @Html.ValidationMessageFor(model => model.PaymentView.Amount)
+                        </div>
+                    </div> 
+                       <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(model => model.PaymentView.Payee)
+                        </div>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PaymentView.Payee)
+                            @Html.ValidationMessageFor(model => model.PaymentView.Payee)
+                        </div>
+                    </div>                                       
+                    @if (Model.PaymentView.IsPublicUser)
+                    {
+                        <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(model => model.PaymentView.PublicUserEmail)
+                        </div>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PaymentView.PublicUserEmail)
+                            @Html.ValidationMessageFor(model => model.PaymentView.PublicUserEmail)
+                        </div>
+                    </div>        
+                     
+                    }
+
+          
+                       <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelForRequired(model => model.PaymentView.T24TransactionNo)
+                        </div>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PaymentView.T24TransactionNo)
+                            @Html.ValidationMessageFor(model => model.PaymentView.T24TransactionNo)
+                        </div>
+                    </div>
+                   
+                     
+                    @*    <div class="control-label">
+                            @Html.LabelForRequired(model => model.PaymentView.AdjustmentPayment)
+                        </div>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.PaymentView.AdjustmentPayment)
+                            @Html.ValidationMessageFor(model => model.PaymentView.AdjustmentPayment)
+                        </div>*@
+                  
+                
+
+                    <br  />
+                    <div class="control-group">
+                       <h4>Security Check</h4>
+                      
+                      <div class="controls" >
+                          <p>Please type the characters you see in the picture below</p>
+                          @Html.Captcha("Refresh", "", 5, "The input field is required",false)
+                          @Html.ValidationMessage("CaptchaInputText")
+                          <p>Letters are not case sensitive</p>
+                      </div>
+
+                  </div>
+                               
+             
+                   <div class="form-actions">
+                        <input type="submit" name="submitButton" class="btn btn-primary" value="Submit Payment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.PaymentView.MembershipId)
+    @Html.HiddenFor(model => model.PaymentView.IsPublicUser)
+    @Html.HiddenFor(model => model.UniqueGuidForm) 
+    
+    
+    
+}
+
+@*<div>
+    @Html.ActionLink("Back to Select Payment", "Index")
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+   
+    $(document).ready(function ()
+    {
+       
+        $("#PaymentView_PaymentDate").datepicker({
+            dateFormat: 'dd/M/yy', changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0"
+        });
+
+       
+        $(document).on('invalid-form.validate', 'form', function () {
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.removeAttr('disabled');
+            }, 1);
+        });
+
+        $(document).on('submit', 'form', function () {
+            var button = $(this).find('input[type="submit"]');
+            setTimeout(function () {
+                button.attr('disabled', 'disabled');
+            }, 0);
+        });
+        //$('form').submit(function () {
+        //    alert("Hello");
+        //        $('input[type="submit"]', this).attr('disabled', 'disabled');
+        //    });
+
+      
+    });
+</script>

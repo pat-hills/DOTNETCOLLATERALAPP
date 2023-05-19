@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{553B2B5A-B05B-4392-AB0D-E62D714EAB3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRL.Repository.EF.All</RootNamespace>
+    <AssemblyName>CRL.Repository.EF.All</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\dlls\LinqKit\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CBLContext.cs" />
+    <Compile Include="Common\Repository\Repository.cs" />
+    <Compile Include="FSConfigurationClasses.cs" />
+    <Compile Include="MembershipConfigurationClasses.cs" />
+    <Compile Include="DataContextFactory.cs" />
+    <Compile Include="DataContextStorage\DataContextStorageFactory.cs" />
+    <Compile Include="DataContextStorage\HttpDataContextStorageContainer.cs" />
+    <Compile Include="DataContextStorage\IDataContextStorageContainer.cs" />
+    <Compile Include="DataContextStorage\ThreadDataContextStorageContainer.cs" />
+    <Compile Include="EFUnitOfWork.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AuditRepository.cs" />
+    <Compile Include="Repository\Common\CommonLookUpRepoitories.cs" />
+    <Compile Include="Repository\Configuration\ConfigurationFeeRepository.cs" />
+    <Compile Include="Repository\Configuration\ConfigurationWorkflowRepository.cs" />
+    <Compile Include="Repository\Configuration\LKCurrenciesRepository.cs" />
+    <Compile Include="Repository\Configuration\LKServiceFeeCategoriesRepository.cs" />
+    <Compile Include="Repository\Email\EmailUserAssignmentRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\TempAttachmentRepository.cs" />
+    <Compile Include="Repository\Membership\BankVerificationCodeRepository.cs" />
+    <Compile Include="Repository\MessageRepository.cs" />
+    <Compile Include="Repository\Email\EmailRepository.cs" />
+    <Compile Include="Repository\Email\EmailTemplateRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\CollateralRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\FinancialStatementActivityRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\FinancialStatementAttachmentRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\FinancialStatementRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\FinancialStatementSnapshotRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\FSBatchRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\IndividualParticipantRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\InstitutionParticipantRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\LookUpRepositories.cs" />
+    <Compile Include="Repository\FinancialStatement\ParticipantRepositoryRepository.cs" />
+    <Compile Include="Repository\FinancialStatement\SubordinatingPartyRepository.cs" />
+    <Compile Include="Repository\Membership\InstitutionRepository.cs" />
+    <Compile Include="Repository\Membership\InstitutionUnitRepository.cs" />
+    <Compile Include="Repository\Membership\LKInstitutionCategoryRepository.cs" />
+    <Compile Include="Repository\Membership\LKMembershipCategoryRepository.cs" />
+    <Compile Include="Repository\Membership\MembershipRegistrationRequestRepository.cs" />
+    <Compile Include="Repository\Membership\MembershipRepository.cs" />
+    <Compile Include="Repository\Membership\PasswordRequestRepository.cs" />
+    <Compile Include="Repository\Membership\PersonRepository.cs" />
+    <Compile Include="Repository\Membership\RoleCategoryRepository.cs" />
+    <Compile Include="Repository\Membership\RoleGroupRepository.cs" />
+    <Compile Include="Repository\Membership\RoleRepository.cs" />
+    <Compile Include="Repository\Membership\UserRepository.cs" />
+    <Compile Include="Repository\Payment\Repositories.cs" />
+    <Compile Include="Repository\Reporting\Repositories.cs" />
+    <Compile Include="Repository\Search\SearchFinancialStatementRepository.cs" />
+    <Compile Include="Repository\Search\TrackSearchResultRepository.cs" />
+    <Compile Include="Repository\SerialTrackerRepository.cs" />
+    <Compile Include="Repository\Workflow\WFCaseRepository.cs" />
+    <Compile Include="Repository\Workflow\WFTokenRepository.cs" />
+    <Compile Include="Repository\Workflow\WFWorkflowRepository.cs" />
+    <Compile Include="ServiceRequestRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRL.Infrastructure\CRL.Infrastructure.csproj">
+      <Project>{d6d0eba3-e928-4d03-806c-6b7e0e28e706}</Project>
+      <Name>CRL.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRL.Model\CRL.Model.csproj">
+      <Project>{ec045b2c-ac6c-4def-87d6-65501bcf83c2}</Project>
+      <Name>CRL.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Download Search Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "Download your search report";
+  
+    string reportAdjective = "";
+    if (ViewBag.IsCertified!=null)
+    {
+     reportAdjective = ViewBag.IsCertified == true ? "certified" : "uncertified";
+    }
+}
+
+
+@if (@ViewBag.SearchId != null)
+{
+<h3>Your @reportAdjective search report has been successfully generated!</h3>
+    if (@ViewBag.EmailSent)
+    {
+        <h4>An email having the @reportAdjective search report attached has been delivered to your email address!</h4>
+    }
+   
+    <h4>Click on the link below to download the report</h4>
+ @Html.ActionLink("Download " + reportAdjective + " search report","DownloadSearchReport","Search",new{Area="Search", SearchId=@ViewBag.SearchId , isCertified = @ViewBag.IsCertified, PublicUserReceiptNo= ViewBag.PublicUserReceiptNo},null)
+
+}
+else
+{
+    throw new UnauthorizedAccessException();
+}

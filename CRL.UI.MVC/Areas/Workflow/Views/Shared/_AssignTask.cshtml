@@ -1,0 +1,26 @@
+﻿@model CRL.Service.Views.Workflow.AssignNewTaskView
+@using CRL.UI.MVC.HTMLHelpers
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box box-color box-small box-bordered">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Workflow Details
+                </h3>               
+            </div>
+            <div class="box-content">              
+                   <p>This item will be assigned to the user(s) below for authorization</p>
+                    <div>
+                        @Html.ListBox("AssignedToUser", new SelectList(Model.AssignedToUser, "Id", "Fullname"), new { disabled = "disabled" })
+                    </div>
+                    <div>
+                        @Html.LabelForRequired(model => model.Comment)
+                    </div>
+                    <div >
+                        @Html.EditorFor(model => model.Comment)
+                        @Html.ValidationMessageFor(model => model.Comment)
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model CRL.UI.MVC.Areas.Payment.Models.ViewPageModels._ViewBatchDetailsPartailViewModel
+
+<div class="control-group">
+    <label for="textfield" class="control-label">Reconcile Comment</label>
+    <div class="controls">
+        @Html.TextAreaFor(model => model.ReconcileComment)
+        @Html.ValidationMessageFor(model => model.ReconcileComment)
+    </div>
+</div>
+
+<div class="form-actions">
+
+    <button type="button" class="btn btn-primary" id="btnReconcileBatch">Reconcile Batch</button>
+</div>
+
+@Html.HiddenFor(model => model.BatchNo)
+@Html.HiddenFor(model => model.BatchName)
+@Html.HiddenFor(model => model.BatchComment)
+@Html.HiddenFor(model => model.PeriodEndDate)
+@Html.HiddenFor(model => model.PeriodStartDate)
+
+@Html.HiddenFor(model => model.TotalBatchExpenses)
+@Html.HiddenFor(model => model.TotalSetltement)
+@Html.HiddenFor(model => model.TotalOustandinBatchAmount)

@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Icon = "icon-search";
+    ViewBag.HeaderSummary = "Financing Statements Search Result";
+    ViewBag.Title = "Search Financing Statement";
+    ViewBag.MenuName = "Search";
+}
+@model CRL.UI.MVC.Areas.Search.Models.ViewPageModels.ResultSearchViewModel
+<script src="~/Scripts/bootbox.min.js"></script>
+@Styles.Render("~/Content/jqueryloadmask")
+
+<div id="result">
+    @{Html.RenderPartial("~/Areas/Search/Views/Shared/_SearchResult.cshtml", Model);}
+</div>
